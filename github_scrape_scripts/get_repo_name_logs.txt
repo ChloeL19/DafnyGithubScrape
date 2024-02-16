@@ -1,0 +1,5 @@
+Page 1: 100 repositories found.
+Page 2: 100 repositories found.
+Page 3: 100 repositories found.
+Page 4: 15 repositories found.
+Found 315 repositories. Names written to dafny_repositories.txt.
