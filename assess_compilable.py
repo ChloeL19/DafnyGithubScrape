@@ -8,9 +8,12 @@ with open("dafny_github_scrape.jsonl", 'r') as file:
     count = 0
     for line in file:
         count += 1
-        if count == 1064:
+        #print(f"Analyzing line {count}")
+        if count > 3314:
             line = json.loads(line)
+            print(f"Loaded file {count}")
             res = execute("dafny verify", "dfy", line["content"])
+            print(f"Executed {count}")
             if int(res["status"]) == 0:
                 num_compiled += 1
                 line["compilable"] = 1
