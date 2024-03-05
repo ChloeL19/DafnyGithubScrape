@@ -9,7 +9,7 @@ with open("dafny_github_scrape.jsonl", 'r') as file:
     for line in file:
         count += 1
         #print(f"Analyzing line {count}")
-        if count > 3314:
+        if count > 5125:
             line = json.loads(line)
             print(f"Loaded file {count}")
             res = execute("dafny verify", "dfy", line["content"])
