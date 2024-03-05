@@ -1,0 +1,1 @@
+Return the index of the first occurrence of character 'e' in the given array of characters, or return -1 if 'e' is not found.
