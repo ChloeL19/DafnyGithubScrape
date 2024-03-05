@@ -1,0 +1,1 @@
+Take two integer arrays a and b as input, and return a new array c which is the concatenation of a and b.

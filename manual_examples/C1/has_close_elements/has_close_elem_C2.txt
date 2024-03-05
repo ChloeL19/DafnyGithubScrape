@@ -1,0 +1,1 @@
+Check if there exists at least one pair of distinct elements within the sequence of numbers whose absolute difference is less than the given threshold. Return true if such a pair exists, and false otherwise.

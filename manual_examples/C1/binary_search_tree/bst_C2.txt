@@ -1,0 +1,1 @@
+Define a binary search tree (BST) with the functionalities of getting the maximum value, getting the minimum value, insertion, deletion, and traversal.
