@@ -1,0 +1,5 @@
+lemma False()
+{
+    assume false;
+}
+
