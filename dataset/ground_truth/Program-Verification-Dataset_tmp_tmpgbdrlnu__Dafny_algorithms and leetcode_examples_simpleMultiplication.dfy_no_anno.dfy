@@ -1,0 +1,35 @@
+
+method Foo(y: int, x: int) returns (z: int) 
+{
+  var a: int := 0;
+  z := 0;
+  while a != y 
+  {
+    z := z + x;
+    a := a + 1;
+  }
+  return z;
+}
+
+function stringToSet(s: string): (r: set<char>)
+{
+ set x | 0 <= x < |s| :: s[x]
+}
+//ensures forall a, b :: 0 <= a < b < |s|  ==> forall k, j :: a <=k < j <=b ==> k !=j ==> s[k] != s[j] ==> b-a <= longest
+// lemma stringSet(s: string)
+//    
+//   {
+//     if |s| != 0 {
+
+
+//     }
+//   }
+
+
+method Main() {
+	var sample: string := "test";
+	var foof := Foo(3,4);
+ 	var test: set<char> := stringToSet(sample);
+ 	// var test := set x | 0 <= x < |sample| :: sample[x];
+	print foof;
+}

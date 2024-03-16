@@ -1,0 +1,15 @@
+predicate Par(n:int)
+{
+    n % 2 == 0
+}
+
+method FazAlgo (a:int, b:int) returns (x:int, y:int)
+{
+    x := a;
+    y := b;
+    while x != y
+    {
+        x := x - 1;
+        y := y + 1;
+    }
+}

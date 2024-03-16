@@ -1,0 +1,3 @@
+method SquareMe(n: int) {
+}
+
