@@ -25,7 +25,7 @@ You will be given tasks dealing with Dafny programs including precise docstrings
 GEN_ANNO_FROM_BODY = Grammar_tutorial + "Given a Dafny program with only the main code body but no annotations or formal specifications.\
 You are asked to fill back in the annotations and formal specifications so that the program can be verified by Dafny. \
 Please return the whole program with annotations and specifications filled back in.\
-Do not use helper functions. \
+Do not use helper functions.\
 Do not modify the function signature and main code body. Do not explain.\
 Below is the program:\n"
 

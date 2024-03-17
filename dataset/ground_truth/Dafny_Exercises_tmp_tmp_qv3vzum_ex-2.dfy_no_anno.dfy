@@ -1,9 +1,0 @@
-// Exercise 2. Using a precondition, change Abs to say it can only be called on negative values. Simplify the body of Abs into just one return statement and make sure the method still verifies.
-
-method Abs(x: int) returns (y: int)
-{
-	if x < 0
-		{ return -x; }
-	else
-		{ return x; }
-}
