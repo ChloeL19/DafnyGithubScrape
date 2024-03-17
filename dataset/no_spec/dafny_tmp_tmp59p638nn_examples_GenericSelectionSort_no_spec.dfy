@@ -1,0 +1,118 @@
+
+
+trait Comparable<T(==)> {
+    function Lt(x: T, y: T): bool
+}
+
+  trait Sorted<T(==)> extends Comparable<T> {
+
+    ghost predicate Ordered(a: array<T>, left: nat, right: nat)
+    {
+      forall i: nat :: 0 < left <= i < right ==> Lt(a[i-1],a[i]) || a[i-1] == a[i]
+    }
+
+    twostate predicate Preserved(a: array<T>, left: nat, right: nat)
+    {
+      multiset(a[left..right]) == multiset(old(a[left..right]))
+    }
+
+    twostate predicate Sorted(a: array<T>)
+    {
+      Ordered(a,0,a.Length) && Preserved(a,0,a.Length)
+    }
+
+  }
+
+//   trait SelectionSort<T(==)> extends Comparable<T>, Sorted<T> {
+
+//     method SelectionSort(a: array<T>)
+//       modifies a
+//       ensures Sorted(a)
+//     {
+//       for i := 0 to a.Length
+//         invariant Ordered(a,0,i)
+//         invariant Preserved(a,0,a.Length)
+//       {
+//         var minValue := a[i];
+//         var minPos := i;
+//         for j := i + 1 to a.Length
+//           invariant minPos < a.Length
+//           invariant a[minPos] == minValue
+//         {
+//           if Lt(a[j], minValue) {
+//             minValue := a[j];
+//             minPos := j;
+//           }
+//         }
+//         if i != minPos {
+//           a[i], a[minPos] := minValue, a[i];
+//         }
+//       }
+//     }
+
+//   }
+
+class Sort<T(==)> extends SelectionSort<T> {
+    const CMP: (T,T) -> bool
+
+    constructor(cmp: (T,T) -> bool)
+    {
+      CMP := cmp;
+      comparisonCount := 0;
+    }
+
+    function Lt(x: T, y: T): bool {
+      CMP(x,y)
+    }
+}
+
+ghost function Sum(x: int): nat
+{
+    if x <= 0 then 0 else x + Sum(x-1)
+}
+
+trait Measurable<T(==)> extends Comparable<T> {
+
+    ghost var comparisonCount: nat
+
+    method Ltm(x: T, y: T) returns (b: bool)
+    {
+      comparisonCount := comparisonCount + 1;
+      b := Lt(x,y);
+    }
+
+}
+
+  trait SelectionSort<T(==)> extends Comparable<T>, Measurable<T>, Sorted<T> {
+
+    method SelectionSort(a: array<T>)
+    {
+
+      for i := 0 to a.Length
+      {
+        var minValue := a[i];
+        var minPos := i;
+        {
+          label L:
+          var cmp := Ltm(a[j], minValue);
+          if cmp {
+            minValue := a[j];
+            minPos := j;
+          }
+        }
+        if i != minPos {
+          a[i], a[minPos] := minValue, a[i];
+        }
+      }
+    }
+
+}
+
+method Main()
+{
+    var a: array<int> := new int[3];
+    a[0] := 2; a[1] := 4; a[2] := 1;
+    var Sort := new Sort((x: int, y: int) => x < y);
+    Sort.SelectionSort(a);
+    print a[..];
+}
