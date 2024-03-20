@@ -11,6 +11,7 @@ abstract module S {
     ghost var g: int
     var h: int
     method m()
+      modifies this
   }
 }
 

@@ -52,6 +52,7 @@ method Caller()
 // Initializing arrays 
 
 method InitArray<T>(a: array<T>, d: T) 
+  modifies a 
 { 
   var n := 0; 
   while n != a.Length 
@@ -76,6 +77,7 @@ method UpdateElements(a: array<int>)
 // Incrementing arrays 
 
 method IncrementArray(a: array<int>) 
+  modifies a 
 { 
   var n := 0; 
   while n != a.Length 

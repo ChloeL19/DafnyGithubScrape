@@ -230,6 +230,7 @@ method InsertSorted(a: array<int>, key: int ) returns (b: array<int>)
 
   var i:= 0;
   while (i < a.Length)
+    modifies b
   {
     if(a[i]<key)
     {
@@ -281,6 +282,7 @@ method InsertIntoSorted(a: array<int>, limit:int, key:int) returns (b: array<int
 
     var i:= 0;
     while (i < limit)
+        modifies b
     {
         if(a[i]<key)
         {

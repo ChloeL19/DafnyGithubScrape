@@ -35,6 +35,7 @@ method queryFast (a:array<int>, c:array<int>, i:int, j:int) returns (r:int)
 }
 
 predicate is_prefix_sum_for (a:array<int>, c:array<int>)
+reads c, a
 {
     a.Length + 1 == c.Length
     && c[0] == 0

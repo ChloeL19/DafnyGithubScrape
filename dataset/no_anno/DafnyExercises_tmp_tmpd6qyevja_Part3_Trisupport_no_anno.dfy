@@ -19,6 +19,7 @@ class Trisupport {
 
  method cr() 
   //oracle will have additional "requires" clauses
+  modifies this`test_row, this`test_col
   {
    print "row=", test_row, " printed=", test_printed, "\n";
    test_row := test_row + 1; test_col := 0;  }

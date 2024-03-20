@@ -15,11 +15,13 @@ class Contador
     }
 
     method Incrementa()
+      modifies this
     {
         valor := valor + 1;
     }
 
     method Decrementa()
+      modifies this
     {
         valor := valor -1 ;
     }

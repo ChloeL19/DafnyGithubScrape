@@ -8,15 +8,18 @@ type T = int
 
 // Checks if array 'a' is sorted by non-descending order.
 ghost predicate sorted(a: array<T>)
+  reads a
 { forall i, j :: 0 <= i < j < a.Length ==> a[i] <= a[j] }
 
 // Obtains the set of all inversions in an array 'a', i.e., 
 // the pairs of indices i, j such that i < j and a[i] > a[j]. 
 ghost function inversions(a: array<T>): set<(nat, nat)>
+  reads a
 { set i, j | 0 <= i < j < a.Length && a[i] > a[j] :: (i, j) }
 
 // Sorts an array by simply swapping elements out of order, chosen randomly.
 method rawsort(a: array<T>)
+   modifies a
 {
    if i, j :| 0 <= i < j < a.Length && a[i] > a[j]  {
       ghost var bef := inversions(a); // inversions before swapping

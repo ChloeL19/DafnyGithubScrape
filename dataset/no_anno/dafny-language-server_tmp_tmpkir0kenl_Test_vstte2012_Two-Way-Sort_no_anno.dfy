@@ -28,6 +28,7 @@ method swap<T>(a: array<T>, i: int, j: int)
 // (without changing any of the other specifications or
 // annotations).
 method two_way_sort(a: array<bool>)
+  modifies a
 {
   var i := 0;
   var j := a.Length - 1;

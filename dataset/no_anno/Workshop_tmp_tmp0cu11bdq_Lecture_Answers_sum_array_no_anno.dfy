@@ -1,4 +1,5 @@
 function sumTo( a:array<int>, n:int ) : int
+  reads a;
 {
   if (n == 0) then 0 else sumTo(a, n-1) + a[n-1]
 }

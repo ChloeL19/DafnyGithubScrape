@@ -1,4 +1,5 @@
 method quickSort(intSeq:array<int>)
+    modifies intSeq
 {
     && (forall i:nat, j:nat | 0 <= i <= j < |curSeq| :: curSeq[i] <= curSeq[j])
     && multiset(prevSeq) == multiset(curSeq)

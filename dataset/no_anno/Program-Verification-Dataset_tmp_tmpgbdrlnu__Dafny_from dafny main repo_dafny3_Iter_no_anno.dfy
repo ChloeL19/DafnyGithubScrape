@@ -8,6 +8,7 @@ class List<T> {
   var n: nat
 
   ghost predicate Valid()
+    reads this, Repr
   {
     this in Repr &&
     a in Repr &&

@@ -2,6 +2,7 @@
 // RUN: %diff "%s.expect" "%t"
 
 method Cubes(a: array<int>)
+  modifies a
 {
   var n := 0;
   var c := 0;

@@ -7,21 +7,25 @@ class LimitedStack{
 
       // This predicate express a class invariant: All objects of this calls should satisfy this.
       predicate Valid()
+      reads this;
       {
         arr != null && capacity > 0 && capacity == arr.Length &&  top >= -1 && top < capacity 
       }
 
       predicate Empty()
+      reads this`top;
       {
             top == -1
       }
 
       predicate Full()
+      reads this`top, this`capacity;
       {
         top == (capacity - 1)
       }
   
       method Init(c : int)
+      modifies this;
       {
         capacity := c;
         arr := new int[c];
@@ -51,6 +55,7 @@ class LimitedStack{
 
       // Pushed an element to the top of a (non full) stack. 
       method Push(elem : int)
+      modifies this`top, this.arr 
       {
             top := top + 1;
             arr[top] := elem;
@@ -59,6 +64,7 @@ class LimitedStack{
       // Pops the top element off the stack.
 
       method Pop() returns (elem : int)
+      modifies   this`top
       {
             elem := arr[top];
             top := top - 1;
@@ -67,6 +73,7 @@ class LimitedStack{
 
  
       method Shift()
+      modifies this.arr, this`top;
       {
         var i : int := 0;
         while (i < capacity - 1 )
@@ -80,6 +87,7 @@ class LimitedStack{
  
       //Push onto full stack, oldest element is discarded.
       method Push2(elem : int)
+      modifies this.arr, this`top
       {
             if(top == capacity - 1){
                   Shift();

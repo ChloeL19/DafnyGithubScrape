@@ -1,6 +1,8 @@
 // Works by dividing the input list into two parts: sorted and unsorted. At the beginning, 
 // the sorted part is empty and the unsorted part contains all the elements.
 method SelectionSort(a: array<int>)
+  modifies a
+  // Ensures the final array is sorted in ascending order
 {
   var n := 0;
   while n != a.Length

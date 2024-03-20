@@ -11,6 +11,7 @@ class CheckSumCalculator{
     var cs:int
 
     ghost predicate Valid()
+        reads this
     {
         cs == Hash(data)
     }

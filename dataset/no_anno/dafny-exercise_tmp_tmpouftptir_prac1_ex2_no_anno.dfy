@@ -1,4 +1,5 @@
 method Deli(a: array<char>, i: nat)
+modifies a
 {
 	var c := i;
 	while c < a.Length - 1

@@ -12,6 +12,7 @@ class Set {
 
 
   ghost predicate RepInv()
+    reads this, Repr
   {
     this in Repr && store in Repr &&
     0 < store.Length
@@ -87,6 +88,7 @@ class PositiveSet {
 
 
   ghost predicate RepInv()
+    reads this, Repr
   {
     this in Repr && store in Repr &&
     0 < store.Length
@@ -213,12 +215,14 @@ class SavingsAccount {
   ghost var Repr:set<object>;
 
   ghost predicate RepInv()
+    reads this,Repr
   {
     this in Repr
     && cbalance >= -sbalance/2
   }
 
   ghost predicate PositiveChecking()
+    reads this,Repr
   {
     cbalance >= 0
   }
@@ -274,6 +278,7 @@ class GrowingSet {
 
 
   ghost predicate RepInv()
+    reads this, Repr
   {
     this in Repr && store in Repr &&
     0 < store.Length

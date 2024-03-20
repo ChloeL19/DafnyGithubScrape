@@ -2,6 +2,7 @@
 
 
 ghost predicate {:opaque} G(f:int~>bool)
+  reads f.reads(0)
 {
   true
 }

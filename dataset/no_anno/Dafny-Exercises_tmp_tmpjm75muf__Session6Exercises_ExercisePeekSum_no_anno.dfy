@@ -1,5 +1,6 @@
 
  predicate isPeek(v:array<int>,i:int)
+ reads v
  {forall k::0<=k<i ==> v[i]>=v[k]}
 
  function peekSum(v:array<int>,i:int):int

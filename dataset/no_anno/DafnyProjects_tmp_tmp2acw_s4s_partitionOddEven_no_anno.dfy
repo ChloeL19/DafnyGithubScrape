@@ -1,6 +1,7 @@
 // Rearranges the elements in an array 'a' of natural numbers,
 // so that all odd numbers appear before all even numbers.
 method partitionOddEven(a: array<nat>) 
+  modifies a
 {
     var i := 0; // odd numbers are placed to the left of i
     var j := a.Length - 1; // even numbers are placed to the right of j

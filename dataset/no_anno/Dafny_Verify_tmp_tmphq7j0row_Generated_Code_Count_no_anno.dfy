@@ -1,4 +1,5 @@
 function has_count(v: int, a: array<int>, n: int): int
+    reads a  // This allows the function to read from array 'a'
 {
     if n == 0 then 0 else
     (if a[n-1] == v then has_count(v, a, n-1) + 1 else has_count(v, a, n-1))

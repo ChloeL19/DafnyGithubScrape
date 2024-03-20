@@ -2,6 +2,7 @@
 
 
 method replace(v:array<int>, x:int, y:int)
+modifies v
 {
     var i:=0;
     while(i<v.Length)

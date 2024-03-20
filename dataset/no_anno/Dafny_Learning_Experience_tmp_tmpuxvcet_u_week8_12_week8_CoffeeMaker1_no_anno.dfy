@@ -2,12 +2,18 @@ class Grinder {
 	ghost var hasBeans: bool 
 
 	ghost predicate Valid() 
+		reads this
+
+	constructor() 
 }
 
 class WaterTank { 
 	ghost var waterLevel: nat
 
 	ghost predicate Valid() 			 
+		reads this 
+
+	constructor() 				 
 }
 
 class CoffeeMaker { 	
@@ -17,6 +23,7 @@ class CoffeeMaker {
 	var w: WaterTank
 
 	ghost predicate Valid() 
+		reads this, Repr
 	{
 		this in Repr && g in Repr && w in Repr &&
 		g.Valid() && w.Valid() &&

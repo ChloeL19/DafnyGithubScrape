@@ -13,11 +13,13 @@ class Counter {
   }
   
   method inc()
+  modifies this`value
   {
     value := value + 1;
   }
   
   method dec()
+  modifies this`value
   {  
     value := value - 1 ;
   }

@@ -43,6 +43,7 @@ module ProdCons {
          *  
          */
         predicate valid() 
+            reads this
         {
             maxBufferSize > 0 && P != {} &&
             0 <= |buffer| <= maxBufferSize 
@@ -63,6 +64,7 @@ module ProdCons {
          *  If enabled any process can perform a put.
          */
         predicate putEnabled(p : Process) 
+            reads this
         {
             |buffer| < maxBufferSize
         }
@@ -78,6 +80,7 @@ module ProdCons {
          *  If enabled, any process can perform a get.
          */
         predicate getEnabled(p : Process) 
+            reads this
         {
             |buffer| >= 1
         }

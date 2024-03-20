@@ -10,6 +10,7 @@
 //(a)
 
 function sum(a: array<int>, i: int, j: int): int
+    reads a
 {
     if (i == j) then 0
     else a[i] + sum(a, i+1, j)

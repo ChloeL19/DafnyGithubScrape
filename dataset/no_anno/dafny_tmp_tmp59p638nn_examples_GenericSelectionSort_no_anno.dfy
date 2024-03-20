@@ -7,16 +7,19 @@ trait Comparable<T(==)> {
   trait Sorted<T(==)> extends Comparable<T> {
 
     ghost predicate Ordered(a: array<T>, left: nat, right: nat)
+      reads a
     {
       forall i: nat :: 0 < left <= i < right ==> Lt(a[i-1],a[i]) || a[i-1] == a[i]
     }
 
     twostate predicate Preserved(a: array<T>, left: nat, right: nat)
+      reads a
     {
       multiset(a[left..right]) == multiset(old(a[left..right]))
     }
 
     twostate predicate Sorted(a: array<T>)
+      reads a
     {
       Ordered(a,0,a.Length) && Preserved(a,0,a.Length)
     }
@@ -76,6 +79,7 @@ trait Measurable<T(==)> extends Comparable<T> {
     ghost var comparisonCount: nat
 
     method Ltm(x: T, y: T) returns (b: bool)
+      modifies this`comparisonCount
     {
       comparisonCount := comparisonCount + 1;
       b := Lt(x,y);
@@ -86,6 +90,7 @@ trait Measurable<T(==)> extends Comparable<T> {
   trait SelectionSort<T(==)> extends Comparable<T>, Measurable<T>, Sorted<T> {
 
     method SelectionSort(a: array<T>)
+      modifies a, this
     {
 
       for i := 0 to a.Length

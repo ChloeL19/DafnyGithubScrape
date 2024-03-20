@@ -1,6 +1,7 @@
 //Problem01
 //a)
 method swap(a: array<int>, i: nat, j: nat)
+    modifies a
 {
     a[i], a[j] := a[j], a[i];
 }
@@ -25,6 +26,9 @@ ghost predicate sorted(a:seq<int>)
 }
 
 method selectionSort(a: array<int>)
+    modifies a
+    //ensures multiset(a[..]) == multiset(old(a[..]))
+    //ensures sorted(a[..])
 {
 	var i := 0;
 	while(i < a.Length)

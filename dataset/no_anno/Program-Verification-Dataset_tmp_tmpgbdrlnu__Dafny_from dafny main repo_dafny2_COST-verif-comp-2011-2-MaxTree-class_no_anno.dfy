@@ -78,6 +78,7 @@ class Tree {
   ghost var Contents: seq<int>
   ghost var Repr: set<object>
   ghost predicate Valid()
+    reads this, Repr
   {
     this in Repr &&
     left != null && right != null &&
@@ -89,6 +90,7 @@ class Tree {
   }
 
   function IsEmpty(): bool
+    reads this, Repr;
   {
     left == this
   }

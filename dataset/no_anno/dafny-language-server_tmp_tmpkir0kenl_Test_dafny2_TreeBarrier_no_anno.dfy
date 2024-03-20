@@ -12,6 +12,7 @@ class Node {
 
 
   predicate validDown()
+    reads this, desc
   {
     this !in desc &&
     left != right &&  // not needed, but speeds up verification
@@ -38,6 +39,7 @@ class Node {
 
 
   predicate validUp()
+    reads this, anc
   {
     this !in anc &&
     (parent != null ==> parent in anc && anc == { parent } + parent.anc && parent.validUp()) &&
@@ -46,15 +48,19 @@ class Node {
   }
 
   predicate valid()
+    reads this, desc, anc
   { validUp() && validDown() && desc !! anc }
 
   predicate before()
+    reads this
   { !sense && pc <= 2 }
 
   predicate blocked()
+    reads this
   { sense }
 
   predicate after()
+    reads this
   { !sense && 3 <= pc }
 
 
@@ -64,6 +70,7 @@ class Node {
     pc := 1;
     if(left != null) {
       while(!left.sense)
+        modifies left
       {
         // this loop body is supposed to model what the "left" thread
         // might do to its node. This body models a transition from
@@ -79,6 +86,7 @@ class Node {
     }
     if(right != null) {
       while(!right.sense)
+        modifies right
       {
         // analogous to the previous loop
         right.sense := *;
@@ -94,6 +102,7 @@ class Node {
 //C
     pc := 3;
     while(sense)
+        modifies this
     {
       // this loop body is supposed to model what the "parent" thread
       // might do to its node. The body models a transition from

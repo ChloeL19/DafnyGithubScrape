@@ -11,6 +11,7 @@ method longest_increasing_subsequence(nums: array<int>) returns (max: int)
 
     var i := 1;
     while (i < length)
+        modifies dp
     {
         var j := 0;
         while (j < i)

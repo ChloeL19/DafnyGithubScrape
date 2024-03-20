@@ -9,16 +9,19 @@
 module {:options "-functionSyntax:4"} Dafny.Relations {
 
   ghost predicate Injective<X(!new), Y>(f: X-->Y)
+    reads f.reads
   {
     forall x1, x2 :: f(x1) == f(x2) ==> x1 == x2
   }
 
   ghost predicate Commutative<T(!new),U(!new)>(f: (T,T)->U)
+    reads f.reads
   {
     forall x,y :: f(x,y) == f(y,x)
   }
 
   ghost predicate Associative<T(!new)>(f: (T,T)->T)
+    reads f.reads
   {
     forall x, y, z: T :: f(x,f(y,z)) == f(f(x,y),z)
   }

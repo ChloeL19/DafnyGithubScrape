@@ -15,6 +15,8 @@ class Rectangle {
   } 
 
   function area() : nat 
+  reads this{
+    width*height
    }
 
     method move(dx : int, dy : int) returns (r : Rectangle) 
@@ -31,6 +33,8 @@ class Rectangle {
     }
 
     predicate containsRectangle(r :Rectangle) 
+    reads this 
+    reads r
     }
 
 }    

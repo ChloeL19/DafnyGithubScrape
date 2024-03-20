@@ -15,5 +15,9 @@
 module {:options "-functionSyntax:4"} MutableMapTrait {
   trait {:termination false} MutableMapTrait<K(==),V(==)> {
     function content(): map<K, V>
+      reads this
+
+    method Put(k: K, v: V)
+      modifies this
   }
 }

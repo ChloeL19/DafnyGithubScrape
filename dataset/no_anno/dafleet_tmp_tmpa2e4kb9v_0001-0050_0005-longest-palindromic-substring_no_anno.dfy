@@ -164,6 +164,7 @@ function {:opaque} insert_bogus_chars(s: string, bogus: char): (s': string)
 
 // Returns (max_index, max_value) of array `a` starting from index `start`.
 function {:opaque} argmax(a: array<int>, start: int): (res: (int, int))
+  reads a
 {
   if start == a.Length - 1 then
     (start, a[start])

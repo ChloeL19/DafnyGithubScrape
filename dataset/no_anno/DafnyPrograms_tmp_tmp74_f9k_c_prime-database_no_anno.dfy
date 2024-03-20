@@ -13,6 +13,7 @@ class {:autocontracts} PrimeMap{
 
 //the valid invariant of the class
   ghost predicate Valid()
+    reads this
   {
     forall i | i in database.Keys :: (database[i] == true <==> prime(i)) 
   }
@@ -25,12 +26,14 @@ class {:autocontracts} PrimeMap{
 
   // insert an already known prime number into the database
   method InsertPrime(n: nat)
+    modifies this;
   {
     database := database[n := true];
   }
 
   // check the primeness of n and insert it accordingly into the database 
   method InsertNumber(n: nat) 
+    modifies this
   {
     var prime : bool;
     prime := testPrimeness(n);

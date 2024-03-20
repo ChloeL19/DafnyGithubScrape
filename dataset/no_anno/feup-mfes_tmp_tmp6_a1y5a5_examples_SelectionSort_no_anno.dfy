@@ -11,6 +11,7 @@ predicate isSorted(a: array<real>, from: nat, to: nat)
 
 // Sorts array 'a' using the selection sort algorithm.
 method selectionSort(a: array<real>)
+  modifies a
 {
     var i := 0; 
     while i < a.Length - 1 

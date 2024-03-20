@@ -3,6 +3,7 @@ class UniqueNumberAllocator {
     var next:nat
 
     ghost predicate Valid()
+        reads this
     {
         (forall i:: 0<= i< next ==> i in used) &&
         (forall i:: i >= next  ==> i !in used)

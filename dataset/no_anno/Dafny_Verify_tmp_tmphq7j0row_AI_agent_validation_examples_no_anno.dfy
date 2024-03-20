@@ -143,6 +143,7 @@ method Cube(n: nat) returns (c: nat)
 
 
 method IncrementMatrix(a: array2<int>)
+    modifies a
 {
     var m := 0;
     while m != a.Length0

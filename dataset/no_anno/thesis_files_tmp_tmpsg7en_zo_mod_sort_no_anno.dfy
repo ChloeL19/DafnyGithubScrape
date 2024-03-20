@@ -26,6 +26,7 @@ module SortHelpers
 	}
 	
 	method swap(a: array<int>, i:int, j:int) returns(ghost t: nat)
+		modifies a;
 	{
 		a[i], a[j], t := a[j], a[i], 1;
 	} 

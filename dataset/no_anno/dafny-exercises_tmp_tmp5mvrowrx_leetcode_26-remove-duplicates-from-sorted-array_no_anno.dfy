@@ -1,5 +1,6 @@
 
 method RemoveDuplicates(nums: array<int>) returns (num_length: int)
+  modifies nums
 {
   if nums.Length <= 1 {
     return nums.Length;

@@ -1,4 +1,5 @@
 function Sum(arr: array<int>, len: int): int
+    reads arr
 {
     if len == 0 then 0 else arr[len-1] + Sum(arr, len-1)
 }

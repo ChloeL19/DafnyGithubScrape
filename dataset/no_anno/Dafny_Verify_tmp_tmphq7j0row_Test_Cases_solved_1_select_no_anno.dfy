@@ -1,4 +1,5 @@
 method SelectionSort(a: array<int>)
+  modifies a
 {
   var n := 0;
   while n != a.Length

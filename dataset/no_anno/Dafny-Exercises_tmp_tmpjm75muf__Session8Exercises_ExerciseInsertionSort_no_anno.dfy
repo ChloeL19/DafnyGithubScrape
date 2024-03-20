@@ -5,6 +5,7 @@ predicate sorted_seg(a:array<int>, i:int, j:int) //i and j included
 }
 
 method InsertionSort(a: array<int>)
+  modifies a;
 {
 
   var i := 0;

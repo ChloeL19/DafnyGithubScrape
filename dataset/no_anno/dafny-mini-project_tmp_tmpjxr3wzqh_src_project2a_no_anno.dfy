@@ -56,16 +56,19 @@ class Message
   }
 
   method setContent(c: string)
+    modifies this
   {
     this.content := c;
   }
 
   method setDate(d: Date)
+    modifies this
   {
     this.date := d;
   }
 
   method addRecipient(p: nat, r: Address)
+    modifies this
   {
     this.recipients := this.recipients[..p] + [r] + this.recipients[p..];
   }
@@ -88,18 +91,21 @@ class Mailbox {
 
   // Adds message m to the mailbox
   method add(m: Message)
+    modifies this
   {
     messages := { m } + messages;
   }
 
   // Removes message m from mailbox. m must not be in the mailbox.
   method remove(m: Message)
+    modifies this
   {
     messages := messages - { m };
   }
 
   // Empties the mailbox messages
   method empty()
+    modifies this
   {
     messages := {};
   }
@@ -123,6 +129,7 @@ class MailApp {
 
   // Class invariant
   ghost predicate Valid()
+    reads this
   {
     //----------------------------------------------------------
     // Abstract state invariants
@@ -165,6 +172,7 @@ class MailApp {
   // Adds a new mailbox with name n to set of user-defined mailboxes
   // provided that no user-defined mailbox has name n already
   method newMailbox(n: string)
+    modifies this
   {
     var mb := new Mailbox(n);
     userboxList := [mb] + userboxList;
@@ -172,6 +180,7 @@ class MailApp {
 
   // Adds a new message with sender s to the drafts mailbox
   method newMessage(s: Address)
+    modifies this.drafts
   {
     var m := new Message(s);
     drafts.add(m);
@@ -179,6 +188,7 @@ class MailApp {
 
   // Moves message m from mailbox mb1 to a different mailbox mb2
   method moveMessage (m: Message, mb1: Mailbox, mb2: Mailbox)
+    modifies mb1, mb2
   {
     mb1.remove(m);
     mb2.add(m);
@@ -187,18 +197,21 @@ class MailApp {
   // Moves message m from mailbox mb to the trash mailbox provided
   // that mb is not the trash mailbox
   method deleteMessage (m: Message, mb: Mailbox)
+    modifies m, mb, this.trash
   {
     moveMessage(m, mb, trash);
   }
 
   // Moves message m from the drafts mailbox to the sent mailbox
   method sendMessage(m: Message)
+    modifies this.drafts, this.sent
   {
     moveMessage(m, drafts, sent);
   }
 
   // Empties the trash mailbox
   method emptyTrash()
+    modifies this.trash
   {
     trash.empty();
   }

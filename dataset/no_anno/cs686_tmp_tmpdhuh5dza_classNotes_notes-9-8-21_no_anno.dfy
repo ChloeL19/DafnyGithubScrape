@@ -19,6 +19,7 @@ class Secret{
     var count : int;
 
     method Init(x : int)
+    modifies `secret, `known, `count
     {
         known := false;
         count := 0;
@@ -26,6 +27,7 @@ class Secret{
     }
 
     method Guess(g : int) returns (result : bool, guesses : int)
+    modifies `known, `count
     {
         if (g == secret)
         {

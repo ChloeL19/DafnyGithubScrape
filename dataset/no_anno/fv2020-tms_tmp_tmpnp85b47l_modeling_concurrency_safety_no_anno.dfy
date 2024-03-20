@@ -21,6 +21,7 @@ class TicketSystem
   // Invariant of the system
   // Checks that P is a subset of the domain/keys of each map
   predicate Valid()
+    reads this  // Depends on the fields on the current class
   {
     && cs.Keys == t.Keys == P  // Alt. P <= cs.Keys && P <= t.Keys
     && serving <= ticket

@@ -36,6 +36,8 @@ abstract module M0 {
       Valid'()
     }
     ghost predicate {:autocontracts false} Valid'()
+      reads this, Repr
+    constructor ()
   }
 }
 
@@ -77,6 +79,8 @@ abstract module M2 refines M1 {
       Valid''()
     }
     ghost predicate {:autocontracts false} Valid''()
+      reads this, Repr
+    method FindIndex(t: T) returns (j: nat)
     {
       j := 0;
       while (j < |elems|)

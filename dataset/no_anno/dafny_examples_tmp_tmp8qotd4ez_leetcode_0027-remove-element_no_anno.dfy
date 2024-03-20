@@ -1,4 +1,5 @@
 method RemoveElement(nums: array<int>, val: int) returns (newLength: int)
+    modifies nums
 {
     var i := 0;
     var j := 0;

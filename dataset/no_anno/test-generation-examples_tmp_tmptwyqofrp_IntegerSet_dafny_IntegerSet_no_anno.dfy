@@ -20,6 +20,7 @@ module IntegerSet {
         }
 
         method addElement(element : int)
+        modifies this`elements
         {
             if (element !in elements) {
                 elements := elements + [element];
@@ -27,6 +28,7 @@ module IntegerSet {
         }
 
         method removeElement(element : int)
+        modifies this`elements
         {
             if (element in elements) {
                 var i := 0;

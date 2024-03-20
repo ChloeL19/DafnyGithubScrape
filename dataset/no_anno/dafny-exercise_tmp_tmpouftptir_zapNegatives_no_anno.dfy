@@ -1,4 +1,5 @@
 method ZapNegatives(a: array<int>) 
+modifies a
 {
 	var i := 0;
 	while i < a.Length

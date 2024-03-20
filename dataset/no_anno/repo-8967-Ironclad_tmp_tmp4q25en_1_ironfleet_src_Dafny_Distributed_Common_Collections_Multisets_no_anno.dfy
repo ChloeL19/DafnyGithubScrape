@@ -1,6 +1,7 @@
 
 module Collections__Multisets_s {
 function RestrictMultiset<S(!new)>(m:multiset<S>, f:S->bool):multiset<S>
+  reads f.reads
 {
   if |m| == 0 then
     multiset{}

@@ -11,6 +11,7 @@ class TwoStacks<T(0)(==)>
     var n2: nat // number of elements in the stack 2
 
     ghost predicate Valid()
+        reads this,Repr
     {
         this in Repr && data in Repr && data.Length == N  
          && 0 <= |s1| + |s2| <= N && 0 <=|s1| <= N && 0 <=|s2| <= N
@@ -115,6 +116,7 @@ class TwoStacks<T(0)(==)>
     }
 
     ghost predicate Empty2() 
+        reads this
     {
         |s2| == 0 && n2 == 0
     }

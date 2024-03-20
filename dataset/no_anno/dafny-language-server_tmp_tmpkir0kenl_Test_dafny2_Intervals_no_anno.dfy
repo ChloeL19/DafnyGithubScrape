@@ -8,6 +8,7 @@ class Rounding {
   var thresholds: array<int>
 
   function Valid(): bool
+    reads this, thresholds
   {
     forall m,n :: 0 <= m < n < thresholds.Length ==> thresholds[m] <= thresholds[n]
   }

@@ -1,4 +1,5 @@
 method rev(a : array<int>)
+    modifies a;
 {
     var i := 0;
     while (i < a.Length - 1 - i)

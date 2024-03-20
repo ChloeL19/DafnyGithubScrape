@@ -1,5 +1,6 @@
 predicate sorted (a: array<int>)
 
+	reads a
 {
 	sortedA(a, a.Length)
 }
@@ -24,6 +25,7 @@ method lookForMin (a: array<int>, i: int) returns (m: int)
 
 method insertionSort (a: array<int>)
 
+	modifies a
 {
 	var c := 0;
 	while(c < a.Length)

@@ -11,6 +11,7 @@ class MinStack
     }
 
     method push(x: int)
+        modifies this
     {
         stack := [x] + stack;
 
@@ -21,6 +22,7 @@ class MinStack
     }
 
     method pop() returns (x: int)
+        modifies this
     {
         if (stack[0] == min_stack[0])
         {

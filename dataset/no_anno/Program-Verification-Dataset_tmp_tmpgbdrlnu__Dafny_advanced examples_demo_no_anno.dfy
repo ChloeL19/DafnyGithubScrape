@@ -1,4 +1,5 @@
 method Partition(a: array<int>) returns (lo: int, hi: int)
+  modifies a
 {
   var i := 0;
   var j := a.Length;

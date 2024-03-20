@@ -22,11 +22,13 @@ module Issue
   }
 
   method UseFoo<T>(t: Foo<T>)
+    modifies t.Repr()
   {
     print 0;
   }
 
   method CallUseFoo<T>(t: Foo<T>)
+    modifies t.Repr()
   {
     // the following line once produced malformed Boogie
     UseFoo(t);
@@ -49,12 +51,14 @@ module Variation {
     }
 
     method Do()
+      modifies foo.Repr()
     {
       print 1;
     }
   }
 
   method CallUseFoo<T>(t: Foo<T>)
+    modifies t.Repr()
   {
     var fh := new UseFooHelper(t);
     fh.Do();
@@ -69,12 +73,14 @@ module AnotherVariation
     constructor() {}
 
     method UseFoo()
+      modifies Repr()
     {
       print 2;
     }
   }
 
   method CallUseFoo<T>(t: Foo<T>)
+    modifies t.Repr()
   {
     t.UseFoo();
   }

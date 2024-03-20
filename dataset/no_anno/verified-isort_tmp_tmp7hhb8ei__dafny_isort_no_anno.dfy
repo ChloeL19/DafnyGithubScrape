@@ -12,6 +12,7 @@ predicate sorted(a: seq<nat>)
 }
 
 method Isort(a: array<nat>)
+    modifies a
 {
     if a.Length == 0 {
         return;

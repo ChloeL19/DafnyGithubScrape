@@ -12,6 +12,8 @@ abstract module AbstractInterface {
       Valid'()
     }
     ghost predicate {:autocontracts false} Valid'()
+      reads this, Repr
+    constructor Init()
   }
 }
 

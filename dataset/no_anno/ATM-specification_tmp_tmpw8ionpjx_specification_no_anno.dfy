@@ -19,11 +19,13 @@ class ATM {
     }
 
     predicate IsEnteredPasscodeValid(enteredPasscode : nat)
+        reads this
     {
         this.cardPasscode == enteredPasscode
     }
 
     predicate IsWithdrawAmountValid(withdrawAmount : nat)
+        reads this
     {
         && withdrawAmount >= this.minWithdrawAmount
         && withdrawAmount <= this.maxWithdrawAmount
@@ -32,6 +34,7 @@ class ATM {
     }
 
     predicate IsAddedStoredAmountValid(addedAmount : nat)
+        reads this
     {
         this.storedAmount + addedAmount <= this.maxStoredAmount
     }

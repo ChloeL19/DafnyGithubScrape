@@ -1,5 +1,6 @@
 function sum(X_val : array<int>, X_crd : array<nat>,
              v_val : array<int>, v_crd : array<nat>, kX : nat, kV : nat, pX_end : nat, pV_end : nat) : (s : int) 
+  reads X_val, X_crd
   {
     if pV_end <= kV || pX_end <= kX then 
       0
@@ -15,6 +16,7 @@ function min(x : nat, y : nat) : nat {
 }
 
 predicate notin(y: nat, x : array<nat>) 
+  reads x
 {
   forall i :: 0 <= i < x.Length ==> y != x[i]
 }
@@ -33,6 +35,7 @@ function index_seq(x : nat, y: seq<nat>) : (i : nat)
 }
 
 function index(x : nat, y: array<nat>) : (i : nat)
+  reads y
 {
   index_seq(x, y[.. ])
 }

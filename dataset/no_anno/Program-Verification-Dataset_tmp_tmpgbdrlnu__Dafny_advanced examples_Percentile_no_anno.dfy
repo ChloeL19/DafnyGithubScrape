@@ -9,6 +9,7 @@ function SumUpto(A: array<real>, end: int): real
 }
 
 function Sum(A: array<real>): real
+  reads A
 {
   SumUpto(A, A.Length-1)
 }

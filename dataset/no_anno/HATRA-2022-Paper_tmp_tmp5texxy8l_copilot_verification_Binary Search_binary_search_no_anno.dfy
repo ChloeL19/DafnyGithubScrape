@@ -26,18 +26,21 @@ method BinarySearch(arr: array<int>, target: int) returns (index: int)
 
 // Predicate to check that the array is sorted
 predicate sorted(a: array<int>)
+reads a
 {
    forall j, k :: 0 <= j < k < a.Length ==> a[j] <= a[k] 
 }
 
 // Predicate to that each element is unique
 predicate distinct(arr: array<int>)
+    reads arr
 {
     forall i, j :: 0 <= i < arr.Length && 0 <= j < arr.Length ==> arr[i] != arr[j]
 }
 
 // Predicate to that the target is not in the array
 predicate not_found(arr: array<int>, target: int)
+reads arr
 {
     (forall j :: 0 <= j < arr.Length ==> arr[j] != target)
 }

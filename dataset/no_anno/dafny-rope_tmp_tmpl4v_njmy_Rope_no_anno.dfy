@@ -9,6 +9,7 @@ var left: Rope?;
 var right: Rope?;
 
 ghost predicate Valid() 
+    reads this, Repr
 {
     this in Repr &&
     (left != null ==> 
@@ -47,12 +48,14 @@ lemma contentSizeGtZero()
 {}
 
 function getWeightsOfAllRightChildren(): nat
+    reads right, Repr
 {
     if right == null then 0
     else right.weight + right.getWeightsOfAllRightChildren()
 } 
 
 function length(): nat
+    reads Repr
 {
     this.weight + getWeightsOfAllRightChildren()
 }
@@ -69,6 +72,7 @@ constructor Terminal(x: string)
 }   
 
 predicate isTerminal()
+    reads this, this.left, this.right
 { left == null && right == null }
 
 method report(i: nat, j: nat) returns (s: string)

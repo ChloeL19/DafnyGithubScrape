@@ -5,6 +5,7 @@ ghost predicate less(a:set<int>, b: set<int>){
 }
 
 ghost function Union<Data>(m:map<int, Data>, n:Node?<Data>):map<int,Data>
+    reads n
 {
     if n == null then m 
     else map k | k in m.Keys + n.M.Keys :: if k in m.Keys then m[k] else n.M[k]
@@ -19,6 +20,7 @@ class Node<Data> {
     var right: Node?<Data>
 
     ghost predicate Valid()
+        reads this, Repr
     {
         this in Repr &&
         (left != null ==>
@@ -79,6 +81,7 @@ class Map<Data> {
     var root: Node?<Data>
 
     ghost predicate Valid()
+        reads this, Repr
     {
         this in Repr &&
         (|M.Keys| == 0 ==> root == null) &&

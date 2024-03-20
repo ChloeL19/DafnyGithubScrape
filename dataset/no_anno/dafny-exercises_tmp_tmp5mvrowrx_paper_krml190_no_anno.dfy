@@ -15,6 +15,7 @@ class Node {
   var next: Node?;
 
   function Valid(): bool
+    reads this, footprint
   {
     this in footprint &&
     (next == null ==> list  == [data]) &&

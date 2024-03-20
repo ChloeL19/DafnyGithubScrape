@@ -12,6 +12,7 @@ class Room
     }
 
     predicate ShouldFireAlarm()
+        reads this
     {
         this.isThereABreach == true
     }
@@ -22,6 +23,7 @@ class Room
     }
 
     method Enter(authorized : bool)
+        modifies this
     {
         isThereABreach := !authorized;
     }

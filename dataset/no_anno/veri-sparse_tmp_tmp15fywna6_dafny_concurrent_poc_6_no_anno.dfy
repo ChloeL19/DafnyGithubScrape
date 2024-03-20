@@ -47,6 +47,7 @@ lemma sum_exept(s1 : seq<nat>, s2 : seq<nat>, x : nat, j : nat)
 
 
 function calcRow(M : array2<int>, x : seq<int>, row: nat, start_index: nat) : (product: int)
+    reads M
 {
     if start_index == M.Length1 then
         0
@@ -58,6 +59,7 @@ class MatrixVectorMultiplier
 {   
 
     ghost predicate Valid(M: array2<int>, x: seq<int>, y: array<int>, P: set<Process>, leftOvers : array<nat>)
+        reads this, y, P, M, leftOvers
     {
         M.Length0 == y.Length &&
         M.Length1 == |x| &&

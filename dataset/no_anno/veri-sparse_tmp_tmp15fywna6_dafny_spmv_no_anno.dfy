@@ -1,4 +1,5 @@
 function sum(X_val: array<int>, X_crd: array<nat>, v : array<int>, b : int, k : int) : (s : int)
+  reads X_val, X_crd, v
   {
     if k <= b then 
       0

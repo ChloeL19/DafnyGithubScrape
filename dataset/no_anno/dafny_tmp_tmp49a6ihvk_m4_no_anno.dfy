@@ -8,6 +8,7 @@ predicate Below(c: Color, d: Color)
 
 
 method DutchFlag(a: array<Color>)
+    modifies a
 {
     var r,w,b := 0, 0, a.Length;
     while w < b

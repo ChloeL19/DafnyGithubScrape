@@ -8,7 +8,7 @@ def remove_anno(input_file_path):
     os.makedirs(no_anno_dir, exist_ok=True)
     output_file_path = os.path.join(no_anno_dir, os.path.basename(input_file_path).split('.')[0] + "_no_anno.dfy")
 
-    anno_keywords = ["requires", "ensures", "assert", "invariant", "modifies", "reads", "decreases"]
+    anno_keywords = ["requires", "ensures", "assert", "invariant", "decreases"]
     statement_end_chars = [';', '{', '}']
 
     with open(input_file_path, 'r') as input_file:

@@ -14,6 +14,7 @@ class Queue<T(0)> {
   ghost var spine: set<Node<T>>
 
   ghost predicate Valid()
+    reads this, footprint
   {
     this in footprint && spine <= footprint &&
     head in spine &&
@@ -100,6 +101,7 @@ class Node<T(0)> {
   ghost var footprint: set<object>
 
   ghost predicate Valid()
+    reads this, footprint
   {
     this in footprint &&
     (next != null ==> next in footprint && next.footprint <= footprint) &&

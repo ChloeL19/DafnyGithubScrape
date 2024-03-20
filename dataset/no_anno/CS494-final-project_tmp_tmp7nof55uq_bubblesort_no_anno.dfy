@@ -4,12 +4,14 @@
 
 // predicate checks if elements of a are in ascending order, two additional conditions are added to allow us to sort in specific range within array
 predicate sorted(a:array<int>, from:int, to:int)
+  reads a; 
 {
   forall x, y :: from <= x < y < to ==> a[x] <= a[y]
 }
 
 //helps ensure swapping is valid, it is used inside the nested while loop to make sure linear order is being kept 
 predicate pivot(a:array<int>, to:int, pvt:int)
+  reads a;
 {
   forall x, y :: 0 <= x < pvt < y < to ==> a[x] <= a[y] // all values within the array should be in ascending order
 }
@@ -17,6 +19,7 @@ predicate pivot(a:array<int>, to:int, pvt:int)
 // Here having the algorithm for the bubblesort
 
 method BubbleSort (a: array<int>)
+    modifies a; // as method runs, we are changing a
 {
   var i := 1;
 

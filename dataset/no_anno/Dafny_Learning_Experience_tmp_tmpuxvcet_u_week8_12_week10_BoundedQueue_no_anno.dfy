@@ -10,6 +10,7 @@ class BoundedQueue<T(0)>
     var data: array<T>
 
     ghost predicate Valid()
+        reads this, Repr
     {
         this in Repr && data in Repr &&
         wr <= max && rd <= max && data.Length == max + 1 &&

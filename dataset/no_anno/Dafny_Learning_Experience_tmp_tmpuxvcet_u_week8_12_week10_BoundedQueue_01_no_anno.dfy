@@ -10,6 +10,7 @@ var data: array<T>
  var rd: nat
   
   ghost predicate Valid()
+ reads this, Repr
  {
  this in Repr && data in Repr &&
 data.Length == N + 1 &&

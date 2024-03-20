@@ -1,4 +1,5 @@
 method mergeSort(a: array<int>)
+modifies a
 {
   sorting(a, 0, a.Length-1);
 }

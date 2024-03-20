@@ -1,14 +1,17 @@
 function contains(v: int, a: array<int>, n: int): bool
+reads a
 {
   exists j :: 0 <= j < n && a[j] == v
 }
 
 function upper_bound(v: int, a: array<int>, n: int): bool
+reads a
 {
   forall j :: 0 <= j < n ==> a[j] <= v
 }
 
 function is_max(m: int, a: array<int>, n: int): bool
+reads a
 {
   contains(m, a, n) && upper_bound(m, a, n)
 }

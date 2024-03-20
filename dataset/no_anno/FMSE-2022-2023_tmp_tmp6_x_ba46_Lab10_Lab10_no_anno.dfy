@@ -10,12 +10,14 @@ trait OddListSpec
     var capacity: nat
 
     predicate Valid()
+        reads this
     {
         0 <= |s| <= this.capacity &&
         forall i :: 0 <= i < |s| ==> IsOdd(s[i] as int)
     }
 
     method insert(index: nat, element: Odd)
+        modifies this
 }
 
 class OddList extends OddListSpec
@@ -27,6 +29,7 @@ class OddList extends OddListSpec
     }
 
     method insert(index: nat, element: Odd)
+        modifies this
     {
         var tail := s[index..];
         s := s[..index] + [element];
@@ -34,16 +37,19 @@ class OddList extends OddListSpec
     }
 
     method pushFront(element: Odd)
+        modifies this
     {
         insert(0, element);
     }
 
     method pushBack(element: Odd)
+        modifies this
     {
         insert(|s|, element);
     }
 
     method remove(element: Odd)
+        modifies this
     {
         for i: int := 0 to |s|
         {
@@ -56,17 +62,20 @@ class OddList extends OddListSpec
     }
 
     method removeAtIndex(index: nat)
+        modifies this
     {
         s := s[..index] + s[index + 1..];
     }
 
     method popFront() returns (x: Odd)
+        modifies this
     {
         x := s[0];
         s := s[1..];
     }
 
     method popBack() returns (x: Odd)
+        modifies this
     {
         x := s[|s| - 1];
         s := s[..|s| - 1];
@@ -160,6 +169,7 @@ trait CircularLinkedListSpec<T(==)>
     var capacity: nat 
 
     predicate Valid()
+        reads this
     {
         0 <= |l| <= this.capacity
     }
@@ -167,6 +177,7 @@ trait CircularLinkedListSpec<T(==)>
     method insert(index: int, element: T)
     // allows for integer and out-of-bounds index due to circularity
     // managed by applying modulus
+        modifies this
 }
 
 class CircularLinkedList<T(==)> extends CircularLinkedListSpec<T>
@@ -180,6 +191,7 @@ class CircularLinkedList<T(==)> extends CircularLinkedListSpec<T>
     method insert(index: int, element: T)
     // allows for integer and out-of-bounds index due to circularity
     // managed by applying modulus
+        modifies this
     {
         if (|l| == 0)
         {
@@ -195,6 +207,7 @@ class CircularLinkedList<T(==)> extends CircularLinkedListSpec<T>
     }
 
     method remove(element: T)
+        modifies this
     {
         for i: nat := 0 to |l|
         {
@@ -207,6 +220,7 @@ class CircularLinkedList<T(==)> extends CircularLinkedListSpec<T>
     }
 
     method removeAtIndex(index: int)
+        modifies this
     {
         var actualIndex := index % |l|;
         l := l[..actualIndex] + l[actualIndex + 1..];

@@ -2,6 +2,7 @@
   Inverts an array of ints.
  */
 method InvertArray(a: array<int>)
+  modifies a
 {
   var index := 0;
 

@@ -1,4 +1,5 @@
 predicate strictNegative(v:array<int>,i:int,j:int)
+reads v
 {forall u | i<=u<j :: v[u]<0}
 
 predicate positive(s:seq<int>)
@@ -11,6 +12,7 @@ predicate isPermutation(s:seq<int>, t:seq<int>)
 returns an index st new array is a permutation of the old array
 positive first and then strictnegative, i is the firs neg or len if not any */
 method separate(v:array<int>) returns (i:int)
+modifies v
 {
     i:=0;
     var j:=v.Length - 1;

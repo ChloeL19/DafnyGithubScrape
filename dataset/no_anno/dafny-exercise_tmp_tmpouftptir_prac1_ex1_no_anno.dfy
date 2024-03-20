@@ -1,4 +1,5 @@
 predicate acheck(a: array<int>, n: int)
+reads a
 {
 	a.Length % 2 == 0 && 
 	forall i :: 0 <= i < a.Length ==> 

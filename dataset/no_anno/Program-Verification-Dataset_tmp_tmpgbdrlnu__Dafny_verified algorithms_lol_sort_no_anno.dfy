@@ -39,6 +39,7 @@ predicate sorted(a: seq<int>)
 // Now, the lol sort algorithm:
 // (Some invariants were tricky to find, but Dafny was smart enough otherwise)
 method lol_sort(a: array<int>)
+  modifies a
 {
   for i := 0 to a.Length
   {

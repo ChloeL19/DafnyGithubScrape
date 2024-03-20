@@ -5,6 +5,7 @@ class Node<T> {
     var next: Node?<T>
 
     ghost predicate Valid()
+        reads this, Repr
     {
         this in Repr &&
         |s| >= 1 && s[0] == data &&
@@ -54,6 +55,7 @@ class Stack<T> {
     var top: Node?<T>
 
     ghost predicate Valid()
+        reads this, Repr
     {
         this in Repr &&
         (top == null ==> s == []) &&

@@ -10,6 +10,7 @@ method ArrayInit(n: nat) returns (a: array<int>)
 }
 
 method Init(m: array2<int>)
+  modifies m
 {
   forall i,j | 0 <= i < m.Length0 && 0 <= j < m.Length1 {
     m[i,j] := 0;
@@ -25,6 +26,7 @@ method Gradient(n: nat) returns (m: array2<int>)
 }
 
 method M3(C: array3<real>)
+  modifies C
 {
   forall i,j,k | 0 <= i < C.Length0 && 0 <= j < C.Length1 && 0 <= k < C.Length2
   {

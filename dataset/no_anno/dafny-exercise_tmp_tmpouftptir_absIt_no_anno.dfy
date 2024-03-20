@@ -1,4 +1,5 @@
 method AbsIt(s: array<int>) 
+modifies s
 {
 	var i: int := 0;
 	

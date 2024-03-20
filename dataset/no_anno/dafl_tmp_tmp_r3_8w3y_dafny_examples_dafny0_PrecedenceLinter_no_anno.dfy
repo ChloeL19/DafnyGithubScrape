@@ -251,6 +251,7 @@ predicate Quant0(s: string) {
 }
 
 predicate Quant1(m: array2<string>, P: int -> bool)
+  reads m
 {
   forall i :: 0 <= i < m.Length0 && P(i) ==> forall j :: 0 <= j < m.Length1 ==>
     m[i, j] != ""

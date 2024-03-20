@@ -72,11 +72,13 @@ method FindMax(a: array<int>) returns (i: int)
   }
 }
 predicate sorted(a: array<int>)
+  reads a
 {
   forall j, k :: 0 <= j < k < a.Length ==> a[j] < a[k]
 }
 
 predicate sorted'(a: array?<int>) // Change the type
+  reads a
 {
   forall j, k :: a != null && 0 <= j < k < a.Length ==> a[j] <= a[k]
 }

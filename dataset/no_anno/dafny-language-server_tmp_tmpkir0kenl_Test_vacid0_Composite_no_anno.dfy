@@ -9,6 +9,7 @@ class Composite {
   var sum: int
 
   function Valid(S: set<Composite>): bool
+    reads this, parent, left, right
   {
     this in S &&
     (parent != null ==> parent in S && (parent.left == this || parent.right == this)) &&
@@ -18,12 +19,14 @@ class Composite {
   }
 
   function Acyclic(S: set<Composite>): bool
+    reads S
   {
     this in S &&
     (parent != null ==> parent.Acyclic(S - {this}))
   }
 
   method Init(x: int)
+    modifies this
   {
     parent := null;
     left := null;

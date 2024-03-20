@@ -9,11 +9,13 @@ class Queue
     }
 
     method enqueue(x: int)
+        modifies this
     {
         queue := [x] + queue;
     }
 
     method dequeue() returns (x: int)
+        modifies this
     {
         x := queue[|queue| - 1];
         queue := queue[0..|queue| - 1];

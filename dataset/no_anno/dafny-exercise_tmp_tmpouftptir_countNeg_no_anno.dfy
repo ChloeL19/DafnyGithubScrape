@@ -1,4 +1,5 @@
 function verifyNeg(a: array<int>, idx: int) : nat
+reads a
 {
 	if idx == 0 then 0 
 	else verifyNeg(a, idx - 1) + (if a[idx - 1] < 0 then 1 else 0)

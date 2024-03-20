@@ -59,11 +59,13 @@ You may assume that the array contains values between 0 and n-1.
 // without further human intervention.
 
 ghost predicate IsDuplicate(a: array<int>, p: int)
+  reads a
 {
   IsPrefixDuplicate(a, a.Length, p)
 }
 
 ghost predicate IsPrefixDuplicate(a: array<int>, k: int, p: int)
+  reads a;
 {
   exists i,j :: 0 <= i < j < k && a[i] == a[j] == p
 }

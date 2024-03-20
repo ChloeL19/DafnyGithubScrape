@@ -5,9 +5,17 @@ trait MyMultiset {
 
   // internal invariant
   ghost predicate Valid()
+    reads this
+
+  // abstract variable
+  ghost var theMultiset: multiset<int>
+
+  method Add(elem: int) returns (didChange: bool)
+    modifies this
   { elem in theMultiset }
 
   method Remove(elem: int) returns (didChange: bool)
+    modifies this
 }
 
 /**
@@ -17,6 +25,7 @@ class MultisetImplementationWithMap extends MyMultiset {
 
   // valid invariant predicate of the ADT implementation
   ghost predicate Valid()
+    reads this
   {
     (forall i | i in elements.Keys :: elements[i] > 0) && (theMultiset == A(elements)) && (forall i :: i in elements.Keys <==> Contains(i))
   }
@@ -33,6 +42,7 @@ class MultisetImplementationWithMap extends MyMultiset {
   }
 //adds an element to the multiset
   method Add(elem: int) returns (didChange: bool)
+    modifies this
   {
     if !(elem in elements) {
       elements := elements[elem := 1];
@@ -47,6 +57,7 @@ class MultisetImplementationWithMap extends MyMultiset {
 
 //removes an element from the multiset
   method Remove(elem: int) returns (didChange: bool)
+    modifies this
   {
     /* If the multiset does not contain the element */
     if elem !in elements {
@@ -116,6 +127,7 @@ class MultisetImplementationWithMap extends MyMultiset {
   }
 
   method Test1()
+    modifies this
   {
 
     assume this.theMultiset == multiset{1, 2, 3, 4};
@@ -134,6 +146,7 @@ class MultisetImplementationWithMap extends MyMultiset {
   }
 
   method Test2()
+    modifies this
   {
 
     assume this.theMultiset == multiset{1, 2, 3, 4};

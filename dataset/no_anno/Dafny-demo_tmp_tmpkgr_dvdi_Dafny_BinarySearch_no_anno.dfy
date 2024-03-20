@@ -1,5 +1,6 @@
 
 predicate sorted(a: array?<int>, l: int, u: int)
+	reads a
 	{
 	forall i, j :: 0 <= l <= i <= j <= u < a.Length ==> a[i] <= a[j]
 	}

@@ -117,6 +117,7 @@ module TypeOfThis {
     }
 
     method Mutate()
+      modifies this
     {
       Repr := {this};
       Rapr := {this};

@@ -15,12 +15,17 @@ module {:options "-functionSyntax:4"} MutableMapDafny {
     */
   trait {:termination false} MutableMapTrait<K(==),V(==)> {
     function content(): map<K, V>
+      reads this
+
+    method Put(k: K, v: V)
+      modifies this
   }
 
   class MutableMapDafny<K(==),V(==)> extends MutableMapTrait<K,V> {
     var m: map<K,V>
 
     function content(): map<K, V> 
+      reads this
     {
       m
     }
@@ -31,6 +36,7 @@ module {:options "-functionSyntax:4"} MutableMapDafny {
     }
 
     method Put(k: K, v: V)
+      modifies this
     {
       m := m[k := v];
       if k in old(m).Keys {
@@ -50,21 +56,25 @@ module {:options "-functionSyntax:4"} MutableMapDafny {
     }
 
     function Keys(): (keys: set<K>)
+      reads this
     {
       m.Keys
     }
 
     predicate HasKey(k: K)
+      reads this
     {
       k in m.Keys
     }
 
     function Values(): (values: set<V>)
+      reads this
     {
       m.Values
     }
 
     function Items(): (items: set<(K,V)>)
+      reads this
     {
       var items := set k | k in m.Keys :: (k, m[k]);
         forall k | k in m.Keys ensures (k, m[k]) in m.Items {
@@ -76,11 +86,13 @@ module {:options "-functionSyntax:4"} MutableMapDafny {
     }
 
     function Select(k: K): (v: V)
+      reads this
     {
       m[k]
     }
 
     method Remove(k: K)
+      modifies this
     {
       m := map k' | k' in m.Keys && k' != k :: m[k'];
       if k in old(m).Keys {
@@ -94,6 +106,7 @@ module {:options "-functionSyntax:4"} MutableMapDafny {
     }
 
     function Size(): (size: int)
+      reads this
     {
       |m|
     }

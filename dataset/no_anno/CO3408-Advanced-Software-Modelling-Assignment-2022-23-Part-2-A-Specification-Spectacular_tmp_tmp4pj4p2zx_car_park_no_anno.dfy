@@ -25,6 +25,7 @@ class {:autocontracts} CarPark {
     // equal to the total number of spaces, and the number of cars in the reserved car park is less than or equal
     // to the number of reserved spaces
     ghost predicate Valid()
+    reads this
     {
                           carPark * reservedCarPark == {} && |carPark| <= totalSpaces + badParkingBuffer && (normalSpaces + reservedSpaces) == totalSpaces && |reservedCarPark| <= reservedSpaces
     }
@@ -87,6 +88,8 @@ class {:autocontracts} CarPark {
   // set and the number of cars in the carPark set is less than the number of normal spaces minus the bad parking
   // buffer. Otherwise, the carPark and reservedCarPark sets are not modified
   method enterCarPark(car: string) returns (success: bool)
+    modifies this;
+
     {
     if (|carPark| >= normalSpaces - badParkingBuffer || car in carPark || car in reservedCarPark) {
       return false;
@@ -103,6 +106,8 @@ class {:autocontracts} CarPark {
   // reserved spaces and either the weekend variable is true or the car parameter is in the subscriptions set.
   // Otherwise, the carPark and reservedCarPark sets are not modified
   method enterReservedCarPark(car: string) returns (success: bool)
+    modifies this;
+
   {
     if (|reservedCarPark| >= reservedSpaces || car in carPark || car in reservedCarPark || (car !in subscriptions && weekend == false)) {
       return false;

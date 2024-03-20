@@ -27,6 +27,7 @@ class Tank
 
 method checkRegulation(tank: Tank)
  //requires tank.pipe.v1==OFF && tank.pipe.v2==ON && (tank.pipe.v3==OFF || tank.pipe.v2==ON) 
+modifies tank.pipe;
  {
     if(tank.height >10)
      {

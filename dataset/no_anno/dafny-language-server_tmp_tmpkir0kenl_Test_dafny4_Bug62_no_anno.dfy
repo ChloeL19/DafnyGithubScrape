@@ -11,6 +11,7 @@ class C {
 
 class D {
   method Main()  // not Main since it has modifies clause.
+   modifies this;
   {
     print "hello, I'm running ... in D\n";
   }

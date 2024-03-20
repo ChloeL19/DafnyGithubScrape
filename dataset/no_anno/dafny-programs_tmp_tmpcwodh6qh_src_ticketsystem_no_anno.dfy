@@ -33,6 +33,7 @@ class TicketSystem {
 
     // how to know some process p is in domain of map: introduce function which tells whether condition holds or not
     predicate Valid() // function which describes system invariant
+        reads this // may depend on values in the class
     {
         P <= cs.Keys && P <= t.Keys && serving <= ticket && // ticket may be greater than serving but not the other way around
         (forall p :: p in P && cs[p] != Thinking ==> serving <= t[p] < ticket) && // any current ticket number is in the range of serving to ticket

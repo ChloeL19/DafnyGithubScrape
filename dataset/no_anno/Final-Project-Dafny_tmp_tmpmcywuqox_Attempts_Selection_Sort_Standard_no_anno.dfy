@@ -1,4 +1,5 @@
 method selectionSorted(Array: array<int>) 
+  modifies Array
 {
   var idx := 0;
   while (idx < Array.Length)

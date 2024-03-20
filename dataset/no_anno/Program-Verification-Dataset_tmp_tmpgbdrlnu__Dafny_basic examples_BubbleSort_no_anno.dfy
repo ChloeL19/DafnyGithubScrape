@@ -1,14 +1,17 @@
 predicate sorted(a:array<int>, from:int, to:int)
+  reads a;
 {
   forall u, v :: from <= u < v < to ==> a[u] <= a[v]
 }
 
 predicate pivot(a:array<int>, to:int, pvt:int)
+  reads a;
 {
   forall u, v :: 0 <= u < pvt < v < to ==> a[u] <= a[v]
 }
 
 method bubbleSort (a: array<int>)
+  modifies a;
 {
   var i:nat := 1;
 

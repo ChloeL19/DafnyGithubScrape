@@ -5,6 +5,7 @@ predicate sorted_seg(a:array<int>, i:int, j:int) //j not included
 
 
 method selSort (a:array<int>, c:int, f:int)//f excluded
+modifies a 
  {if (c<=f-1){//two elements at least
   var i:=c;
   while (i<f-1) //outer loop

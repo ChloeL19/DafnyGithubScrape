@@ -10,6 +10,7 @@ class LFUCache {
     }
 
     predicate Valid()
+      reads this;
       // reads this.freqMap.Values;
     {
       // general value check
@@ -46,6 +47,7 @@ class LFUCache {
     }
 
     method get(key: int) returns (value: int)
+      modifies this;
     {
       if(key !in cacheMap) {
         value := -1;

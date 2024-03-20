@@ -1,13 +1,16 @@
 predicate sorted(a: array?<int>, l: int, u: int)
+  reads a;
   {
     forall i, j :: 0 <= l <= i <= j <= u < a.Length ==> a[i] <= a[j]
   }
 predicate partitioned(a: array?<int>, i: int)
+  reads a
   {
     forall k, k' :: 0 <= k <= i < k' < a.Length ==> a[k] <= a[k']
   }
 
 method BubbleSort(a: array?<int>)
+  modifies a
   {
     var i := a.Length - 1;
     while(i > 0)

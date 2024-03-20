@@ -11,6 +11,10 @@ class Person
     var civilState: CivilState;
 
     predicate Valid()
+        reads this
+        reads spouse
+        reads mother 
+        reads father
     {
         (civilState == Married <==> spouse != null)
         && (mother != null ==> mother.sex == Feminine) 
@@ -30,6 +34,8 @@ class Person
     }
  
     method marry(spouse: Person)
+        modifies spouse
+        modifies this
     {
         spouse.spouse := this;
         spouse.civilState := Married;
@@ -38,6 +44,8 @@ class Person
     }
  
     method divorce()
+        modifies spouse
+        modifies this 
     {
         spouse.spouse := null;
         spouse.civilState := Divorced;
@@ -46,6 +54,8 @@ class Person
     }
  
     method die()
+        modifies this 
+        modifies spouse 
     {
         if spouse != null
         {

@@ -11,6 +11,7 @@ class Node {
   ghost var footprint : set<Node>
 
   ghost function Valid() : bool 
+    reads this, footprint
   {
     (this in footprint) &&
     ((next == null) ==> list == [ data ] && footprint == { this }) &&

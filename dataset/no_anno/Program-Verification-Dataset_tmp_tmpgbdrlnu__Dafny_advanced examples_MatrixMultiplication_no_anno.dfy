@@ -1,9 +1,13 @@
 function RowColumnProduct(m1: array2<int>, m2: array2<int>, row: nat, column: nat): int
+    reads m1
+    reads m2
 {
     RowColumnProductFrom(m1, m2, row, column, 0)
 }
 
 function RowColumnProductFrom(m1: array2<int>, m2: array2<int>, row: nat, column: nat, k: nat): int
+    reads m1
+    reads m2
 {
     if k == m1.Length1 then
         0

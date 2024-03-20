@@ -2,6 +2,7 @@
 // RUN: %diff "%s.expect" "%t"
 
 method MirrorImage<T>(m: array2<T>)
+  modifies m
 {
   var a := 0;
   while a < m.Length0

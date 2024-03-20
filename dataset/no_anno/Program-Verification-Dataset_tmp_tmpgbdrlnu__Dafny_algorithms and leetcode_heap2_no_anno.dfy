@@ -30,6 +30,7 @@ class Heap {
 
   method heapify(idx: int)
     returns (nidx: int)
+    modifies this, this.arr
   {
     if (2*idx+1 >= this.arr.Length) && (2*idx+2 >= this.arr.Length) {
       nidx := -1;

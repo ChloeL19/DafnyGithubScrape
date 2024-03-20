@@ -42,6 +42,7 @@ class Hashtable<K(==,!new),V(!new)> {
   ghost var elems : map<K,Option<V>>
 
   ghost predicate RepInv()
+    reads this, Repr
   {
     this in Repr && data in Repr && data.Length > 0 &&
     (forall i :: 0 <= i < data.Length ==> valid_hash(data, i)) &&
@@ -55,6 +56,7 @@ class Hashtable<K(==,!new),V(!new)> {
 
 
   ghost predicate valid_data(k: K,v: V,elems: map<K, Option<V>>, data: array<List<(K,V)>>)
+    reads this, Repr, data
   {
     (k in elems && elems[k] == Some(v)) <==> mem((k,v), data[bucket(k, data.Length)])
   }

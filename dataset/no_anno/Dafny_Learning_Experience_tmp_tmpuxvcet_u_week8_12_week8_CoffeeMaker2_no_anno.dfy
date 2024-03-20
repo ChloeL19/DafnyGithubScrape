@@ -3,6 +3,7 @@ class Grinder {
     ghost var Repr: set<object>
 
 	ghost predicate Valid() 
+		reads this, Repr
 }
 
 class WaterTank { 
@@ -10,6 +11,7 @@ class WaterTank {
     ghost var Repr: set<object>
 
 	ghost predicate Valid() 			 
+		reads this, Repr 		
 }
 
 class CoffeeMaker { 	
@@ -19,6 +21,7 @@ class CoffeeMaker {
 	ghost var Repr: set<object>
 
 	ghost predicate Valid() 
+		reads this, Repr 
 	{ 
 		this in Repr && g in Repr && w in Repr &&
 		g.Repr <= Repr && w.Repr <= Repr &&

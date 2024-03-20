@@ -22,6 +22,7 @@ lemma SumRangeUnrollLeft(lo: int, hi: int)
 {}
 
 method BubbleSort(a: array<int>) returns (n: nat) 
+  modifies a
 {
   // it simplifies the remaining invariants to handle the empty array here
   if a.Length == 0 { return 0; }  

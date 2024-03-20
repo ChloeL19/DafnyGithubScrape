@@ -2,6 +2,7 @@
 // RUN: %diff "%s.expect" "%t"
 
 predicate G<X(!new)>(f:X~>bool)
+  reads f.reads;
 {
   true
 }

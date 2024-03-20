@@ -41,6 +41,7 @@ method Gcd(x1: int, x2: int)
 }
 
 method Determinant(X: array2<int>, M: int) returns (z: int)
+  modifies X;
 {
   var y := X[1-1,1-1];
   var a := 1;

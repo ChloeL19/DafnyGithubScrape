@@ -5,6 +5,7 @@ class Node {
   var nxt: Node?
 
   method ReverseInPlace(x: Node?, r: set<Node>) returns (reverse: Node?)
+    modifies r;
   {
     var current: Node? := x;
     reverse := null;

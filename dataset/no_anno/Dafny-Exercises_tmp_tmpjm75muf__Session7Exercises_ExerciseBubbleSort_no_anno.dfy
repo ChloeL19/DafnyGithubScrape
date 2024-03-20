@@ -4,6 +4,7 @@ predicate sorted_seg(a:array<int>, i:int, j:int) //j excluded
 }
 
 method bubbleSorta(a:array<int>, c:int, f:int)//f excluded
+modifies a 
 {
   var i:=c;
   while (i< f)
@@ -30,6 +31,7 @@ method bubbleSorta(a:array<int>, c:int, f:int)//f excluded
 
 
 method bubbleSort(a:array<int>, c:int, f:int)//f excluded
+modifies a 
 {
   var i:=c;
   var b:=true;

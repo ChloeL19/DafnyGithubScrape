@@ -1,9 +1,11 @@
 predicate SplitPoint(a: array<int>, n: int)
+    reads a
 {
     forall i,j :: 0 <= i < n <= j < a.Length ==> a[i] <= a[j]
 }
 
 method SelectionSort(a: array<int>)
+    modifies a
 {
     var n := 0;
     while n != a.Length 
@@ -22,6 +24,7 @@ method SelectionSort(a: array<int>)
 }
 
 method QuickSort(a: array<int>)
+    modifies a
 {
     QuickSortAux(a, 0, a.Length);
 }

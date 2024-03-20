@@ -5,6 +5,7 @@
 
 
 predicate isSorted(a:array<int>)
+  reads a
 {
   forall i:nat, j:nat :: i <= j < a.Length ==> a[i] <= a[j]
 }
@@ -32,6 +33,7 @@ method binSearch(a:array<int>, K:int) returns (b:bool)
 /* Note: the following definition of isSorted:
 
 predicate isSorted(a:array<int>)
+  reads a
 {
   forall i:nat :: i < a.Length - 1 ==> a[i] <= a[i+1]
 }

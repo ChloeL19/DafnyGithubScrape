@@ -9,6 +9,7 @@ class Node<T> {
   var next: Node?<T>
 
   ghost predicate Valid()
+    reads this, Repr
   {
     this in Repr &&
     (next == null ==> List == [data]) &&

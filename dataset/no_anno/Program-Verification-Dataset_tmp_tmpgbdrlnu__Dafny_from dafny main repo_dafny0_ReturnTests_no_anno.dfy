@@ -5,17 +5,20 @@ class N
 {
    var i: int;
    method newN(n: N)
+      modifies this, n;
    {
       n.i := 1;
       i := 1;
    }
    method safe(n: N)
+      modifies this;
    {
       i := n.i;
    }
 }
 
 method m(v: int, n: N) returns (r: int)
+   modifies n;
 {
    r := v; // implict return still works.
 }

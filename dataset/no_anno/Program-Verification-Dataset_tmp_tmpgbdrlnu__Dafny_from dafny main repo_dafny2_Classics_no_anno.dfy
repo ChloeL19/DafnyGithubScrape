@@ -40,6 +40,7 @@ method AdditiveFactorial(n: nat) returns (u: nat)
 //     forall p,q :: 0 <= p <= f <= q < N ==> A[p] <= A[f] <= A[q]).
 
 method FIND(A: array<int>, N: int, f: int)
+  modifies A;
 {
   var m, n := 0, N-1;
   while (m < n)

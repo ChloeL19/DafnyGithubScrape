@@ -3,6 +3,7 @@
 // Parts have been modified cause you know, arrays are different...
    
 method QuicksortPartition(X: array<int>, n: int, p: int) returns (a: int, b: int)
+modifies X;
 /*Pre-Condition*/   requires X.Length>=1 && n == X.Length;
 /*Post-Condition*/  ensures b>=n;
 {

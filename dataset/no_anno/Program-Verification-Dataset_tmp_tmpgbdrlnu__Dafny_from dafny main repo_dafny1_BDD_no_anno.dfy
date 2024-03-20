@@ -15,6 +15,7 @@ module SimpleBDD
     var f: BDDNode?, t: BDDNode?
     var b: bool
     ghost predicate valid()
+      reads this, Repr
     {
       bitfunc(Contents,n) &&
       (0 == n ==> (b <==> Contents[[]])) &&
@@ -33,6 +34,7 @@ module SimpleBDD
   {
     var root: BDDNode
     ghost predicate valid()
+      reads this, Repr
     {
       root in Repr && root.Repr <= Repr && root.valid() &&
       n == root.n && Contents == root.Contents

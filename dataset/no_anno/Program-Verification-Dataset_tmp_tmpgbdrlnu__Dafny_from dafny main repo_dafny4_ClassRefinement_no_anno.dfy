@@ -5,6 +5,7 @@ abstract module M0 {
     ghost var N: int
     ghost var Repr: set<object>
     ghost predicate Valid()
+      reads this, Repr
     {
       Repr := {};
       new;

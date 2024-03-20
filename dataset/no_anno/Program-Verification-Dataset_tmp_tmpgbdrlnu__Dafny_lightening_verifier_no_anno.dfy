@@ -6,6 +6,7 @@ class CrashableMem<T> {
     }
 
     method write(off : int, val : T)
+        modifies mem_;
     {
         mem_[off] := val;
     }
@@ -186,6 +187,9 @@ class UndoLog {
     constructor () {}
 
     predicate ghost_state_equiv(gs : GhostState)
+        reads this;
+        reads mem_;
+        reads log_;
     {
         log_.Length > 0 &&
         mem_[..] == gs.mem &&
@@ -194,6 +198,8 @@ class UndoLog {
         impl_countdown == gs.countdown
     }
     predicate state_inv()
+        reads this;
+        reads log_;
     {
         log_.Length > 1 && 0 <= log_[0] && (log_[0] * 2) < log_.Length
         && log_.Length < 0xffffffff && mem_ != log_
@@ -202,6 +208,7 @@ class UndoLog {
     }
 
     method init(log_size : int, mem_size : int, countdown : int)
+        modifies this;
     {
         log_ := new int[log_size];
         mem_ := new int[mem_size];
@@ -212,11 +219,14 @@ class UndoLog {
     }
 
     method impl_countdown_dec()
+        modifies this;
     {
         impl_countdown := impl_countdown - 1;
     }
 
     method write_mem(off : int, val : int)
+        modifies this;
+        modifies mem_;
     {
         if (impl_countdown > 0) {
             mem_[off] := val;
@@ -225,6 +235,8 @@ class UndoLog {
     }
 
     method write_log(off : int, val : int)
+        modifies this;
+        modifies log_;
     {
         if (impl_countdown > 0) {
             log_[off] := val;
@@ -233,6 +245,8 @@ class UndoLog {
     }
 
     method begin_tx()
+        modifies log_;
+        modifies this;
     {
         write_log(0, 0);
 
@@ -240,6 +254,8 @@ class UndoLog {
     }
 
     method commit_tx()
+        modifies log_;
+        modifies this;
     {
         write_log(0, 0);
 
@@ -247,6 +263,9 @@ class UndoLog {
     }
 
     method tx_write(offset: int, val : int)
+        modifies this;
+        modifies log_;
+        modifies mem_;
     {
         var log_idx := log_[0];
         var log_off := log_idx * 2;
@@ -272,6 +291,9 @@ class UndoLog {
 
     // we assume that recover won't crash (though this code works when recover can fail)
     method recover()
+        modifies log_;
+        modifies mem_;
+        modifies this;
     {
         var log_len := log_[0];
         if (log_len > 0) {
@@ -279,6 +301,8 @@ class UndoLog {
 
             ghost var gs0 := gs;
             while i >= 0
+                modifies mem_;
+                modifies this;
             {
                 var o := i * 2 + 1;
                 var off := log_[o];

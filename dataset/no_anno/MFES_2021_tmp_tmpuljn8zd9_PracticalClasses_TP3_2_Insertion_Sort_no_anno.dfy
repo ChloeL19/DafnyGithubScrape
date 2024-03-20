@@ -1,5 +1,6 @@
 // Sorts array 'a' using the insertion sort algorithm.
 method insertionSort(a: array<int>) 
+    modifies a
 {
     var i := 0;
     while i < a.Length 
@@ -16,6 +17,7 @@ method insertionSort(a: array<int>)
 
 // Checks if array 'a' is sorted.
 predicate isSorted(a: array<int>, from: nat, to: nat)
+  reads a
 {
     forall i, j :: from <= i < j < to ==> a[i] <= a[j]
 }

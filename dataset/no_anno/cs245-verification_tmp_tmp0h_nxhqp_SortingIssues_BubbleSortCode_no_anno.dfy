@@ -9,6 +9,7 @@
 // What about the pre/post-conditions?
 
 method BubbleSort(A: array<int>, n: int)
+modifies A;
 {
   
   var i := 0;

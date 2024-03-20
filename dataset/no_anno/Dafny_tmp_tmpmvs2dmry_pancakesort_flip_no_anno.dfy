@@ -1,5 +1,6 @@
 // flips (i.e., reverses) array elements in the range [0..num]
 method flip (a: array<int>, num: int)
+modifies a;
 {
   var tmp:int;
   var i := 0;

@@ -1,4 +1,5 @@
 method remove_element(nums: array<int>, val: int) returns (i: int)
+    modifies nums
 {
     i := 0;
     var end := nums.Length - 1;
