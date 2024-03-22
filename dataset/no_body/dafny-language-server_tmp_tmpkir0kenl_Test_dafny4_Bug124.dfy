@@ -1,0 +1,9 @@
+// RUN: %dafny /compile:0 /noNLarith  "%s" > "%t"
+// RUN: %diff "%s.expect" "%t"
+
+function power(n:nat, e:nat) : int
+
+lemma lemma_power()
+    ensures forall n:nat, e:nat :: 0 <= n * e && power(n, e) == 5;
+{/* TODO */ }
+
