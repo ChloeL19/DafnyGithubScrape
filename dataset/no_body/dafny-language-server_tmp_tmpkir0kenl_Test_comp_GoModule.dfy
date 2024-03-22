@@ -16,21 +16,7 @@ module {:extern "url", "net/url"} URL {
     method {:extern "url", "Parse"} Parse(address: string) returns (url: URL, error: Error?)
 }
 
-method TryUrl(address: string) {
-    var u, e := URL.Parse(address);
-    if (e != null) {
-        print "Parse error: ", e, "\n";
-    } else {
-        print "The address ", address, "\n";
-        print "has the following parts:\n";
-        print "host: ", u.host, "\n";
-        print "pathname: ", u.pathname, "\n";
-        print "search: ", u.search, "\n";
-    }
-}
+method TryUrl(address: string) {/* TODO */ }
 
-method Main() {
-    TryUrl("http://localhost:8080/default.htm?year=1915&month=august&day=29");
-    TryUrl("http://localhost:8080/default.htm%");
-}
+method Main() {/* TODO */ }
 

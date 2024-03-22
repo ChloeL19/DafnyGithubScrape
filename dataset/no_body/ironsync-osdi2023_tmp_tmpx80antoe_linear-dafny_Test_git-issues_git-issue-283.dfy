@@ -15,10 +15,7 @@ trait Foo
 {
   method FooMethod1(r: Result<()>)
     ensures
-      match r {
-        case Success(()) => true // OK
-        case Failure(e) => true
-      }
+      match r {/* TODO */ }
   {
     var x: int := 0;
     match r {
@@ -30,11 +27,7 @@ trait Foo
   }
   method FooMethod2(r: Result<C>)
     ensures
-      match r {
-        case Success(C1()) => true // OK
-        case Success(C2(x)) => true // OK
-        case Failure(e) => true
-      }
+      match r {/* TODO */ }
   {
     var x: int := 0;
     match r {
@@ -47,11 +40,7 @@ trait Foo
   }
   method FooMethod2q(r: Result<C>)
     ensures
-      match r {
-        case Success(C1()) => true // OK
-        case Success(C2(x)) => true // OK
-        case Failure(e) => true
-      }
+      match r {/* TODO */ }
   {
     var x: int := 0;
     match r {
@@ -64,11 +53,7 @@ trait Foo
   }
   method FooMethod2r(r: Result<C>)
     ensures
-      match r {
-        case Success(C1()) => true // OK
-        case Success(C2(x)) => true // OK
-        case Failure(e) => true
-      }
+      match r {/* TODO */ }
   {
     var x: real := 0.0;
     match r {
@@ -81,11 +66,7 @@ trait Foo
   }
   method FooMethod3(r: Result<C>)
     ensures
-      match r {
-        case Success(C1) => true // OK
-        case Success(C2(x)) => true // OK
-        case Failure(e) => true
-      }
+      match r {/* TODO */ }
   {
     var x: int := 0;
     match r {
@@ -98,10 +79,7 @@ trait Foo
   }
   method FooMethod4(r: Result<C>)
     ensures
-      match r {
-        case Success(C2) => true // OK -- C2 is a variable
-        case Failure(e) => true
-      }
+      match r {/* TODO */ }
   {
     var x: int := 0;
     match r {
@@ -113,10 +91,7 @@ trait Foo
   }
   method FooMethod5(r: Result<string>)
     ensures
-      match r {
-        case Success(C1) => true // OK -- C1 is a variable
-        case Failure(e) => true
-      }
+      match r {/* TODO */ }
   {
     var x: int := 0;
     match r {
@@ -130,19 +105,7 @@ trait Foo
 
 class CL extends Foo {}
 
-method Main() {
-  var t := new CL;
-  m(t);
-}
+method Main() {/* TODO */ }
 
-method m(t: Foo) {
-  t.FooMethod1(Result.Success(()));
-  t.FooMethod2(Result<C>.Success(C1));
-  t.FooMethod2q(Result<C>.Success(C1));
-  t.FooMethod2r(Result<C>.Success(C1));
-  t.FooMethod3(Result<C>.Success(C1));
-  t.FooMethod4(Result<C>.Success(C1));
-  t.FooMethod5(Result<string>.Success(""));
-  print "Done\n";
-}
+method m(t: Foo) {/* TODO */ }
 

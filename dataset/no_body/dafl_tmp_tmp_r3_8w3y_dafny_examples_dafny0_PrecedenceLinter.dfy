@@ -236,8 +236,7 @@ lemma Injective()
   ensures forall x, y ::
     Negate(x) == Negate(y)
     ==> x == y
-{
-}
+{/* TODO */ }
 
 function Negate(x: int): int {
   -x
@@ -337,13 +336,7 @@ ghost predicate MoreOps4(P: int -> bool, Q: int -> bool, R: int -> bool) {
 
 lemma IntLemma(x: int)
 
-function StmtExpr0(x: int): int {
-  if x == 17 then
-    2
-  else
-    IntLemma(x);
-    3
-}
+function StmtExpr0(x: int): int {/* TODO */ }
 
 function StmtExpr1(x: int): int {
   if x == 17 then // warning: suspicious lack of parentheses (if-then-else)
@@ -395,132 +388,28 @@ ghost predicate Let1(P: int -> bool) {
 predicate SomeProperty<X>(x: X)
 
 method Parentheses0(arr: array<int>, P: int -> bool)
-{
-  assert forall i :: 0 <= i < arr.Length ==> arr[i] == old(arr
-    [i]);
-  var x := forall i :: 0 <= i < arr.Length ==> SomeProperty(
-    arr[i]);
-  var y := forall i :: 0 <= i < arr.Length ==> P(
-    arr[i]);
-  assert forall i :: 0 <= i < arr.Length && SomeProperty(i) ==> unchanged(
-    arr);
-  var u := if arr.Length == 3 then true else fresh(
-    arr);
-}
+{/* TODO */ }
 
 method Parentheses1(w: bool, x: int)
-{
-  var a := if w then {} else {x,
-    x, x};
-  var b := if w then iset{} else iset{x,
-    x, x};
-  var c := if w then [] else [x,
-    x, x];
-  var d := if w then multiset{} else multiset{x,
-    x, x};
-  var e := if w then map[] else map[x :=
-    x];
-  var f := if w then imap[] else imap[
-    x := x];
-}
+{/* TODO */ }
 
 datatype Record = Record(x: int, y: int)
 
 method Parentheses2(w: bool, x: int, y: int)
-{
-  var a := if w then Record(0,
-    0
-  ) else Record(x,
-    y);
-  var b := if w then
-      a else a
-    .
-    (
-    x
-    :=
-    y
-    )
-    ;
-}
+{/* TODO */ }
 
 method Parentheses3(w: bool, arr: array<int>, m: array2<int>, i: nat, j: nat)
   requires i < j < arr.Length <= m.Length0 <= m.Length1
-{
-  var a := if w then 0 else arr
-    [
-    i];
-  var b := if w then [] else arr
-    [ i .. ];
-  var c := if w then [] else arr
-    [..
-    i];
-  var d := if w then [] else arr
-    [
-    i..j];
-  var e := if w then [] else arr
-    [
-    ..j][i..];
-  var f := if w then [] else arr // warning: suspicious lack of parentheses (if-then-else)
-    [..i] + arr[i..];
-  var g := if w then 0 else m
-    [i,
-    j];
-  var h := if w then arr[..] else arr[..j]
-    [0 := 25];
-}
+{/* TODO */ }
 
 codatatype Stream = More(head: int, tail: Stream)
 
 method Parentheses4(w: bool, s: Stream, t: Stream)
-{
-  ghost var a := if w then true else s ==#[
-    12]                              t;
-  ghost var b := if w then true else s ==#[ // warning: suspicious lack of parentheses (ternary)
-    12] t;
-  ghost var c := if w then true else s // warning: suspicious lack of parentheses (ternary)
-    !=#[12] t;
-  ghost var d := if w then true else s
-    !=#[12]                          t;
-}
+{/* TODO */ }
 /**** revisit the following when the original match'es are being resolved (https://github.com/dafny-lang/dafny/pull/2734)
 datatype Color = Red | Blue
 
-method Parentheses5(w: bool, color: Color) {
-  var a := if w then 5 else match color
-        case Red => 6
-      case
-    Blue => 7;
-  var b := if w then 5 else match
-          color
-        case Red => 6
-      case
-    Blue => 7;
-  var c := if w then 5 else match color { // warning: suspicious lack of parentheses (if-then-else)
-        case Red => 6
-      case
-    Blue => 7} + 10;
-  var d :=
-    match color
-    case Red => 6
-    case Blue => 7 // warning: suspicious lack of parentheses (case)
-    + 10;
-  var e :=
-    match color
-    case Red => 6
-    + 10
-    case Blue => 7;
-  var f :=
-    match color {
-    case Red => 6
-    case Blue => 7
-    + 10 };
-  var g :=
-    if w then 5 else match color { // warning: suspicious lack of parentheses (if-then-else)
-      case Red => 6
-      case Blue => 7
-      + 10 }
-      + 20;
-}
+method Parentheses5(w: bool, color: Color) {/* TODO */ }
 ***/
 
 module MyModule {
@@ -528,46 +417,14 @@ module MyModule {
   lemma Lemma(x: int)
 }
 
-module QualifiedNames {
-  import MyModule
-
-  predicate P(x: int) {
-    var u := x;
-    MyModule.MyFunction(x) ==
-    x
-  }
-
-  predicate Q(x: int) {
-    var u := x;
-    MyModule.Lemma(x);
-    x == MyModule.MyFunction(x)
-  }
-
-  function F(): int
-  {
-    var p := 1000;
-    MyModule.Lemma(p);
-    p
-  }
-
-  predicate R(x: int) {
-    var u := x; // warning: suspicious lack of parentheses (let)
-                MyModule.
-                Lemma(x);
-                x ==
-             MyModule.MyFunction(x)
-  }
-}  
+module QualifiedNames {/* TODO */ }  
 
 module MatchAcrossMultipleLines {
   datatype PQ = P(int) | Q(bool)
 
   method M(s: set<PQ>)
     requires
-      (forall pq | pq in s :: match pq {
-          case P(x) => true
-          case Q(y) => y == false
-      })
+      (forall pq | pq in s :: match pq {/* TODO */ })
   {
   }
 

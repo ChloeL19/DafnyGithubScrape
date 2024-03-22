@@ -21,9 +21,7 @@ module IntegerSet {
 
         method size() returns (size : int)
         ensures size == |elements|
-        {
-            size := |elements|;
-        }
+        {/* TODO */ }
 
         method addElement(element : int)
         modifies this`elements
@@ -31,11 +29,7 @@ module IntegerSet {
         ensures element in old(elements) ==> elements == old(elements)
         ensures element !in old(elements) ==> |elements| == |old(elements)| + 1 && element in elements && forall i : int :: i in old(elements) ==> i in elements
         ensures forall i, j | 0 <= i < |elements| && 0 <= j < |elements| && j != i :: elements[i] != elements[j]
-        {
-            if (element !in elements) {
-                elements := elements + [element];
-            }
-        }
+        {/* TODO */ }
 
         method removeElement(element : int)
         modifies this`elements
@@ -43,38 +37,12 @@ module IntegerSet {
         ensures element in old(elements) ==> |elements| == |old(elements)| - 1 && (forall i : int :: i in old(elements) && i != element <==> i in elements) && element !in elements
         ensures element !in old(elements) ==> elements == old(elements)
         ensures forall i, j | 0 <= i < |elements| && 0 <= j < |elements| && j != i :: elements[i] != elements[j]
-        {
-            if (element in elements) {
-                var i := 0;
-
-                while (0 <= i < |elements|)
-                decreases |elements| - i
-                invariant 0 <= i < |elements|
-                invariant forall j : int :: 0 <= j < i < |elements| ==> elements[j] != element
-                {
-                    if (elements[i] == element) {
-                        if (i < |elements| - 1 && i != -1) {
-                            elements := elements[..i] + elements[i+1..];
-                        } 
-                        else if (i == |elements| - 1) {
-                            elements := elements[..i];
-                        }
-                        break;
-                    }
-                    i := i + 1;
-                }
-            }
-        }
+        {/* TODO */ }
 
         method contains(element : int) returns (contains : bool)
         ensures contains == (element in elements)
         ensures elements == old(elements)
-        {
-            contains := false;
-            if (element in elements) {
-                contains := true;
-            }
-        }
+        {/* TODO */ }
 
         //for computing the length of the intersection of 2 sets
         function intersect_length(s1 : seq<int>, s2 : seq<int>, count : int, start : int, stop : int) : int 
@@ -102,33 +70,7 @@ module IntegerSet {
         ensures forall i : int :: i !in intersection.elements  <==> i !in s.elements || i !in this.elements
         ensures forall j, k | 0 <= j < |intersection.elements| && 0 <= k < |intersection.elements| && j != k :: intersection.elements[j] != intersection.elements[k]
         ensures fresh(intersection)
-        {
-            intersection := new Set.Set0();
-            var inter: seq<int> := [];
-
-            var i := 0;
-            while (0 <= i < |this.elements|)
-            decreases |this.elements| - i
-            invariant 0 <= i < |this.elements| || i == 0
-            invariant forall j, k | 0 <= j < |inter| && 0 <= k < |inter| && j != k :: inter[j] != inter[k]
-            invariant forall j :: 0 <= j < i < |this.elements| ==> (this.elements[j] in inter <==> this.elements[j] in s.elements)
-            invariant forall j :: 0 <= j < |inter| ==> inter[j] in this.elements && inter[j] in s.elements
-            invariant |inter| <= i <= |this.elements|
-            {
-                
-                var old_len := |inter|;
-                if (this.elements[i] in s.elements && this.elements[i] !in inter) {
-                    inter := inter + [this.elements[i]];
-                }
-                if (i == |this.elements| - 1) {
-                    assert(old_len + 1 == |inter| || old_len == |inter|);
-                    break;
-                }
-                assert(old_len + 1 == |inter| || old_len == |inter|);
-                i := i + 1;
-            }
-            intersection.elements := inter;
-        }
+        {/* TODO */ }
 
         method union(s : Set) returns (union : Set)
         requires forall i, j | 0 <= i < |s.elements| && 0 <= j < |s.elements| && i != j :: s.elements[i] != s.elements[j]
@@ -137,29 +79,6 @@ module IntegerSet {
         ensures forall i : int :: i !in s.elements && i !in this.elements <==> i !in union.elements
         ensures forall j, k | 0 <= j < |union.elements| && 0 <= k < |union.elements| && j != k :: union.elements[j] != union.elements[k]
         ensures fresh(union)
-        {
-            var elems := s.elements;
-            union := new Set.Set0();
-
-            var i := 0;
-            while (0 <= i < |this.elements|)
-            decreases |this.elements| - i
-            invariant 0 <= i < |this.elements| || i == 0
-            invariant forall j : int :: 0 <= j < |s.elements| ==> s.elements[j] in elems
-            invariant forall j : int :: 0 <= j < i < |this.elements| ==> (this.elements[j] in elems <==> (this.elements[j] in s.elements || this.elements[j] in this.elements))
-            invariant forall j :: 0 <= j < |elems| ==> elems[j] in this.elements || elems[j] in s.elements
-            invariant forall j, k :: 0 <= j < |elems| && 0 <= k < |elems| && j != k ==> elems[j] != elems[k]
-            {
-                if (this.elements[i] !in elems) {
-                    elems := elems + [this.elements[i]];
-                }
-                if (i == |this.elements| - 1) {
-                    break;
-                }
-                i := i + 1;
-            }
-
-            union.elements := elems;
-        }
+        {/* TODO */ }
     }
 }

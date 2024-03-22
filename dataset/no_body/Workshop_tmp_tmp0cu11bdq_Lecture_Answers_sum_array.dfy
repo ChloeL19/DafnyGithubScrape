@@ -9,15 +9,5 @@ function sumTo( a:array<int>, n:int ) : int
 method sum_array( a: array<int>) returns (sum: int)
   requires a != null;
   ensures sum == sumTo(a, a.Length);
-{
-  var i := 0;
-  sum := 0;
-  while (i < a.Length)
-    invariant 0 <= i <= a.Length;
-    invariant sum == sumTo(a, i);
-  {
-    sum := sum + a[i];
-    i := i + 1;
-  }
-}
+{/* TODO */ }
 

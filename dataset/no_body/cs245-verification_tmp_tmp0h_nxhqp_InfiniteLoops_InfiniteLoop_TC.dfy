@@ -7,11 +7,5 @@
 method InfiniteLoop_TC()
   /*Pre-Condition*/  requires false;
   /*Post-Condition*/ ensures true; //TBH, this can be anything...
-{
-  var x := 0;
-  while(true)
-  {
-    x := x+1;
-  }
-}
+{/* TODO */ }
 

@@ -1,8 +1,5 @@
 method foo()
-{
-  bar();
-  assert false;
-}
+{/* TODO */ }
 
 method bar()
   ensures false;

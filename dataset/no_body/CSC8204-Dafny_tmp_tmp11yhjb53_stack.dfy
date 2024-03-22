@@ -24,19 +24,8 @@ requires !isEmpty(s)
 }
 
 method testStack() returns (r: intStack)
-{
-  var s: intStack := [20, 30, 15, 40, 60, 100, 80];
-
-  assert pop(push(s,100)) == s;
-
-  assert forall e: int :: 0 <= e < |s| ==> s[e] > 5;
-
-  r:= s;
-}
+{/* TODO */ }
 
 method Main()
-{
-    var t:=testStack();
-    print "Stack tested\nStack is ", t, "\n";
-}
+{/* TODO */ }
 

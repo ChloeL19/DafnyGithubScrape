@@ -49,7 +49,7 @@ lemma WinnerAtEnd(s: State)
   requires GameOver(s)
   ensures CurrentPlayerLoses(s) && !CurrentPlayerWins(s)
   ensures Player1Win(s) <==> !s.player1
-{}
+{/* TODO */ }
 
 // CurrentPlayerWins is correct in that there is a move that forces a loss for
 // the next player
@@ -57,9 +57,7 @@ lemma CurrentPlayerWins_Next(s: State) returns (move: Step)
   requires CurrentPlayerWins(s)
   ensures ValidMove(move, s);
   ensures forall s' :: NextStep(s, s', move) ==> CurrentPlayerLoses(s')
-{
-  move := Step(s.num % 11);
-}
+{/* TODO */ }
 
 // CurrentPlayerLoses is correct in that whatever the player does, the next
 // player wins
@@ -67,10 +65,10 @@ lemma CurrentPlayerLoses_Next(s: State, s': State)
   requires CurrentPlayerLoses(s)
   requires Next(s, s')
   ensures CurrentPlayerWins(s')
-{}
+{/* TODO */ }
 
 lemma HundredStart()
   // if player1 starts, they will win
   ensures CurrentPlayerWins(State(100, true))
-{}
+{/* TODO */ }
 

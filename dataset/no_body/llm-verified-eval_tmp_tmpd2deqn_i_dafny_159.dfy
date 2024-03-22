@@ -9,11 +9,4 @@ method eat(number: nat, need: nat, remaining: nat) returns (totalEaten: nat, lef
     requires remaining <= 1000
     ensures totalEaten == min(number + need, number + remaining)
     ensures leftOver == if number + need <= remaining then remaining - need else 0
-{
-    totalEaten := min(number + need, number + remaining);
-    if (number + need <= remaining) {
-        leftOver := remaining - need;
-    } else {
-        leftOver := remaining - min(number + need, remaining);
-    }
-}
+{/* TODO */ }

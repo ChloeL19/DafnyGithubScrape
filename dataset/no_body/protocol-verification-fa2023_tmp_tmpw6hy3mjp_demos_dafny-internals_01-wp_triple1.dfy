@@ -1,10 +1,5 @@
 method Triple(q: int) returns (r: int)
-{
-  var x := q + q;
-  r := x + q;
-  // encoding of postcondition
-  assert r == q * 3;
-}
+{/* TODO */ }
 
 // WP(Triple, true)
 // == WP(x := q + q,

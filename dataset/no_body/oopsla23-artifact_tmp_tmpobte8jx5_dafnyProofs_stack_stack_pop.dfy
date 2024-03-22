@@ -31,13 +31,6 @@ function isEmptyStack(st:Stack): bool
 method Pop(st:Stack) returns (stout: Stack, v:int)
   requires !isEmptyStack(st)
   ensures StackLen(st) == StackLen(stout) + 1
-{
-  match st
-  case SList(l) => 
-    match l {
-      case Nil => stout := SList(Nil); v := 0;
-      case Cons(hd, tl) => stout := SList(tl); v := hd;
-    }
-}
+{/* TODO */ }
 
 

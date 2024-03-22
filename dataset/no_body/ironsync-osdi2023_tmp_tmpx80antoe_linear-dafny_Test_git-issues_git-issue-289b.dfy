@@ -8,11 +8,7 @@ abstract module Foo {
     | M(value: Value)
 
   lemma someLemma(a: Message, b: Message, c: Message)
-  {
-    match (a, b, c) {
-      case (M(x), M(y), M(z)) => { }
-    }
-  }
+  {/* TODO */ }
 }
 
 module ByteDefinition {

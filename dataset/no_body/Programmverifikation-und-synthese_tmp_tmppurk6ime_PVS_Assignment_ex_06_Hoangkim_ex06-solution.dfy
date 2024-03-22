@@ -10,17 +10,7 @@ ghost function gcd(x:int,y:int):int
 method gcdI(m:int, n:int) returns (d:int)
   requires  m > 0 && n > 0
   ensures   d == gcd(m,n) 
-{
-  var x,y := m,n;
-        d := 1;
-  while x != y
-    decreases             x+y
-    invariant             x > 0 && y > 0
-    invariant             gcd(x,y) == gcd(m,n)   
-   { if x > y { x := x-y; } else { y := y-x; }
-   }
-  d := x;
-}
+{/* TODO */ }
 
 ghost function gcd'(x:int,y:int):int
   requires x > 0 && y > 0

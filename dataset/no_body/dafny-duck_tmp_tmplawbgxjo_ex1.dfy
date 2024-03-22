@@ -13,14 +13,5 @@ ensures multiset(s) == multiset(t)
 ensures if(|s| > 0) then (s[j] == t[i] && s[i] == t[j]) else s == t
 // ensure all unswapped elements are in fact unswapped
 ensures forall k:nat :: 0 <= k < |s| && (k != i && k != j) ==> s[k] == t[k]
-{
-    t := s;
-
-    if (|s| > 0){
-        var x:char := s[i];
-        var y:char := s[j];
-        t := t[j := x][i := y];
-    }
-    
-}
+{/* TODO */ }
 

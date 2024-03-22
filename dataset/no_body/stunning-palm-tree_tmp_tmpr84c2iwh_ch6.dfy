@@ -18,7 +18,7 @@ function Length'<T>(xs: List<T>): int
 // Ex 6.0
 lemma LengthIsLength'<T>(xs: List<T>)
   ensures Length(xs) == Length'(xs)
-{}
+{/* TODO */ }
 
 function Snoc<T>(xs: List<T>, y: T): List<T>
 {
@@ -30,13 +30,7 @@ function Snoc<T>(xs: List<T>, y: T): List<T>
 // Ex 6.1
 lemma {:induction false} LengthSnoc<T>(xs: List<T>, y: T)
   ensures Length(Snoc(xs, y)) == Length(xs) + 1
-{
-    match xs
-    case Nil => {}
-    case Cons(hd, tl) => {
-        LengthSnoc(tl, y);
-    }
-}
+{/* TODO */ }
 
 function Append<T>(xs: List<T>, ys: List<T>): List<T>
   // intrinsic
@@ -50,21 +44,17 @@ function Append<T>(xs: List<T>, ys: List<T>): List<T>
 // extrinsic
 lemma LengthAppend<T>(xs: List<T>, ys: List<T>)
   ensures Length(Append(xs, ys)) == Length(xs) + Length(ys)
-{}
+{/* TODO */ }
 
 // Ex 6.2
 lemma SnocIsAppend<T>(xs: List<T>, y: T)
   ensures Snoc(xs, y) == Append(xs, Cons(y, Nil))
-{}
+{/* TODO */ }
 
 // Ex 6.3
 lemma {:induction false} AppendNil<T>(xs: List<T>)
   ensures Append(xs, Nil) == xs
-{
-    match xs
-    case Nil => {}
-    case Cons(hd, tl) => { AppendNil(tl); }
-}
+{/* TODO */ }
 
 // Ex 6.5
 lemma {:induction false} AppendDecomposition<T>(a: List<T>, b: List<T>, c: List<T>, d: List<T>)
@@ -72,15 +62,11 @@ lemma {:induction false} AppendDecomposition<T>(a: List<T>, b: List<T>, c: List<
   requires Length(a) == Length(c)
   requires Append(a, b) == Append(c, d)
   ensures a == c && b == d
-{
-    match a
-    case Nil => {}
-    case Cons(ahd, atl) => { AppendDecomposition(a.tail, b, c.tail, d); }
-}
+{/* TODO */ }
 
 lemma LengthNil<T>(xs: List<T>)
   ensures Length(xs) == 0 <==> xs.Nil?
-{ }
+{/* TODO */ }
 
 // Ex 6.6
 function F(x: int, y: int): int
@@ -96,12 +82,4 @@ lemma RightUnit(x: int)
   
 lemma LEqualsR()
   ensures L == R
-{
-  calc {
-    L;
-  == { RightUnit(L); }
-    F(L, R);
-  == { LeftUnit(R); }
-    R;
-  }
-}
+{/* TODO */ }

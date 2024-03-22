@@ -26,9 +26,7 @@ class Rectangle {
     method move(dx : int, dy : int) returns (r : Rectangle) 
     requires width >= 0
     requires height >= 0
-    ensures r.x == x + dx && r.y == y +dy && width == r.width && height == r.height && yellowOrBlack == r.yellowOrBlack{ 
-      r := new Rectangle(x+dx,y+dy,width,height,yellowOrBlack);
-    }
+    ensures r.x == x + dx && r.y == y +dy && width == r.width && height == r.height && yellowOrBlack == r.yellowOrBlack{/* TODO */ }
 
     method scale( s : nat ) returns (r : Rectangle) 
     requires s >=0
@@ -38,9 +36,7 @@ class Rectangle {
     ensures r.height >= 0
     ensures 0 <= (width *s)
     ensures 0 <= (height *s)
-    ensures r.width == width*(s) && r.height == height*(s) && r.x == x && r.y ==y && yellowOrBlack == r.yellowOrBlack{ 
-      r := new Rectangle(x,y,width*(s),height*(s),yellowOrBlack);
-    }
+    ensures r.width == width*(s) && r.height == height*(s) && r.x == x && r.y ==y && yellowOrBlack == r.yellowOrBlack{/* TODO */ }
 
     predicate containsPoint(px : int, py : int) reads this 
     requires width >=0
@@ -65,26 +61,13 @@ lemma testContains (outer : Rectangle, inner : Rectangle, px : int, py : int)
   requires outer.containsRectangle(inner)
   requires inner.containsPoint(px,py)
   ensures  outer.containsPoint(px,py) 
-  {}
+  {/* TODO */ }
 
 method testScale (inner : Rectangle, px : int, py : int) 
   requires inner.containsPoint(px,py)
-  {
-       var outer := inner.scale(2);
-       testContains(outer,inner,px,py);
-  }
+  {/* TODO */ }
 
-  method Main () {
-    // var r := new Rectangle(0,0,40,40,true);
-    // var b := new Rectangle(0,0,20,20,false);
-    // var boo :=  r.containsRectangle(b);
-    // print boo;
-
-    // var t := b.scale(2);
-    // var no := t.containsRectangle(b);
-    // print no;
-  print true;
-  }
+  method Main () {/* TODO */ }
 
 
 

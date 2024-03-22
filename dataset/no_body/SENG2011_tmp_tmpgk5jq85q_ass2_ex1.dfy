@@ -7,23 +7,9 @@ ensures |s| == |t|;
 ensures |s| > 0 ==> forall k:nat :: k != i && k != j && k < |s| ==> t[k] == s[k]
 ensures |s| > 0 ==> t[i] == s[j] && t[j] == s[i];
 ensures |s| == 0 ==> t == s;
-{
-    t := s;
-    if |s| == 0 {
-        return t;
-    }
-    t := t[i := s[j]];
-    t := t[j := s[i]];
-}
+{/* TODO */ }
 
-method check() {
-    var a:string := "1scow2";
-    var b:string := StringSwap(a, 1, 5);
-    assert b == "12cows";
-    var c:string := "";
-    var d:string := StringSwap(c, 1, 2);
-    assert c == d;
-}
+method check() {/* TODO */ }
 // string == seq<Char>
 //give se2011 ass2 ex1.dfy
 

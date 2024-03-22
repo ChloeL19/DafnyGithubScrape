@@ -9,29 +9,7 @@
 		ensures perm.Length == n
 		ensures fresh(perm)
 		ensures isValid(perm, n)
-	{
-		var all := set x | 0 <= x < n;
-		var used := {};
-		perm := new int[n];
-
-		CardinalityLemma(n, all);
-
-		while used < all
-			invariant used <= all
-			invariant |used| <= |all|
-			invariant forall i | 0 <= i < |used| :: perm[i] in used
-			invariant distinct'(perm, |used|)
-			decreases |all| - |used|
-		{
-			CardinalityOrderingLemma(used, all);
-
-			var dst :| dst in all && dst !in used;
-			perm[|used|] := dst;
-			used := used + {dst};
-		}
-		assert used == all;
-		print perm;
-	}
+	{/* TODO */ }
 
 	predicate isValid(a: array<int>, n: nat)
 		requires a != null && a.Length == n
@@ -62,27 +40,16 @@
 		requires size >= 0
 		requires s == set x | 0 <= x < size
 		ensures	size == |s|
-	{
-		if(size == 0) {
-			assert size == |(set x | 0 <= x < size)|;
-		} else {
-			CardinalityLemma(size - 1, s - {size - 1});
-		}
-	}
+	{/* TODO */ }
 
 	lemma CardinalityOrderingLemma<T> (s1: set<T>, s2: set<T>)
 		requires s1 < s2
 		ensures |s1| < |s2|
-	{
-		var e :| e in s2 - s1;
-		if s1 != s2 - {e} {
-			CardinalityOrderingLemma(s1, s2 - {e});
-		}
-	}
+	{/* TODO */ }
 
 	lemma SetDiffLemma<T> (s1: set<T>, s2: set<T>)
 		requires s1 < s2
-		ensures s2 - s1 != {}
+		ensures s2 - s1 != {/* TODO */ }
 	{
 		var e :| e in s2 - s1;
 		if s2 - s1 != {e} {} // What does Dafny prove here???

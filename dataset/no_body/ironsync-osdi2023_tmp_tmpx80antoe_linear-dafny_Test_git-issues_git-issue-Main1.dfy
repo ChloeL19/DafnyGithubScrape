@@ -7,15 +7,15 @@
 
 module A {
   module AA {
-    method Main() { print "Main1\n"; }
+    method Main() {/* TODO */ }
   }
 }
 
 module B {
   class C {
-    static method {:main} Main() { print "Main2\n"; }
+    static method {:main} Main() {/* TODO */ }
   }
 }
 
-method Main() { print "Main3\n"; }
+method Main() {/* TODO */ }
 

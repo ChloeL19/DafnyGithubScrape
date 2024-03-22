@@ -8,12 +8,8 @@ ghost function f():t
 ghost function g():int
 
 lemma L1() returns(m:map<int, t>)
-{
-  m := map i | 0 <= i < 5 :: f(); // FAILS
-}
+{/* TODO */ }
 
 lemma L2() returns(m:map<int, t>)
-{
-  m := map i | 0 <= i < 5 :: [f()][0]; // SUCCEEDS
-}
+{/* TODO */ }
 

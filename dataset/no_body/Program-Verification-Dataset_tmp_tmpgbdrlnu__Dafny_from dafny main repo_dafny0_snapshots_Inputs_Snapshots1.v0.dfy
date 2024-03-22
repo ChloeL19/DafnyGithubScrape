@@ -1,14 +1,9 @@
 method M()
-{
-  N();
-  assert false;
-}
+{/* TODO */ }
 
 method N()
   ensures P();
 
 predicate P()
-{
-  false
-}
+{/* TODO */ }
 

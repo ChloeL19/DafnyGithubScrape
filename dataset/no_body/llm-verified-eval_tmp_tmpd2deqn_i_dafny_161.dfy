@@ -28,20 +28,7 @@ function isReverse(s: string, s_prime: string): bool{
 method Reverse(original: seq<char>) returns (reversed: seq<char>)
   ensures |reversed| == |original| 
   ensures forall i :: 0 <= i < |original| ==> reversed[i] == original[|original| - 1 - i] 
-{
-  reversed := []; 
-  var i := |original|;
-  while i > 0
-    decreases i
-    invariant 0 <= i <= |original|
-    invariant  |reversed| == |original| - i
-    invariant forall j :: 0 <= j < |original|-i ==>
-    reversed[j] == original[|original| - 1 - j]
-  {
-    i := i - 1;
-    reversed := reversed + [original[i]]; 
-  }
-}
+{/* TODO */ }
 
 
 method solve(s: string) returns (result: string)
@@ -49,25 +36,5 @@ method solve(s: string) returns (result: string)
   ensures !NoLetters(s, |s|) ==> forall i :: 0 <= i < |s| && IsLetter(s[i]) ==> result[i] == ToggleCase(s[i])
   ensures !NoLetters(s, |s|) ==> forall i :: 0 <= i < |s| && !IsLetter(s[i]) ==> result[i] == s[i] 
   ensures NoLetters(s, |s|) ==> isReverse(result, s) 
-{
-    var flg : bool := false;
-    result := "";
-    for i := 0 to |s|
-      invariant |result| == i
-      invariant flg <==> !NoLetters(s, i)
-      invariant forall j :: 0 <= j < i ==> result[j] == ToggleCase(s[j])
-    {
-      if IsLetter(s[i])
-      {
-        result := result + [ToggleCase(s[i])];
-        flg := true;
-      } else {
-        result := result + [s[i]];
-      }
-    }
-    if !flg
-    {
-      result := Reverse(s);
-    }
-}
+{/* TODO */ }
 

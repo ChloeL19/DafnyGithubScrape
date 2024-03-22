@@ -38,45 +38,5 @@ class Heap {
     ensures nidx == -1 || idx < nidx < this.arr.Length
     ensures nidx == -1 ==> IsMaxHeap(this.arr[..])
     ensures idx < nidx < this.arr.Length ==> IsAlmostMaxHeap(this.arr[..], nidx)
-  {
-    if (2*idx+1 >= this.arr.Length) && (2*idx+2 >= this.arr.Length) {
-      nidx := -1;
-      assert IsMaxHeap(this.arr[..]);
-      return;
-    }
-    else {
-      assert 2*idx+1 < this.arr.Length || 2*idx+2 < this.arr.Length;
-      nidx := idx;
-      if 2*idx+1 < this.arr.Length && this.arr[nidx] < this.arr[2*idx+1] {
-        nidx := 2*idx+1;
-      }
-      if 2*idx+2 < this.arr.Length && this.arr[nidx] < this.arr[2*idx+2] {
-        nidx := 2*idx+2;
-      }
-      if nidx == idx {
-        nidx := -1;
-        return;
-      }
-      else {
-        assert nidx == 2*idx+1 || nidx == 2*idx+2;
-        this.arr[idx], this.arr[nidx] := this.arr[nidx], this.arr[idx];
-        forall i | 0 <= i < this.arr.Length
-          ensures (i != nidx) && (2*i+1 < this.arr.Length) ==> (this.arr[i] >= this.arr[2*i+1]) {
-            if (i != nidx) && (2*i+1 < this.arr.Length) {
-              if 2*i+1 == idx {
-                assert this.arr[i] >= this.arr[2*i+1];
-              }
-            }
-          }
-        forall i | 0 <= i < this.arr.Length
-           ensures (i != nidx) && (2*i+2 < this.arr.Length) ==> (this.arr[i] >= this.arr[2*i+2]) {
-            if (i != nidx) && (2*i+2 < this.arr.Length) {
-              if 2*i+2 == idx {
-                assert this.arr[i]  >= this.arr[2*i+2];
-              }
-            }
-        }
-      }
-    }
-  }
+  {/* TODO */ }
 }

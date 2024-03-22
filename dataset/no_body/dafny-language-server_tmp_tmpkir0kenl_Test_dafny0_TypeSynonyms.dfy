@@ -27,16 +27,10 @@ function Plus(x: Int, y: int): Int
 }
 
 method Next(s: Synonym1) returns (u: Synonym1)
-{
-  match s
-  case Nil => u := Nil;
-  case Cons(_, tail) => u := tail;
-}
+{/* TODO */ }
 
 method Add<W>(t: W, s: Synonym1) returns (u: Synonym1)
-{
-  u := Cons(t, Nil);
-}
+{/* TODO */ }
 
 function Skip(s: Synonym3): Synonym0
 {

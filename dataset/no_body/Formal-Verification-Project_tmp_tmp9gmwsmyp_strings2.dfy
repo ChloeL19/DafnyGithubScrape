@@ -13,7 +13,7 @@ predicate isNotPrefixPred(pre:string, str:string)
 lemma PrefixNegationLemma(pre:string, str:string)
 	ensures  isPrefixPred(pre,str) <==> !isNotPrefixPred(pre,str)
 	ensures !isPrefixPred(pre,str) <==>  isNotPrefixPred(pre,str)
-{}
+{/* TODO */ }
 
 
 predicate isSubstringPred(sub:string, str:string)
@@ -34,7 +34,7 @@ predicate isNotSubstringPred(sub:string, str:string)
 lemma SubstringNegationLemma(sub:string, str:string)
 	ensures  isSubstringPred(sub,str) <==> !isNotSubstringPred(sub,str)
 	ensures !isSubstringPred(sub,str) <==>  isNotSubstringPred(sub,str)
-{}
+{/* TODO */ }
 
 
 predicate haveCommonKSubstringPred(k:nat, str1:string, str2:string)
@@ -54,5 +54,5 @@ predicate haveNotCommonKSubstringPred(k:nat, str1:string, str2:string)
 lemma commonKSubstringLemma(k:nat, str1:string, str2:string)
 	ensures  haveCommonKSubstringPred(k,str1,str2) <==> !haveNotCommonKSubstringPred(k,str1,str2)
 	ensures !haveCommonKSubstringPred(k,str1,str2) <==> haveNotCommonKSubstringPred(k,str1,str2)
-{}
+{/* TODO */ }
 

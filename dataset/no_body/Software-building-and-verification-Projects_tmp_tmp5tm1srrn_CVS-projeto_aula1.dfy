@@ -1,12 +1,5 @@
 method factImp(n: int) returns (r: int)
-{
-  r := 1;
-  var m := n;
-  while (m > 0) {
-    r := r*m;
-    m := m-1;
-  }
-}
+{/* TODO */ }
 
 function power(n: int, m: nat) : int {
   if m==0 then 1 else n*power(n,m-1)
@@ -32,9 +25,7 @@ lemma l1(n: int,m: nat, r: int)
 // 4.
 
 function fact(n: nat) : nat
-{
-  if n==0 then 1 else n*fact(n-1)
-}
+{/* TODO */ }
 
 function factAcc(n: nat,a: int) : int
   decreases n
@@ -48,12 +39,7 @@ lemma factAcc_correct(n: nat,a: int)
   ensures factAcc(n,a) == fact(n)*a
 
 lemma equiv(n: nat)
-  ensures fact(n) == factAlt(n) {
-  factAcc_correct(n, 1);
-  assert factAcc(n, 1) == fact(n)*1;
-  assert factAlt(n) == factAcc(n, 1);
-  assert fact(n) == fact(n)*1;
-}
+  ensures fact(n) == factAlt(n) {/* TODO */ }
 
 // 5. a)
 function mystery1(n: nat,m: nat) : nat

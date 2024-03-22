@@ -30,8 +30,7 @@ module SetHelpers {
         requires x <= y 
         ensures x * y == x
         decreases y 
-    {   //  Thanks Dafny
-    }
+    {/* TODO */ }
 
     /**
      *  If x [= {0, ..., k - 1} and y [= {0, .., k - 1}
@@ -49,9 +48,7 @@ module SetHelpers {
         requires forall e :: e in y ==> e < k
         ensures  forall e :: e in x + y ==> e < k
         ensures |x + y| <= k 
-    {
-        natSetCardBound(x + y, k);
-    }
+    {/* TODO */ }
 
     /**
      *  If  x [= {0, ..., k - 1} then x has at most k elements.
@@ -65,13 +62,7 @@ module SetHelpers {
         requires forall e :: e in x ==> e < k
         ensures |x| <= k 
         decreases k
-    {
-        if k == 0 {
-            assert(x == { });
-        } else {
-            natSetCardBound(x - { k - 1}, k - 1);
-        }
-    }
+    {/* TODO */ }
 
     /** 
      *  If x contains all successive elements {0, ..., k-1} then x has k elements.
@@ -85,13 +76,7 @@ module SetHelpers {
     lemma {:induction k} successiveNatSetCardBound(x : set<nat>, k : nat) 
         requires x == set x: nat | 0 <= x < k :: x
         ensures |x| == k
-    {
-        if k == 0 {
-            //  Thanks Dafny
-        } else {
-            successiveNatSetCardBound(x - {k - 1}, k - 1);
-        }
-    }
+    {/* TODO */ }
     
    /**
     *  If a finite set x is included in a finite set y, then
@@ -107,17 +92,7 @@ module SetHelpers {
         requires x <= y 
         ensures |x| <= |y|
         decreases y 
-    {
-        if |y| == 0 {
-            //  Thanks Dafny
-        } else {
-            //  |y| >= 1, get an element in y
-            var e :| e in y;
-            var y' := y - { e };
-            //  Split recursion according to whether e in x or not
-            cardIsMonotonic(if e in x then x - {e} else x, y');
-        }
-    }
+    {/* TODO */ }
 
    /**
     *  If two finite sets x and y are included in another one z and
@@ -138,22 +113,7 @@ module SetHelpers {
         requires |x| >= 2 * |z| / 3 + 1   //    or equivalently 2 * |z| < 3 * |x| 
         requires |y| >= 2 * |z| / 3 + 1   //    or equivalently 2 * |z| < 3 * |y|
         ensures |x * y| >= |z| / 3 + 1    //    or equivalently 3 * |x * y| < |z| 
-    {
-        //  Proof of alternative assumption
-        assert(|x| >= 2 * |z| / 3 + 1 <==> 2 * |z| < 3 * |x|);
-        assert(|y| >= 2 * |z| / 3 + 1 <==> 2 * |z| < 3 * |y|);
-        //  Proof by contradiction
-        if |x * y| < |z| / 3 + 1 {
-            //  size of union is sum of sizes minus size of intersection.
-            calc == {
-                |x + y|;
-                |x| + |y| - |x * y|;
-            }
-            cardIsMonotonic(x + y, z);
-        } 
-        //  proof of alternative conclusion
-        assert(3 * |x * y| > |z| <==> |x * y| >= |z| / 3 + 1 );
-    } 
+    {/* TODO */ } 
 
 }
 

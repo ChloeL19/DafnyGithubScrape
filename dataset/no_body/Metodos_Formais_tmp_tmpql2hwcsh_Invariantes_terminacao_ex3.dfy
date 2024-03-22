@@ -1,12 +1,5 @@
 // Exercício 3 da folha de exercícios
-method m() {
-    var i, n := 0 , 20;
-    while i < n
-    decreases n - i
-    {
-        i := i + 1;
-    }
-}
+method m() {/* TODO */ }
 
 // i  | n  | n-i
 // 0  | 20 | 20 

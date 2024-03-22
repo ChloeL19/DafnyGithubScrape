@@ -7,9 +7,5 @@ requires i != j
 
 ensures a[i] == old(a[j])
 ensures a[j] == old(a[i])
-{
-    var temp:= a[i];
-    a[i]:= a[j];
-    a[j]:= temp;
-}
+{/* TODO */ }
 

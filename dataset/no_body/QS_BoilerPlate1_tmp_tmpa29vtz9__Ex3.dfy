@@ -40,7 +40,7 @@ class Node {
     requires Valid()
     ensures r.Valid()
     ensures r.list == [ val ] + this.list
-    ensures r.footprint == { r } + this.footprint
+    ensures r.footprint == {/* TODO */ } + this.footprint
     ensures fresh(r) 
   {
     r := new Node(val); 
@@ -58,7 +58,7 @@ class Node {
     requires tail != null && this.next != null ==> this.next.footprint !! tail.footprint
     ensures tail != null ==> r.list == rev(old(this.list)) + tail.list
     ensures tail == null ==> r.list == rev(old(this.list))
-    ensures tail == null ==> this.footprint == { this } && this.list == [ this.data ] && this.next == null
+    ensures tail == null ==> this.footprint == {/* TODO */ } && this.list == [ this.data ] && this.next == null
     ensures r.Valid() && this.Valid()
     ensures old(this.next) == null ==> r == this
     ensures this.next == tail
@@ -100,7 +100,7 @@ method ExtendList(nd : Node?, v : int) returns (r : Node)
   requires nd == null || nd.Valid()
   ensures r.Valid()
   ensures fresh(r)
-  ensures nd != null ==> r.list == [v] + nd.list && r.footprint == {r} + nd.footprint
+  ensures nd != null ==> r.list == [v] + nd.list && r.footprint == {/* TODO */ } + nd.footprint
   ensures nd == null ==> r.list == [v] && r.footprint == {r}
   ensures nd == null ==> r.next == null
 {

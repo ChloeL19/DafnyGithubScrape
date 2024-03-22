@@ -21,15 +21,7 @@ lemma transitiveUnionContra<T>()
   ensures transitive(R1, S1)
   ensures transitive(R2, S2)
   ensures ! transitive(R1 + R2, S1 + S2)
-{
-  var a : T :| assume true;
-  var b : T :| assume a != b;
-  var c : T :| assume a != c && b != c;
-  S1 := {a, b};
-  S2 := {b, c};
-  R1 := {(a, b)};
-  R2 := {(b, c)};
-}
+{/* TODO */ }
 
 lemma notTrueAlways<T>()
   ensures !
@@ -39,6 +31,4 @@ lemma notTrueAlways<T>()
   transitive(R1, S1) &&
   transitive(R2, S2)  ==> transitive(R1 + R2, S1 + S2)
   )
-{
-  var a, b, c, d := transitiveUnionContra<T>();
-}
+{/* TODO */ }

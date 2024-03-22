@@ -35,4 +35,4 @@ predicate Ordered<Data>(t: Tree<Data>) {
 lemma AddLemma<Data>(k: int, v: Data, t:Tree<Data>)
     requires Ordered(t)
     ensures Ordered(Add(k,v,t))
-{}
+{/* TODO */ }

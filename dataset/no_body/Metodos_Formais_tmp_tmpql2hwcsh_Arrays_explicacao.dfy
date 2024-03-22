@@ -28,19 +28,5 @@
 method buscar(a:array<int>, x:int) returns (r:int)
     ensures r < 0 ==> forall i :: 0 <= i < a.Length ==> a[i] != x
     ensures 0 <= r < a.Length ==> a[r] == x
-{
-    r := 0;
-    while r < a.Length
-    decreases a.Length - r //variante, decrescendo a cada passo com o r
-    invariant 0 <= r <= a.Length //a invariante é quando nao é encontado o x depois de rodado todo o projeto
-    invariant forall i :: 0 <= i < r ==> a[i] != x
-    {
-        if a[r] == x
-        {
-            return r;
-        }
-        r := r + 1;
-    }
-    return -1;
-}
+{/* TODO */ }
 

@@ -46,19 +46,7 @@ modifies CurPtr
 modifies InvSet
 modifies ShrSet
 
-{
-  CurCmd[0] := ReqS;
-  CurPtr[0] := i;
-  Chan1_Cmd[i] := Empty;
-  var j:=0;
-  while(j<N0)
-    decreases N0-j
- {
-    InvSet[j] := ShrSet[j];
-  
- j:=j+1;
-}
-}
+{/* TODO */ }
 
 method n_RecvReqSinv__47_1(Chan1_Cmd:array<MSG_CMD>,   Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, InvSet:array<boolean>,  ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -99,19 +87,7 @@ modifies CurPtr
 modifies InvSet
 modifies ShrSet
 
-{
-  CurCmd[0] := ReqS;
-  CurPtr[0] := i;
-  Chan1_Cmd[i] := Empty;
-  var j:=0;
-  while(j<N0)
-    decreases N0-j
- {
-    InvSet[j] := ShrSet[j];
-  
- j:=j+1;
-}
-}
+{/* TODO */ }
 
 method n_RecvReqSinv__47_2(Chan1_Cmd:array<MSG_CMD>,   Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, InvSet:array<boolean>,  ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -152,19 +128,7 @@ modifies CurPtr
 modifies InvSet
 modifies ShrSet
 
-{
-  CurCmd[0] := ReqS;
-  CurPtr[0] := i;
-  Chan1_Cmd[i] := Empty;
-  var j:=0;
-  while(j<N0)
-    decreases N0-j
- {
-    InvSet[j] := ShrSet[j];
-  
- j:=j+1;
-}
-}
+{/* TODO */ }
 
 
 method n_RecvReqEinv__47_0(Chan1_Cmd:array<MSG_CMD>,   Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, InvSet:array<boolean>,  ShrSet:array<boolean>,
@@ -206,19 +170,7 @@ modifies CurPtr
 modifies InvSet
 modifies ShrSet
 
-{
-  CurCmd[0] := ReqE;
-  CurPtr[0] := i;
-  Chan1_Cmd[i] := Empty;
-  var j:=0;
-  while(j<N0)
-    decreases N0-j
- {
-    InvSet[j] := ShrSet[j];
-  
- j:=j+1;
-}
-}
+{/* TODO */ }
 
 method n_RecvReqEinv__47_1(Chan1_Cmd:array<MSG_CMD>,   Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, InvSet:array<boolean>,  ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -259,19 +211,7 @@ modifies CurPtr
 modifies InvSet
 modifies ShrSet
 
-{
-  CurCmd[0] := ReqE;
-  CurPtr[0] := i;
-  Chan1_Cmd[i] := Empty;
-  var j:=0;
-  while(j<N0)
-    decreases N0-j
- {
-    InvSet[j] := ShrSet[j];
-  
- j:=j+1;
-}
-}
+{/* TODO */ }
 
 method n_RecvReqEinv__47_2(Chan1_Cmd:array<MSG_CMD>,   Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, InvSet:array<boolean>,  ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -312,19 +252,7 @@ modifies CurPtr
 modifies InvSet
 modifies ShrSet
 
-{
-  CurCmd[0] := ReqE;
-  CurPtr[0] := i;
-  Chan1_Cmd[i] := Empty;
-  var j:=0;
-  while(j<N0)
-    decreases N0-j
- {
-    InvSet[j] := ShrSet[j];
-  
- j:=j+1;
-}
-}
+{/* TODO */ }
 
 
 method n_SendInvAckinv__47_0(Cache_Data:array<DATA>,   Cache_State:array<CACHE_STATE>, Chan2_Cmd:array<MSG_CMD>, Chan3_Cmd:array<MSG_CMD>,  Chan3_Data:array<DATA>, CurCmd:array<MSG_CMD>, 
@@ -364,14 +292,7 @@ modifies Chan2_Cmd
 modifies Chan3_Cmd
 modifies Chan3_Data
 
-{
-  Chan2_Cmd[i] := Empty;
-  Chan3_Cmd[i] := InvAck;
-  if (Cache_State[i] == E) {
-    Chan3_Data[i] := Cache_Data[i];
-  }
-  Cache_State[i] := I;
-}
+{/* TODO */ }
 
 method n_SendInvAckinv__47_1(Cache_Data:array<DATA>,   Cache_State:array<CACHE_STATE>, Chan2_Cmd:array<MSG_CMD>, Chan3_Cmd:array<MSG_CMD>,  Chan3_Data:array<DATA>, CurCmd:array<MSG_CMD>, 
 N0:nat,i:nat,
@@ -410,14 +331,7 @@ modifies Chan2_Cmd
 modifies Chan3_Cmd
 modifies Chan3_Data
 
-{
-  Chan2_Cmd[i] := Empty;
-  Chan3_Cmd[i] := InvAck;
-  if (Cache_State[i] == E) {
-    Chan3_Data[i] := Cache_Data[i];
-  }
-  Cache_State[i] := I;
-}
+{/* TODO */ }
 
 method n_SendInvAckinv__47_2(Cache_Data:array<DATA>,   Cache_State:array<CACHE_STATE>, Chan2_Cmd:array<MSG_CMD>, Chan3_Cmd:array<MSG_CMD>,  Chan3_Data:array<DATA>, CurCmd:array<MSG_CMD>, 
 N0:nat,i:nat,
@@ -456,14 +370,7 @@ modifies Chan2_Cmd
 modifies Chan3_Cmd
 modifies Chan3_Data
 
-{
-  Chan2_Cmd[i] := Empty;
-  Chan3_Cmd[i] := InvAck;
-  if (Cache_State[i] == E) {
-    Chan3_Data[i] := Cache_Data[i];
-  }
-  Cache_State[i] := I;
-}
+{/* TODO */ }
 
 
 method n_RecvInvAckinv__47_0(Chan3_Cmd:array<MSG_CMD>,    Chan3_Data:array<DATA>, CurCmd:array<MSG_CMD>,  ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,
@@ -503,14 +410,7 @@ modifies ExGntd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan3_Cmd[i] := Empty;
-  ShrSet[i] := false;
-  if (ExGntd[0] == true) {
-    ExGntd[0] := false;
-    MemData[0] := Chan3_Data[i];
-  }
-}
+{/* TODO */ }
 
 method n_RecvInvAckinv__47_1(Chan3_Cmd:array<MSG_CMD>,    Chan3_Data:array<DATA>, CurCmd:array<MSG_CMD>,  ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -549,14 +449,7 @@ modifies ExGntd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan3_Cmd[i] := Empty;
-  ShrSet[i] := false;
-  if (ExGntd[0] == true) {
-    ExGntd[0] := false;
-    MemData[0] := Chan3_Data[i];
-  }
-}
+{/* TODO */ }
 
 method n_RecvInvAckinv__47_2(Chan3_Cmd:array<MSG_CMD>,    Chan3_Data:array<DATA>, CurCmd:array<MSG_CMD>,  ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -595,14 +488,7 @@ modifies ExGntd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan3_Cmd[i] := Empty;
-  ShrSet[i] := false;
-  if (ExGntd[0] == true) {
-    ExGntd[0] := false;
-    MemData[0] := Chan3_Data[i];
-  }
-}
+{/* TODO */ }
 
 
 method n_SendGntSinv__47_0(Chan2_Cmd:array<MSG_CMD>,   Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,
@@ -646,12 +532,7 @@ modifies CurCmd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan2_Cmd[i] := GntS;
-  Chan2_Data[i] := MemData[0];
-  ShrSet[i] := true;
-  CurCmd[0] := Empty;
-}
+{/* TODO */ }
 
 method n_SendGntSinv__47_1(Chan2_Cmd:array<MSG_CMD>,   Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -694,12 +575,7 @@ modifies CurCmd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan2_Cmd[i] := GntS;
-  Chan2_Data[i] := MemData[0];
-  ShrSet[i] := true;
-  CurCmd[0] := Empty;
-}
+{/* TODO */ }
 
 method n_SendGntSinv__47_2(Chan2_Cmd:array<MSG_CMD>,   Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,
 N0:nat,i:nat,
@@ -742,12 +618,7 @@ modifies CurCmd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan2_Cmd[i] := GntS;
-  Chan2_Data[i] := MemData[0];
-  ShrSet[i] := true;
-  CurCmd[0] := Empty;
-}
+{/* TODO */ }
 
 
 method n_SendGntEinv__47_0(Chan2_Cmd:array<MSG_CMD>,   Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,   
@@ -798,13 +669,7 @@ modifies ExGntd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan2_Cmd[i] := GntE;
-  Chan2_Data[i] := MemData[0];
-  ShrSet[i] := true;
-  ExGntd[0] := true;
-  CurCmd[0] := Empty;
-}
+{/* TODO */ }
 
 method n_SendGntEinv__47_1(Chan2_Cmd:array<MSG_CMD>,   Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,   
 N0:nat,i:nat,
@@ -854,13 +719,7 @@ modifies ExGntd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan2_Cmd[i] := GntE;
-  Chan2_Data[i] := MemData[0];
-  ShrSet[i] := true;
-  ExGntd[0] := true;
-  CurCmd[0] := Empty;
-}
+{/* TODO */ }
 
 method n_SendGntEinv__47_2(Chan2_Cmd:array<MSG_CMD>,   Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  CurPtr:array<NODE>, ExGntd:array<boolean>, MemData:array<DATA>, ShrSet:array<boolean>,   
 N0:nat,i:nat,
@@ -910,13 +769,7 @@ modifies ExGntd
 modifies MemData
 modifies ShrSet
 
-{
-  Chan2_Cmd[i] := GntE;
-  Chan2_Data[i] := MemData[0];
-  ShrSet[i] := true;
-  ExGntd[0] := true;
-  CurCmd[0] := Empty;
-}
+{/* TODO */ }
 
 
 method n_SendReqE__part__1inv__47_0(Cache_State:array<CACHE_STATE>,   Chan1_Cmd:array<MSG_CMD>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>, 
@@ -948,9 +801,7 @@ requires ((Chan1_Cmd[i] == Empty) && (Cache_State[i] == S)) //guard condition
 ensures   (!((CurCmd[0] == Empty) && (Chan3_Cmd[p__Inv2] == InvAck)))
 modifies Chan1_Cmd
 
-{
-  Chan1_Cmd[i] := ReqE;
-}
+{/* TODO */ }
 
 
 method n_Storeinv__47_0(AuxData:array<DATA>,   Cache_Data:array<DATA>,  Cache_State:array<CACHE_STATE>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,
@@ -987,10 +838,7 @@ ensures   (!((CurCmd[0] == Empty) && (Chan3_Cmd[p__Inv2] == InvAck)))
 modifies AuxData
 modifies Cache_Data
 
-{
-  Cache_Data[i] := d;
-  AuxData[0] := d;
-}
+{/* TODO */ }
 
 
 method n_RecvGntSinv__47_0(Cache_Data:array<DATA>,   Cache_State:array<CACHE_STATE>, Chan2_Cmd:array<MSG_CMD>, Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>, 
@@ -1029,11 +877,7 @@ modifies Cache_State
 modifies Chan2_Cmd
 modifies Chan2_Data
 
-{
-  Cache_State[i] := S;
-  Cache_Data[i] := Chan2_Data[i];
-  Chan2_Cmd[i] := Empty;
-}
+{/* TODO */ }
 
 
 method n_RecvGntEinv__47_0(Cache_Data:array<DATA>,   Cache_State:array<CACHE_STATE>, Chan2_Cmd:array<MSG_CMD>, Chan2_Data:array<DATA>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>, 
@@ -1072,11 +916,7 @@ modifies Cache_State
 modifies Chan2_Cmd
 modifies Chan2_Data
 
-{
-  Cache_State[i] := E;
-  Cache_Data[i] := Chan2_Data[i];
-  Chan2_Cmd[i] := Empty;
-}
+{/* TODO */ }
 
 
 method n_SendInv__part__0inv__47_0(Chan2_Cmd:array<MSG_CMD>,   Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  InvSet:array<boolean>,
@@ -1109,10 +949,7 @@ ensures   (!((CurCmd[0] == Empty) && (Chan3_Cmd[p__Inv2] == InvAck)))
 modifies Chan2_Cmd
 modifies InvSet
 
-{
-  Chan2_Cmd[i] := Inv;
-  InvSet[i] := false;
-}
+{/* TODO */ }
 
 
 method n_SendReqE__part__0inv__47_0(Cache_State:array<CACHE_STATE>,   Chan1_Cmd:array<MSG_CMD>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>, 
@@ -1144,9 +981,7 @@ requires ((Chan1_Cmd[i] == Empty) && (Cache_State[i] == I)) //guard condition
 ensures   (!((CurCmd[0] == Empty) && (Chan3_Cmd[p__Inv2] == InvAck)))
 modifies Chan1_Cmd
 
-{
-  Chan1_Cmd[i] := ReqE;
-}
+{/* TODO */ }
 
 
 method n_SendInv__part__1inv__47_0(Chan2_Cmd:array<MSG_CMD>,   Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>,  ExGntd:array<boolean>, InvSet:array<boolean>,
@@ -1181,10 +1016,7 @@ ensures   (!((CurCmd[0] == Empty) && (Chan3_Cmd[p__Inv2] == InvAck)))
 modifies Chan2_Cmd
 modifies InvSet
 
-{
-  Chan2_Cmd[i] := Inv;
-  InvSet[i] := false;
-}
+{/* TODO */ }
 
 
 method n_SendReqSinv__47_0(Cache_State:array<CACHE_STATE>,   Chan1_Cmd:array<MSG_CMD>, Chan3_Cmd:array<MSG_CMD>,  CurCmd:array<MSG_CMD>, 
@@ -1216,9 +1048,7 @@ requires ((Cache_State[i] == I) && (Chan1_Cmd[i] == Empty)) //guard condition
 ensures   (!((CurCmd[0] == Empty) && (Chan3_Cmd[p__Inv2] == InvAck)))
 modifies Chan1_Cmd
 
-{
-  Chan1_Cmd[i] := ReqS;
-}
+{/* TODO */ }
 
 
 

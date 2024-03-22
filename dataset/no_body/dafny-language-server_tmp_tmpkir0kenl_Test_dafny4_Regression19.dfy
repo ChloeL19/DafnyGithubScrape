@@ -37,16 +37,14 @@ predicate RIs5(r: R) {
 lemma NonemptySet(x: int, s: set<int>)
   requires x in s
   ensures |s| != 0
-{
-}
+{/* TODO */ }
 lemma NonemptyMap(x: int, s: map<int,bool>)
   requires x in s.Keys
   ensures |s| != 0
-{
-}
+{/* TODO */ }
 
 method M(s: set<int>, r: R, q: int)
-  requires s == {5} && r == MakeR(5)
+  requires s == {/* TODO */ } && r == MakeR(5)
 {
   assert ContainsNothingBut5(s);  // forall
   assert YeahContains5(s);  // exists

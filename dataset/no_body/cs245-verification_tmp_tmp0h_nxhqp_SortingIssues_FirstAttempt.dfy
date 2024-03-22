@@ -13,14 +13,5 @@ modifies A; requires n==A.Length;
 
 //Can we write code that does not sort A that still satisfies the requirements? 
 //Consider the following program:
-{
-  var k := 0;
-  while(k<n)
-  invariant k<=n;
-  invariant forall i:: 0<=i<k ==> A[i]==i;
-  {
-    A[k] := k;
-    k := k+1;
-  }
-}
+{/* TODO */ }
 

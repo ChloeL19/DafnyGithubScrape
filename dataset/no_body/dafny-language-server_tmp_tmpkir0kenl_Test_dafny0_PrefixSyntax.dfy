@@ -28,8 +28,7 @@ predicate TLA_plus_Style(x: int, y: int, t: TextProcessing)
 
 lemma Same(x: int, y: int, t: TextProcessing)
   ensures InfixStyle(x, y, t) == TLA_plus_Style(x, y, t)
-{
-}
+{/* TODO */ }
 
 datatype MyRecord = | MakeItHere(z: int)
 
@@ -45,8 +44,7 @@ function UnitDisjunct(y: int): bool
 
 lemma Units(y: int)
   ensures UnitConjunct(y) == UnitDisjunct(y)
-{
-}
+{/* TODO */ }
 
 function MyPredicate(y: int): bool
 {
@@ -62,17 +60,14 @@ function MyPredicateClean(y: int): bool
 
 lemma MyPred(y: int)
   ensures MyPredicate(y) == MyPredicateClean(y)
-{
-}
+{/* TODO */ }
 
 lemma CheckMyPred_0(y: int)
   requires MyPredicate(y)
   ensures y != -5 && y != -10
-{
-}
+{/* TODO */ }
 
 lemma CheckMyPred_1(y: int)
   ensures MyPredicate(4)
-{
-}
+{/* TODO */ }
 

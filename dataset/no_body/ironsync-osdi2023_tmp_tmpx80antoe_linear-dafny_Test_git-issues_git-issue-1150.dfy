@@ -8,13 +8,5 @@ datatype Foo = Foo(x: nat)
 }
 
 method Main()
-{
-  var x := Foo(2);
-  assert x.good?;
-  print x, " ", x.good?, "\n";
-
-  var y := Foo(5);
-  assert !y.good?;
-  print y, " ", y.good?, "\n";
-}
+{/* TODO */ }
 

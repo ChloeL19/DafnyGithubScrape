@@ -34,5 +34,5 @@ requires split(m2, m, mL)
 requires split(mL, mStack, frame)
 // conclusion
 ensures split(m2, putmany(mKeep, mL), mGive)
-{}
+{/* TODO */ }
 

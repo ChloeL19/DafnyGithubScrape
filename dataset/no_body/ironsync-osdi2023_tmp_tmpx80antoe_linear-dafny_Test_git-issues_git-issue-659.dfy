@@ -13,18 +13,12 @@ module A {
 
 module X {
   import I = A.Inner`P
-  method m() {
-    assert I.a == 10;
-    assert I.c == 30;
-  }
+  method m() {/* TODO */ }
 }
 
 module Y {
   import I = A.Inner`{P,Q}
-  method m() {
-    assert I.a == 10;
-    assert I.b == 20;
-  }
+  method m() {/* TODO */ }
 }
 
 

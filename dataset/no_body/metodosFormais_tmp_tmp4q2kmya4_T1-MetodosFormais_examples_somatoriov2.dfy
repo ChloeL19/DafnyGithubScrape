@@ -9,11 +9,4 @@ reads a
 
 method somatorio(a:array<nat>) returns (s:nat)
 ensures s == somaAteAberto(a, a.Length)
-{
-    s := 0;
-    for i:= 0 to a.Length
-    invariant s == somaAteAberto(a,i)
-    {
-        s := s + a[i];
-    }
-} 
+{/* TODO */ } 

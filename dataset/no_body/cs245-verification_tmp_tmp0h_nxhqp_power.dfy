@@ -10,27 +10,7 @@ function power(a: int, n: int): int //function for a to the power of n
 method compute_power(a: int, n: int) returns (s: int)
 /*Pre-Condition*/   requires n >= 0 && a >= 0;
 /*Post-Condition*/  ensures s == power(a,n);
-{
-  /* (| a >= 0 ^ n >= 0 |)                - Pre-Condition: requires statement above */
-  /* (| 1 = power(a,0) ^ 0<=n |)          - implied (a) */   assert 1 == power(a,0) && 0<=n;
-  s := 1;
-  /* (| s = power(a,0) ^ 0<=n |)          - assignment */    assert s == power(a,0) && 0<=n;
-  var i := 0; 
-  /* (| s = power(a,i) ^ i<=n |)          - assignment */    assert s == power(a,i) && i<=n;
-  while (i < n)
-  invariant s==power(a,i) && i<=n;
-  decreases n-i;                          //this is the variant
-  {
-    /* (| s = power(a,i) ^ i<=n ^ i<n |)  - partial-while */ assert s == power(a,i) && i<=n && i<n;
-    /* (| s*a = power(a,i+1) ^ i+1<=n |)  - implied (b) */   assert s*a == power(a,i+1) && i+1<=n;
-    s := s*a;
-    /* (| s = power(a,i+1) ^ i+1<=n |)    - assignment */    assert s == power(a,i+1) && i+1<=n;
-    i := i+1;
-    /* (| s = power(a,i) ^ i<=n |)        - assignment */    assert s == power(a,i) && i<=n;
-  }
-  /* (| s = power(a,i) ^ i<=n ^ -(i<n) |) - partial-while */ assert s == power(a,i) && i<=n && !(i<n);
-  /* (| s = power(a,n) |)                 - implied (c) //Post-Condition: ensures statement above */
-}
+{/* TODO */ }
 
 /* Proof of implied (a): Follows from definition of the power function. */
 

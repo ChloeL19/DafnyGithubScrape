@@ -25,18 +25,14 @@ module SortHelpers
 
 	lemma Gauss(n: nat)
 		ensures APSum(n) == n*(n+1)/2
-	{
-		if(n!=0) {Gauss(n-1);}
-	}
+	{/* TODO */ }
 	
 	method swap(a: array<int>, i:int, j:int) returns(ghost t: nat)
 		modifies a;
 		requires a.Length>1 && 0 <= i <= j < a.Length
 		ensures SwapPosts(a[..],old(a[..]),i,j)
 		ensures t==1
-	{
-		a[i], a[j], t := a[j], a[i], 1;
-	} 
+	{/* TODO */ } 
 	
 	predicate SwapPosts(q: seq<int>, oldq: seq<int>, i:int, j:int) 
 	{

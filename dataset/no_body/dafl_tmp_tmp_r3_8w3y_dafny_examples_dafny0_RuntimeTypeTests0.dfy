@@ -17,16 +17,7 @@
 // type parameters as interface{}.
 
 method G()
-{
-  var s: set<int>;
-  var t: set<nat>;
-  // the following assignments are fine, because "s" and "t" are represented
-  // the same way in the target language
-  s := {5, 7};
-  t := s;
-  s := t;
-  print s, " and ", t, "\n";
-}
+{/* TODO */ }
 
 trait Tr { var u: char }
 
@@ -36,82 +27,26 @@ class Class1 extends Tr { var y: real }
 
 datatype Dt<+A> = Atom(get: A, more: int)
 
-method H() {
-  var c := new Class0;
-  var a: Dt<Class0> := Atom(c, 10);
-  var b: Dt<object>; // compilation error: compilation does not support trait types as a type parameter; consider introducing a ghost
-  b := a;
-  print a, " and ", b, "\n";
-}
+method H() {/* TODO */ }
 
 method I()
-{
-  var c := new Class0;
-  var a: Dt<Class0> := Atom(c, 10);
-  var b: Dt<object>; // compilation error: compilation does not support trait types as a type parameter; consider introducing a ghost
-  b := a;
-  print a, " and ", b, "\n";
-}
+{/* TODO */ }
 
 method J()
-{
-  var c0 := new Class0;
-  var c1 := new Class1;
-  var s: set<Tr> := {c0, c1}; // fine, this is supported
-  var t: set<Class0> := {c0};
-  s := t;
-  print s, " and ", t, "\n";
-}
+{/* TODO */ }
 
 method K()
-{
-  var c0 := new Class0;
-  var c1 := new Class1;
-  var s: seq<Tr> := [c0, c1]; // fine, this is supported
-  var t: seq<Class0> := [c0];
-  s := t;
-  print s, " and ", t, "\n";
-}
+{/* TODO */ }
 
 method L()
-{
-  var c0 := new Class0;
-  var c1 := new Class1;
-  var s: multiset<Tr> := multiset{c0, c1}; // fine, this is supported
-  var t: multiset<Class0> := multiset{c0};
-  s := t;
-  print s, " and ", t, "\n";
-}
+{/* TODO */ }
 
 method M()
-{
-  var c0 := new Class0;
-  var c1 := new Class1;
-  var s: map<int, Tr> := map[8 := c0, 9 := c1]; // supported
-  var t: map<int, Class0> := map[7 := c0];
-  s := t;
-  print s, " and ", t, "\n";
-}
+{/* TODO */ }
 
 method Downcast()
-{
-  var c0 := new Class0;
-  var s: seq<Class0> := [c0, c0];
-  var t: seq<Tr> := s;
-  t := s;
-  print s, " and ", t, "\n";
-}
+{/* TODO */ }
 
 method Main()
-{
-  G();
-  H();
-  I();
-  J();
-  K();
-  L();
-  M();
-  Downcast();
-
-}
+{/* TODO */ }
 

@@ -48,11 +48,7 @@ class Set {
     requires RepInv()
     ensures RepInv()
     ensures b <==> v in elems
-  {
-
-    var i := find(v);
-    return i >= 0;
-  }
+  {/* TODO */ }
   // adds a new element to the set if space available
 
   method add(v:int)
@@ -61,44 +57,16 @@ class Set {
     ensures RepInv()
     modifies this,Repr
     ensures fresh(Repr - old(Repr))
-  {
-    var f:int := find(v);
-    if (f < 0) {
-      store[nelems] := v;
-      elems := elems + {v};
-      assert forall i:: 0 <= i < nelems ==> old(store[i]) == store[i];
-      nelems := nelems + 1;
-    }
-  }
+  {/* TODO */ }
   // private method that should not be in the
   method find(x:int) returns (r:int)
     requires RepInv()
     ensures RepInv()
     ensures r < 0 ==> x !in elems
     ensures r >=0 ==> x in elems;
-  {
-    var i:int := 0;
-    while (i<nelems)
-      decreases nelems-i
-      invariant 0 <= i <= nelems;
-      invariant forall j::(0<=j< i) ==> x != store[j];
-    {
-      if (store[i]==x) { return i; }
-      i := i + 1;
-    }
-    return -1;
-  }
+  {/* TODO */ }
   method Main()
-  {
-    var s := new Set(10);
-    if (s.size() < s.maxSize()) {
-      s.add(2);
-      var b := s.contains(2);
-      if (s.size() < s.maxSize()) {
-        s.add(3);
-      }
-    }
-  }
+  {/* TODO */ }
 }
 
 /*2. Using the corrected version of Set as a baseline, implement a PositiveSet class that
@@ -150,11 +118,7 @@ class PositiveSet {
     requires RepInv()
     ensures RepInv()
     ensures b <==> v in elems
-  {
-
-    var i := find(v);
-    return i >= 0;
-  }
+  {/* TODO */ }
   // adds a new element to the set if space available
 
   method add(v:int)
@@ -163,46 +127,16 @@ class PositiveSet {
     ensures RepInv()
     modifies this,Repr
     ensures fresh(Repr - old(Repr))
-  {
-    if(v > 0) {
-      var f:int := find(v);
-      if (f < 0) {
-        store[nelems] := v;
-        elems := elems + {v};
-        assert forall i:: 0 <= i < nelems ==> old(store[i]) == store[i];
-        nelems := nelems + 1;
-      }
-    }
-  }
+  {/* TODO */ }
   // private method that should not be in the
   method find(x:int) returns (r:int)
     requires RepInv()
     ensures RepInv()
     ensures r < 0 ==> x !in elems
     ensures r >=0 ==> x in elems;
-  {
-    var i:int := 0;
-    while (i<nelems)
-      decreases nelems-i
-      invariant 0 <= i <= nelems;
-      invariant forall j::(0<=j< i) ==> x != store[j];
-    {
-      if (store[i]==x) { return i; }
-      i := i + 1;
-    }
-    return -1;
-  }
+  {/* TODO */ }
   method Main()
-  {
-    var s := new PositiveSet(10);
-    if (s.size() < s.maxSize()) {
-      s.add(2);
-      var b := s.contains(2);
-      if (s.size() < s.maxSize()) {
-        s.add(3);
-      }
-    }
-  }
+  {/* TODO */ }
 }
 
 /*
@@ -291,21 +225,14 @@ class SavingsAccount {
     requires RepInv()
     ensures RepInv()
     modifies Repr
-  {
-    cbalance := cbalance + amount;
-  }
+  {/* TODO */ }
 
   method withdraw(amount:int)
     requires amount > 0
     requires RepInv()
     ensures RepInv()
     modifies Repr
-  {
-    if(cbalance-amount >= -sbalance/2)
-    {
-      cbalance := cbalance - amount;
-    }
-  }
+  {/* TODO */ }
 
   method save(amount: int)
     requires amount > 0
@@ -313,25 +240,14 @@ class SavingsAccount {
     requires RepInv()
     ensures RepInv()
     modifies Repr
-  {
-    if(cbalance >= 0)
-    {
-      sbalance := sbalance + amount;
-    }
-  }
+  {/* TODO */ }
 
   method rescue(amount: int)
     requires amount > 0
     requires RepInv()
     ensures RepInv()
     modifies Repr
-  {
-
-    if(cbalance >= -(sbalance-amount)/2)
-    {
-      sbalance := sbalance - amount;
-    }
-  }
+  {/* TODO */ }
 }
 
 
@@ -383,11 +299,7 @@ class GrowingSet {
     requires RepInv()
     ensures RepInv()
     ensures b <==> v in elems
-  {
-
-    var i := find(v);
-    return i >= 0;
-  }
+  {/* TODO */ }
   // adds a new element to the set if space available
 
   method add(v:int)
@@ -395,33 +307,7 @@ class GrowingSet {
     ensures RepInv()
     modifies Repr
     ensures fresh(Repr - old(Repr))
-  {
-    var f:int := find(v);
-    assert forall i:: 0 <= i < nelems ==> old(store[i]) == store[i];
-    if (f < 0) {
-      if(nelems == store.Length) {
-        var tmp := new int[store.Length * 2];
-        var i:= 0;
-        while i < store.Length
-          invariant 0 <= i <= store.Length < tmp.Length
-          invariant forall j :: 0 <= j < i ==> old(store[j]) == tmp[j]
-          modifies tmp
-        {
-          tmp[i] := store[i];
-          i := i + 1;
-        }
-        Repr := Repr - {store} + {tmp};
-        store := tmp;
-
-      }
-
-      store[nelems] := v;
-      elems := elems + {v};
-      assert forall i:: 0 <= i < nelems ==> old(store[i]) == store[i];
-      nelems := nelems + 1;
-
-    }
-  }
+  {/* TODO */ }
   
   // private method that should not be in the
   method find(x:int) returns (r:int)
@@ -429,28 +315,8 @@ class GrowingSet {
     ensures RepInv()
     ensures r < 0 ==> x !in elems
     ensures r >=0 ==> x in elems;
-  {
-    var i:int := 0;
-    while (i<nelems)
-      decreases nelems-i
-      invariant 0 <= i <= nelems;
-      invariant forall j::(0<=j< i) ==> x != store[j];
-    {
-      if (store[i]==x) { return i; }
-      i := i + 1;
-    }
-    return -1;
-  }
+  {/* TODO */ }
   method Main()
-  {
-    var s := new GrowingSet(10);
-    if (s.size() < s.maxSize()) {
-      s.add(2);
-      var b := s.contains(2);
-      if (s.size() < s.maxSize()) {
-        s.add(3);
-      }
-    }
-  }
+  {/* TODO */ }
 }
 

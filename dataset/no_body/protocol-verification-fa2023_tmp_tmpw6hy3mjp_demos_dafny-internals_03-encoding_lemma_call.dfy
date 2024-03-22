@@ -6,14 +6,9 @@ lemma {:axiom} f_positive(x: int)
 
 lemma f_2_pos()
   ensures f(2) >= 0
-{
-  f_positive(2);
-}
+{/* TODO */ }
 
 lemma f_1_1_pos()
   ensures f(1 + 1) >= 0
-{
-  f_2_pos();
-  assert 1 + 1 == 2;
-}
+{/* TODO */ }
 

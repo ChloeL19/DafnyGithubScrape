@@ -39,11 +39,7 @@ modifies cache
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_exclusive_granted[0] := false;
-  cache[i] := invalid;
-  home_sharer_list[i] := false;
-}
+{/* TODO */ }
 
 method n_t3inv__1_1(cache:array<cacheType>,     home_current_command:array<channelType>,  home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
 N0:nat,i:nat,
@@ -78,11 +74,7 @@ modifies cache
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_exclusive_granted[0] := false;
-  cache[i] := invalid;
-  home_sharer_list[i] := false;
-}
+{/* TODO */ }
 
 method n_t3inv__1_2(cache:array<cacheType>,     home_current_command:array<channelType>,  home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
 N0:nat,i:nat,
@@ -117,11 +109,7 @@ modifies cache
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_exclusive_granted[0] := false;
-  cache[i] := invalid;
-  home_sharer_list[i] := false;
-}
+{/* TODO */ }
 
 
 method n_t4inv__1_0(cache:array<cacheType>,     home_current_command:array<channelType>,  home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
@@ -157,11 +145,7 @@ modifies cache
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_exclusive_granted[0] := false;
-  cache[i] := shared;
-  home_sharer_list[i] := true;
-}
+{/* TODO */ }
 
 method n_t4inv__1_1(cache:array<cacheType>,     home_current_command:array<channelType>,  home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
 N0:nat,i:nat,
@@ -196,11 +180,7 @@ modifies cache
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_exclusive_granted[0] := false;
-  cache[i] := shared;
-  home_sharer_list[i] := true;
-}
+{/* TODO */ }
 
 method n_t4inv__1_2(cache:array<cacheType>,     home_current_command:array<channelType>,  home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
 N0:nat,i:nat,
@@ -235,11 +215,7 @@ modifies cache
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_exclusive_granted[0] := false;
-  cache[i] := shared;
-  home_sharer_list[i] := true;
-}
+{/* TODO */ }
 
 
 method n_t5inv__1_0(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>, home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
@@ -277,11 +253,7 @@ modifies cache
 modifies home_current_command
 modifies home_sharer_list
 
-{
-  home_current_command[0] := epsilon;
-  home_sharer_list[i] := true;
-  cache[i] := shared;
-}
+{/* TODO */ }
 
 method n_t5inv__1_1(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>, home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
 N0:nat,i:nat,
@@ -318,11 +290,7 @@ modifies cache
 modifies home_current_command
 modifies home_sharer_list
 
-{
-  home_current_command[0] := epsilon;
-  home_sharer_list[i] := true;
-  cache[i] := shared;
-}
+{/* TODO */ }
 
 method n_t5inv__1_2(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>, home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,
 N0:nat,i:nat,
@@ -359,11 +327,7 @@ modifies cache
 modifies home_current_command
 modifies home_sharer_list
 
-{
-  home_current_command[0] := epsilon;
-  home_sharer_list[i] := true;
-  cache[i] := shared;
-}
+{/* TODO */ }
 
 
 method n_t6inv__1_0(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>, home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,   
@@ -408,12 +372,7 @@ modifies home_current_command
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_current_command[0] := epsilon;
-  home_exclusive_granted[0] := true;
-  home_sharer_list[i] := true;
-  cache[i] := exclusive;
-}
+{/* TODO */ }
 
 method n_t6inv__1_1(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>, home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,   
 N0:nat,i:nat,
@@ -457,12 +416,7 @@ modifies home_current_command
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_current_command[0] := epsilon;
-  home_exclusive_granted[0] := true;
-  home_sharer_list[i] := true;
-  cache[i] := exclusive;
-}
+{/* TODO */ }
 
 method n_t6inv__1_2(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>, home_exclusive_granted:array<boolean>, home_sharer_list:array<boolean>,   
 N0:nat,i:nat,
@@ -506,12 +460,7 @@ modifies home_current_command
 modifies home_exclusive_granted
 modifies home_sharer_list
 
-{
-  home_current_command[0] := epsilon;
-  home_exclusive_granted[0] := true;
-  home_sharer_list[i] := true;
-  cache[i] := exclusive;
-}
+{/* TODO */ }
 
 
 method n_t2inv__1_0(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>,
@@ -544,10 +493,7 @@ ensures   (!((cache[p__Inv2] == exclusive) && (cache[p__Inv0] == exclusive)))
 modifies home_current_client
 modifies home_current_command
 
-{
-  home_current_command[0] := req_exclusive;
-  home_current_client[0] := i;
-}
+{/* TODO */ }
 
 
 method n_t1inv__1_0(cache:array<cacheType>,     home_current_client:array<client>,  home_current_command:array<channelType>,
@@ -580,10 +526,7 @@ ensures   (!((cache[p__Inv2] == exclusive) && (cache[p__Inv0] == exclusive)))
 modifies home_current_client
 modifies home_current_command
 
-{
-  home_current_command[0] := req_shared;
-  home_current_client[0] := i;
-}
+{/* TODO */ }
 
 
 

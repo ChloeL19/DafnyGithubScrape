@@ -53,12 +53,7 @@ class Person
         ensures spouse.spouse == this && this.spouse == spouse 
         ensures spouse.civilState == Married && this.civilState == Married
         ensures Valid()
-    {
-        spouse.spouse := this;
-        spouse.civilState := Married;
-        this.spouse := spouse;
-        this.civilState := Married;
-    }
+    {/* TODO */ }
  
     method divorce()
         modifies spouse
@@ -69,12 +64,7 @@ class Person
         ensures old(spouse).spouse == null && spouse == null 
         ensures old(spouse).civilState == Divorced && civilState == Divorced
         ensures Valid()
-    {
-        spouse.spouse := null;
-        spouse.civilState := Divorced;
-        this.spouse := null;
-        this.civilState := Divorced;
-    }
+    {/* TODO */ }
  
     method die()
         modifies this 
@@ -84,14 +74,6 @@ class Person
         ensures old(spouse) != null ==> old(spouse).spouse == null && old(spouse).civilState == Widow
         ensures spouse == null && civilState == Dead
         ensures Valid()
-    {
-        if spouse != null
-        {
-            spouse.spouse := null;
-            spouse.civilState := Widow;
-        }
-        this.spouse := null;
-        this.civilState := Dead;
-    }
+    {/* TODO */ }
 }
 

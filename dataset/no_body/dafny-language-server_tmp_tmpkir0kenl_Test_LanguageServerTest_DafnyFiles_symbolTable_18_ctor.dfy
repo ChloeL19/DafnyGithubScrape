@@ -1,4 +1,4 @@
-method foo() {}
+method foo() {/* TODO */ }
 class A {
     var f:int;
     constructor(p: int) {

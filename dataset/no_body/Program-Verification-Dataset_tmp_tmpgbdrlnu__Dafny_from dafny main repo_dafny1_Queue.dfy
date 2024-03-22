@@ -49,11 +49,7 @@ class Queue<T(0)> {
     modifies footprint
     ensures Valid() && fresh(footprint - old(footprint))
     ensures contents == old(contents)[1..] + old(contents)[..1]
-  {
-    var t := Front();
-    Dequeue();
-    Enqueue(t);
-  }
+  {/* TODO */ }
 
   method RotateAny()
     requires Valid()
@@ -63,50 +59,25 @@ class Queue<T(0)> {
     ensures |contents| == |old(contents)|
     ensures exists i :: 0 <= i && i <= |contents| &&
               contents == old(contents)[i..] + old(contents)[..i]
-  {
-    var t := Front();
-    Dequeue();
-    Enqueue(t);
-  }
+  {/* TODO */ }
 
   method IsEmpty() returns (isEmpty: bool)
     requires Valid()
     ensures isEmpty <==> |contents| == 0
-  {
-    isEmpty := head == tail;
-  }
+  {/* TODO */ }
 
   method Enqueue(t: T)
     requires Valid()
     modifies footprint
     ensures Valid() && fresh(footprint - old(footprint))
     ensures contents == old(contents) + [t]
-  {
-    var n := new Node<T>.Init();
-    n.data := t;
-    tail.next := n;
-    tail := n;
-
-    forall m | m in spine {
-      m.tailContents := m.tailContents + [t];
-    }
-    contents := head.tailContents;
-
-    forall m | m in spine {
-      m.footprint := m.footprint + n.footprint;
-    }
-    footprint := footprint + n.footprint;
-
-    spine := spine + {n};
-  }
+  {/* TODO */ }
 
   method Front() returns (t: T)
     requires Valid()
     requires 0 < |contents|
     ensures t == contents[0]
-  {
-    t := head.next.data;
-  }
+  {/* TODO */ }
 
   method Dequeue()
     requires Valid()
@@ -114,11 +85,7 @@ class Queue<T(0)> {
     modifies footprint
     ensures Valid() && fresh(footprint - old(footprint))
     ensures contents == old(contents)[1..]
-  {
-    var n := head.next;
-    head := n;
-    contents := n.tailContents;
-  }
+  {/* TODO */ }
 }
 
 class Node<T(0)> {
@@ -149,27 +116,7 @@ class Node<T(0)> {
 
 class Main<U(0)> {
   method A<T(0)>(t: T, u: T, v: T)
-  {
-    var q0 := new Queue<T>.Init();
-    var q1 := new Queue<T>.Init();
-
-    q0.Enqueue(t);
-    q0.Enqueue(u);
-
-    q1.Enqueue(v);
-
-    assert |q0.contents| == 2;
-
-    var w := q0.Front();
-    assert w == t;
-    q0.Dequeue();
-
-    w := q0.Front();
-    assert w == u;
-
-    assert |q0.contents| == 1;
-    assert |q1.contents| == 1;
-  }
+  {/* TODO */ }
 
   method Main2(t: U, u: U, v: U, q0: Queue<U>, q1: Queue<U>)
     requires q0.Valid()
@@ -179,23 +126,6 @@ class Main<U(0)> {
     modifies q0.footprint, q1.footprint
     ensures fresh(q0.footprint - old(q0.footprint))
     ensures fresh(q1.footprint - old(q1.footprint))
-  {
-    q0.Enqueue(t);
-    q0.Enqueue(u);
-
-    q1.Enqueue(v);
-
-    assert |q0.contents| == 2;
-
-    var w := q0.Front();
-    assert w == t;
-    q0.Dequeue();
-
-    w := q0.Front();
-    assert w == u;
-
-    assert |q0.contents| == 1;
-    assert |q1.contents| == old(|q1.contents|) + 1;
-  }
+  {/* TODO */ }
 }
 

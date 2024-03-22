@@ -1,14 +1,7 @@
 // RUN: %dafny /compile:3 /env:0 /dprint:- "%s" > "%t"
 // RUN: %diff "%s.expect" "%t"
 
-method Main() {
-  var m := new M0.MyClass.Init(20);
-  print m.a, ", ", m.b, ", ", m.c, "\n";
-  var r0 := new Regression.A.Make0();
-  var r1 := new Regression.A.Make1();
-  assert r0.b != r1.b;
-  print r0.b, ", ", r1.b, "\n";
-}
+method Main() {/* TODO */ }
 
 module M0 {
   class MyClass {
@@ -125,12 +118,7 @@ module TypeOfThis {
 
     method Mutate()
       modifies this
-    {
-      Repr := {this};
-      Rapr := {this};
-      S := {this};
-      T := {this};
-    }
+    {/* TODO */ }
   }
 }
 

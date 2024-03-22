@@ -2,21 +2,9 @@
 // RUN: %diff "%s.expect" "%t"
 
 lemma d()
-{
-  var a: int := 0x0000_0000_0000_BEEF;
-  var testbv: bv16 := a as bv16;
-  var testval: int := testbv as int;
-
-  assert testval == a; // OK
-}
+{/* TODO */ }
 lemma e()
-{
-  var a: int := 0x0000_0000_0000_00EF;
-  var testbv: bv8 := a as bv8;
-  var testval: int := testbv as int;
-
-  assert testval == a; // OK
-}
+{/* TODO */ }
 
 // The longer bit vector operations currently timeout (because of Z3's
 // inefficient support for bit-vector/int conversions),

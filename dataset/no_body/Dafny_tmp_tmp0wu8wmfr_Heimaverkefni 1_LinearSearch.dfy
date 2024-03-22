@@ -25,31 +25,7 @@ method SearchRecursive( a: seq<int>, i: int, j: int, x: int ) returns (k: int)
     ensures k != -1 ==> a[k] == x;
     ensures k != -1 ==> forall r | k < r < j :: a[r] != x;
     ensures k == -1 ==> forall r | i <= r < j :: a[r] != x;
-{
-
-    // Put program text here so that Dafny
-    // accepts this function.
-    // In this function loops are not allowed
-    // but recursion should be used, and it
-    // is not allowed to call the function
-    // SearchLoop below.
-    
-    if j == i
-    {
-        k := -1;
-        return;
-    }
-    if a[j-1] == x
-    {
-        k := j-1;
-        return;
-
-    }
-    else
-    {
-        k := SearchRecursive(a, i, j-1, x);
-    }
-}
+{/* TODO */ }
 
 
 
@@ -61,46 +37,7 @@ method SearchLoop( a: seq<int>, i: int, j: int, x: int ) returns (k: int)
     ensures k != -1 ==> a[k] == x;
     ensures k != -1 ==> forall r | k < r < j :: a[r] != x;
     ensures k == -1 ==> forall r | i <= r < j :: a[r] != x;
-{
-    // Put program text here so that Dafny
-    // accepts this function.
-    // In this function recursion is not allowed
-    // and it is not allowed to call the function
-    // SearchRecursive above.
-    
-    if i == j
-    {
-        return -1;
-    }
-
-    var t := j;
-    while t > i
-        decreases t;
-
-        invariant forall p | t <= p < j :: a[p] != x; 
-
-    {
-        if a[t-1] == x
-        {
-            k := t-1;
-            return;
-        }
-        else 
-        {
-            t := t - 1;
-
-        }
-        
-    
-    }
-    
-    k := -1;
-
-
-
-    
-    
-}
+{/* TODO */ }
 
 
 

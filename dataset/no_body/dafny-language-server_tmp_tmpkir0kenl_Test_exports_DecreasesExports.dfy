@@ -21,23 +21,11 @@ module A {
      case N => x
    }
 
-  method F(x: T, y: int) {
-    if (y > 0) {
-       F(x, y-1);
-    }
-
-  }
+  method F(x: T, y: int) {/* TODO */ }
 
   method G(x: T)
   decreases x
-  {
-    match (x) {
-       case C(x') =>
-            G(x');
-       case N =>
-           assert true;
-    }
-  }
+  {/* TODO */ }
 
 }
 
@@ -55,17 +43,13 @@ module C {
 module D {
   import A`SpecF
 
-  method H(x: A.T) {
-     A.F(x, 2);
-  }
+  method H(x: A.T) {/* TODO */ }
 }
 
 module E {
   import A`BodyG
 
-  method I(x: A.T) {
-    A.G(x);
-  }
+  method I(x: A.T) {/* TODO */ }
 
 }
 

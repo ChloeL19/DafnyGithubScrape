@@ -23,24 +23,7 @@ module FindAndReplace {
     requires |toFind| > 0
     ensures newString == verify(str, toFind, toReplace)
     decreases str
-    {
-        if (|str| < |toFind|)
-        {
-            return str;
-        }
-
-        if (toFind <= str)
-        {
-            var result := findAndReplace(str[|toFind|..], toFind, toReplace);
-            return toReplace + result;
-        }
-        else
-        {
-            var result := findAndReplace(str[1..], toFind, toReplace);
-            return str[..1] + result;
-        }
-        
-    }
+    {/* TODO */ }
 }
 
 

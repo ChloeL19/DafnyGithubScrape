@@ -1,6 +1,3 @@
-method Main() {
-   var a := 1+2;
-   
-}
+method Main() {/* TODO */ }
 
 

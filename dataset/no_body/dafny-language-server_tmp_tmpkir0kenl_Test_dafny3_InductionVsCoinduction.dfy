@@ -55,7 +55,7 @@ function SAppend(xs: Stream, ys: Stream): Stream
   Example: associativity of append on streams.
 
   The first method proves that append is associative when we consider first
-  \S{k} elements of the resulting streams.  Equality is treated as any other
+  \S{/* TODO */ } elements of the resulting streams.  Equality is treated as any other
   recursive co-predicate, and has it k-th unfolding denoted as ==#[k].
 
   The second method invokes the first one for all ks, which lets us prove the
@@ -65,7 +65,7 @@ function SAppend(xs: Stream, ys: Stream): Stream
   we also get ==#[k].
 */
 
-lemma {:induction false} SAppendIsAssociativeK(k:nat, a:Stream, b:Stream, c:Stream)
+lemma {/* TODO */ } SAppendIsAssociativeK(k:nat, a:Stream, b:Stream, c:Stream)
   ensures SAppend(SAppend(a, b), c) ==#[k] SAppend(a, SAppend(b, c));
   decreases k;
 {
@@ -77,11 +77,7 @@ lemma {:induction false} SAppendIsAssociativeK(k:nat, a:Stream, b:Stream, c:Stre
 
 lemma SAppendIsAssociative(a:Stream, b:Stream, c:Stream)
   ensures SAppend(SAppend(a, b), c) == SAppend(a, SAppend(b, c));
-{
-  forall k:nat { SAppendIsAssociativeK(k, a, b, c); }
-  // assert for clarity only, postcondition follows directly from it
-  assert (forall k:nat {:autotriggers false} :: SAppend(SAppend(a, b), c) ==#[k] SAppend(a, SAppend(b, c))); //FIXME: Should Dafny generate a trigger here? If so then which one?
-}
+{/* TODO */ }
 
 // Equivalent proof using the colemma syntax.
 colemma {:induction false} SAppendIsAssociativeC(a:Stream, b:Stream, c:Stream)

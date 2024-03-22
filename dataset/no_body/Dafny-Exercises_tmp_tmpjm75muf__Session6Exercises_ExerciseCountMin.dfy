@@ -29,23 +29,4 @@ decreases i
 requires v.Length>0
 ensures c==countMin(v,min(v,v.Length),v.Length)
 //Implement and verify an O(v.Length) algorithm 
-{
-  var i:=1;
-  c:=1;
-  var mini:=v[0];
-  while(i<v.Length)
-  decreases v.Length -i
-  invariant 0<i<=v.Length
-  invariant mini==min(v,i)
-  invariant c==countMin(v, mini, i)
-  {
-    if(v[i]==mini){
-      c:=c + 1;
-    }
-    else if(v[i]<mini){
-      c:=1;
-      mini:=v[i];
-    }
-    i:=i+1;
-  }
-}
+{/* TODO */ }

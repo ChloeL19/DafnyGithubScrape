@@ -7,8 +7,7 @@ module basic {
     }
     // lemma isSame_predMaxEx()
     // ensures (forall a,b :: predMaxEx(a,b) <==> predMaxEx_BASE(a,b))
-    // {
-    // }
+    // {/* TODO */ }
 }
 
 module maxExample{
@@ -22,13 +21,7 @@ module maxExample{
 
     lemma max(a:int,b:int) returns (c:int)
         ensures maxSpec(a,b,c)
-    {
-        if(a > b){
-            c := a + 100;
-        }else{
-            c := b + 100;
-        }
-    }
+    {/* TODO */ }
 
 
 }

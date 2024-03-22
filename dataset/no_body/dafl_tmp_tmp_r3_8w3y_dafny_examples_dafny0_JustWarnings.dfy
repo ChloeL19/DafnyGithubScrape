@@ -9,15 +9,11 @@
 // test file makes sure the warnings don't appear twice.
 
 method M(x: int)
-{
-  var x := 10;  // warning: this shadows the parameter 'x'
-}
+{/* TODO */ }
 
 class C<T> {
   var u: T
   method P<T>(t: T)  // warning: this shadows the type parameter 'T'
-  constructor (t: T) {
-    u := t;
-  }
+  constructor (t: T) {/* TODO */ }
 }
 

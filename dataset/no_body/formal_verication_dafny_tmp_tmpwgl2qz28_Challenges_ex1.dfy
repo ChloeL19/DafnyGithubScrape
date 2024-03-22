@@ -20,42 +20,7 @@ method PalVerify(a: array<char>) returns (yn: bool)
 ensures yn == true ==> forall i :: 0 <= i < a.Length/2 ==> a[i] == a[a.Length - i -1]
 ensures yn == false ==> exists i :: 0 <= i < a.Length/2 && a[i] != a[a.Length - i -1]
 ensures forall j :: 0<=j<a.Length ==> a[j] == old(a[j]) 
-{
-   var i:int := 0;
-   while i < a.Length/2
-   invariant 0 <= i <= a.Length/2 && forall j:: 0<=j<i ==> a[j] == a[a.Length-j-1]
-   decreases a.Length/2 - i
-   {                                      
-      if a[i] != a[a.Length-i-1]          
-      {                                   
-         return false;                    
-      }                                   
-      i := i+1;                           
-   }                                      
-   return true;                           
-}     
+{/* TODO */ }     
 
 method TEST()
-{
-   var a:array<char> := new char[]['r','e','f','e','r'];
-   var r:bool := PalVerify(a);
-   assert r;
-
-   var b:array<char> := new char[]['z'];
-   r := PalVerify(b);
-   assert r;
-
-   var c:array<char> := new char[][];
-   r := PalVerify(c);
-   assert r;
-
-   var d:array<char> := new char[]['x', 'y'];
-   assert d[0]=='x' && d[1]=='y';
-   r := PalVerify(d);
-   assert !r;
-
-   var e:array<char> := new char[]['1', '2', '3', '4', '2', '1'];
-   assert e[0]=='1' && e[1]=='2' && e[2]=='3' && e[3]=='4' && e[4]=='2' && e[5]=='1';
-   r := PalVerify(e);
-   assert !r;
-}
+{/* TODO */ }

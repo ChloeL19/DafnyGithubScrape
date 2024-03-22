@@ -20,7 +20,7 @@ module {:options "-functionSyntax:4"} MutableMapTrait {
     method Put(k: K, v: V)
       modifies this
       ensures this.content() == old(this.content())[k := v]   
-      ensures k in old(this.content()).Keys ==> this.content().Values + {old(this.content())[k]} == old(this.content()).Values + {v}
+      ensures k in old(this.content()).Keys ==> this.content().Values + {/* TODO */ } == old(this.content()).Values + {v}
       ensures k !in old(this.content()).Keys ==> this.content().Values == old(this.content()).Values + {v}
 
     function Keys(): (keys: set<K>)
@@ -48,7 +48,7 @@ module {:options "-functionSyntax:4"} MutableMapTrait {
 
     method Remove(k: K)
       modifies this
-      ensures this.content() == old(this.content()) - {k}
+      ensures this.content() == old(this.content()) - {/* TODO */ }
       ensures k in old(this.content()).Keys ==> this.content().Values + {old(this.content())[k]} == old(this.content()).Values
  
     function Size(): (size: int)

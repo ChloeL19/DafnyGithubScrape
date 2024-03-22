@@ -16,25 +16,16 @@ ghost function Tail(s: Stream, n: nat): Stream
 lemma Tail_Lemma0(s: Stream, n: nat)
   requires s.Cons? && Tail(s, n).Cons?;
   ensures Tail(s, n).tail == Tail(s.tail, n);
-{
-}
+{/* TODO */ }
 lemma Tail_Lemma1(s: Stream, k: nat, n: nat)
   requires k <= n;
   ensures Tail(s, n).Cons? ==> Tail(s, k).Cons?;
   // Note, the contrapositive of this lemma says:  Tail(s, k) == Nil ==> Tail(s, n) == Nil
-{
-  if k < n && Tail(s, n).Cons? {
-    assert Tail(s, n) == Tail(s, n-1).tail;
-  }
-}
+{/* TODO */ }
 lemma Tail_Lemma2(s: Stream, n: nat)
   requires s.Cons? && Tail(s.tail, n).Cons?;
   ensures Tail(s, n).Cons?;
-{
-  if n != 0 {
-    Tail_Lemma0(s, n-1);
-  }
-}
+{/* TODO */ }
 
 // Co-predicate IsNeverEndingStream(s) answers whether or not s ever contains Nil.
 
@@ -53,8 +44,7 @@ ghost function AnInfiniteStream(): Stream<int>
 }
 greatest lemma Proposition0()
   ensures IsNeverEndingStream(AnInfiniteStream());
-{
-}
+{/* TODO */ }
 
 // Now, consider a Tree definition, where each node can have a possibly infinite number of children.
 
@@ -81,17 +71,7 @@ greatest predicate LowerThan(s: Stream<Tree>, n: nat)
 
 lemma LowerThan_Lemma(s: Stream<Tree>, n: nat, h: nat)
   ensures LowerThan(s, h) ==> LowerThan(Tail(s, n), h);
-{
-  Tail_Lemma1(s, 0, n);
-  if n == 0 || Tail(s, n) == Nil {
-  } else {
-    match s {
-      case Cons(t, tail) =>
-        LowerThan_Lemma(tail, n-1, h);
-        Tail_Lemma0(s, n-1);
-    }
-  }
-}
+{/* TODO */ }
 
 // A tree t where every node has an infinite number of children satisfies InfiniteEverywhere(t.children).
 // Otherwise, IsFiniteSomewhere(t) holds.  That is, IsFiniteSomewhere says that the tree has some node
@@ -118,35 +98,18 @@ ghost function SkinnyTree(): Tree
 }
 lemma Proposition1()
   ensures IsFiniteSomewhere(SkinnyTree()) && !HasBoundedHeight(SkinnyTree());
-{
-  assert forall n {:induction} :: 0 <= n ==> !LowerThan(SkinnyTree().children, n);
-}
+{/* TODO */ }
 
 // Any tree where all paths have bounded height are finite somewhere.
 
 lemma Theorem0(t: Tree)
   requires HasBoundedHeight(t);
   ensures IsFiniteSomewhere(t);
-{
-  var n :| 0 <= n && LowerThan(t.children, n);
-  /*
-  assert (forall k :: 0 <= k ==> InfiniteEverywhere#[k](t.children)) ==> InfiniteEverywhere(t.children);
-  assert InfiniteEverywhere(t.children) ==> (forall k :: 0 <= k ==> InfiniteEverywhere#[k](t.children));
-  assert InfiniteEverywhere(t.children) <==> (forall k :: 0 <= k ==> InfiniteEverywhere#[k](t.children));  // TODO: why does this not follow from the previous two?
-  */
-  var k := FindNil(t.children, n);
-}
+{/* TODO */ }
 lemma FindNil(s: Stream<Tree>, n: nat) returns (k: nat)
   requires LowerThan(s, n);
   ensures !InfiniteEverywhere#[k as ORDINAL](s);
-{
-  match s {
-    case Nil => k := 1;
-    case Cons(t, _) =>
-	  k := FindNil(t.children, n-1);
-	  k := k + 1;
-  }
-}
+{/* TODO */ }
 
 // We defined an InfiniteEverywhere property above and negated it to get an IsFiniteSomewhere predicate.
 // If we had an InfiniteHeightSomewhere property, then we could negate it to obtain a predicate
@@ -180,25 +143,14 @@ ghost function ATreeChildren(): Stream<Tree>
 }
 lemma Proposition2()
   ensures !HasFiniteHeightEverywhere_Bad(ATree());
-{
-  Proposition2_Lemma0();
-  Proposition2_Lemma1(ATreeChildren());
-}
+{/* TODO */ }
 greatest lemma Proposition2_Lemma0()
   ensures IsNeverEndingStream(ATreeChildren());
-{
-}
+{/* TODO */ }
 greatest lemma Proposition2_Lemma1(s: Stream<Tree>)
   requires IsNeverEndingStream(s);
   ensures InfiniteHeightSomewhere_Bad(s);
-{
-  calc {
-    InfiniteHeightSomewhere_Bad#[_k](s);
-    InfiniteHeightSomewhere_Bad#[_k-1](s.head.children) || InfiniteHeightSomewhere_Bad#[_k-1](s.tail);
-  <==
-    InfiniteHeightSomewhere_Bad#[_k-1](s.tail);  // induction hypothesis
-  }
-}
+{/* TODO */ }
 
 // What was missing from the InfiniteHeightSomewhere_Bad definition was the existence of a child
 // node that satisfies the property recursively.  To address that problem, we may consider
@@ -242,16 +194,7 @@ greatest predicate ValidPath(t: Tree, p: Stream<int>)
 }
 lemma ValidPath_Lemma(p: Stream<int>)
   ensures ValidPath(Node(Nil), p) ==> p == Nil;
-{
-  if ValidPath(Node(Nil), p) {
-    match p {
-      case Nil =>
-      case Cons(index, tail) =>  // proof by contradiction
-        var nil : Stream<Tree> := Nil;
-        Tail_Lemma1(nil, 0, index);
-    }
-  }
-}
+{/* TODO */ }
 
 // A tree has finite height (everywhere) if it has no valid infinite paths.
 
@@ -265,34 +208,12 @@ ghost predicate HasFiniteHeight(t: Tree)
 lemma Theorem1(t: Tree)
   requires HasBoundedHeight(t);
   ensures HasFiniteHeight(t);
-{
-  var n :| 0 <= n && LowerThan(t.children, n);
-  forall p | ValidPath(t, p) {
-    Theorem1_Lemma(t, n, p);
-  }
-}
+{/* TODO */ }
 lemma Theorem1_Lemma(t: Tree, n: nat, p: Stream<int>)
   requires LowerThan(t.children, n) && ValidPath(t, p);
   ensures !IsNeverEndingStream(p);
   decreases n;
-{
-  match p {
-    case Nil =>
-    case Cons(index, tail) =>
-      var ch := Tail(t.children, index);
-      calc {
-        LowerThan(t.children, n);
-      ==>  { LowerThan_Lemma(t.children, index, n); }
-        LowerThan(ch, n);
-      ==>  // def. LowerThan
-        LowerThan(ch.head.children, n-1);
-      ==>  //{ Theorem1_Lemma(ch.head, n-1, tail); }
-        !IsNeverEndingStream(tail);
-      ==>  // def. IsNeverEndingStream
-        !IsNeverEndingStream(p);
-      }
-  }
-}
+{/* TODO */ }
 
 // In fact, HasBoundedHeight is strictly strong than HasFiniteHeight, as we'll show with an example.
 // Define SkinnyFiniteTree(n) to be a skinny (that is, of width 1) tree of height n.
@@ -319,87 +240,22 @@ lemma EverLongerSkinnyTrees_Lemma(k: nat, n: nat)
   ensures Tail(EverLongerSkinnyTrees(k), n).Cons?;
   ensures Tail(EverLongerSkinnyTrees(k), n).head == SkinnyFiniteTree(k+n);
   decreases n;
-{
-  if n == 0 {
-  } else {
-    calc {
-      Tail(EverLongerSkinnyTrees(k), n);
-      { EverLongerSkinnyTrees_Lemma(k, n-1); }  // this ensures that .tail on the next line is well-defined
-      Tail(EverLongerSkinnyTrees(k), n-1).tail;
-      { Tail_Lemma0(EverLongerSkinnyTrees(k), n-1); }
-      Tail(EverLongerSkinnyTrees(k).tail, n-1);
-      Tail(EverLongerSkinnyTrees(k+1), n-1);
-    }
-    EverLongerSkinnyTrees_Lemma(k+1, n-1);
-  }
-}
+{/* TODO */ }
 
 lemma Proposition3()
   ensures !HasBoundedHeight(FiniteUnboundedTree()) && HasFiniteHeight(FiniteUnboundedTree());
-{
-  Proposition3a();
-  Proposition3b();
-}
+{/* TODO */ }
 lemma Proposition3a()
   ensures !HasBoundedHeight(FiniteUnboundedTree());
-{
-  var ch := FiniteUnboundedTree().children;
-  forall n | 0 <= n
-    ensures !LowerThan(ch, n);
-  {
-    var cn := Tail(ch, n+1);
-    EverLongerSkinnyTrees_Lemma(0, n+1);
-    assert cn.head == SkinnyFiniteTree(n+1);
-    assert !LowerThan(cn.head.children, n);
-    LowerThan_Lemma(ch, n+1, n);
-  }
-}
+{/* TODO */ }
 lemma Proposition3b()
   ensures HasFiniteHeight(FiniteUnboundedTree());
-{
-  var t := FiniteUnboundedTree();
-  forall p | ValidPath(t, p)
-    ensures !IsNeverEndingStream(p);
-  {
-    assert p.Cons?;
-    var index := p.head;
-    assert 0 <= index;
-    var ch := Tail(t.children, index);
-    assert ch.Cons? && ValidPath(ch.head, p.tail);
-    EverLongerSkinnyTrees_Lemma(0, index);
-    assert ch.head == SkinnyFiniteTree(index);
-    var si := SkinnyFiniteTree(index);
-    assert LowerThan(si.children, index);
-    Proposition3b_Lemma(si, index, p.tail);
-  }
-}
+{/* TODO */ }
 lemma Proposition3b_Lemma(t: Tree, h: nat, p: Stream<int>)
   requires LowerThan(t.children, h) && ValidPath(t, p)
   ensures !IsNeverEndingStream(p)
   decreases h
-{
-  match p {
-    case Nil =>
-    case Cons(index, tail) =>
-      // From the definition of ValidPath(t, p), we get the following:
-      var ch := Tail(t.children, index);
-      // assert ch.Cons? && ValidPath(ch.head, tail);
-      // From the definition of LowerThan(t.children, h), we get the following:
-      match t.children {
-        case Nil =>
-          ValidPath_Lemma(p);
-          assert false;  // absurd case
-        case Cons(_, _) =>
-          // assert 1 <= h;
-          LowerThan_Lemma(t.children, index, h);
-          // assert LowerThan(ch, h);
-      }
-      // Putting these together, by ch.Cons? and the definition of LowerThan(ch, h), we get:
-      assert LowerThan(ch.head.children, h-1);
-      // And now we can invoke the induction hypothesis:
-      // Proposition3b_Lemma(ch.head, h-1, tail);
-  }
-}
+{/* TODO */ }
 
 // Using a stream of integers to denote a path is convenient, because it allows us to
 // use Tail to quickly select the next child tree.  But we can also define paths in a
@@ -502,194 +358,50 @@ ghost function N2S'(n: nat, num: Number): Stream<int>
 lemma Path_Lemma0(t: Tree, p: Stream<int>)
   requires ValidPath(t, p);
   ensures ValidPath_Alt(t, S2N(p));
-{
-  if ValidPath(t, p) {
-    Path_Lemma0'(t, p);
-  }
-}
+{/* TODO */ }
 greatest lemma Path_Lemma0'(t: Tree, p: Stream<int>)
   requires ValidPath(t, p);
   ensures ValidPath_Alt(t, S2N(p));
-{
-  match p {
-    case Nil =>
-      assert t == Node(Nil);
-    case Cons(index, tail) =>
-      assert 0 <= index;
-      var ch := Tail(t.children, index);
-      assert ch.Cons? && ValidPath(ch.head, tail);
-
-      calc {
-        ValidPath_Alt#[_k](t, S2N(p));
-        { assert S2N(p) == Some(S2N'(index, tail)); }
-        ValidPath_Alt#[_k](t, Some(S2N'(index, tail)));
-        // def. ValidPath_Alt#
-        ValidPath_Alt'#[_k-1](t.children, S2N'(index, tail));
-        { Path_Lemma0''(t.children, index, tail); }
-        true;
-      }
-  }
-}
+{/* TODO */ }
 greatest lemma Path_Lemma0''(tChildren: Stream<Tree>, n: nat, tail: Stream<int>)
   requires var ch := Tail(tChildren, n); ch.Cons? && ValidPath(ch.head, tail);
   ensures ValidPath_Alt'(tChildren, S2N'(n, tail));
-{
-  Tail_Lemma1(tChildren, 0, n);
-  match S2N'(n, tail) {
-    case Succ(next) =>
-      calc {
-        Tail(tChildren, n);
-        { Tail_Lemma1(tChildren, n-1, n); }
-        Tail(tChildren, n-1).tail;
-        { Tail_Lemma0(tChildren, n-1); }
-        Tail(tChildren.tail, n-1);
-      }
-      Path_Lemma0''(tChildren.tail, n-1, tail);
-    case Zero(r) =>
-      Path_Lemma0'(tChildren.head, tail);
-  }
-}
+{/* TODO */ }
 lemma Path_Lemma1(t: Tree, r: CoOption<Number>)
   requires ValidPath_Alt(t, r);
   ensures ValidPath(t, N2S(r));
-{
-  if ValidPath_Alt(t, r) {
-    Path_Lemma1'(t, r);
-  }
-}
+{/* TODO */ }
 greatest lemma Path_Lemma1'(t: Tree, r: CoOption<Number>)
   requires ValidPath_Alt(t, r);
   ensures ValidPath(t, N2S(r));
   decreases 1;
-{
-  match r {
-    case None =>
-      assert t == Node(Nil);
-      assert N2S(r) == Nil;
-    case Some(num) =>
-      assert ValidPath_Alt'(t.children, num);
-      // assert N2S'(0, num).Cons?;
-      // Path_Lemma1''(t.children, 0, num);
-      var p := N2S'(0, num);
-      calc {
-        ValidPath#[_k](t, N2S(r));
-        ValidPath#[_k](t, N2S(Some(num)));
-        ValidPath#[_k](t, N2S'(0, num));
-        { Path_Lemma1''#[_k](t.children, 0, num); }
-        true;
-      }
-  }
-}
+{/* TODO */ }
 greatest lemma Path_Lemma1''(s: Stream<Tree>, n: nat, num: Number)
   requires ValidPath_Alt'(Tail(s, n), num);
   ensures ValidPath(Node(s), N2S'(n, num));
   decreases 0, num;
-{
-  match num {
-    case Succ(next) =>
-      Path_Lemma1''#[_k](s, n+1, next);
-    case Zero(r) =>
-      calc {
-        ValidPath#[_k](Node(s), N2S'(n, num));
-        ValidPath#[_k](Node(s), Cons(n, N2S(r)));
-        Tail(s, n).Cons? && ValidPath#[_k-1](Tail(s, n).head, N2S(r));
-        { assert Tail(s, n).Cons?; }
-        ValidPath#[_k-1](Tail(s, n).head, N2S(r));
-        { Path_Lemma1'(Tail(s, n).head, r); }
-        true;
-      }
-  }
-}
+{/* TODO */ }
 lemma Path_Lemma2(p: Stream<int>)
   ensures IsNeverEndingStream(p) ==> InfinitePath(S2N(p));
-{
-  if IsNeverEndingStream(p) {
-    Path_Lemma2'(p);
-  }
-}
+{/* TODO */ }
 greatest lemma Path_Lemma2'(p: Stream<int>)
   requires IsNeverEndingStream(p);
   ensures InfinitePath(S2N(p));
-{
-  match p {
-  case Cons(n, tail) =>
-    calc {
-      InfinitePath#[_k](S2N(p));
-      // def. S2N
-      InfinitePath#[_k](Some(S2N'(if n < 0 then 0 else n, tail)));
-      // def. InfinitePath
-      InfinitePath'#[_k-1](S2N'(if n < 0 then 0 else n, tail));
-    <== { Path_Lemma2''(p, if n < 0 then 0 else n, tail); }
-      InfinitePath#[_k-1](S2N(tail));
-      { Path_Lemma2'(tail); }
-      true;
-    }
-  }
-}
+{/* TODO */ }
 greatest lemma Path_Lemma2''(p: Stream<int>, n: nat, tail: Stream<int>)
   requires IsNeverEndingStream(p) && p.tail == tail
   ensures InfinitePath'(S2N'(n, tail))
-{
-  Path_Lemma2'(tail);
-}
+{/* TODO */ }
 lemma Path_Lemma3(r: CoOption<Number>)
   ensures InfinitePath(r) ==> IsNeverEndingStream(N2S(r));
-{
-  if InfinitePath(r) {
-    match r {
-      case Some(num) => Path_Lemma3'(0, num);
-    }
-  }
-}
+{/* TODO */ }
 greatest lemma Path_Lemma3'(n: nat, num: Number)
   requires InfinitePath'(num);
   ensures IsNeverEndingStream(N2S'(n, num));
   decreases num;
-{
-  match num {
-    case Zero(r) =>
-      calc {
-        IsNeverEndingStream#[_k](N2S'(n, num));
-        // def. N2S'
-        IsNeverEndingStream#[_k](Cons(n, N2S(r)));
-        // def. IsNeverEndingStream
-        IsNeverEndingStream#[_k-1](N2S(r));
-        { Path_Lemma3'(0, r.get); }
-        true;
-      }
-    case Succ(next) =>
-      Path_Lemma3'#[_k](n + 1, next);
-  }
-}
+{/* TODO */ }
 
 lemma Theorem2(t: Tree)
   ensures HasFiniteHeight(t) <==> HasFiniteHeight_Alt(t);
-{
-  if HasFiniteHeight_Alt(t) {
-    forall p {
-      calc ==> {
-        ValidPath(t, p);
-        { Path_Lemma0(t, p); }
-        ValidPath_Alt(t, S2N(p));
-        // assumption HasFiniteHeight(t)
-        !InfinitePath(S2N(p));
-        { Path_Lemma2(p); }
-        !IsNeverEndingStream(p);
-      }
-    }
-  }
-  if HasFiniteHeight(t) {
-    forall r {
-      calc ==> {
-        ValidPath_Alt(t, r);
-        { Path_Lemma1(t, r); }
-        ValidPath(t, N2S(r));
-        // assumption HasFiniteHeight_Alt(t)
-        !IsNeverEndingStream(N2S(r));
-        { Path_Lemma3(r); }
-        !InfinitePath(r);
-      }
-    }
-  }
-}
+{/* TODO */ }
 

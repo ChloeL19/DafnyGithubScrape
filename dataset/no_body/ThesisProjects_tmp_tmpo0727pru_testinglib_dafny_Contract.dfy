@@ -24,11 +24,7 @@ module Contract {
     }
 
 
-    trait Message{
-        var sender: address
-        var value: nat
-        var data: nat
-    }
+    trait Message{/* TODO */ }
 
     trait Block{
         var timestamp: nat

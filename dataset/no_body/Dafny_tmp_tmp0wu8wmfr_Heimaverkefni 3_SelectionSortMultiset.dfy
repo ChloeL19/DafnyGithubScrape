@@ -11,7 +11,7 @@
 
 // Hjálparfall sem finnur minnsta gildi í poka
 method MinOfMultiset( m: multiset<int> ) returns( min: int )
-    requires m != multiset{};
+    requires m != multiset{/* TODO */ };
     ensures min in m;
     ensures forall z | z in m :: min <= z;
 {
@@ -33,20 +33,10 @@ method MinOfMultiset( m: multiset<int> ) returns( min: int )
 
 // Ekki má breyta þessu falli.
 method Test( m: multiset<int> )
-{
-    var s := Sort(m);
-    assert multiset(s) == m;
-    assert forall p,q | 0 <= p < q < |s| :: s[p] <= s[q];
-}
+{/* TODO */ }
 
 method Main()
-{
-    var m := multiset{0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9};
-    var s := Sort(m);
-    assert multiset(s) == m;
-    assert forall p,q | 0 <= p < q < |s| :: s[p] <= s[q];
-    print s;
-}
+{/* TODO */ }
 
 ///////////////////////////////////////////////////////////////
 // Hér lýkur óbreytanlega hluta skrárinnar.
@@ -60,23 +50,4 @@ method Sort( m: multiset<int> ) returns ( s: seq<int> )
     // Setjið viðeigandi ensures klausur hér
     ensures multiset(s) == m;
     ensures forall p,q | 0 <= p < q < |s| :: s[p] <= s[q];
-{
-    // Setjið viðeigandi frumstillingar á m' og s hér.
-    // m' er ný staðvær breyta en s er skilabreyta.
-    s := [];
-    var m' := m;
-
-    while m' != multiset{}
-        // Ekki breyta fastayrðingu lykkju
-        decreases m';
-        invariant m == m'+multiset(s);
-        invariant forall p,q | 0 <= p < q < |s| :: s[p] <= s[q];
-        invariant forall z | z in m' :: forall r | 0 <= r < |s| :: z >= s[r];
-    {
-        // Setjið viðeigandi stofn í lykkjuna hér
-        var x := MinOfMultiset(m');
-        m' := m' - multiset{x};
-        s := s + [x];
-    }
-    return s;
-}
+{/* TODO */ }

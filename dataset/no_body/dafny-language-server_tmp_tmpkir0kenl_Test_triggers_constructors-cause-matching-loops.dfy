@@ -6,7 +6,5 @@
 datatype Nat = Zero | Succ(x: Nat)
 function f(n: Nat): Nat
 
-method M() {
-  assert forall s :: true || f(Succ(s)) == f(s);
-}
+method M() {/* TODO */ }
 

@@ -8,13 +8,9 @@ class Conjunto {
     method AdicionarElemento(elemento: int)
         requires elemento !in elementos
         modifies this
-    {
-        elementos := elementos + {elemento};
-    }
+    {/* TODO */ }
 
 }
 
 method Main()
-{
-    var conjunto := new Conjunto();
-}
+{/* TODO */ }

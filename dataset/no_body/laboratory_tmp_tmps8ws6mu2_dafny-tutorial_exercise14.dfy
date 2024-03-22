@@ -7,7 +7,4 @@ predicate sorted(a: array<int>)
 }
 
 method m()
-{
-    var a: array<int> := new int[] [1, 2, 3, 4];
-    assert sorted(a);
-}
+{/* TODO */ }

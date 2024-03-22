@@ -22,18 +22,6 @@ method Find(a: array<int>, key: int) returns (i: int)
    ensures i < 0 ==> 
            // a does not contain key
            forall k :: 0 <= k < a.Length ==> a[k] != key;
-{
-   i := 0;
-   while (i < a.Length)
-     decreases a.Length - i;
-     invariant 0 <= i <= a.Length;
-     // key is at none of the positions seen so far
-     invariant forall k :: 0 <= k < i ==> a[k] != key;
-   {
-      if (a[i] == key) { return; }
-      i := i + 1;
-   }
-   i := -1;
-}
+{/* TODO */ }
 
 

@@ -47,23 +47,10 @@ function Contains(t: Tree, v: int): bool
 method Max(t: Tree) returns (result: int)
   requires t != Null;
   ensures Contains(t, result) && forall v :: Contains(t, v) ==> v <= result;
-{
-  match (t) {
-    case Node(left, x, right) =>
-      result := MaxAux(right, x);
-      result := MaxAux(left, result);
-  }
-}
+{/* TODO */ }
 
 method MaxAux(t: Tree, acc: int) returns (result: int)
   ensures result == acc || Contains(t, result);
   ensures acc <= result && forall v :: Contains(t, v) ==> v <= result;
-{
-  match (t) {
-    case Null => result := acc;
-    case Node(left, x, right) =>
-      result := MaxAux(right, if x < acc then acc else x);
-      result := MaxAux(left, result);
-  }
-}
+{/* TODO */ }
 

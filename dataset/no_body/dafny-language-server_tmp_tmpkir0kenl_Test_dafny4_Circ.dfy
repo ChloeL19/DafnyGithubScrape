@@ -59,9 +59,7 @@ lemma MorseProperties()
 // We will now define a function f and show that morse() is a fix-point of f.
 
 function f(s: Stream<Bit>): Stream<Bit>
-{
-  Cons(s.head, Cons(bitnot(s.head), f(s.tail)))
-}
+{/* TODO */ }
 
 // The insightful property about f is that it satisfies the following property, which
 // we prove by co-induction.
@@ -83,8 +81,5 @@ colemma FProperty(s: Stream<Bit>)
 
 lemma Fixpoint()
   ensures f(morse()) == morse();
-{
-  MorseProperties();
-  FProperty(morseTail());
-}
+{/* TODO */ }
 

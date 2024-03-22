@@ -41,29 +41,5 @@
 //                                 )
 
 method main()
-{
-    var x := 0;
-    var y := 0;
-    var i := 0;
-    var j := 0;
-
-    while(x <= 100000) 
-        decreases 100000 - x
-        invariant !( (j - i <= -1) || (1 <= x - y) )
-    && !( ( (1 <= x - y) || (3*x - 3*y + j - i <= -1) )
-    && ( (1 <= x - y) || (x - y + j - i <= -1) )
-    && !( !(1 <= x - y) && !(2*x - 2*y + j - i <= -2) && !(2*x - 2*y + j - i <= -1) ) )
-    {
-        x := x + 1;
-        y := y + 1;
-        i := i + x;
-        j := j + y;
-
-        if(*) {
-            j := j + 1;
-        }
-    }
-
-    assert(j >= i);    
-}
+{/* TODO */ }
 

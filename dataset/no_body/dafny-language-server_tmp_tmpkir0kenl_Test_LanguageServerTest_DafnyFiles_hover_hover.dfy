@@ -2,16 +2,9 @@ class MyClass {
 
     var field: int; 
 	
-    method  addOne(i: int) returns (r:int) {
-       r := i + 1;
-       return r; 
-    }
+    method  addOne(i: int) returns (r:int) {/* TODO */ }
 	
-    method aMethod() modifies this { 
-        var aLocalVar := 2;
-        field := aLocalVar;  
-        aLocalVar := addOne(field);
-    }
+    method aMethod() modifies this {/* TODO */ }
 
     constructor () { }
 }

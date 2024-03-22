@@ -11,10 +11,10 @@
 
 module A {
   class B {
-    method Main() { print "Main\n"; }
+    method Main() {/* TODO */ }
   }
   class C {
-    method Test() { print "Test\n"; }
+    method Test() {/* TODO */ }
   }
 }
 

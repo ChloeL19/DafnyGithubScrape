@@ -7,30 +7,7 @@ method BinarySearch(arr: array<int>, target: int) returns (index: int)
     ensures -1 <= index < arr.Length
     ensures index == -1 ==> not_found(arr, target)
     ensures index != -1 ==> found(arr, target, index)
-{
-    var low, high := 0 , arr.Length-1;
-    while low <= high
-        invariant 0 <= low <= high + 1
-        invariant low-1 <= high < arr.Length
-        invariant forall i :: 0 <= i <= low && high <= i < arr.Length ==> arr[i] != target
-    { 
-        var mid := (low + high) / 2;
-        if arr[mid] == target
-        {
-           return mid;
-        }
-        else if arr[mid] < target
-        {
-           low := mid + 1;
-        }
-        else
-        {
-           high := mid - 1;
-        }
-    }
-
-    return -1;
-}
+{/* TODO */ }
 
 // Predicate to check that the array is sorted
 predicate sorted(a: array<int>)

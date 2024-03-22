@@ -15,12 +15,10 @@ module NeedsAllLiteralsAxiom {
 
   lemma lemma_trick(n: nat, m: nat)
     ensures trick(n, m) == n;
-  {
-  }
+  {/* TODO */ }
 
   lemma calc_trick(n: nat, m: nat)
     ensures trick(100, 10) == 100;
-  {
-  }
+  {/* TODO */ }
 }
 

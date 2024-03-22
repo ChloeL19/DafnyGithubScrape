@@ -4,20 +4,4 @@ function R(n: nat): nat {
 
 method calcR(n: nat) returns (r: nat)
     ensures r == R(n) 
-{
-    r := 0;
-    var i := 0;
-    while i < n 
-        decreases n-i
-        invariant 0 <= i <= n
-        invariant r == R(i)
-    {
-       i := i + 1;
-       if r  > i {
-           r := r - i;
-       } 
-       else {
-            r := r + i;
-        }
-    }
-}
+{/* TODO */ }

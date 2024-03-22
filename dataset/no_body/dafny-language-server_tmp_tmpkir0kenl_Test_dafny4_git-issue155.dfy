@@ -11,7 +11,4 @@ function F(a: A, b: B): int
 }
 
 method M(a: A, b: B)
-{
-  match (a, b)
-  case (A0, B0) =>
-}
+{/* TODO */ }

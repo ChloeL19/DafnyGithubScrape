@@ -75,7 +75,7 @@ ghost predicate Next(v: Variables, v': Variables)
 lemma NextStepDeterministicGivenStep(v:Variables, v':Variables, step: Step)
   requires NextStep(v, v', step)
   ensures forall v'' | NextStep(v, v'', step) :: v' == v''
-{}
+{/* TODO */ }
 
 /*
 In this lemma we'll write a concrete sequence of states which forms a (short)
@@ -84,25 +84,5 @@ execution of this state machine, and prove that it really is an execution.
 This can be a good sanity check on the definitions (for example, to make sure
 that it's at least possible to take every transition).
 */
-lemma ExampleExec() {
-  var e := [
-    Variables(library := map[Book("Snow Crash") := Shelf, Book("The Stand") := Shelf]),
-    Variables(library := map[Book("Snow Crash") := Patron("Jon"), Book("The Stand") := Shelf]),
-    Variables(library := map[Book("Snow Crash") := Patron("Jon"), Book("The Stand") := Patron("Tej")]),
-    Variables(library := map[Book("Snow Crash") := Shelf, Book("The Stand") := Patron("Tej")])
-  ];
-
-  // Next we'll prove that e is a valid execution.
-
-  assert Init(e[0]);
-
-  // These steps will be witnesses to help prove Next between every pair of Variables.
-  var steps := [
-    Checkout(Book("Snow Crash"), "Jon"),
-    Checkout(Book("The Stand"), "Tej"),
-    Return(Book("Snow Crash"))
-  ];
-  assert forall n: nat | n < |e|-1  :: NextStep(e[n], e[n+1], steps[n]);
-  assert forall n: nat | n < |e|-1  :: Next(e[n], e[n+1]);
-}
+lemma ExampleExec() {/* TODO */ }
 

@@ -28,17 +28,7 @@ lemma InvHoldsTo(e: nat -> Variables, i: nat)
   requires forall i:nat :: Next(e(i), e(i+1))
   requires forall v, v' :: Inv(v) && Next(v, v') ==> Inv(v')
   ensures Inv(e(i))
-{
-  if i == 0 {
-    return;
-  }
-  InvHoldsTo(e, i-1);
-  // this is the inductive hypothesis
-  assert Inv(e(i-1));
-  // the requirements let us take the invariant from one step to the next (so in
-  // particular from e(i-1) to e(i)).
-  assert forall i:nat :: Inv(e(i)) ==> Inv(e(i+1));
-}
+{/* TODO */ }
 
 ghost predicate IsBehavior(e: Behavior) {
   && Init(e(0))
@@ -55,13 +45,5 @@ lemma SafetyAlwaysHolds(e: Behavior)
   // property holds for all reachable states - every state of every behavior of
   // the state machine.
   ensures IsBehavior(e) ==> forall i :: Safety(e(i))
-{
-  if IsBehavior(e) {
-    assert Inv(e(0));
-    forall i:nat
-      ensures Safety(e(i)) {
-      InvHoldsTo(e, i);
-    }
-  }
-}
+{/* TODO */ }
 

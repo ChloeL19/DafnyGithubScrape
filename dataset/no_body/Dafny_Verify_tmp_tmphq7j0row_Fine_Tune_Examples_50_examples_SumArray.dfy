@@ -8,14 +8,4 @@ function Sum(arr: array<int>, len: int): int
 method SumArray(arr: array<int>) returns (sum: int)
     requires arr.Length > 0
     ensures sum == Sum(arr, arr.Length)
-{
-    sum := 0;
-    var i := 0;
-    while i < arr.Length
-        invariant 0 <= i <= arr.Length
-        invariant sum == Sum(arr, i)
-    {
-        sum := sum + arr[i];
-        i := i + 1;
-    }
-}
+{/* TODO */ }

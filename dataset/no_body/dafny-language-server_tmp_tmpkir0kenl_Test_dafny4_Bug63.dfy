@@ -3,12 +3,8 @@
 
 method M()
   modifies set o: object | true
-{
-}
+{/* TODO */ }
 
 method Client()
-{
-  assume forall o: object {:nowarn} :: false;
-  M();
-}
+{/* TODO */ }
 

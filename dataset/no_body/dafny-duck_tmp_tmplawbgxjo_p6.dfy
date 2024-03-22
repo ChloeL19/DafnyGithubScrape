@@ -11,38 +11,4 @@ function FilterVowels(xs: seq<char>): seq<char>
 method FilterVowelsArray(xs: array<char>) returns (ys: array<char>)
     ensures fresh(ys)
     ensures FilterVowels(xs[..]) == ys[..]
-{
-    var n := 0;
-    var i := 0;
-    while i < xs.Length
-        invariant 0 <= i <= xs.Length
-        invariant n == |FilterVowels(xs[..i])|
-        invariant forall j :: 0 <= j <= i ==> n >= |FilterVowels(xs[..j])|
-    {
-        assert xs[..i+1] == xs[..i] + [xs[i]];
-        if xs[i] in vowels {
-            n := n + 1;
-        }
-        i := i + 1;
-    }
-
-    ys := new char[n];
-    i := 0;
-    var j := 0;
-    while i < xs.Length
-        invariant 0 <= i <= xs.Length
-        invariant 0 <= j <= ys.Length
-        invariant ys[..j] == FilterVowels(xs[..i])
-    {
-        assert xs[..i+1] == xs[..i] + [xs[i]];
-        if xs[i] in vowels {
-            assert ys.Length >= |FilterVowels(xs[..i+1])|;
-            ys[j] := xs[i];
-            j := j + 1;
-        }
-        i := i + 1;
-    }
-
-    assert xs[..] == xs[..i];
-    assert ys[..] == ys[..j];
-}
+{/* TODO */ }

@@ -5,20 +5,11 @@ class Foo {
     // this is accepted
     constructor(ghost b: set<bool>) {}
     constructor Mk() {}
-    method Initialize(ghost b: set<bool>) {}
+    method Initialize(ghost b: set<bool>) {/* TODO */ }
 }
 
-method TestConstructor() {
-    ghost var b: set<bool> := {};
-    var f := new Foo(b);
-    // error: ghost variables are only allowed in specification contexts
-}
+method TestConstructor() {/* TODO */ }
 
-method TestInitialize() {
-    ghost var b: set<bool> := {};
-    var f := new Foo.Mk();
-    // works
-    f.Initialize(b);
-}
+method TestInitialize() {/* TODO */ }
 
 

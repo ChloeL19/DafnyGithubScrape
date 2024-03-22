@@ -23,27 +23,19 @@ ghost function Inc(s: Stream<int>): Stream<int>
 
 lemma {:induction false} UpLemma(k: nat, n: int)
   ensures Inc(Up(n)) ==#[k] Up(n+1);
-{
-  if (k != 0) {
-    UpLemma(k-1, n+1);
-  }
-}
+{/* TODO */ }
 
 greatest lemma {:induction false} CoUpLemma(n: int)
   ensures Inc(Up(n)) == Up(n+1);
-{
-  CoUpLemma(n+1);
-}
+{/* TODO */ }
 
 lemma UpLemma_Auto(k: nat, n: int, nn: int)
   ensures nn == n+1 ==> Inc(Up(n)) ==#[k] Up(nn);  // note: it would be nice to do an automatic rewrite (from "ensures Inc(Up(n)) ==#[k] Up(n+1)") to obtain the good trigger here
-{
-}
+{/* TODO */ }
 
 greatest lemma CoUpLemma_Auto(n: int, nn: int)
   ensures nn == n+1 ==> Inc(Up(n)) == Up(nn);  // see comment above
-{
-}
+{/* TODO */ }
 
 // -----------------------------------------------------------------------
 
@@ -54,8 +46,7 @@ ghost function Repeat(n: int): Stream<int>
 
 greatest lemma RepeatLemma(n: int)
   ensures Inc(Repeat(n)) == Repeat(n+1);
-{
-}
+{/* TODO */ }
 
 // -----------------------------------------------------------------------
 
@@ -66,8 +57,7 @@ greatest predicate True(s: Stream)
 
 greatest lemma AlwaysTrue(s: Stream)
   ensures True(s);
-{
-}
+{/* TODO */ }
 
 greatest predicate AlsoTrue(s: Stream)
 {
@@ -76,8 +66,7 @@ greatest predicate AlsoTrue(s: Stream)
 
 greatest lemma AlsoAlwaysTrue(s: Stream)
   ensures AlsoTrue(s);
-{
-}
+{/* TODO */ }
 
 greatest predicate TT(y: int)
 {
@@ -86,8 +75,7 @@ greatest predicate TT(y: int)
 
 greatest lemma AlwaysTT(y: int)
   ensures TT(y);
-{
-}
+{/* TODO */ }
 
 // -----------------------------------------------------------------------
 
@@ -117,11 +105,9 @@ greatest predicate AtMost(a: IList<int>, b: IList<int>)
 
 greatest lemma ZerosAndOnes_Theorem0()
   ensures AtMost(zeros(), ones());
-{
-}
+{/* TODO */ }
 
 greatest lemma ZerosAndOnes_Theorem1()
   ensures Append(zeros(), ones()) == zeros();
-{
-}
+{/* TODO */ }
 

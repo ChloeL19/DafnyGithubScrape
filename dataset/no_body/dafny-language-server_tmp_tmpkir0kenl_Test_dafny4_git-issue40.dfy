@@ -10,11 +10,7 @@ type Num = x | 0 <= x < 10
 datatype D = C(seq<Maybe<Num>>)
 
 lemma test()
-{
-    ghost var s := SeqRepeat(1, Nothing);
-    ghost var e := C(s);
-    assert e == C(SeqRepeat(1, Nothing));
-}
+{/* TODO */ }
 
 
 

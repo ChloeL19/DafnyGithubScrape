@@ -10,7 +10,4 @@ ensures x >= 0 ==> r == x
 // podemos colocar o && e || lógico 
 ensures r >= 0 && (r == x || r == -x)
 
-{
-    if x < 0 { return -x; }
-    else { return x;}
-}
+{/* TODO */ }

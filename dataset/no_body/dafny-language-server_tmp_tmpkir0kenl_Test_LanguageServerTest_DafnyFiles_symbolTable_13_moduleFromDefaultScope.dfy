@@ -1,8 +1,6 @@
 //Module Definitions
 module M {
-    method foo() {}
+    method foo() {/* TODO */ }
 }
 
-method Main() {
-    M.foo();
-}
+method Main() {/* TODO */ }

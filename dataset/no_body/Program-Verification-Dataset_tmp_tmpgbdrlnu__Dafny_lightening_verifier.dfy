@@ -2,16 +2,12 @@ class CrashableMem<T> {
     var mem_ : array<T>;
     method read(off : int) returns (r : T)
         requires 0 <= off < mem_.Length;
-    {
-        return mem_[off];
-    }
+    {/* TODO */ }
 
     method write(off : int, val : T)
         requires 0 <= off < mem_.Length;
         modifies mem_;
-    {
-        mem_[off] := val;
-    }
+    {/* TODO */ }
 }
 
 datatype GhostState = GS(
@@ -286,14 +282,7 @@ class UndoLog {
         ensures fresh(mem_);
         ensures state_inv();
         ensures ghost_state_equiv(gs);
-    {
-        log_ := new int[log_size];
-        mem_ := new int[mem_size];
-        log_[0] := 0;
-
-        impl_countdown := countdown;
-        gs := GS(0, log_[1..], mem_size, mem_[..], mem_[..], mem_[..], countdown, map[]);
-    }
+    {/* TODO */ }
 
     method impl_countdown_dec()
         modifies this;
@@ -305,9 +294,7 @@ class UndoLog {
         ensures gs == old(gs);
         ensures log_[..] == old(log_)[..];
         ensures mem_[..] == old(mem_)[..];
-    {
-        impl_countdown := impl_countdown - 1;
-    }
+    {/* TODO */ }
 
     method write_mem(off : int, val : int)
         modifies this;
@@ -321,12 +308,7 @@ class UndoLog {
         ensures log_ == old(log_);
         ensures gs == old(gs);
         ensures ghost_state_equiv(mem_write_step(gs, off, val).0);
-    {
-        if (impl_countdown > 0) {
-            mem_[off] := val;
-            impl_countdown := impl_countdown - 1;
-        }
-    }
+    {/* TODO */ }
 
     method write_log(off : int, val : int)
         modifies this;
@@ -346,12 +328,7 @@ class UndoLog {
         ensures gs == old(gs);
         ensures off > 0 ==> ghost_state_equiv(log_write_step(gs, off - 1, val).0);
         ensures off == 0 ==> ghost_state_equiv(set_num_entry(gs, val).0);
-    {
-        if (impl_countdown > 0) {
-            log_[off] := val;
-            impl_countdown := impl_countdown - 1;
-        }
-    }
+    {/* TODO */ }
 
     method begin_tx()
         modifies log_;
@@ -365,12 +342,7 @@ class UndoLog {
         ensures state_inv();
         ensures ghost_state_equiv(gs);
         ensures ghost_tx_inv(gs);
-    {
-        write_log(0, 0);
-
-        gs := ghost_begin_tx(gs);
-        assert state_inv();
-    }
+    {/* TODO */ }
 
     method commit_tx()
         modifies log_;
@@ -384,11 +356,7 @@ class UndoLog {
         ensures log_ == old(log_);
         ensures ghost_state_equiv(gs);
         ensures state_inv();
-    {
-        write_log(0, 0);
-
-        gs := ghost_commit_tx(gs).0;
-    }
+    {/* TODO */ }
 
     method tx_write(offset: int, val : int)
         modifies this;
@@ -404,38 +372,7 @@ class UndoLog {
         ensures ghost_state_equiv(gs);
         ensures ghost_tx_inv(gs);
         ensures old_mem_equiv(gs);
-    {
-        var log_idx := log_[0];
-        var log_off := log_idx * 2;
-        ghost var old_gs := gs;
-        write_log(log_off + 1, offset);
-        gs := log_write_step(gs, log_off, offset).0;
-        assert log_off + 1 > 0;
-        assert ghost_state_equiv(gs);
-        assert mem_ != log_;
-        var old_val := mem_[offset];
-        assert old_val == gs.mem[offset];
-        write_log(log_off + 2, old_val);
-        
-        gs := log_write_step(gs, log_off + 1, old_val).0;
-
-        assert ghost_tx_inv(gs);
-        assert log_[0] == gs.num_entry;
-        assert log_.Length == |gs.log| + 1;
-        assert 0 <= gs.num_entry * 2 < |gs.log|;
-        
-        write_log(0, log_idx + 1);
-
-        ghost var (s, f) := set_num_entry(gs, log_idx + 1);
-        s := if f && !(offset in s.first_log_pos)
-             then s.(first_log_pos := s.first_log_pos[offset := log_idx])
-             else s;
-        gs := s;
-        write_mem(offset, val);
-        gs := mem_write_step(gs, offset, val).0;
-
-        assert gs == ghost_tx_write(old_gs, offset, val);
-    }
+    {/* TODO */ }
 
     // we assume that recover won't crash (though this code works when recover can fail)
     method recover()
@@ -448,48 +385,7 @@ class UndoLog {
         requires ghost_state_equiv(gs);
         ensures gs == ghost_recover(old(gs));
         ensures ghost_state_equiv(gs);
-    {
-        var log_len := log_[0];
-        assert log_len == gs.num_entry;
-        if (log_len > 0) {
-            var i := log_len - 1;
-
-            ghost var gs0 := gs;
-            while i >= 0
-                modifies mem_;
-                modifies this;
-                invariant log_ == old(log_);
-                invariant mem_ == old(mem_);
-                invariant unchanged(log_);
-                invariant -1 <= i < log_len;
-                invariant |gs.log| == |gs0.log|;
-                invariant ghost_state_equiv(gs);
-                invariant ghost_tx_inv(gs);
-                invariant old_mem_equiv(gs);
-                invariant reverse_recovery(gs0, log_len) == reverse_recovery(gs, i + 1);
-                decreases i;
-            {
-                assert ghost_state_equiv(gs);
-                assert 0 <= i < log_[0];
-                var o := i * 2 + 1;
-                var off := log_[o];
-                var val := log_[o + 1];
-                mem_[off] := val;
-                assert 0 <= off < mem_.Length;
-
-                assert gs.log[i * 2] == off;
-                assert gs.log[i * 2 + 1] == val;
-                gs := gs.(mem := gs.mem[off := val]);
-                i := i - 1;
-            }
-            assert ghost_state_equiv(gs);
-        } else {
-            assert ghost_state_equiv(gs);
-        }
-        log_[0] := 0;
-        gs := ghost_recover(old(gs));
-        assert ghost_state_equiv(gs);
-    }
+    {/* TODO */ }
 }
 
 lemma crash_safe_single_tx(init_log : seq<int>, init_mem : seq<int>,
@@ -500,52 +396,4 @@ lemma crash_safe_single_tx(init_log : seq<int>, init_mem : seq<int>,
     requires forall i :: 0 <= i < |writes| ==>
                 0 <= writes[i].0 < |init_mem|;
     requires 0 < |writes| * 2 < |init_log|;
-{
-    var s := init_ghost_state(init_log, init_mem, countdown);
-
-    var end_mem := init_mem;
-
-    s := ghost_begin_tx(s);
-    assert s.num_entry == 0;
-    assert init_mem == s.old_mem;
-
-    var i := 0;
-    while i < |writes|
-        decreases |writes| - i;
-        invariant 0 <= i <= |writes|;
-        invariant s.mem_len == |init_mem|;
-        invariant s.mem_len == |end_mem|;
-        invariant 0 <= s.num_entry <= i;
-        invariant |init_log| == |s.log|;
-        invariant i * 2 < |s.log|;
-        invariant 0 <= s.num_entry * 2 < |s.log|;
-        invariant ghost_tx_inv(s);
-        invariant old_mem_equiv(s);
-        invariant init_mem == s.old_mem;
-        invariant !crashed(s) ==> forall i :: 0 <= i < |s.mem| ==> s.mem[i] == end_mem[i];
-    {
-        assert 0 <= i < |writes|;
-        assert 0 <= writes[i].0 < s.mem_len;
-        assert 0 <= s.num_entry * 2 + 2 < |s.log|;
-        s := ghost_tx_write(s, writes[i].0, writes[i].1);
-
-        end_mem := end_mem[writes[i].0 := writes[i].1];
-
-        assert !crashed(s) ==> s.mem[writes[i].0] == writes[i].1;
-        i := i + 1;
-    }
-
-    assert ghost_tx_inv(s);
-    assert old_mem_equiv(s);
-
-    var (s', c) := ghost_commit_tx(s);
-    assert c ==> !crashed(s);
-
-    if (c) {
-        assert !crashed(s);
-        assert s.mem == end_mem;
-    } else {
-        var recovered := ghost_recover(s');
-        assert recovered.mem == init_mem;
-    }
-}
+{/* TODO */ }

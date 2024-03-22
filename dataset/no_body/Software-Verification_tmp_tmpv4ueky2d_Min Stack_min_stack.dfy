@@ -17,14 +17,7 @@ class MinStack
         ensures (|old(min_stack)| == 0 || x <= old(min_stack)[0]) ==> 
                 (min_stack == [x] + old(min_stack) &&
                 (min_stack[0] == x))
-    {
-        stack := [x] + stack;
-
-        if (|min_stack| == 0 || x <= min_stack[0])
-        {
-            min_stack := [x] + min_stack;
-        }
-    }
+    {/* TODO */ }
 
     method pop() returns (x: int)
         modifies this
@@ -34,30 +27,18 @@ class MinStack
         ensures (old(stack)[0] == old(min_stack)[0]) ==> 
                 (min_stack == old(min_stack)[1..]) &&
                 (x == old(min_stack)[0])
-    {
-        if (stack[0] == min_stack[0])
-        {
-            min_stack := min_stack[1..];
-        }
-
-        x := stack[0];
-        stack := stack[1..];
-    }
+    {/* TODO */ }
 
     method top() returns (x: int)
         requires stack != []
         ensures stack == old(stack)
         ensures x == stack[0]
-    {
-        x := stack[0];
-    }
+    {/* TODO */ }
 
     method get_min() returns (x: int)
         requires min_stack != []
         ensures min_stack == old(min_stack)
         ensures x == min_stack[0]
-    {
-        x := min_stack[0];
-    }
+    {/* TODO */ }
 }
 

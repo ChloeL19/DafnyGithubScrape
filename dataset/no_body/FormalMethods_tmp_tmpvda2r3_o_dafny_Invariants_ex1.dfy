@@ -1,20 +1,6 @@
 method Mult(x:nat, y:nat) returns (r:nat)
 ensures r == x * y
-{
-    // Valores passados por parâmetros são imutáveis
-    var m := x;
-    var n := y;
-    r := 0;
-    // Soma sucessiva para multiplicar dois números.
-    while m > 0
-    invariant m*n+r == x*y
-    invariant m>=0
-    {
-        r := r + n;
-        m := m - 1;
-    }
-    return r; // NOT(m>0) ^ Inv ==> r = x*y
-}
+{/* TODO */ }
 
 /*
 Inv = m*n + r = x*y

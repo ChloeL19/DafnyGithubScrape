@@ -77,7 +77,7 @@ lemma lemma_K_InBounds()
                 InBounds(s, sp_op_const(0xa4506ceb), 0xa4506ceb) &&
                 InBounds(s, sp_op_const(0xbef9a3f7), 0xbef9a3f7) &&
                 InBounds(s, sp_op_const(0xc67178f2), 0xc67178f2)
-{ reveal_InBounds(); }
+{/* TODO */ }
 
 
 

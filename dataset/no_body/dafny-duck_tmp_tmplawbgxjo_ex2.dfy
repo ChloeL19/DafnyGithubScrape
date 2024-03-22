@@ -8,7 +8,7 @@ method String3Sort(a: string) returns (b: string)
 requires |a| == 3
 ensures sorted(b);
 ensures |b| == 3
-ensures multiset{a[0],a[1],a[2]} == multiset{b[0],b[1],b[2]}
+ensures multiset{/* TODO */ } == multiset{b[0],b[1],b[2]}
 { 
   b := a;
 

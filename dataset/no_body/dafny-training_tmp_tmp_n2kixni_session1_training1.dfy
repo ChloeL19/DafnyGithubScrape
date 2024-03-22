@@ -19,21 +19,12 @@
  */
 method abs(x: int) returns (y: int)
     ensures true
-{
-    if x < 0 {
-        y := -x;
-    } else {
-        y :=  x;
-    }
-}
+{/* TODO */ }
 
 /** Call abs */
 method foo(x: int) 
     requires x >= 0
-{
-    var y := abs(x);
-    // assert( y == x);
-}
+{/* TODO */ }
 
 /**
  *  Example 0.b.
@@ -48,17 +39,7 @@ method foo(x: int)
 method max(x: int, y: int) returns (m: int)
 requires true;
 ensures true;
-{
-    var r : int;
-    if x > y  {
-        r := 0;
-    } else {
-        r := 1;
-    }
-    m := r;
-    //  can use return r instead
-    // return m;
-}
+{/* TODO */ }
 
 /**
  *  Example 1.
@@ -70,17 +51,7 @@ ensures true;
 method ex1(n: int)
     requires true
     ensures true
-{
-    var i := 0;
-    while i < n
-        invariant true
-        // decreases *    //  do not check termination
-    {
-        i := i + 1;
-    }
-    /** This is the property to prove: */
-    // assert i == n;
-}
+{/* TODO */ }
 
 /**
  *  Infinite loop.
@@ -88,14 +59,7 @@ method ex1(n: int)
 method foo2() 
     ensures false
     decreases *
-{
-    while true 
-        decreases *
-    {
-        
-    }
-    assert false;
-}
+{/* TODO */ }
 
 //  Specify a post-condition and prove it.
 
@@ -125,19 +89,7 @@ method foo2()
 method find(a: seq<int>, key: int) returns (index: int)
     requires true
     ensures true
-{
-    index := 0;
-    while index < |a|
-        invariant true 
-        {
-            // index := index + 1;
-            if  a[index] == key  { 
-                return 0;
-            }
-            index := index + 2;
-        }
-    index := -10;
-}
+{/* TODO */ }
 
 //  Prove more complicated invariants with quantifiers.
 
@@ -157,9 +109,7 @@ method find(a: seq<int>, key: int) returns (index: int)
  *  a[0..|a|] is same as a.  
  */
 method isPalindrome(a: seq<char>) returns (b: bool) 
-{
-    return true;
-}
+{/* TODO */ }
 
 /**
  *  Whether a sequence of ints is sorted (ascending).
@@ -189,44 +139,11 @@ predicate sorted(a: seq<int>)
 method unique(a: seq<int>) returns (b: seq<int>) 
     requires sorted(a)
     ensures true
-{
-  return a;
-}
+{/* TODO */ }
 
 /**
  *  Dafny compiles the Main method if it finds one in a file.
  */
-method Main() {
-
-    //  run find
-    var r := find([], 1);   
-    print r, "\n";
-
-    r := find([0,3,5,7], 5);  
-    print r, "\n";
-
-    //  run palindrome
-    var s1 := ['a'];
-    var r1 := isPalindrome(s1);
-    print "is [", s1, "]", " a isPalindrome? ", r1, " \n";
-
-    s1 := [];
-    r1 := isPalindrome(s1);
-    print "is [", s1, "]", " a isPalindrome? ", r1, " \n";
-
-    s1 := ['a', 'b'];
-    r1 := isPalindrome(s1);
-    print "is [", s1, "]", " a isPalindrome? ", r1, " \n";
-
-    s1 := ['a', 'b', 'a'];
-    r1 := isPalindrome(s1);
-    print "is [", s1, "]", " a isPalindrome? ", r1, " \n";
-
-    // run unique
-    var i := [0,1,3,3,5,5,7];
-    var s := unique(i);
-    print "unique applied to ", i, " is ", s, "\n";
-    
-}
+method Main() {/* TODO */ }
 
 

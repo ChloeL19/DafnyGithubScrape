@@ -45,130 +45,59 @@ ghost function map_fg(M: Stream<X>): Stream<X>
 // map (f * g) M = map f (map g M)
 greatest lemma Theorem0(M: Stream<X>)
   ensures map_fg(M) == map_f(map_g(M));
-{
-  match (M) {
-    case Nil =>
-    case Cons(x, N) =>
-      Theorem0(N);
-  }
-}
+{/* TODO */ }
 greatest lemma Theorem0_Alt(M: Stream<X>)
   ensures map_fg(M) == map_f(map_g(M));
-{
-  if (M.Cons?) {
-    Theorem0_Alt(M.tail);
-  }
-}
+{/* TODO */ }
 lemma Theorem0_Par(M: Stream<X>)
   ensures map_fg(M) == map_f(map_g(M));
-{
-  forall k: nat {
-    Theorem0_Ind(k, M);
-  }
-}
+{/* TODO */ }
 lemma Theorem0_Ind(k: nat, M: Stream<X>)
   ensures map_fg(M) ==#[k] map_f(map_g(M));
-{
-  if (k != 0) {
-    match (M) {
-      case Nil =>
-      case Cons(x, N) =>
-        Theorem0_Ind(k-1, N);
-    }
-  }
-}
+{/* TODO */ }
 lemma Theorem0_AutoInd(k: nat, M: Stream<X>)
   ensures map_fg(M) ==#[k] map_f(map_g(M));
-{
-}
+{/* TODO */ }
 
 // map f (append M N) = append (map f M) (map f N)
 greatest lemma Theorem1(M: Stream<X>, N: Stream<X>)
   ensures map_f(append(M, N)) == append(map_f(M), map_f(N));
-{
-  match (M) {
-    case Nil =>
-    case Cons(x, M') =>
-      Theorem1(M', N);
-  }
-}
+{/* TODO */ }
 greatest lemma Theorem1_Alt(M: Stream<X>, N: Stream<X>)
   ensures map_f(append(M, N)) == append(map_f(M), map_f(N));
-{
-  if (M.Cons?) {
-    Theorem1_Alt(M.tail, N);
-  }
-}
+{/* TODO */ }
 lemma Theorem1_Par(M: Stream<X>, N: Stream<X>)
   ensures map_f(append(M, N)) == append(map_f(M), map_f(N));
-{
-  forall k: nat {
-    Theorem1_Ind(k, M, N);
-  }
-}
+{/* TODO */ }
 lemma Theorem1_Ind(k: nat, M: Stream<X>, N: Stream<X>)
   ensures map_f(append(M, N)) ==#[k] append(map_f(M), map_f(N));
-{
-  // this time, try doing the 'if' inside the 'match' (instead of the other way around)
-  match (M) {
-    case Nil =>
-    case Cons(x, M') =>
-      if (k != 0) {
-        Theorem1_Ind(k-1, M', N);
-      }
-  }
-}
+{/* TODO */ }
 lemma Theorem1_AutoInd(k: nat, M: Stream<X>, N: Stream<X>)
   ensures map_f(append(M, N)) ==#[k] append(map_f(M), map_f(N));
-{
-}
+{/* TODO */ }
 lemma Theorem1_AutoForall()
-{
-  // assert forall k: nat, M, N :: map_f(append(M, N)) ==#[k] append(map_f(M), map_f(N));  // TODO: this is not working yet, apparently
-}
+{/* TODO */ }
 
 // append NIL M = M
 lemma Theorem2(M: Stream<X>)
   ensures append(Nil, M) == M;
-{
-  // trivial
-}
+{/* TODO */ }
 
 // append M NIL = M
 greatest lemma Theorem3(M: Stream<X>)
   ensures append(M, Nil) == M;
-{
-  match (M) {
-    case Nil =>
-    case Cons(x, N) =>
-      Theorem3(N);
-  }
-}
+{/* TODO */ }
 greatest lemma Theorem3_Alt(M: Stream<X>)
   ensures append(M, Nil) == M;
-{
-  if (M.Cons?) {
-    Theorem3_Alt(M.tail);
-  }
-}
+{/* TODO */ }
 
 // append M (append N P) = append (append M N) P
 greatest lemma Theorem4(M: Stream<X>, N: Stream<X>, P: Stream<X>)
   ensures append(M, append(N, P)) == append(append(M, N), P);
-{
-  match (M) {
-    case Nil =>
-    case Cons(x, M') =>
-      Theorem4(M', N, P);
-  }
-}
+{/* TODO */ }
 greatest lemma Theorem4_Alt(M: Stream<X>, N: Stream<X>, P: Stream<X>)
   ensures append(M, append(N, P)) == append(append(M, N), P);
-{
-  if (M.Cons?) {
-    Theorem4_Alt(M.tail, N, P);
-  }
-}
+{/* TODO */ }
 
 // ----- Flatten
 
@@ -246,12 +175,7 @@ ghost function Prepend<T>(x: T, M: Stream<Stream>): Stream<Stream>
 
 greatest lemma Prepend_Lemma<T>(x: T, M: Stream<Stream>)
   ensures StreamOfNonEmpties(Prepend(x, M));
-{
-  match M {
-    case Nil =>
-    case Cons(s, N) =>  Prepend_Lemma(x, N);
-  }
-}
+{/* TODO */ }
 
 lemma Theorem_Flatten<T>(M: Stream<Stream>, startMarker: T)
   ensures
@@ -259,10 +183,7 @@ lemma Theorem_Flatten<T>(M: Stream<Stream>, startMarker: T)
                                           // but until (co-)method can be called from functions,
                                           // this condition is used as an antecedent here
     FlattenStartMarker(M, startMarker) == FlattenNonEmpties(Prepend(startMarker, M));
-{
-  Prepend_Lemma(startMarker, M);
-  Lemma_Flatten(Nil, M, startMarker);
-}
+{/* TODO */ }
 
 greatest lemma Lemma_Flatten<T>(prefix: Stream, M: Stream<Stream>, startMarker: T)
   ensures
@@ -270,82 +191,14 @@ greatest lemma Lemma_Flatten<T>(prefix: Stream, M: Stream<Stream>, startMarker: 
                                           // but until (co-)method can be called from functions,
                                           // this condition is used as an antecedent here
     PrependThenFlattenStartMarker(prefix, M, startMarker) == PrependThenFlattenNonEmpties(prefix, Prepend(startMarker, M));
-{
-  Prepend_Lemma(startMarker, M);
-  match (prefix) {
-    case Cons(hd, tl) =>
-    Lemma_Flatten(tl, M, startMarker);
-    case Nil =>
-      match (M) {
-        case Nil =>
-        case Cons(s, N) =>
-          if (*) {
-            // This is all that's needed for the proof
-            Lemma_Flatten(s, N, startMarker);
-          } else {
-            // ...but here are some calculations that try to show more of what's going on
-            // (It would be nice to have ==#[...] available as an operator in calculations.)
-
-            // massage the LHS:
-            calc {
-              PrependThenFlattenStartMarker(prefix, M, startMarker);
-            ==  // def. PrependThenFlattenStartMarker
-              Cons(startMarker, PrependThenFlattenStartMarker(s, N, startMarker));
-            }
-            // massage the RHS:
-            calc {
-              PrependThenFlattenNonEmpties(prefix, Prepend(startMarker, M));
-            ==  // M == Cons(s, N)
-              PrependThenFlattenNonEmpties(prefix, Prepend(startMarker, Cons(s, N)));
-            ==  // def. Prepend
-              PrependThenFlattenNonEmpties(prefix, Cons(Cons(startMarker, s), Prepend(startMarker, N)));
-            ==  // def. PrependThenFlattenNonEmpties
-              Cons(Cons(startMarker, s).head, PrependThenFlattenNonEmpties(Cons(startMarker, s).tail, Prepend(startMarker, N)));
-            ==  // Cons, head, tail
-              Cons(startMarker, PrependThenFlattenNonEmpties(s, Prepend(startMarker, N)));
-            }
-
-            // all together now:
-            calc {
-              PrependThenFlattenStartMarker(prefix, M, startMarker) ==#[_k] PrependThenFlattenNonEmpties(prefix, Prepend(startMarker, M));
-              { // by the calculation above, we have:
-                assert PrependThenFlattenStartMarker(prefix, M, startMarker) == Cons(startMarker, PrependThenFlattenStartMarker(s, N, startMarker)); }
-              Cons(startMarker, PrependThenFlattenStartMarker(s, N, startMarker)) ==#[_k] PrependThenFlattenNonEmpties(prefix, Prepend(startMarker, M));
-              { // and by the other calculation above, we have:
-                assert PrependThenFlattenNonEmpties(prefix, Prepend(startMarker, M)) == Cons(startMarker, PrependThenFlattenNonEmpties(s, Prepend(startMarker, N))); }
-              Cons(startMarker, PrependThenFlattenStartMarker(s, N, startMarker)) ==#[_k] Cons(startMarker, PrependThenFlattenNonEmpties(s, Prepend(startMarker, N)));
-            ==  // def. of ==#[_k] for _k != 0
-              startMarker == startMarker &&
-              PrependThenFlattenStartMarker(s, N, startMarker) ==#[_k-1] PrependThenFlattenNonEmpties(s, Prepend(startMarker, N));
-              { Lemma_Flatten(s, N, startMarker);
-                // the postcondition of the call we just made (which invokes the co-induction hypothesis) is:
-                assert PrependThenFlattenStartMarker(s, N, startMarker) ==#[_k-1] PrependThenFlattenNonEmpties(s, Prepend(startMarker, N));
-              }
-              true;
-            }
-          }
-      }
-  }
-}
+{/* TODO */ }
 
 greatest lemma Lemma_FlattenAppend0<T>(s: Stream, M: Stream<Stream>, startMarker: T)
   ensures PrependThenFlattenStartMarker(s, M, startMarker) == append(s, PrependThenFlattenStartMarker(Nil, M, startMarker));
-{
-  match (s) {
-    case Nil =>
-    case Cons(hd, tl) =>
-      Lemma_FlattenAppend0(tl, M, startMarker);
-  }
-}
+{/* TODO */ }
 
 greatest lemma Lemma_FlattenAppend1<T>(s: Stream, M: Stream<Stream>)
   requires StreamOfNonEmpties(M);
   ensures PrependThenFlattenNonEmpties(s, M) == append(s, PrependThenFlattenNonEmpties(Nil, M));
-{
-  match (s) {
-    case Nil =>
-    case Cons(hd, tl) =>
-      Lemma_FlattenAppend1(tl, M);
-  }
-}
+{/* TODO */ }
 

@@ -7,12 +7,7 @@ predicate IsLessThanSuccesor(i:int)
 }
 
 lemma LemmaWithoutTriggerOnForallStatement()
-{
-  forall i
-    ensures IsLessThanSuccesor(i);
-  {
-  }
-}
+{/* TODO */ }
 
 
 

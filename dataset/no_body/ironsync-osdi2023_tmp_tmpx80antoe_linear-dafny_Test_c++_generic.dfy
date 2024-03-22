@@ -14,34 +14,18 @@ class Test<T> {
 class UseTest<T> {
   constructor () {}
   method DoSomething(t:Test<T>)
-  {
-    var x:Test<T> := t;
-  }
+  {/* TODO */ }
 }
 
 
 datatype Err<V> = Fail(b:bool) | Ok(value:V)
 method ErrTest() returns (e:Err<bool>)
-{
-  return Fail(false);
-}
+{/* TODO */ }
 
 datatype Option<V> = None | Some(value:V)
 
 method GenericIO<A>(a:A) returns (a':A)
-{
-  a' := a;
-}
+{/* TODO */ }
 
-method Main() {
-  var t := new Test(true);
-  var u := new UseTest();
-  u.DoSomething(t);
-
-  // Test equality on generic datatypes
-  var five:uint64 := 5;
-  var x := Some(five);
-  var y := Some(five);
-  var b := x == y;
-}
+method Main() {/* TODO */ }
 

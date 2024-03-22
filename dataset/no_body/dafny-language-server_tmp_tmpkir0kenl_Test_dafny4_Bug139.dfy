@@ -4,14 +4,7 @@
 datatype List = Nil | Cons(int, List)
 
 method R(xs: List)
-{
-  var a: int;
-  var b: int;
-  match xs
-  case Nil =>
-  case Cons(a, Nil()) =>  // this 'a' is allowed
-  case Cons(x, Cons(b, tail)) =>  // this 'b' (which is in a nested position) generates an error
-}
+{/* TODO */ }
 
 function F(xs: List): int
 {

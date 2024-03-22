@@ -51,5 +51,5 @@ lemma flattenStmt_correct_aux_lemma6<K(!new), V>(
     requires Subset(mvs0, Diff(fvn, fvngs'))
     requires Subset(mvs, Diff(fvngs, fvn))
     ensures Extends(finalL, initialH)
-{}
+{/* TODO */ }
 

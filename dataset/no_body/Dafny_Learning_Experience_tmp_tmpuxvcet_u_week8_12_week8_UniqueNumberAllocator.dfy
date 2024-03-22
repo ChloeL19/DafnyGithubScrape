@@ -18,7 +18,7 @@ class UniqueNumberAllocator {
     method Allocate() returns (n:nat)
         requires Valid()
         modifies this
-        ensures Valid() && n !in old(used) && used == old(used)+ {n}
+        ensures Valid() && n !in old(used) && used == old(used)+ {/* TODO */ }
     {
         n := next;
         next:= next+1;
@@ -28,7 +28,7 @@ class UniqueNumberAllocator {
     method Reset()
         requires Valid()
         modifies this
-        ensures Valid() && used == {}
+        ensures Valid() && used == {/* TODO */ }
     {
         next := 0;
         used := {};
@@ -45,15 +45,4 @@ class UniqueNumberAllocator {
    
 }
 
-method Main() {
-    var m:= new UniqueNumberAllocator();
-    m.Reset();
-   // var n := m.Allocate();
-    //n:= m.Allocate();
-    //n:=m.Allocate();
-    //n:=m.Allocate();
-    var sett := m.GetUsed();
-    print "(m.used )Checksum is " ,sett,"\n";
-    print "(m.used )Checksum is " ,m.next,"\n";
-
-}
+method Main() {/* TODO */ }

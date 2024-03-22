@@ -52,7 +52,7 @@ lemma {:axiom} AbstractionInit(v: Code.Variables)
   ensures Inv(v)
   ensures Spec.Init(Abstraction(v))
 
-lemma {:axiom} AbstractionInductive(v: Code.Variables, v': Code.Variables, ev: Event)
+lemma {/* TODO */ } AbstractionInductive(v: Code.Variables, v': Code.Variables, ev: Event)
   requires Inv(v)
   requires Code.Next(v, v', ev)
   ensures Inv(v')
@@ -64,14 +64,7 @@ lemma InvAt(tr: nat -> Event, ss: nat -> Code.Variables, i: nat)
   requires Code.Init(ss(0))
   requires forall k:nat :: Code.Next(ss(k), ss(k + 1), tr(k))
   ensures Inv(ss(i))
-{
-  if i == 0 {
-    AbstractionInit(ss(0));
-  } else {
-    InvAt(tr, ss, i - 1);
-    AbstractionInductive(ss(i - 1), ss(i), tr(i - 1));
-  }
-}
+{/* TODO */ }
 
 // RefinementTo is a helper lemma to prove refinement inductively (for a
 // specific sequence of states).
@@ -81,39 +74,12 @@ lemma RefinementTo(tr: nat -> Event, ss: nat -> Code.Variables, i: nat)
   ensures
     var ss' := (j: nat) => Abstraction(ss(j));
     && forall n: nat | n < i :: Spec.Next(ss'(n), ss'(n + 1), tr(n))
-{
-  if i == 0 {
-    return;
-  } else {
-    var ss' := (j: nat) => Abstraction(ss(j));
-    RefinementTo(tr, ss, i - 1);
-    AbstractionInductive(ss(i - 1), ss(i), tr(i - 1));
-  }
-}
+{/* TODO */ }
 
 // Refinement is the key property we use the abstraction and forward simulation
 // to prove.
 lemma Refinement(tr: nat -> Event)
   requires Code.IsBehavior(tr)
   ensures Spec.IsBehavior(tr)
-{
-  var ss: nat -> Code.Variables :|
-    && Code.Init(ss(0))
-    && forall n: nat :: Code.Next(ss(n), ss(n + 1), tr(n));
-  forall i: nat
-    ensures Inv(ss(i)) {
-    InvAt(tr, ss, i);
-  }
-
-  var ss': nat -> Spec.Variables :=
-    (i: nat) => Abstraction(ss(i));
-  assert Spec.Init(ss'(0)) by {
-    AbstractionInit(ss(0));
-  }
-  forall n: nat
-    ensures Spec.Next(ss'(n), ss'(n + 1), tr(n))
-  {
-    RefinementTo(tr, ss, n+1);
-  }
-}
+{/* TODO */ }
 

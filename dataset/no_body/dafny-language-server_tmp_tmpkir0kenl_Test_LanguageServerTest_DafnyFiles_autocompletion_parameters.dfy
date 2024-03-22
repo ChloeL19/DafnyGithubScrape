@@ -3,21 +3,12 @@ class C {
       var c := 1;
    }
 
-   method noParam() {
-   }
-   method oneParam(a: int) {
-   }
-   method twoParam(a: int, b: int) {
-   }
+   method noParam() {/* TODO */ }
+   method oneParam(a: int) {/* TODO */ }
+   method twoParam(a: int, b: int) {/* TODO */ }
   }
 
-method Main() {
-   var a := new C();
-   // a.
-   
-}
+method Main() {/* TODO */ }
 
-method MyMethod(a: int, b: int, c: int){
-   /* do somethind */
-}
+method MyMethod(a: int, b: int, c: int){/* TODO */ }
 

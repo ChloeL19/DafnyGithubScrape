@@ -3,15 +3,7 @@
 method simple(y: int) returns (x: int) 
   requires y==6;
   ensures x==7;
-{
-    /* (| y = 6 |)  //This is from the requires statement.*/
-    
-    /* (| y + 1 = 7 |) - implied (a) */ assert y+1 == 7;
-    
-    x := y + 1;
-    
-    /* (| x = 7 |) - assignment //This is from the ensures statement. */
-}
+{/* TODO */ }
 
 /* Proof of implied (a): 
     Let y = 6.

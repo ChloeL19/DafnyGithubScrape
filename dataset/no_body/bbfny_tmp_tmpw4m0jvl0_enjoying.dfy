@@ -3,34 +3,20 @@
 method MultipleReturns(x: int, y: int) returns (more: int, less: int)
   requires 0 < y
   ensures less < x < more
-{
-  more := x + y;
-  less := x - y;
-}
+{/* TODO */ }
 
 method Max(a: int, b: int) returns (c: int)
   ensures a <= c && b <= c
   ensures a == c || b == c
-{
-  if a > b {
-    c := a;
-  } else { c := b; }
-}
+{/* TODO */ }
 
-method Testing() {
-  var x := Max(3,15);
-  assert x >= 3 && x >= 15;
-  assert x == 15;
-}
+method Testing() {/* TODO */ }
 
 function max(a: int, b: int): int
 {
   if a > b then a else b
 }
-method Testing'() {
-  assert max(1,2) == 2;
-  assert forall a,b : int :: max (a,b) == a || max (a,b) == b;
-}
+method Testing'() {/* TODO */ }
 
 function abs(x: int): int
 {
@@ -38,20 +24,10 @@ function abs(x: int): int
 }
 method Abs(x: int) returns (y: int)
   ensures y == abs(x)
-{
-  return abs(x);
-}
+{/* TODO */ }
 
 method m(n: nat)
-{
-  var i := 0;
-  while i != n
-    invariant 0 <= i <= n 
-  {
-    i := i + 1;
-  }
-  assert i == n;
-}
+{/* TODO */ }
 
 function fib(n: nat): nat
 {
@@ -63,37 +39,13 @@ function fib(n: nat): nat
 method Find(a: array<int>, key: int) returns (index: int)
   ensures 0 <= index ==> index < a.Length && a[index] == key
   ensures index < 0 ==> forall k :: 0 <= k < a.Length ==> a[k] != key
-{
-  var i := 0;
-  while i < a.Length
-    invariant 0 <= i <= a.Length
-    invariant forall k :: 0 <= k < i ==> a[k] != key
-  {
-    if a[i] == key {return i;}
-    i := i+1;
-  }
-  assert i == a.Length;
-  return -1;
-}
+{/* TODO */ }
 
 method FindMax(a: array<int>) returns (i: int)
   requires a.Length >= 1 
   ensures 0 <= i < a.Length
   ensures forall k :: 0 <= k < a.Length ==> a[k] <= a[i]
-{
-  i := 0;
-  var max := a[i];
-  var j := 1;
-  while j < a.Length 
-    invariant 0 < j <= a.Length
-    invariant i < j
-    invariant max == a[i]
-    invariant forall k :: 0 <= k < j ==> a[k] <= max
-  {
-    if max < a[j] { max := a[j]; i := j; }
-    j := j+1;
-  }
-}
+{/* TODO */ }
 predicate sorted(a: array<int>)
   reads a
 {

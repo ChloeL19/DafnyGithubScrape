@@ -16,18 +16,11 @@ by method
   var f := 1;
   for i := 1 to n + 1 
     invariant f == fact(i-1)
-  {
-    f := f * i;
-  }
+  {/* TODO */ }
   return f;
 }
 
 // Statically checked (proved) test cases!    
 method testFact()
-{
-  assert fact(0) == 1;
-  assert fact(1) == 1;
-  assert fact(2) == 2;
-  assert fact(3) == 6;
- }
+{/* TODO */ }
 

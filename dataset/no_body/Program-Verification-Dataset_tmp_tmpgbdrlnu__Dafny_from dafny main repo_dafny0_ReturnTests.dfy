@@ -6,56 +6,32 @@ class N
    var i: int;
    method newN(n: N)
       modifies this, n;
-   {
-      n.i := 1;
-      i := 1;
-   }
+   {/* TODO */ }
    method safe(n: N)
       modifies this;
-   {
-      i := n.i;
-   }
+   {/* TODO */ }
 }
 
 method m(v: int, n: N) returns (r: int)
    modifies n;
    ensures r == v;
-{
-   r := v; // implict return still works.
-}
+{/* TODO */ }
 
 method testing1() returns (a: int, b: set<int>)
-{
-   return 1, {1, 2, 3}; // type checking
-}
+{/* TODO */ }
 method testing2() returns (a: int, b: int)
    ensures a == 1 && b == 2;
-{
-   a, b := 2, 1;
-   return b, a; // test of parallel assignment.
-}
+{/* TODO */ }
 method testing3() returns (a: int, b: int)
    ensures a == 1 && b == 2;
-{
-   a, b := 2, 1; // these are wrong
-   if (true)
-   {
-      var a, b := 3, 4;
-      return 1, 2;// return updates non-shadowed, formal parameters correctly
-   }
-}
+{/* TODO */ }
 
 method testing4(nnn: N) returns (n: N)
-{
-   return new N.safe(nnn); // only modifies 'this', which is the fresh N
-}
+{/* TODO */ }
 
 method testing5() returns (r: int)
    ensures r == 2;
-{
-   r := 2;
-   return; // sanity check.
-}
+{/* TODO */ }
 
 iterator yieldTesting() yields (a: int, b: int)
    yield ensures a == 1 && b == 2;

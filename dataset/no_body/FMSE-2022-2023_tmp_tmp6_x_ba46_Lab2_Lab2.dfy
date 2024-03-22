@@ -14,11 +14,7 @@ datatype Nat = Zero | S(Pred: Nat)
  */
 lemma SIsInjective(x: Nat, y: Nat)
     ensures S(x) == S(y) ==> x == y
-{
-    assume S(x) == S(y);
-    assert S(x).Pred == S(y).Pred;
-    assert x == y;
-}
+{/* TODO */ }
 
 // Exercise (a''): Zero is different from successor(x), for any x
 /*
@@ -26,9 +22,7 @@ lemma SIsInjective(x: Nat, y: Nat)
  */
 lemma ZeroIsDifferentFromSuccessor(n: Nat)
     ensures S(n) != Zero
-{
-    assert S(n).Zero? == false;
-}
+{/* TODO */ }
 
 // Exercise (b): inductively defining the addition of natural numbers
 /*
@@ -53,34 +47,14 @@ function Add(x: Nat, y: Nat) : Nat
  */
  lemma {:induction n} ZeroAddNeutral(n: Nat)
     ensures Add(n, Zero) == Add(Zero, n) == n
-{
-    match n
-        case Zero => {
-            assert Add(n, Zero)
-            == Add(Zero, Zero)
-            == Add(Zero, n)
-            == n;
-        }
-        case S(n') => {
-            assert Add(n, Zero)
-            == Add(S(n'), Zero)
-            == S(n')
-            == Add(Zero, S(n'))
-            == Add(Zero, n)
-            == n;
-        }
-}
+{/* TODO */ }
 
 /*
  * Since Zero is neutral, it is trivial that the order of addition is not of importance.
  */
 lemma {:induction n} ZeroAddCommutative(n: Nat)
     ensures Add(Zero, n) == Add(n, Zero)
-{
-    assert Add(Zero, n)
-    == n 
-    == Add(n, Zero);
-}
+{/* TODO */ }
 
 /*
  * Since now the base case of commutative addition with Zero is proven, we can now prove using induction.
@@ -88,11 +62,7 @@ lemma {:induction n} ZeroAddCommutative(n: Nat)
 lemma {:induction x, y} AddCommutative(x: Nat, y: Nat)
     ensures Add(x, y) == Add(y, x)
     decreases x, y
-{
-    match x
-        case Zero => ZeroAddCommutative(y);
-        case S(x') => AddCommutative(x', y);
-}
+{/* TODO */ }
 
 // Exercise (c''): proving that the addition is associative
 /*
@@ -103,14 +73,7 @@ lemma {:induction x, y} AddCommutative(x: Nat, y: Nat)
  */
 lemma {:induction x, y} ZeroAddAssociative(x: Nat, y: Nat)
     ensures Add(Add(Zero, x), y) == Add(Zero, Add(x, y))
-{
-    ZeroAddNeutral(x);
-    
-    assert Add(Add(Zero, x), y)
-    == // ZeroAddNeutral
-    Add(x, y)
-    == Add(Zero, Add(x, y));
-}
+{/* TODO */ }
 
 /*
  * Since now the base case of commutative addition with Zero is proven, we can now prove using induction.
@@ -118,11 +81,7 @@ lemma {:induction x, y} ZeroAddAssociative(x: Nat, y: Nat)
 lemma {:induction x, y} AddAssociative(x: Nat, y: Nat, z: Nat)
     ensures Add(Add(x, y), z) == Add(x, Add(y, z))
     decreases z
-{
-    match z
-        case Zero => ZeroAddAssociative(Add(x, y), Zero);
-        case S(z') => AddAssociative(x, y, z');
-}
+{/* TODO */ }
 
 // Exercise (d): defining a predicate lt(m, n) that holds when m is less than n
 /*
@@ -149,13 +108,7 @@ lemma {:induction y, z} LessThanIsTransitiveWithZero(y: Nat, z: Nat)
     requires LessThan(Zero, y)
     requires LessThan(y, z)
     ensures LessThan(Zero, z)
-{
-    if !LessThan(Zero, z) {
-        assert z != Zero;
-        assert Zero.S?;
-        assert false;
-    }
-}
+{/* TODO */ }
 
 /*
  * Since now the base case of transitive LessThan with Zero is proven, we can now prove using induction.
@@ -167,13 +120,7 @@ lemma {:induction x, y, z} LessThanIsTransitive(x: Nat, y: Nat, z: Nat)
     requires LessThan(y, z)
     ensures LessThan(x, z)
     decreases x
-{
-    match x
-        case Zero => LessThanIsTransitiveWithZero(y, z);
-        case S(x') => match y
-                          case S(y') => match z    
-                                            case S(z') => LessThanIsTransitive(x', y', z');
-}
+{/* TODO */ }
 
 /// Task 3: Define the parametric lists as an algebraic data type
 /*
@@ -221,28 +168,7 @@ function Concatenation(l1: List<Nat>, l2: List<Nat>) : List<Nat>
 lemma {:induction l1, l2} SizeOfConcatenationIsSumOfSizes(l1: List<Nat>, l2: List<Nat>)
     ensures Size(Concatenation(l1, l2)) == Add(Size(l1), Size(l2))
     decreases l1, l2
-{
-    match l1
-        case Nil => {
-            ZeroAddNeutral(Size(l2));
-
-            assert Size(Concatenation(l1, l2))
-            == Size(Concatenation(Nil, l2))
-            == Size(l2)
-            == // ZeroAddNeutral
-            Add(Zero, Size(l2)) 
-            == Add(Size(l1), Size(l2));
-        }
-        case Append(_, tail1) => match l2
-                                     case Nil => {
-                                        assert Size(Concatenation(l1, l2))
-                                        == Size(Concatenation(l1, Nil))
-                                        == Size(l1)
-                                        == Add(Size(l1), Zero)
-                                        == Add(Size(l1), Size(l2));
-                                     }
-                                     case Append(_, tail2) => SizeOfConcatenationIsSumOfSizes(tail1, tail2);
-}
+{/* TODO */ }
 
 // Exercise (d): defining a function reversing a list
 /*
@@ -269,21 +195,7 @@ function ReverseList(l: List<Nat>) : List<Nat>
 lemma {:induction l, n} ReversalOfConcatenationWithHead(l: List<Nat>, n: Nat)
     ensures ReverseList(Concatenation(l, Append(n, Nil))) == Append(n, ReverseList(l))
     decreases l, n
-{
-    match l
-        case Nil => {
-            assert ReverseList(Concatenation(l, Append(n, Nil)))
-            == ReverseList(Concatenation(Nil, Append(n, Nil)))
-            == ReverseList(Append(n, Nil))
-            == Concatenation(ReverseList(Append(n, Nil).tail), Append(Append(n, Nil).head, Nil))
-            == Concatenation(ReverseList(Nil), Append(n, Nil))
-            == Concatenation(Nil, Append(n, Nil))
-            == Append(n, Nil)
-            == Append(n, l)
-            == Append(n, ReverseList(l));
-        }
-        case Append(head, tail) => ReversalOfConcatenationWithHead(tail, n);
-}
+{/* TODO */ }
 
 /*
  * The induction starts with the base case, which is trivial.
@@ -293,25 +205,4 @@ lemma {:induction l, n} ReversalOfConcatenationWithHead(l: List<Nat>, n: Nat)
  */
 lemma {:induction l} DoubleReversalResultsInInitialList(l: List<Nat>)
     ensures l == ReverseList(ReverseList(l))
-{
-    match l
-        case Nil => {
-            assert ReverseList(ReverseList(l))
-            == ReverseList(ReverseList(Nil))
-            == ReverseList(Nil)
-            == Nil;
-
-            assert l == ReverseList(ReverseList(l));
-        }
-        case Append(head, tail) => {
-            ReversalOfConcatenationWithHead(ReverseList(tail), head);
-
-            assert ReverseList(ReverseList(l))
-            == ReverseList(ReverseList(Append(head, tail)))
-            == ReverseList(Concatenation(ReverseList(tail), Append(head, Nil)))
-            == // ReversalOfConcatenationWithHead
-            Append(head, ReverseList(ReverseList(tail)))
-            == Append(head, tail)
-            == l;
-        }
-}
+{/* TODO */ }

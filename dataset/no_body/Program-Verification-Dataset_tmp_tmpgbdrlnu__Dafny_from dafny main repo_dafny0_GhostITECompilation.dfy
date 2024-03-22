@@ -12,8 +12,7 @@ function F(x: nat, ghost y: nat): nat
 
 lemma AboutF(x: nat, y: nat)
   ensures F(x, y) == 13 * x
-{
-}
+{/* TODO */ }
 
 function G(x: nat, ghost y: nat): nat
 {
@@ -53,10 +52,5 @@ function {:verify false} K(x: int, ghost y: nat): int {
   K(x, y - 1)
 }
 
-method Main() {
-  print F(5, 3), "\n"; // 65
-  print G(5, 3), "\n"; // 65
-  print H(65, 3), "\n"; // 65
-  print J(65), "\n"; // 65
-}
+method Main() {/* TODO */ }
 

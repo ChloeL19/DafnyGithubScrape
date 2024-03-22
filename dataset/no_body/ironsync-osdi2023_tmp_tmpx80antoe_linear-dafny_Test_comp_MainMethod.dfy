@@ -48,27 +48,27 @@ class Cl<X(0)> {
   var p: plural
   var c: real
   var x: X
-  static method Static() { print "Cl: static\n"; }
-  method Instance() { print "Cl: ", p, " ", c, " ", x, "\n"; }
+  static method Static() {/* TODO */ }
+  method Instance() {/* TODO */ }
 }
 
 trait Tr<X> {
-  static method Static() { print "Tr: static\n"; }
+  static method Static() {/* TODO */ }
 }
 
 datatype Dt<X> = Dt0(plural, X) | Dt1(real, X) {
-  static method Static() { print "Dt: static\n"; }
-  method Instance() { print "Dt: ", this, "\n"; }
+  static method Static() {/* TODO */ }
+  method Instance() {/* TODO */ }
 }
 
 codatatype Co<X> = CoMore(plural, X, Co) {
-  static method Static() { print "Co: static\n"; }
-  method Instance() { print "Co: ", this, "\n"; }
+  static method Static() {/* TODO */ }
+  method Instance() {/* TODO */ }
 }
 
 newtype Nt = x | -0x8000_0000 <= x <= 0x8000_0000 {
   const c: plural
-  static method Static() { print "Nt: static\n"; }
-  method Instance() { print "Nt: ", this, " ", c, "\n"; }
+  static method Static() {/* TODO */ }
+  method Instance() {/* TODO */ }
 }
 

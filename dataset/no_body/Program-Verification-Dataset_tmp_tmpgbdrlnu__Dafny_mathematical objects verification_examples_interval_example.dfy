@@ -28,12 +28,7 @@ predicate empty(i: Interval) {
 lemma empty_ok(i: Interval)
   // this is the sort of property that's easy to express logically but hard to test for
   ensures empty(i) <==> !exists r :: contains(i, r)
-{
-  if empty(i) {
-  } else {
-    assert contains(i, i.lo);
-  }
-}
+{/* TODO */ }
 
 // min and max are just helper functions for the implementation
 function min(r1: real, r2: real): real {
@@ -57,8 +52,7 @@ function intersect(i1: Interval, i2: Interval): Interval {
 // `contains` as the specification.
 lemma intersect_ok(i1: Interval, i2: Interval)
   ensures forall r :: contains(intersect(i1, i2), r) <==> contains(i1, r) && contains(i2, r)
-{
-}
+{/* TODO */ }
 
 /* Next we'll define the union of intervals. This is more complicated because if
  * the intervals have no overlap, a single interval can't capture their union
@@ -72,15 +66,7 @@ predicate overlap(i1: Interval, i2: Interval) {
 
 lemma overlap_ok(i1: Interval, i2: Interval)
   ensures overlap(i1, i2) <==> exists r :: contains(i1, r) && contains(i2, r)
-{
-  if overlap(i1, i2) {
-    if i1.lo >= i2.lo {
-      assert contains(i2, i1.lo);
-    } else {
-      assert contains(i1, i2.lo);
-    }
-  }
-}
+{/* TODO */ }
 
 // We'll give this function a precondition so that it always does the right thing.
 function union(i1: Interval, i2: Interval): Interval
@@ -95,8 +81,7 @@ function union(i1: Interval, i2: Interval): Interval
 lemma union_ok(i1: Interval, i2: Interval)
   requires overlap(i1, i2)
   ensures forall r :: contains(union(i1, i2), r) <==> contains(i1, r) || contains(i2, r)
-{
-}
+{/* TODO */ }
 
 // Though not used elsewhere here, if two intervals overlap its possible to show
 // that there's a common real contained in both of them. We also show off new
@@ -105,13 +90,7 @@ lemma union_ok(i1: Interval, i2: Interval)
 lemma overlap_witness(i1: Interval, i2: Interval) returns (r: real)
   requires overlap(i1, i2)
   ensures contains(i1, r) && contains(i2, r)
-{
-  if i1.lo >= i2.lo {
-    r := i1.lo;
-  } else {
-    r := i2.lo;
-  }
-}
+{/* TODO */ }
 
 /* One extension you might try is adding is an operation to check if an interval
  * is contained in another and proving that correct. Or, try implementing a

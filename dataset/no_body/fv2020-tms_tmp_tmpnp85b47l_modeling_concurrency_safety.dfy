@@ -57,33 +57,21 @@ class TicketSystem
     requires Valid() && p in P && cs[p] == Thinking  // Control process precondition
     modifies this  // Depends on the fields on the current class
     ensures Valid()  // Postcondition
-  {
-    t, ticket := t[p := ticket], ticket + 1;  // Philosopher gets current ticket, next ticket's number increases
-    cs := cs[p := Hungry];  // Philosopher's state changes to Hungry
-  }
+  {/* TODO */ }
 
   // A Philosopher is Hungry and enters the kitchen
   method Enter(p: Process)
     requires Valid() && p in P && cs[p] == Hungry  // Control process precondition
     modifies this  // Depends on the fields on the current class
     ensures Valid()  // Postcondition
-  {
-    if t[p] == serving  // The kitchen is available for this Philosopher
-    {
-      cs := cs[p := Eating];  // Philosopher's state changes to Eating
-    }
-  }
+  {/* TODO */ }
 
   // A Philosopher is done Eating and leaves the kitchen
   method Leave(p: Process)
     requires Valid() && p in P && cs[p] == Eating  // Control process precondition
     modifies this  // Depends on the fields on the current class
     ensures Valid()  // Postcondition
-  {
-    //assert t[p] == serving;  // Ticket held by p is equal to serving
-    serving := serving + 1;  // Kitchen is ready to serve the next ticket holder
-    cs := cs[p := Thinking];  // Philosopher's state changes to Thinking
-  }
+  {/* TODO */ }
 
   // Ensures that no two processes are in the same state
   lemma MutualExclusion(p: Process, q: Process)
@@ -92,9 +80,7 @@ class TicketSystem
     requires cs[p] == Eating && cs[q] == Eating
     // Conclusion/Proof goal
     ensures p == q
-  {
-
-  }
+  {/* TODO */ }
 }
 
 /*
@@ -103,7 +89,7 @@ class TicketSystem
  * Part 6.1 for alternatives
  */
 method Run(processes: set<Process>)
-  requires processes != {}  // Cannot schedule no processes
+  requires processes != {/* TODO */ }  // Cannot schedule no processes
   decreases *  // Needed so that the loop omits termination checks
 {
   var ts := new TicketSystem(processes);
@@ -130,7 +116,7 @@ method Run(processes: set<Process>)
  * Part 6.2
  */
 method RunFromSchedule(processes: set<Process>, schedule: nat -> Process)
-  requires processes != {}
+  requires processes != {/* TODO */ }
   requires forall n :: schedule(n) in processes
   decreases *
 {

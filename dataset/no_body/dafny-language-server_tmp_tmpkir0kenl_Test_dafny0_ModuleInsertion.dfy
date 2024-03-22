@@ -2,12 +2,7 @@
 // RUN: %dafny /env:0 /rprint:- /compile:3 "%s" >> "%t"
 // RUN: %diff "%s.expect" "%t"
 
-method Main() {
-  Outer.Test();
-  XY.Test();
-  U.V.Test();
-  print MyModule.Q.W.E.R.T.Y.h, "\n";
-}
+method Main() {/* TODO */ }
 
 // ----- Outer
 
@@ -16,9 +11,7 @@ module Outer {
     import D
     const c := 2 + D.d
   }
-  method Test() {
-    print A.a, " ", B.b, " ", C.c, " ", D.d, "\n";  // 6 1 5 3
-  }
+  method Test() {/* TODO */ }
 }
 
 module Outer.A {
@@ -46,9 +39,7 @@ module XY.X {
 }
 
 module XY {
-  method Test() {
-    print X.m, " ", X.M.n, " ", Y.m, "\n";  // 20 17 22
-  }
+  method Test() {/* TODO */ }
 }
 
 module XY.Y {
@@ -63,9 +54,7 @@ module U.V.W.X {
 
 module U.V {
   const x2 := 14 + W.x1 + W.X.x0
-  method Test() {
-    print W.X.x0, " ", W.x1, " ", x2, "\n";  // 12 144 170
-  }
+  method Test() {/* TODO */ }
 }
 
 module U.V.W {

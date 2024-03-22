@@ -21,25 +21,4 @@ function fib(n: nat): nat
 
 method ComputeFib(n: nat) returns (f: nat)
   ensures f == fib(n);
-{
-  if (n == 0) 
-    { f := 0; }
-  else {
-    var i := 1;
-    var f_2 := 0;
-    var f_1 := 0;
-        f   := 1;    
-    while (i < n) 
-      decreases n - i;
-      invariant i <= n;
-      invariant f_1 == fib(i - 1);
-      invariant f   == fib(i);
-    {
-      f_2 := f_1;
-      f_1 := f; 
-      f   := f_1 + f_2;
-
-      i := i + 1;
-    }
-  }
-}
+{/* TODO */ }

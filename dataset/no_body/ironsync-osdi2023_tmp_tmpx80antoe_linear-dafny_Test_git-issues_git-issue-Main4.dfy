@@ -27,20 +27,20 @@
 
 module A {
   module AA {
-    method Test() { print "Test1\n"; }
+    method Test() {/* TODO */ }
   }
 }
 
 module B {
   class C {
-    static method Test() { print "Test2\n"; }
+    static method Test() {/* TODO */ }
   }
-  method Test() { print "Test3\n"; }
+  method Test() {/* TODO */ }
 }
 
-method Test() { print "Test4\n"; }
+method Test() {/* TODO */ }
 
 class C {
-  static method Test() { print "Test5\n"; }
+  static method Test() {/* TODO */ }
 }
 

@@ -24,18 +24,12 @@ abstract module M0 {
       modifies Repr
       ensures N == old(N) + 1
       ensures Valid() && fresh(Repr - old(Repr))
-    {
-      N := N + 1;
-      modify Repr - {this};
-      assume Valid();  // to be verified in refinement module
-    }
+    {/* TODO */ }
 
     method Get() returns (n: int)
       requires Valid()
       ensures n == N
-    {
-      n :| assume n == N;
-    }
+    {/* TODO */ }
   }
 }
 
@@ -70,31 +64,12 @@ module M1 refines M0 {
     }
 
     method Inc...
-    {
-      ...;
-      modify ... {
-        c.data := c.data + 1;
-      }
-      assert ...;
-    }
+    {/* TODO */ }
 
     method Get...
-    {
-      n := c.data - d.data;
-    }
+    {/* TODO */ }
   }
 }
 
-method Main() {
-  var mx := new M1.Counter.Init();
-  var my := new M1.Counter.Init();
-  assert mx.N == 0 && my.N == 0;
-  mx.Inc();
-  my.Inc();
-  mx.Inc();
-  var nx := mx.Get();
-  var ny := my.Get();
-  assert nx == 2 && ny == 1;
-  print nx, " ", ny, "\n";
-}
+method Main() {/* TODO */ }
 

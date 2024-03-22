@@ -45,23 +45,7 @@ lemma AdditionOfTwoOddsResultsInEven(x: int, y: int)
     requires IsOddNat(x);
     requires IsOddNat(y);
     ensures IsEvenNat(x + y);
-{
-    calc {
-        IsOddNat(x);
-        x % 2 == 1;
-    }
-
-    calc {
-        IsOddNat(y);
-        y % 2 == 1;
-    }
-
-    calc {
-        (x + y) % 2 == 0;
-        IsEvenNat(x + y);
-        true;
-    }
-}
+{/* TODO */ }
 
 /// Task 7
 /*
@@ -90,25 +74,7 @@ lemma AnyPrimeGreaterThanTwoIsOdd(x : int)
     requires x > 2;
     requires IsPrime(x);
     ensures IsOddNat(x);
-{
-    calc {
-        x % 2;
-        {
-            assert forall d :: 2 <= d < x ==> x % d != 0;
-        }
-        1;
-    }
-
-    calc {
-        IsOddNat(x);
-        (x >= 0) && (x % 2 == 1);
-        {
-            assert x > 2;
-        }
-        true && true;
-        true;
-    }
-}
+{/* TODO */ }
 
 /* 
  * Task 9 

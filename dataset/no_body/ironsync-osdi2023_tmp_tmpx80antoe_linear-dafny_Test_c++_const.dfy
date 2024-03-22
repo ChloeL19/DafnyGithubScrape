@@ -6,8 +6,6 @@ module Holder {
 module User {
   import opened Holder
 
-  method Use() {
-    var b := x;
-  }
+  method Use() {/* TODO */ }
 }
 

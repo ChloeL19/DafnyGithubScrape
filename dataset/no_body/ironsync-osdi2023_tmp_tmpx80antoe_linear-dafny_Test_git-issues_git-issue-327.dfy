@@ -32,7 +32,7 @@ module E {
 
 module F {
   import DD = D.A
-  method m() { assert DD.a == 51; }
+  method m() {/* TODO */ }
 }
 
 module G {
@@ -49,10 +49,10 @@ module G {
       import D.A
       import D.A.AA
       import F
-      method m0() { assert AAA.aaa == 50; }
-      method m1() { assert HH.z == 52; }
-      method m2() { assert A.a == 51; }
-      method m3() { assert AA.AAA.aaa == 50; }
+      method m0() {/* TODO */ }
+      method m1() {/* TODO */ }
+      method m2() {/* TODO */ }
+      method m3() {/* TODO */ }
     }
     module K {
     }

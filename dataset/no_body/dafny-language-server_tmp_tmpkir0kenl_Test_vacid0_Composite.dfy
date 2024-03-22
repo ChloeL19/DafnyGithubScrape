@@ -27,7 +27,7 @@ class Composite {
 
   method Init(x: int)
     modifies this
-    ensures Valid({this}) && Acyclic({this}) && val == x && parent == null
+    ensures Valid({/* TODO */ }) && Acyclic({this}) && val == x && parent == null
   {
     parent := null;
     left := null;
@@ -44,11 +44,7 @@ class Composite {
     ensures forall c :: c in S ==> c.left == old(c.left) && c.right == old(c.right) && c.parent == old(c.parent)
     ensures forall c :: c in S && c != this ==> c.val == old(c.val)
     ensures val == x
-  {
-    var delta := x - val;
-    val := x;
-    Adjust(delta, S, S);
-  }
+  {/* TODO */ }
 
   method Add(ghost S: set<Composite>, child: Composite, ghost U: set<Composite>)
     requires this in S && Acyclic(S)
@@ -68,7 +64,7 @@ class Composite {
     // sets child.parent to this:
     ensures child.parent == this
     // leaves everything in S+U valid
-    ensures forall c: Composite {:autotriggers false} :: c in S+U ==> c.Valid(S+U) // We can't generate a trigger for this at the moment; if we did, we would still need to prevent TrSplitExpr from translating c in S+U to S[c] || U[c].
+    ensures forall c: Composite {/* TODO */ } :: c in S+U ==> c.Valid(S+U) // We can't generate a trigger for this at the moment; if we did, we would still need to prevent TrSplitExpr from translating c in S+U to S[c] || U[c].
   {
     if (left == null) {
       left := child;
@@ -89,7 +85,7 @@ class Composite {
     ensures parent == null
     ensures forall c :: c in S ==> c.left == old(c.left) || (old(c.left) == this && c.left == null)
     ensures forall c :: c in S ==> c.right == old(c.right) || (old(c.right) == this && c.right == null)
-    ensures Acyclic({this})
+    ensures Acyclic({/* TODO */ })
   {
     var p := parent;
     parent := null;
@@ -118,59 +114,12 @@ class Composite {
     modifies U`sum
     // everything is valid, including this:
     ensures forall c :: c in S ==> c.Valid(S)
-  {
-    var p: Composite? := this;
-    ghost var T := U;
-    while (p != null)
-      invariant T <= U
-      invariant p == null || p.Acyclic(T)
-      invariant forall c :: c in S && c != p ==> c.Valid(S)
-      invariant p != null ==> p.sum + delta == p.val + (if p.left == null then 0 else p.left.sum) + (if p.right == null then 0 else p.right.sum)
-      invariant forall c :: c in S ==> c.left == old(c.left) && c.right == old(c.right) && c.parent == old(c.parent) && c.val == old(c.val)
-      decreases T
-    {
-      p.sum := p.sum + delta;
-      T := T - {p};
-      p := p.parent;
-    }
-  }
+  {/* TODO */ }
 }
 
 method Main()
-{
-  var c0 := new Composite.Init(57);
+{/* TODO */ }
 
-  var c1 := new Composite.Init(12);
-  c0.Add({c0}, c1, {c1});
-
-  var c2 := new Composite.Init(48);
-
-  var c3 := new Composite.Init(48);
-  c2.Add({c2}, c3, {c3});
-  c0.Add({c0,c1}, c2, {c2,c3});
-
-  ghost var S := {c0, c1, c2, c3};
-  c1.Update(100, S);
-  c2.Update(102, S);
-
-  c2.Dislodge(S);
-  c2.Update(496, S);
-  c0.Update(0, S);
-}
-
-method Harness() {
-  var a := new Composite.Init(5);
-  var b := new Composite.Init(7);
-  a.Add({a}, b, {b});
-  assert a.sum == 12;
-
-  b.Update(17, {a,b});
-  assert a.sum == 22;
-
-  var c := new Composite.Init(10);
-  b.Add({a,b}, c, {c});
-  b.Dislodge({a,b,c});
-  assert b.sum == 27;
-}
+method Harness() {/* TODO */ }
 
 

@@ -50,22 +50,7 @@ module SimpleBDD
     method Eval(s: seq<bool>) returns(b: bool)
       requires valid() && |s| == n
       ensures b == Contents[s]
-    {
-      var node: BDDNode := root;
-      var i := n;
-      assert s[n-i..] == s;
-      while i > 0
-        invariant node.valid()
-        invariant 0 <= i == node.n <= n
-        invariant Contents[s] == node.Contents[s[n-i..]]
-      {
-        assert s[n-i..] == [s[n-i]] + s[n-i+1..];
-        node := if s[n-i] then node.t else node.f;
-        i := i - 1;
-      }
-      assert s[n-i..] == [];
-      b := node.b;
-    }
+    {/* TODO */ }
   }
 }
 

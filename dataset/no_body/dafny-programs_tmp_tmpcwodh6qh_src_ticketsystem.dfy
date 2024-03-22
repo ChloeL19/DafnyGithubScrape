@@ -66,30 +66,19 @@ class TicketSystem {
         requires Valid() && p in P && cs[p] == Thinking
         modifies this
         ensures Valid()
-    {
-        t, ticket := t[p := ticket], ticket + 1; // map update p to ticket, update ticket
-        cs := cs[p := Hungry]; // map update p to Hungry state
-    }
+    {/* TODO */ }
 
     method Enter(p: Process)
         requires Valid() && p in P && cs[p] == Hungry
         modifies this
         ensures Valid()
-    {
-        if t[p] == serving {
-            cs := cs[p := Eating]; // map update p to eating state
-        }
-    }
+    {/* TODO */ }
 
     method Leave(p: Process)
         requires Valid() && p in P && cs[p] == Eating
         modifies this
         ensures Valid()
-    {
-        assert t[p] == serving;
-        serving := serving + 1;
-        cs := cs[p := Thinking];
-    }
+    {/* TODO */ }
 
     // correctness: no two process are in eating state at same time
     // prove that invariant implies condition

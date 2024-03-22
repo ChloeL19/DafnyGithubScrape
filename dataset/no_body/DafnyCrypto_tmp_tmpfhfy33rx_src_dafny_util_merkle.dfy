@@ -118,8 +118,5 @@ module Merkle {
     requires |data| > 0 && i < |data|
     // Verifying the original proof produces the root.
     ensures Verify(Generate(data,i,hash), hash) == Root(data,hash)
-    {
-        // Apparently, Dafny can prove this automatically using its built-in
-        // induction tactic.
-    }
+    {/* TODO */ }
 }

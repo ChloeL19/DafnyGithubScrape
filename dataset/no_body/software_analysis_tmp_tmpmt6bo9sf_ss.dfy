@@ -7,25 +7,7 @@ requires e > s
 ensures min_i >= s 
 ensures min_i < e 
 ensures forall k: int :: s <= k < e ==> a[min_i] <= a[k]
-{
-    min_i := s;
-    var i : int := s;  
-
-    while i < e 
-    decreases e - i // loop variant
-    invariant s <= i <= e
-    invariant s <= min_i < e
-    // unnecessary invariant
-    // invariant i < e ==> min_i <= i 
-    invariant forall k: int :: s <= k < i ==> a[min_i] <= a[k]
-    {
-        if a[i] <= a[min_i] {
-            min_i := i;
-        }
-        i := i + 1;
-    }
-
-}
+{/* TODO */ }
 
 
 
@@ -63,19 +45,4 @@ requires ns.Length >= 0
 ensures is_sorted(ns[..])
 ensures is_permutation2(old(ns[..]), ns[..])
 modifies ns
-{
-    var i: int := 0;
-    var l: int := ns.Length;
-    while i < l
-    decreases l - i
-    invariant 0 <= i <= l
-    invariant is_permutation2(old(ns[..]), ns[..])
-    invariant forall k, kk: int :: 0 <= k < i  && i <= kk < ns.Length ==> ns[k] <= ns[kk] // left els must be lesser than right ones
-    invariant is_sorted(ns[..i])
-    {
-        var min_i: int := find_min_index(ns, i, ns.Length);
-        ns[i], ns[min_i] := ns[min_i], ns[i];
-        i := i + 1;
-    }
-
-}
+{/* TODO */ }

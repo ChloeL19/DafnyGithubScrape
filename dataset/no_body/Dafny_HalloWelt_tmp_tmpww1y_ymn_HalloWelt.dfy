@@ -1,4 +1,2 @@
-method Main() {
-	print "Hallo, Welt!";
-}
+method Main() {/* TODO */ }
 

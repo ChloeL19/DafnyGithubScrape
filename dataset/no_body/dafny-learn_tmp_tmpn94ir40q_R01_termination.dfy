@@ -1,24 +1,8 @@
 method m ()
-{
-    var i := 20;
-    while 0 < i
-        invariant 0 <= i
-        decreases i
-    {
-        i := i - 1;
-    }
-}
+{/* TODO */ }
 
 method m2()
-{
-    var i, n := 0, 20;
-    while i < n
-        invariant 0 <= i <= n
-        decreases n - i
-    {
-        i := i + 1;
-    }
-}
+{/* TODO */ }
 
 // Exercise 11. In the loop above, the invariant i <= n and 
 // the negation of the loop guard allow us to conclude i == n 
@@ -30,15 +14,7 @@ method m2()
 // annotation. Does the program verify? What happened?
 
 method m3()
-{
-    var i, n := 0, 20;
-    while i != n
-        invariant (n - i) >= 0      // answer: add this
-        decreases n - i
-    {
-        i := i + 1;
-    }
-}
+{/* TODO */ }
 
 
 function fib(n: nat): nat

@@ -6,13 +6,7 @@ predicate maxSpec_incorrect(a:int,b:int,c:int)
 
 lemma maxT_correct(a:int,b:int) returns (c:int)
     ensures maxSpec_incorrect(a,b,c)
-{
-    if(a > b){
-        c := a;
-    }else{
-        c := b;
-    }
-}
+{/* TODO */ }
 
 predicate maxSpec_mutat3(a:int,b:int,c:int)
 {
@@ -27,20 +21,20 @@ lemma instance3(a:int, b:int, c:int)
     requires a == b > c
     ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma instance3_inverse(a:int, b:int, c:int)
     requires maxSpec_incorrect(a,b,c)
     requires !maxSpec_mutat3(a,b,c)
     ensures a == b > c
-{}
+{/* TODO */ }
 
 // * The "instance" manually fuzzed from {original} - {mutat}
 lemma instance3_test(a:int, b:int, c:int)
     requires a == b == 2 && c == 1 // invalid input, find bug
     ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 // It does not make sense to compare the efficiency of those two methods!
 // One is fuzzing, the other is testing
@@ -80,54 +74,54 @@ lemma correctness3_test1(a:int, b:int, c:int)
     requires a == 4 && b == 0 && c == 2
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3_test2(a:int, b:int, c:int)
     requires a == 4 && b == 3 && c == 2
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3_test3(a:int, b:int, c:int)
     requires a == 4 && b == 5 && c == 2
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3_test4(a:int, b:int, c:int)
     requires a == 4 && b == 2 && c == 2
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3_test5(a:int, b:int, c:int)
     requires a == 4 && b == 4 && c == 2 // the "bug" case
     ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 // b > a && c != b: it also happens that in this case all cases are invalid
 lemma correctness3_test6(a:int, b:int, c:int)
     requires a == 3 && b == 5 && c == 4
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 lemma correctness3_test7(a:int, b:int, c:int)
     requires a == 3 && b == 5 && c == 0
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 lemma correctness3_test8(a:int, b:int, c:int)
     requires a == 3 && b == 5 && c == 6
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3_test9(a:int, b:int, c:int)
     requires a == 3 && b == 5 && c == 3
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 // * writing tests using the alternative "thinking process" for correctness tests
 // (a > c ==> c == a) && (b > a ==> c == b)
@@ -135,40 +129,40 @@ lemma correctness3'_test1(a:int, b:int, c:int)
     requires a == 4 && b == 2 && c == 1
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3'_test2(a:int, b:int, c:int)
     requires a == 4 && b == 2 && c == 2
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3'_test3(a:int, b:int, c:int)
     requires a == 4 && b == 2 && c == 3
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3'_test4(a:int, b:int, c:int)
     requires a == 2 && b == 4 && c == 1
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3'_test5(a:int, b:int, c:int)
     requires a == 2 && b == 4 && c == 2
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3'_test6(a:int, b:int, c:int)
     requires a == 2 && b == 4 && c == 3
     // ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }
 
 lemma correctness3'_test7(a:int, b:int, c:int)
     requires a == 2 && b == 2 && c == 1 // the "bug" case
     ensures maxSpec_incorrect(a,b,c)
     ensures !maxSpec_mutat3(a,b,c)
-{}
+{/* TODO */ }

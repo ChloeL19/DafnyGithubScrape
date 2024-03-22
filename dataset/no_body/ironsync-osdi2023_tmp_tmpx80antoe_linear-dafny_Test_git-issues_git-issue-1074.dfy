@@ -20,9 +20,7 @@ module A {
 
   method Test(node: Node)
     requires node.Node?
-  {
-    var Node(ch) := node; // this line once crashed the compiler
-  }
+  {/* TODO */ }
 }
 
 module B {
@@ -31,9 +29,7 @@ module B {
 
   method Test(node: Node<int, InnerT<real>>)
     requires node.Node?
-  {
-    var Node(Inner(z)) := node; // this once compiled into malformed code, because the compiler used "int" instead of "InnerT<real>" as the type of Inner(z)
-  }
+  {/* TODO */ }
 }
 
 module C {
@@ -42,8 +38,6 @@ module C {
 
   method Test(node: Node<int>)
     requires node.Node?
-  {
-    var Node(Inner(z)) := node; // this once compiled into malformed code, because the compiler used "X" instead of "InnerT<int>" as the type of Inner(z)
-  }
+  {/* TODO */ }
 }
 

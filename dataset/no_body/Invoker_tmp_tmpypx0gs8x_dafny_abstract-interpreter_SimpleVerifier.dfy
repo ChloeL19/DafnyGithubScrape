@@ -172,14 +172,11 @@ module AbstractEval {
     decreases |ss|-from
     ensures has_valid_jump_targets(ss, from) <==>
             (forall i | from <= i < |ss| :: ss[i].JmpZero? ==> 0 <= i + ss[i].offset as int <= |ss|)
-  {
-  }
+  {/* TODO */ }
 
   lemma has_valid_jump_targets_ok(ss: seq<Stmt>)
     ensures has_valid_jump_targets(ss, 0) <==> valid_jump_targets(ss)
-  {
-    has_valid_jump_targets_ok_helper(ss, 0);
-  }
+  {/* TODO */ }
 }
 
 module AbstractEvalProof {
@@ -203,30 +200,12 @@ module AbstractEvalProof {
     requires state_included(env, abs)
     requires E.expr_eval(env, e).Some?
     ensures reg_included(E.expr_eval(env, e).v, expr_eval(abs, e))
-  {
-    match e {
-      case Add(_, _) => { return; }
-      case Const(_) => { return; }
-      case Sub(r1, r2) => {
-        /* debugging bug in the abstract interpretation */
-        assert reg_included(env(r1), abs.rs(r1));
-        assert reg_included(env(r2), abs.rs(r2));
-        assert env(r1) as int <= abs.rs(r1).hi;
-        assert env(r2) as int >= abs.rs(r2).lo;
-        if env(r1) <= env(r2) {
-          assert E.expr_eval(env, e).v == 0;
-          return;
-        }
-        assert E.expr_eval(env, e).v as int == env(r1) as int - env(r2) as int;
-        return;
-      }
-    }
-  }
+  {/* TODO */ }
 
   lemma stmt_eval_ok(env: E.State, abs: AbstractState, stmt: Stmt)
     requires state_included(env, abs)
     requires E.stmt_step(env, stmt).Some?
     ensures state_included(E.stmt_step(env, stmt).v.0, stmt_eval(abs, stmt).0)
-  {}
+  {/* TODO */ }
 }
 

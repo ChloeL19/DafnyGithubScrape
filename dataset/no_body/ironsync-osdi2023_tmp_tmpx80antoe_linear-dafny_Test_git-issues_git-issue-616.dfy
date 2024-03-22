@@ -15,7 +15,7 @@ module TestBad2 {
 module TestBad3 {
   import TestBad2`Abs
 
-  method test(qa : TestBad2.D1<int>) {}
+  method test(qa : TestBad2.D1<int>) {/* TODO */ }
 }
 
 

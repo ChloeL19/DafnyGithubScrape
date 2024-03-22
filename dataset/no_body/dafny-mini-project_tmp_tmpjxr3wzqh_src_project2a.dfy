@@ -67,16 +67,12 @@ class Message
   method setContent(c: string)
     modifies this
     ensures content == c
-  {
-    this.content := c;
-  }
+  {/* TODO */ }
 
   method setDate(d: Date)
     modifies this
     ensures date == d
-  {
-    this.date := d;
-  }
+  {/* TODO */ }
 
   method addRecipient(p: nat, r: Address)
     modifies this
@@ -85,9 +81,7 @@ class Message
     ensures recipients[p] == r
     ensures forall i :: 0 <= i < p ==> recipients[i] == old(recipients[i])
     ensures forall i :: p < i < |recipients| ==> recipients[i] == old(recipients[i-1])
-  {
-    this.recipients := this.recipients[..p] + [r] + this.recipients[p..];
-  }
+  {/* TODO */ }
 }
 
 //==========================================================
@@ -111,7 +105,7 @@ class Mailbox {
   method add(m: Message)
     modifies this
     ensures m in messages
-    ensures messages == old(messages) + {m}
+    ensures messages == old(messages) + {/* TODO */ }
   {
     messages := { m } + messages;
   }
@@ -121,7 +115,7 @@ class Mailbox {
     modifies this
     requires m in messages
     ensures m !in messages
-    ensures messages == old(messages) - {m}
+    ensures messages == old(messages) - {/* TODO */ }
   {
     messages := messages - { m };
   }
@@ -129,7 +123,7 @@ class Mailbox {
   // Empties the mailbox messages
   method empty()
     modifies this
-    ensures messages == {}
+    ensures messages == {/* TODO */ }
   {
     messages := {};
   }
@@ -192,9 +186,7 @@ class MailApp {
     requires Valid()
     requires mb in userboxList
     // ensures mb !in userboxList
-  {
-    // userboxList := rem(mb, userboxList);
-  }
+  {/* TODO */ }
 
   // Adds a new mailbox with name n to set of user-defined mailboxes
   // provided that no user-defined mailbox has name n already
@@ -203,20 +195,14 @@ class MailApp {
     requires Valid()
     requires !exists mb | mb in userboxList :: mb.name == n
     ensures exists mb | mb in userboxList :: mb.name == n
-  {
-    var mb := new Mailbox(n);
-    userboxList := [mb] + userboxList;
-  }
+  {/* TODO */ }
 
   // Adds a new message with sender s to the drafts mailbox
   method newMessage(s: Address)
     modifies this.drafts
     requires Valid()
     ensures exists m | m in drafts.messages :: m.sender == s
-  {
-    var m := new Message(s);
-    drafts.add(m);
-  }
+  {/* TODO */ }
 
   // Moves message m from mailbox mb1 to a different mailbox mb2
   method moveMessage (m: Message, mb1: Mailbox, mb2: Mailbox)
@@ -226,10 +212,7 @@ class MailApp {
     requires m !in mb2.messages
     ensures m !in mb1.messages
     ensures m in mb2.messages
-  {
-    mb1.remove(m);
-    mb2.add(m);
-  }
+  {/* TODO */ }
 
   // Moves message m from mailbox mb to the trash mailbox provided
   // that mb is not the trash mailbox
@@ -238,9 +221,7 @@ class MailApp {
     requires Valid()
     requires m in mb.messages
     requires m !in trash.messages
-  {
-    moveMessage(m, mb, trash);
-  }
+  {/* TODO */ }
 
   // Moves message m from the drafts mailbox to the sent mailbox
   method sendMessage(m: Message)
@@ -248,15 +229,13 @@ class MailApp {
     requires Valid()
     requires m in drafts.messages
     requires m !in sent.messages
-  {
-    moveMessage(m, drafts, sent);
-  }
+  {/* TODO */ }
 
   // Empties the trash mailbox
   method emptyTrash()
     modifies this.trash
     requires Valid()
-    ensures trash.messages == {}
+    ensures trash.messages == {/* TODO */ }
   {
     trash.empty();
   }

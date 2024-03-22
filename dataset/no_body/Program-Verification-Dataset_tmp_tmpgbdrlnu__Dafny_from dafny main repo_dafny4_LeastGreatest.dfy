@@ -12,61 +12,38 @@ greatest predicate Positive(x: int) {
 least lemma NaturalIsNat(x: int)
   requires Natural(x)
   ensures 0 <= x
-{
-}
+{/* TODO */ }
 
 lemma NatIsNatural(x: int)
   requires 0 <= x
   ensures Natural(x)
-{
-}
+{/* TODO */ }
 
 lemma PositiveIsPos(x: int)
   requires x <= 0
   ensures !Positive(x)
   decreases -x
-{
-}
+{/* TODO */ }
 
 greatest lemma PosIsPositive(x: int)
   requires 0 < x
   ensures Positive(x)
-{
-}
+{/* TODO */ }
 
 lemma AboutNatural(x: int)
   ensures Natural(x) <==> 0 <= x
-{
-  if Natural(x) {
-    NaturalIsNat(x);
-  }
-  if 0 <= x {
-    NatIsNatural(x);
-  }
-}
+{/* TODO */ }
 
 lemma AboutPositive(x: int)
   ensures Positive(x) <==> 0 < x
-{
-  if 0 < x {
-    PosIsPositive(x);
-  } else {
-    PositiveIsPos(x);
-  }
-}
+{/* TODO */ }
 
-method least(x: int, y: int) returns (least: int) {
-  var greatest;
-  least, greatest := mixmax(x, y);
-}
+method least(x: int, y: int) returns (least: int) {/* TODO */ }
 
-method greatest(x: int, y: int) returns (greatest: int) {
-  var least;
-  least, greatest := mixmax(x, y);
-}
+method greatest(x: int, y: int) returns (greatest: int) {/* TODO */ }
 
 method mixmax(x: int, y: int) returns (least: int, greatest: int)
-  ensures {x, y} == {least, greatest}
+  ensures {/* TODO */ } == {least, greatest}
   ensures least <= greatest
 {
   if x < y {

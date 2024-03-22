@@ -13,19 +13,7 @@ function Potencia(x:nat, y:nat):nat
 // Quero agora implementar como uma função não recursiva
 method Pot(x:nat, y:nat) returns (r:nat)
 ensures r == Potencia(x,y)
-{
-    r := 1; //sempre r começa com 1
-    var b := x; //base
-    var e := y; //expoente
-
-    while e > 0 
-    invariant  Potencia(b,e)*r == Potencia(x,y) 
-    {
-        r := r * b;
-        e := e - 1;
-    }
-    return r;
-}
+{/* TODO */ }
 
 // Devemos sempre construir uma tabela para vermos passo a passo o processo
 // POT(2,3)

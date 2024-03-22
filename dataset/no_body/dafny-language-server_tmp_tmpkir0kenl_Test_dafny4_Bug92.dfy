@@ -13,23 +13,17 @@ module ModOpaque {
 
     lemma foo(x:int, y:int, z:int)
         requires (y, z) == Visible(x);
-    {
-        assert (y, z) == Hidden(x);
-    }
+    {/* TODO */ }
 
     lemma bar(x:int, y:int, z:int)
         requires y == Visible(x).0;
         requires z == Visible(x).1;
-    {
-        assert (y, z) == Visible(x);
-    }
+    {/* TODO */ }
 
     lemma baz(x:int, y:int, z:int)
         requires y == Visible(x).0;
         requires z == Visible(x).1;
-    {
-        assert (y, z) == Hidden(x);
-    }
+    {/* TODO */ }
 }
 
 module ModVisible {
@@ -45,23 +39,17 @@ module ModVisible {
 
     lemma foo(x:int, y:int, z:int)
         requires (y, z) == Visible(x);
-    {
-        assert (y, z) == Hidden(x);
-    }
+    {/* TODO */ }
 
     lemma bar(x:int, y:int, z:int)
         requires y == Visible(x).0;
         requires z == Visible(x).1;
-    {
-        assert (y, z) == Visible(x);
-    }
+    {/* TODO */ }
 
     lemma baz(x:int, y:int, z:int)
         requires y == Visible(x).0;
         requires z == Visible(x).1;
-    {
-        assert (y, z) == Hidden(x);
-    }
+    {/* TODO */ }
 }
 
 module ModFuel {
@@ -77,21 +65,15 @@ module ModFuel {
 
     lemma foo(x:int, y:int, z:int)
         requires (y, z) == Visible(x);
-    {
-        assert (y, z) == Hidden(x);
-    }
+    {/* TODO */ }
 
     lemma bar(x:int, y:int, z:int)
         requires y == Visible(x).0;
         requires z == Visible(x).1;
-    {
-        assert (y, z) == Visible(x);
-    }
+    {/* TODO */ }
 
     lemma baz(x:int, y:int, z:int)
         requires y == Visible(x).0;
         requires z == Visible(x).1;
-    {
-        assert (y, z) == Hidden(x);
-    }
+    {/* TODO */ }
 }

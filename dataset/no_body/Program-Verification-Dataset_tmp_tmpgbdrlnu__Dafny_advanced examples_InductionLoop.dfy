@@ -14,7 +14,7 @@ lemma {:induction x} EvenPlus(x: int, y: int)
     requires IsEven(x)
     requires IsEven(y)
     ensures IsEven(x + y)
-{ }
+{/* TODO */ }
 
 
 lemma {:induction y} EvenPlus2(x: int, y: int)
@@ -23,7 +23,7 @@ lemma {:induction y} EvenPlus2(x: int, y: int)
     requires IsEven(x)
     requires IsEven(y)
     ensures IsEven(x + y)
-{ }
+{/* TODO */ }
 
 // This one makes Z3 spin, as does leaving off the {:induction ...} annotation.
 lemma {:induction false} EvenPlus3(x: int, y: int)
@@ -32,9 +32,7 @@ lemma {:induction false} EvenPlus3(x: int, y: int)
     requires IsEven(x)
     requires IsEven(y)
     ensures IsEven(x + y)
-{
-    EvenPlus4(x, y, x + y);
-}
+{/* TODO */ }
 
 lemma EvenPlus4(x: int, y: int, z: int)
     requires x >= 0
@@ -43,6 +41,6 @@ lemma EvenPlus4(x: int, y: int, z: int)
     requires IsEven(y)
     requires z == x + y
     ensures IsEven(z)
-{ }
+{/* TODO */ }
 
 

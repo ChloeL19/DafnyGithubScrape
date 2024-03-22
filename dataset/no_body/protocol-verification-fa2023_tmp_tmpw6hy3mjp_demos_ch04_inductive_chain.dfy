@@ -63,34 +63,11 @@ module Ex {
   lemma InvInductive(v: Variables, v': Variables)
     requires Inv(v) && Next(v, v')
     ensures Inv(v')
-  {
-    // SOLUTION
-    // This :| syntax is called "assign-such-that". Think of it as telling Dafny
-    // to assign step a value such that NextStep(v, v', step) (the predicate on
-    // the RHS) holds. What Dafny will do is first prove there exists such a
-    // step, then bind an arbitrary value to step where NextStep(v, v', step)
-    // holds for the remainder of the proof.
-    var step :| NextStep(v, v', step);
-    assert NextStep(v, v', step); // by definition of :|
-    // END
-    match step {
-      case Step1 => { return; }
-      case Step2 => { return; }
-      case Step3 => { return; }
-      case Step4 => {
-        // SOLUTION
-        return;
-        // END
-      }
-      case Noop => { return; }
-    }
-  }
+  {/* TODO */ }
 
   lemma InvSafe(v: Variables)
     ensures Inv(v) ==> Safety(v)
-  {
-    return;
-  }
+  {/* TODO */ }
 
   // This is the main inductive proof of Safety, but we moved all the difficult
   // reasoning to the lemmas above.
@@ -98,12 +75,7 @@ module Ex {
     ensures Init(v) ==> Inv(v)
     ensures Inv(v) && Next(v, v') ==> Inv(v')
     ensures Inv(v) ==> Safety(v)
-  {
-    if Inv(v) && Next(v, v') {
-      InvInductive(v, v');
-    }
-    InvSafe(v);
-  }
+  {/* TODO */ }
 
   // SOLUTION
   // Instead of worrying about Safety, we can approach invariants by starting
@@ -144,19 +116,7 @@ module Ex {
   lemma Inv2Holds(v: Variables, v': Variables)
     ensures Init(v) ==> Inv2(v)
     ensures Inv2(v) && Next(v, v') ==> Inv2(v')
-  {
-    assert Init(v) ==> Inv2(v);
-    if Inv2(v) && Next(v, v') {
-      var step :| NextStep(v, v', step);
-      match step {
-        case Step1 => { return; }
-        case Step2 => { return; }
-        case Step3 => { return; }
-        case Step4 => { return; }
-        case Noop => { return; }
-      }
-    }
-  }
+  {/* TODO */ }
   // END
 }
 

@@ -15,10 +15,6 @@ module B refines A { // ignore the submodule A, use the top-level A
   module A {
     const a := 30
   }
-  method Main() {
-    assert a == 10; // true
-    expect a == 10; // check it at runtime
-    print "OK\n";
-  }
+  method Main() {/* TODO */ }
 }
 

@@ -29,26 +29,7 @@ datatype PageElement = Text(t:TextAlign) | Graphics(g:GraphicsAlign)
 lemma NumPageElements()
   ensures exists eltSet:set<HAlign> :: |eltSet| == 3  // bound is tight
   ensures forall eltSet:set<HAlign> :: |eltSet| <= 3  // upper bound
-{
-  var maxSet := { Left, Center, Right };
-
-  // Prove the bound is tight.
-  assert |maxSet| == 3;
-
-  // Prove upper bound.
-  forall eltSet:set<HAlign>
-    ensures |eltSet| <= 3
-  {
-    // Prove eltSet <= maxSet
-    forall elt | elt in eltSet ensures elt in maxSet {
-      if elt.Left? { }  // hint at a case analysis
-    }
-
-    // Cardinality relation should have been obvious to Dafny;
-    // see comment on lemma below.
-    subsetCardinality(eltSet, maxSet);
-  }
-}
+{/* TODO */ }
 
 // Dafny seems to be missing a heuristic to trigger this cardinality relation!
 // So I proved it. This should get fixed in dafny, or at least tucked into a
@@ -56,18 +37,5 @@ lemma NumPageElements()
 lemma subsetCardinality<T>(a:set<T>, b:set<T>)
   requires a <= b
   ensures |a| <= |b|
-{
-  if a == {} {
-    assert |a| <= |b|;
-  } else {
-    var e :| e in a;
-    if e in b {
-      subsetCardinality(a - {e}, b - {e});
-      assert |a| <= |b|;
-    } else {
-      subsetCardinality(a - {e}, b);
-      assert |a| <= |b|;
-    }
-  }
-}
+{/* TODO */ }
 

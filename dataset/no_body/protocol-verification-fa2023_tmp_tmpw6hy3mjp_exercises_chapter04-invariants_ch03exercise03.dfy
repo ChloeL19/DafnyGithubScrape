@@ -85,7 +85,7 @@ ghost predicate NextStep(v:Variables, v':Variables, step: Step) {
 lemma NextStepDeterministicGivenStep(v:Variables, v':Variables, step: Step)
   requires NextStep(v, v', step)
   ensures forall v'' | NextStep(v, v'', step) :: v' == v''
-{}
+{/* TODO */ }
 
 ghost predicate Next(v:Variables, v':Variables) {
   exists step :: NextStep(v, v', step)
@@ -134,17 +134,5 @@ lemma PseudoLiveness(clientA:nat, clientB:nat) returns (behavior:seq<Variables>)
   ensures behavior[|behavior|-1].WellFormed() // precondition for calling ClientHoldsLock
   ensures ClientHoldsLock(behavior[1], clientA) // first clientA acquires lock
   ensures ClientHoldsLock(behavior[|behavior|-1], clientB) // eventually clientB acquires lock
-{
-  // SOLUTION
-  var state0 := Variables(clientCount := 3, server := Unlocked, clients := [Released, Released, Released]);
-  var state1 := Variables(clientCount := 3, server := Client(clientA), clients := [Released, Released, Acquired]);
-  var state2 := Variables(clientCount := 3, server := Unlocked, clients := [Released, Released, Released]);
-  var state3 := Variables(clientCount := 3, server := Client(clientB), clients := [Acquired, Released, Released]);
-  assert NextStep(state0, state1, AcquireStep(clientA));
-  assert Release(state1, state2, 2);
-  assert NextStep(state1, state2, ReleaseStep(clientA));  // witness
-  assert NextStep(state2, state3, AcquireStep(clientB));  // witness
-  behavior := [state0, state1, state2, state3];
-  // END
-}
+{/* TODO */ }
 

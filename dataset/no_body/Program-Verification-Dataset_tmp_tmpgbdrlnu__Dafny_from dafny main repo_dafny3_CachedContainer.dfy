@@ -29,52 +29,10 @@
 
 
 // give the method signatures and specs
-abstract module M0 {
-  class {:autocontracts} Container<T(==)> {
-    ghost var Contents: set<T>
-    ghost predicate Valid() {
-      Valid'()
-    }
-    ghost predicate {:autocontracts false} Valid'()
-      reads this, Repr
-    constructor ()
-      ensures Contents == {}
-    method Add(t: T)
-      ensures Contents == old(Contents) + {t}
-    method Remove(t: T)
-      ensures Contents == old(Contents) - {t}
-    method Contains(t: T) returns (b: bool)
-      ensures Contents == old(Contents)
-      ensures b <==> t in Contents
-  }
-}
+abstract module M0 {/* TODO *//* TODO */ }
 
 // provide bodies for the methods
-abstract module M1 refines M0 {
-  class Container<T(==)> ... {
-    constructor... {
-      Contents := {};
-      Repr := {this};
-      new;
-      label CheckPost:
-      assume Valid'();  // to be checked in further refinements
-    }
-    method Add... {
-      Contents := Contents + {t};
-      label CheckPost:
-      assume Valid'();  // to be checked in further refinements
-    }
-    method Remove... {
-      Contents := Contents - {t};
-      label CheckPost:
-      assume Valid'();  // to be checked in further refinements
-    }
-    method Contains... {
-      // b := t in Contents;
-      b :| assume b <==> t in Contents;
-    }
-  }
-}
+abstract module M1 refines M0 {/* TODO */ }
 
 // implement the set in terms of a sequence
 abstract module M2 refines M1 {
@@ -91,18 +49,7 @@ abstract module M2 refines M1 {
     method FindIndex(t: T) returns (j: nat)
       ensures j <= |elems|
       ensures if j < |elems| then elems[j] == t else t !in elems
-    {
-      j := 0;
-      while (j < |elems|)
-        invariant j <= |elems|
-        invariant forall i :: 0 <= i < j ==> elems[i] != t
-      {
-        if (elems[j] == t) {
-          return;
-        }
-        j := j + 1;
-      }
-    }
+    {/* TODO */ }
 
     constructor... {
       elems := [];
@@ -111,30 +58,9 @@ abstract module M2 refines M1 {
       assume Valid''();  // to be checked in further refinements
       assert ...;
     }
-    method Add... {
-      var j := FindIndex(t);
-      if j == |elems| {
-        elems := elems + [t];
-      }
-      ...;
-      label CheckPost:
-      assume Valid''();  // to be checked in further refinements
-      assert ...;
-    }
-    method Remove... {
-      var j := FindIndex(t);
-      if j < |elems| {
-        elems := elems[..j] + elems[j+1..];
-      }
-      ...;
-      label CheckPost:
-      assume Valid''();  // to be checked in further refinements
-      assert ...;
-    }
-    method Contains... {
-      var j := FindIndex(t);
-      b := j < |elems|;
-    }
+    method Add... {/* TODO */ }
+    method Remove... {/* TODO */ }
+    method Contains... {/* TODO */ }
   }
 }
 
@@ -153,62 +79,20 @@ module M3 refines M2 {
       ...;
       assert ...;
     }
-    method FindIndex... {
-      if cache.Some? && cache.value == t {
-        return cache.index;
-      }
-    }
-    method Add... {
-      ...;
-      assert ...;
-    }
-    method Remove... {
-      ...;
-      if ... {
-        if cache.Some? {
-          if cache.index == j {
-            // clear the cache
-            cache := None;
-          } else if j < cache.index {
-            // adjust for the shifting down
-            cache := cache.(index := cache.index - 1);
-          }
-        }
-      }
-      ...;
-      assert ...;
-    }
+    method FindIndex... {/* TODO */ }
+    method Add... {/* TODO */ }
+    method Remove... {/* TODO */ }
   }
 }
 
 // here a client of the Container
 abstract module Client {
   import M : M0
-  method Test() {
-    var c := new M.Container();
-    c.Add(56);
-    c.Add(12);
-    var b := c.Contains(17);
-    assert !b;
-    print b, " ";  // false (does not contain 17)
-    b := c.Contains(12);
-    assert b;
-    print b, " ";  // true (contains 12)
-    c.Remove(12);
-    b := c.Contains(12);
-    assert !b;
-    print b, " ";  // false (no longer contains 12)
-    assert c.Contents == {56};
-    b := c.Contains(56);
-    assert b;
-    print b, "\n";  // true (still contains 56)
-  }
+  method Test() {/* TODO */ }
 }
 
 module CachedClient refines Client {
   import M = M3
-  method Main() {
-    Test();
-  }
+  method Main() {/* TODO */ }
 }
 

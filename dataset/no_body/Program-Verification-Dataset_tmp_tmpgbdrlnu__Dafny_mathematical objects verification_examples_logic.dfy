@@ -16,45 +16,27 @@
  */
 
 lemma ExampleProposition()
-{
-  assert 2 < 3;
-}
+{/* TODO */ }
 
 /* Another example: `7 - 3 == 3` is clearly false, but it's still a
  * proposition.
  */
 lemma SomethingFalse()
-{
-  // you'll get an error if you uncomment this line
-  // assert 7 - 3 == 3;
-}
+{/* TODO */ }
 
 /* On the other hand something like `7 * false < 8` isn't a
  * proposition at all since it has a type error - we won't have to worry too
  * much about these because Dafny will quickly and easily catch such mistakes.
  */
 lemma SomethingNonsensical()
-{
-  // you'll get an error if you uncomment this line
-  //
-  // unlike the above, it will be a type-checking error and not a verification
-  // failure
-  // assert 7 * false < 8;
-}
+{/* TODO */ }
 
 /* In Dafny, we can write lemmas with arguments, which are logical variables (of
  * the appropriate types). From here on we'll shift to stating logical properties
  * as ensures clauses of lemmas, the typical way they'd be packaged in Dafny. */
 lemma AdditionCommutes(n: int, m: int)
   ensures n + m == m + n
-{
-  // The proof of this lemma goes here. In this case (and in many others), no
-  // additional assistance is needed so an empty proof suffices.
-  //
-  // In Dafny, we won't talk much about proofs on their own - in a course on
-  // logic you might go over logical rules or proof trees - because Dafny is
-  // going to have all the power you need to prove things (as long as they're true!).
-}
+{/* TODO */ }
 
 /* Let's start by going over the simplest logical connectives: && ("and") and ||
  * ("or"). In these examples think of the input booleans as being arbitrary
@@ -65,28 +47,28 @@ lemma ProveAndFromBoth(p1: bool, p2: bool)
   requires p1
   requires p2
   ensures p1 && p2
-{}
+{/* TODO */ }
 
 lemma FromAndProveRight(p1: bool, p2: bool)
   requires p1 && p2
   ensures p2
-{}
+{/* TODO */ }
 
 lemma ProveOrFromLeft(p1: bool, p2: bool)
   requires p1
   ensures p1 || p2
-{}
+{/* TODO */ }
 
 /* Let's also see _negation_ written `!p`, boolean negation. Asserting or
  * ensuring `!p` is the way we prove it's false. */
 lemma DoubleNegation(p: bool)
   requires p
   ensures !!p
-{}
+{/* TODO */ }
 
 lemma LawOfExcludedMiddle(p: bool)
   ensures p || !p
-{}
+{/* TODO */ }
 
 /* Now we'll introduce boolean implication, `p ==> q`, read as "if p, then q". In "p
  * ==> q" we'll sometimes refer to "p" as a hypothesis and "q" as a conclusion.
@@ -105,7 +87,7 @@ lemma ImplicationTruthTable()
   ensures false ==> true
   ensures !(true ==> false)
   ensures false ==> true
-{}
+{/* TODO */ }
 
 /* One of the most famous rules of logic, which allows us to take an implication
  * (already proven correct) and a proof of its hypothesis to derive its
@@ -120,7 +102,7 @@ lemma ModusPonens(p1: bool, p2: bool)
   requires p1 ==> p2
   requires p1
   ensures p2
-{}
+{/* TODO */ }
 
 /* We can write a lemma above as implications in ensures clauses, rather than
  * using preconditions. The key difference is that calling `FromAndProveLeft(p1,
@@ -130,7 +112,7 @@ lemma ModusPonens(p1: bool, p2: bool)
 lemma AndProvesBoth(p1: bool, p2: bool)
   ensures p1 && p2 ==> p1
   ensures p1 && p2 ==> p2
-{}
+{/* TODO */ }
 
 /* Let's introduce one more logical connective: `p <==> q`, "p if and only if q"
  * (also written "iff" and pronounced "if and only if"). This has the same truth
@@ -141,7 +123,7 @@ lemma ProveFromBiconditional(p1: bool, p2: bool)
   requires p1
   requires p1 <==> p2
   ensures p2
-{}
+{/* TODO */ }
 
 /* Simplifying and comprehending logical expressions is something you'll
  * gradually get practice with. It can get quite complicated! */
@@ -154,7 +136,7 @@ lemma SomeEquivalences(p1: bool, p2: bool)
   ensures ((p1 ==> p2) && (!p1 ==> p2)) <==> p2
   // you might want to think about this one:
   ensures (!p1 || (p1 ==> p2)) <==> (p1 ==> p2)
-{}
+{/* TODO */ }
 
 lemma SomeMoreEquivalences(p1: bool, p2: bool, p3: bool)
   // note on parsing: <==> has the lowest priority, so all of these statements are
@@ -163,7 +145,7 @@ lemma SomeMoreEquivalences(p1: bool, p2: bool, p3: bool)
   // this is what chained implications mean
   ensures p1 ==> p2 ==> p3 <==> p1 && p2 ==> p3
   ensures p1 ==> (p2 ==> p3) <==> p1 && p2 ==> p3
-{}
+{/* TODO */ }
 
 /* Quantifiers */
 
@@ -173,17 +155,7 @@ lemma SomeMoreEquivalences(p1: bool, p2: bool, p3: bool)
  * connectives. */
 
 lemma AdditionCommutesAsForall()
-{
-  // (ignore the warning "No terms found to trigger on")
-  assert forall n: int, m: int :: n + m == m + n;
-
-  // Just to emphasize this is a proposition (a boolean) just like everything
-  // else we've seen. The big difference is that this forall is clearly not a
-  // boolean we could evaluate in the normal sense of running it to produce true
-  // or false - nonetheless Dafny can reason about it mathematically.
-  var does_addition_commute: bool := forall n: int, m: int :: n + m == m + n;
-  assert does_addition_commute == true;
-}
+{/* TODO */ }
 
 /* In order to illustrate some properties of forall, we'll introduce some
  * arbitrary _predicates_ over integers to put in our examples. By not putting a
@@ -205,17 +177,17 @@ lemma SimplifyingNegations(p: bool, q: bool)
   ensures !!p <==> p
   ensures !(forall x :: P(x)) <==> (exists x :: !P(x))
   ensures !(exists x :: P(x)) <==> (forall x :: !P(x))
-{}
+{/* TODO */ }
 
 /* Dafny supports a "where" clause in a forall. It's a shorthand for implication. */
 lemma WhereIsJustImplies()
   // we need parentheses around each side for this to have the desired meaning
   ensures (forall x | P(x) :: Q(x)) <==> (forall x :: P(x) ==> Q(x))
-{}
+{/* TODO */ }
 
 lemma NotForallWhere()
   ensures !(forall x | P(x) :: Q(x)) <==> exists x :: P(x) && !Q(x)
-{}
+{/* TODO */ }
 
 /* Dafny also supports a "where" clause in an exists, as a shorthand for &&. */
 lemma ExistsWhereIsJustAnd()
@@ -226,5 +198,5 @@ lemma ExistsWhereIsJustAnd()
   // preserves that _duality_ (a formal and pervasive concept in math and
   // logic).
   ensures !(forall x | P(x) :: Q(x)) <==> (exists x | P(x) :: !Q(x))
-{}
+{/* TODO */ }
 

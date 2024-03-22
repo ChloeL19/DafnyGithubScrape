@@ -7,8 +7,5 @@
 
 method hasNoBody()
 
-method Main() {
-    hasNoBody();
-    print "hello\n";
-}
+method Main() {/* TODO */ }
 

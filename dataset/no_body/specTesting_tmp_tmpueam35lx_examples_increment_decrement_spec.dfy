@@ -79,22 +79,10 @@ module RefinementProof {
     lemma RefinementInit(v: Variables)
         requires Init(v)
         ensures OneSpec.Init(Abstraction(v))
-    {
-
-    }
+    {/* TODO */ }
 
     lemma RefinementNext(v: Variables, v': Variables)
         requires Next(v, v')
         ensures OneSpec.Next(Abstraction(v), Abstraction(v'))
-    {
-        var step :| NextStep(v, v', step);
-        match step {
-            case IncrementStep() => {
-                assert OneSpec.NextStep(Abstraction(v), Abstraction(v'), OneSpec.DecrementStep());
-            }
-            case DecrementStep() => {
-                assert OneSpec.NextStep(Abstraction(v), Abstraction(v'), OneSpec.IncrementStep());
-            }
-        }
-    }
+    {/* TODO */ }
 }

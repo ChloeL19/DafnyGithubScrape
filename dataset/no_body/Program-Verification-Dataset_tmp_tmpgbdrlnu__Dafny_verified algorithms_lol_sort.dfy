@@ -30,9 +30,7 @@ method swap(a: array<int>, i: int, j: int)
   modifies a
   ensures a[..] == old(a[..]) [i := old(a[j])] [j := old(a[i])]
   ensures valid_permut(a[..], old(a[..]))
-{
-  a[i], a[j] := a[j], a[i];
-}
+{/* TODO */ }
 
 // We then define "sorted" (by increasing order):
 predicate sorted(a: seq<int>)
@@ -47,34 +45,8 @@ method lol_sort(a: array<int>)
   modifies a
   ensures valid_permut(a[..], old(a[..]))
   ensures sorted(a[..])
-{
-  for i := 0 to a.Length
-    invariant valid_permut(a[..], old(a[..]))
-    invariant sorted(a[..i])
-  {
-    for j := 0 to a.Length
-      invariant valid_permut(a[..], old(a[..]))
-      invariant j < i ==> forall k | 0 <= k < j :: a[k] <= a[i]
-      invariant j < i ==> sorted(a[..i])
-      invariant j >= i ==> sorted(a[..i+1])
-    {
-      if a[i] < a[j] {
-        swap(a, i, j);
-      }
-    }
-  }
-}
+{/* TODO */ }
 
 
 
-method Main() {
-  var a := new int[] [3,1,4,1,5,9,2,6];
-  lol_sort(a);
-  print a[..];
-  // `expect` is a run-time assert, more suitable than `assert` on complicated testcases:
-  expect a[..] == [1,1,2,3,4,5,6,9]; 
-
-  var empty := new int[] [];
-  lol_sort(empty);
-  assert empty[..] == [];
-}
+method Main() {/* TODO */ }

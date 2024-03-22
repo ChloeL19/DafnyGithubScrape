@@ -2,14 +2,11 @@
 // RUN: %diff "%s.expect" "%t"
 
 lemma largeIsLarge()
-  ensures 0x8000000000000000 > 0 {
-}
+  ensures 0x8000000000000000 > 0 {/* TODO */ }
 
 lemma SmallIsSmall()
-  ensures -0x8000000000000000 < 0 {
-}
+  ensures -0x8000000000000000 < 0 {/* TODO */ }
 
 lemma ShouldCancelOut()
-  ensures -0x8000000000000000 + 0x8000000000000000 == 0 {
-}
+  ensures -0x8000000000000000 + 0x8000000000000000 == 0 {/* TODO */ }
 

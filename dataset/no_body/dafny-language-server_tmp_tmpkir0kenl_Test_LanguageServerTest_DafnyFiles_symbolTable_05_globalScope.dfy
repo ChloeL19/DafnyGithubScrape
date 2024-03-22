@@ -1,11 +1,8 @@
-method foo() {}
+method foo() {/* TODO */ }
 
 
 class A {
-    method a() {
-        foo();
-        foo_after();
-     }
+    method a() {/* TODO */ }
 }
 
-method foo_after() {}
+method foo_after() {/* TODO */ }

@@ -3,8 +3,6 @@
 // RUN: %diff "%s.expect" "%t"
 
 module DafnyConsoleMod { // TODO if we name this DafnyConsole, then Java compilation fails
-  method Main() {
-    print "bye\n";
-  }
+  method Main() {/* TODO */ }
 }
 

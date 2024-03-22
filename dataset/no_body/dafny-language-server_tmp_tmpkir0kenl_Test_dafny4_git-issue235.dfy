@@ -10,14 +10,9 @@ module B {
 
   lemma Test(x: int)
     ensures I.F(x)
-  {
-  }
+  {/* TODO */ }
 
   lemma TestWrapper()
-  {
-    forall x {
-      Test(x);
-    }
-  }
+  {/* TODO */ }
 }
 

@@ -11,17 +11,11 @@ function factAlt(n:nat):int
 
 lemma factAcc_correct (n:nat, a:int)
  ensures factAcc(n, a) == a*fact(n)
-{
-}
+{/* TODO */ }
 
 lemma factAlt_correct (n:nat)
  ensures factAlt(n) == fact(n)
-{
-    factAcc_correct(n,1);
-    assert factAcc(n,1) == 1 * fact(n);
-    assert 1 * fact(n) == fact(n);
-    assert factAlt(n) == factAcc(n, 1);
-}
+{/* TODO */ }
 
 datatype List<T> = Nil | Cons(T, List<T>)
 
@@ -35,16 +29,7 @@ decreases l
 
 lemma {:induction false} length_non_neg<T> (l:List<T>)
     ensures length(l) >= 0
-{
-    match l
-    case Nil =>
-    case Cons(_, r) =>
-        length_non_neg(r);
-        assert length(r) >= 0;
-       //  assert forall k : int :: k >= 0 ==> 1 + k >= 0;
-        assert 1 + length(r) >= 0;
-        assert 1 + length(r) == length(l);
-}
+{/* TODO */ }
 
 function lengthTL<T> (l: List<T>, acc: nat) : nat
 {
@@ -54,15 +39,8 @@ function lengthTL<T> (l: List<T>, acc: nat) : nat
 }
 lemma {:induction false}lengthTL_aux<T> (l: List<T>, acc: nat)
     ensures lengthTL(l, acc) == acc + length(l)
-{
-    match l
-    case Nil => assert acc + length<T>(Nil) == acc;
-    case Cons(_, r) =>
-        lengthTL_aux(r, acc + 1);
-}
+{/* TODO */ }
 lemma lengthEq<T> (l: List<T>)
     ensures length(l) == lengthTL(l,0)
-{
-    lengthTL_aux(l, 0);
-}
+{/* TODO */ }
 

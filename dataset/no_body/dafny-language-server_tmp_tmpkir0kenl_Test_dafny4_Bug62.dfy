@@ -4,25 +4,19 @@
 class C {
   constructor C() { }
   method Main()  // not Main since the enclosing class has a constructor.
-  {
-    print "hello, I'm running ... in C\n";
-  }
+  {/* TODO */ }
 }
 
 class D {
   method Main()  // not Main since it has modifies clause.
    modifies this;
-  {
-    print "hello, I'm running ... in D\n";
-  }
+  {/* TODO */ }
 }
 
 
 class E {
   static method Main()  // not Main since it has requires clause.
    requires true;
-  {
-    print "hello, I'm running ... in E\n";
-  }
+  {/* TODO */ }
 }
 

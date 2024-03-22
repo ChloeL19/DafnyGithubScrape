@@ -3,12 +3,5 @@ method Max(a:int, b:int) returns(c:int)
     //pre-condition
     ensures a < b ==> c == b
     ensures b <= a ==> c == a
-{
-    // actual defination
-        if (a <b){
-            return b;
-        }else{
-            return a;
-    }
-} 
+{/* TODO */ } 
 

@@ -7,21 +7,14 @@ method AliceSendMsg_1(c:channel,advKnw:set<message>)
     ensures Var("Nb") !in advKnw
     ensures c[0] != Nil
     modifies c
-{
-    var msg := Pair(Str("A"),Str("B"));
-    c[0] := msg;
-}
+{/* TODO */ }
 method ServerSendMsg_1(c:channel,advKnw:set<message>)
     requires c.Length>0
     requires Var("Nb") !in advKnw
     ensures Var("Nb") !in advKnw
     ensures c[0] != Nil
     modifies c
-{
-    var aencMsg := Pair(Pk("B"),Str("B"));
-    var msg := Aenc(aencMsg,Pk("S"));
-    c[0] := msg;
-}
+{/* TODO */ }
 
 method AliceSendMsg_2(c:channel,advKnw:set<message>)
     requires c.Length>0
@@ -29,21 +22,14 @@ method AliceSendMsg_2(c:channel,advKnw:set<message>)
     ensures Var("Nb") !in advKnw
     ensures c[0] != Nil
     modifies c
-{
-    var aencMsg := Pair(Var("Na"),Str("A"));
-    var msg := Aenc(aencMsg,Pk("B"));
-    c[0] := msg;
-}
+{/* TODO */ }
 method BobSendMsg_1(c:channel,advKnw:set<message>)
     requires c.Length>0
     requires Var("Nb") !in advKnw
     ensures Var("Nb") !in advKnw
     ensures c[0] != Nil
     modifies c
-{
-    var msg := Pair(Str("B"),Str("A"));
-    c[0] := msg;
-}
+{/* TODO */ }
 
 method ServerSendMsg_2(c:channel,advKnw:set<message>)
     requires c.Length>0
@@ -51,11 +37,7 @@ method ServerSendMsg_2(c:channel,advKnw:set<message>)
     ensures Var("Nb") !in advKnw
     ensures c[0] != Nil
     modifies c
-{
-    var aencMsg := Pair(Pk("A"),Str("A"));
-    var msg := Aenc(aencMsg,Pk("S"));
-    c[0] := msg;
-}
+{/* TODO */ }
 
 method BobSendMsg_2(c:channel,advKnw:set<message>)
     requires c.Length>0
@@ -63,11 +45,7 @@ method BobSendMsg_2(c:channel,advKnw:set<message>)
     ensures Var("Nb") !in advKnw
     ensures c[0] != Nil
     modifies c
-{
-    var aencMsg := Pair(Pair(Var("Na"),Var("Nb")),Str("B"));
-    var msg := Aenc(aencMsg, Pk("A"));
-    c[0] := msg;
-}
+{/* TODO */ }
 
 method AliceSendMsg_3(c:channel,advKnw:set<message>)
     requires c.Length>0
@@ -75,11 +53,7 @@ method AliceSendMsg_3(c:channel,advKnw:set<message>)
     ensures Var("Nb") !in advKnw
     ensures c[0] != Nil
     modifies c
-{
-    var aencMsg := Var("Nb");
-    var msg := Aenc(aencMsg,Pk("B"));
-    c[0] := msg;
-}
+{/* TODO */ }
 
 method IntruderGetMsg(c:channel,advKnw:set<message>,i:int) returns (advKnw1:set<message>)
     requires c.Length > 0
@@ -88,10 +62,7 @@ method IntruderGetMsg(c:channel,advKnw:set<message>,i:int) returns (advKnw1:set<
     ensures Var("Nb") !in advKnw1    
     ensures c[0] == Nil
     modifies c
-{   
-    advKnw1 := advKnw + {c[0]};
-    c[0]:=Nil;
-}
+{/* TODO */ }
 
 method IntruderSendMsg(c:channel,m:message,advKnw:set<message>)
     requires c.Length > 0
@@ -101,19 +72,14 @@ method IntruderSendMsg(c:channel,m:message,advKnw:set<message>)
     requires m in advKnw
     ensures c[0]!=Nil
     modifies c
-{
-    c[0] :=m;
-} 
+{/* TODO */ } 
 
 method aencrtpy(aencMsg:message,aencKey:message,advKnw:set<message>) returns (advKnw1:set<message>)
     requires aencMsg in advKnw
     requires aencKey in advKnw
     requires Aenc(aencMsg,aencKey) !in advKnw
     ensures Aenc(aencMsg,aencKey) in advKnw1
-{
-    var aencMsg1:=Aenc(aencMsg,aencKey);
-    advKnw1:=advKnw+{aencMsg1};
-}
+{/* TODO */ }
 
 
 method dencrtpy(msg:message,aencKey:message,aencMsg:message,advKnw:set<message>) returns (advKnw1:set<message>)
@@ -125,9 +91,7 @@ method dencrtpy(msg:message,aencKey:message,aencMsg:message,advKnw:set<message>)
     requires Var("Nb") !in advKnw
     ensures Var("Nb") !in advKnw1
     ensures aencMsg in advKnw1
-{
-     advKnw1:=advKnw+{aencMsg};
-}
+{/* TODO */ }
 
 
 method sencrtpy(sencMsg:message,sencKey:message,advKnw:set<message>) returns (advKnw1:set<message>)
@@ -135,10 +99,7 @@ method sencrtpy(sencMsg:message,sencKey:message,advKnw:set<message>) returns (ad
     requires sencKey in advKnw
     requires Senc(sencMsg,sencKey) !in advKnw
     ensures Senc(sencMsg,sencKey) in advKnw1
-{
-        var sencMsg1:=Senc(sencMsg,sencKey);
-        advKnw1:=advKnw+{sencMsg1};
-}
+{/* TODO */ }
 
 method dsencrtpy(msg:message,sencKey:message,sencMsg:message,advKnw:set<message>) returns (advKnw1:set<message>)
     requires msg in advKnw
@@ -149,9 +110,7 @@ method dsencrtpy(msg:message,sencKey:message,sencMsg:message,advKnw:set<message>
     requires Var("Nb") !in advKnw
     ensures Var("Nb") !in advKnw1
     ensures sencMsg in advKnw1
-{
-        advKnw1:=advKnw+{sencMsg};
-}
+{/* TODO */ }
 
 
 method Separate(pairMsg:message,m1:message,m2:message,advKnw:set<message>)returns (advKnw1:set<message>)
@@ -162,15 +121,11 @@ method Separate(pairMsg:message,m1:message,m2:message,advKnw:set<message>)return
     requires Var("Nb") !in advKnw
     ensures Var("Nb") !in advKnw1
     ensures m1 in advKnw1 && m2 in advKnw1
-{
-        advKnw1:=advKnw+{m1,m2};
-}
+{/* TODO */ }
 
 method Pairing(m1:message,m2:message,advKnw:set<message>) returns (advKnw1:set<message>)
     requires m1 in advKnw
     requires m2 in advKnw
     requires Pair(m1,m2) !in advKnw
     ensures Pair(m1,m2) in advKnw1
-{ 
-    advKnw1:=advKnw+{Pair(m1,m2)};    
-}
+{/* TODO */ }

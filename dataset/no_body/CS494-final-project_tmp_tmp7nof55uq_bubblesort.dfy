@@ -28,31 +28,5 @@ method BubbleSort (a: array<int>)
     ensures sorted(a, 0, a.Length); // makes sure elements of array a are sorted from 0 - a.Length
     ensures multiset(a[..]) == multiset(old(a[..])); // Since a is being modified, we deference the heap 
                                                       //and compare the previous elements to current elements.
-{
-  var i := 1;
-
-  while (i < a.Length)
-    invariant i <= a.Length; // more-or-less validates while loop condition during coputations
-    invariant sorted(a, 0, i); // Checks that for each increment of i, the array stays sorted, causing the 
-    invariant multiset(a[..]) == multiset(old(a[..])); //makes sure elements that existed in previous heap for a are presnt in current run
-  {
-    var j := i;
-
-    //this while loop inherits any previous pre/post conditions. It checks that 
-    while (j > 0)
-      invariant multiset(a[..]) == multiset(old(a[..]));
-      invariant sorted(a, 0, j); // O(n^2) runtime. Makes sure that a[0] - a[j] is sorted
-      invariant sorted(a, j, i+1); // then makes sure from a[j] - a[i+1] is sorted
-      invariant pivot(a, i+1, j); // important for ensuring that each computation is correct after swapping
-    {
-    // Here it also simplifies the remaining invariants to handle the empty array. 
-      if (a[j-1] > a[j]) { // reverse iterate through range within the array
-        a[j - 1], a[j] := a[j], a[j - 1]; // swaps objects if the IF condition is met
-      }
-      j := j - 1; // decrement j
-    }
-    i := i+1; // increment i
-  }
-
-}
+{/* TODO */ }
 

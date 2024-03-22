@@ -30,37 +30,23 @@ class Node<T> {
         modifies Repr
         ensures Valid() && fresh(Repr-old(Repr)-n.Repr)
         ensures s == old([s[0]]) + n.s
-    {
-        next := n;
-        s, Repr := [s[0]] + n.s, Repr + n.Repr;
-    }
+    {/* TODO */ }
 
     method GetNext() returns (n:Node?<T>)
         requires Valid()
         ensures |s| == 1  ==> n == null
         ensures |s| > 1 ==> n != null && n.s == s[1..] &&
                             n.Repr <= Repr && this !in n.Repr && n.Valid()           
-    {
-        n := next;
-    }
+    {/* TODO */ }
 
     method GetValue() returns (v:T)
         requires Valid()
         ensures v == s[0]
-    {
-        v := data;
-    }
+    {/* TODO */ }
     
 }
 
-method Main<T>(t:T) {
-    var n1 := new Node(t);
-    var n2 := new Node(t);
-    n1.SetNext(n2);
-    var n3 := n1.GetNext();
-    var n4 := new Node(t);
-    n3.SetNext(n4);
-}
+method Main<T>(t:T) {/* TODO */ }
 
 class Stack<T> {
 	ghost var s: seq<T>
@@ -89,23 +75,14 @@ class Stack<T> {
     method IsEmpty() returns (b:bool)
         requires Valid()
         ensures b <==> s == []
-    {
-        b := top == null;
-    }
+    {/* TODO */ }
 
     method Push(v: T)
         requires Valid()
         modifies Repr
         ensures Valid() && fresh(Repr - old(Repr))
         ensures s == [v] + old(s)
-    {
-        var newNode := new Node(v);
-        if top != null {
-            newNode.SetNext(top);
-        }
-        top := newNode;
-        s, Repr := [v] + s, {this} + newNode.Repr;
-    } 
+    {/* TODO */ } 
 
 
     method Pop() returns (v:T)
@@ -113,10 +90,6 @@ class Stack<T> {
         modifies Repr
         ensures Valid() && fresh(Repr - old(Repr))
         ensures v == old(s[0]) && s == old(s[1..])
-    {
-        v := top.GetValue();
-        top := top.GetNext(); 
-        s := s[1..];
-    }
+    {/* TODO */ }
 
 }

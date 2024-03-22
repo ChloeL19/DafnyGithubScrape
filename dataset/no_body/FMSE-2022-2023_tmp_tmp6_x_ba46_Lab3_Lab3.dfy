@@ -9,19 +9,12 @@ codatatype Conat = Zero | Succ(Pred: Conat)
 // Exercise (a): explain why the following coinductive property does NOT hold
 // lemma ConstructorConat(n: Conat)
     // ensures n != Succ(n)
-// {
-    // the following coinductive property does not hold because coinductive datatypes, as opposed to normal datatypes,
-    // are designed for infinite domains, as such, it is improper to test the equality above when dealing with infinity
-// }
+// {/* TODO */ }
 
 // Exercise (b): show that the constructor successor is injective
 greatest lemma ConstructorInjective(x: Conat, y: Conat)
     ensures Succ(x) == Succ(y) ==> x == y
-{
-    assume Succ(x) == Succ(y);
-    assert Succ(x).Pred == Succ(y).Pred;
-    assert x == y;
-}
+{/* TODO */ }
 
 // Exercise (c): define the ∞ constant (as a corecursive function)
 // We use a co-recursive call using the Succ constructor on the result, producing an infinite call stack
@@ -69,19 +62,7 @@ function cnst(a: int): Stream<int>
 // Aptly renamed to greatest lemma, it is able to reason and prove the post-condition by itself
 greatest lemma additionWithZero(a : Stream<int>)
     ensures addition(a, cnst(0)) == a
-{
-//     assert addition(a, cnst(0))
-// ==
-//     Cons(a.head + cnst(0).head, addition(a.tail, cnst(0).tail))
-// ==
-//     Cons(a.head + 0, addition(a.tail, cnst(0)))
-// ==
-//     Cons(a.head, addition(a.tail, cnst(0)))
-// ==
-//     Cons(a.head, a.tail)
-// ==
-//     a;
-}
+{/* TODO */ }
 
 // Exercise (d): define coinductively the predicate
 greatest predicate leq(a: Stream<int>, b: Stream<int>)
@@ -96,8 +77,7 @@ function blink(): Stream<int>
 // Exercise (f): prove by coinduction that leq(cnst(0), blink)
 lemma CnstZeroLeqBlink()
     ensures leq(cnst(0), blink())
-{ 
-}
+{/* TODO */ }
 
 // Exercise (g): define a function that ”zips” two streams
 // A stream formed by alternating the elements of both streams one by one
@@ -110,20 +90,4 @@ function zip(a: Stream<int>, b: Stream<int>): Stream<int>
 // By using a greatest lemma, Dafny can reason on its own
 greatest lemma ZipCnstZeroCnstOneEqualsBlink()
     ensures zip(cnst(0), cnst(1)) == blink()
-{
-//     assert zip(cnst(0), cnst(1))
-// ==
-//     Cons(cnst(0).head, Cons(cnst(1).head, zip(cnst(0).tail, cnst(1).tail)))
-// ==
-//     Cons(0, Cons(1, zip(cnst(0).tail, cnst(1).tail)))
-// ==
-//     Cons(0, Cons(1, zip(cnst(0), cnst(1))))
-// ==
-//     Cons(0, Cons(1, Cons(cnst(0).head, Cons(cnst(1).head, zip(cnst(0).tail, cnst(1).tail)))))
-// ==
-//     Cons(0, Cons(1, Cons(0, Cons(1, zip(cnst(0).tail, cnst(1).tail)))))
-// == 
-//     Cons(0, Cons(1, Cons(0, Cons(1, zip(cnst(0), cnst(1))))))
-// ==
-//     blink();
-}
+{/* TODO */ }

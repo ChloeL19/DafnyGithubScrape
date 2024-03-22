@@ -6,8 +6,6 @@
 module M {
 
   const x: int := 5
-  method m() {
-    assert x == 5;
-  }
+  method m() {/* TODO */ }
 }
 

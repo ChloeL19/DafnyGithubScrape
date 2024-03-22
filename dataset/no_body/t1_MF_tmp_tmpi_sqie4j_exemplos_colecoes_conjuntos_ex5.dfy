@@ -9,12 +9,4 @@ decreases a.Length-i
   else [a[i]] + to_seq(a, i + 1)
 }
 
-method Main() {
-  var a: array<int> := new int[2];
-  a[0] := 2;
-  a[1] := 3;
-
-  var ms: multiset<int> := multiset(a[..]);
-  assert a[..] == to_seq(a, 0); //dica para o Dafny
-  assert ms[2] == 1;
-}
+method Main() {/* TODO */ }

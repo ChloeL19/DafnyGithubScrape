@@ -17,11 +17,7 @@ lemma Definition_After<T>(f: FunctionHandle<T>, g: FunctionHandle<T>, arg: T)
   ensures Apply(After(f, g), arg) == Apply(f, Apply(g, arg));
 
 function Lmap(f: FunctionHandle, a: LList): LList
-{
-  match a
-  case Nil => Nil
-  case Cons(x, xs) => Cons(Apply(f, x), Lmap(f, xs))
-}
+{/* TODO */ }
 
 function Lappend(a: LList, b: LList): LList
 {
@@ -85,9 +81,7 @@ colemma Eq24<A>(f: FunctionHandle<LList<A>>, M: LList<A>)
 
 lemma CorollaryEq24<A>(f: FunctionHandle<LList<A>>, M: LList<A>)
   ensures Iterates(f, M) == Cons(M, Lmap(f, Iterates(f, M)));
-{
-  Eq24(f, M);
-}
+{/* TODO */ }
 
 // Now prove that equation in CorollaryEq24 uniques characterizes Iterates.
 // Paulson says "The bisimulation for this proof is unusually complex".
@@ -101,9 +95,7 @@ lemma Definition_h<A>(f: FunctionHandle<LList<A>>, M: LList<A>)
 // Functions to support the proof:
 
 function Iter<A>(n: nat, f: FunctionHandle<A>, arg: A): A
-{
-  if n == 0 then arg else Apply(f, Iter(n-1, f, arg))
-}
+{/* TODO */ }
 
 function LmapIter(n: nat, f: FunctionHandle, arg: LList): LList
 {
@@ -112,15 +104,11 @@ function LmapIter(n: nat, f: FunctionHandle, arg: LList): LList
 
 lemma Lemma25<A>(n: nat, f: FunctionHandle<A>, b: A, M: LList<A>)
   ensures LmapIter(n, f, Cons(b, M)) == Cons(Iter(n, f, b), LmapIter(n, f, M));
-{
-  // proof is by (automatic) induction
-}
+{/* TODO */ }
 
 lemma Lemma26<A>(n: nat, f: FunctionHandle, x: LList)  // (26) in the paper, but with f := LMap f
   ensures LmapIter(n, f, Lmap(f, x)) == LmapIter(n+1, f, x);
-{
-  // proof is by (automatic) induction
-}
+{/* TODO */ }
 
 colemma BisimulationLemma<A>(n: nat, f: FunctionHandle<LList<A>>, u: LList<A>)
   ensures LmapIter(n, f, h(f, u)) == LmapIter(n, f, Iterates(f, u));
@@ -152,11 +140,7 @@ colemma BisimulationLemma<A>(n: nat, f: FunctionHandle<LList<A>>, u: LList<A>)
 lemma Example7<A>(f: FunctionHandle<LList<A>>)
   // Given the definition of h, prove h(f, _) == Iterates(f, _):
   ensures forall M :: h(f, M) == Iterates(f, M);
-{
-  forall M {
-    BisimulationLemma(0, f, M);
-  }
-}
+{/* TODO */ }
 
 // ---------- Section 8.5 ----------
 

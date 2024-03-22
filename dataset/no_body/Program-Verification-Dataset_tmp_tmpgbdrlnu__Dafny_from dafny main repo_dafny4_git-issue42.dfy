@@ -2,12 +2,8 @@
 // RUN: %diff "%s.expect" "%t"
 
 lemma L(x:int)
-{
-    var x := 2;
-}
+{/* TODO */ }
 
 lemma {:warnShadowing false} L1(x:int)
-{
-    var x := 2;
-}
+{/* TODO */ }
 

@@ -1,90 +1,84 @@
 import re
 import argparse
-from collections import defaultdict
+import os
 
-def parse_dafny_file(file_path):
-    # Regular expression patterns for matching definitions and calls
-    definition_pattern = re.compile(r"^(function|method|lemma)\s+(\w+)")
-    call_pattern = re.compile(r"\b(\w+)\(")
+def remove_method_bodies(dafny_program_text):
+    """
+    Removes the bodies of all methods in a Dafny program, replacing them with "/* TODO */".
     
-    # Initialize a dictionary to hold dependencies
-    dependencies = defaultdict(set)
-    # Track the current scope to add dependencies correctly
-    current_scope = None
-
-    with open(file_path, 'r') as file:
-        for line in file:
-            # Match definitions (function, method, lemma)
-            def_match = definition_pattern.search(line)
-            if def_match:
-                current_scope = def_match.group(2)  # The name of the current function/method/lemma
-                dependencies[current_scope]  # Ensure the scope is added to the dictionary
-                continue
-            
-            # If within a scope, look for calls
-            if current_scope:
-                calls = call_pattern.findall(line)
-                for call in calls:
-                    if call != current_scope:  # Avoid adding self-dependencies
-                        dependencies[current_scope].add(call)
+    Args:
+    - dafny_program_text (str): The text of the Dafny program.
     
-    return dependencies
+    Returns:
+    - str: The Dafny program text with method bodies removed.
+    """
+    # Improved logic to handle method and lemma bodies, including nested brackets
+    #pattern = r"\b(method|lemma)\b\s+[^\{]+\{"
+    pattern = r"\b(method|lemma)\b\s+[\s\S]+?\{"
+    matches = [(m.start(), m.end()) for m in re.finditer(pattern, dafny_program_text)]
+    modified_text = dafny_program_text
+    offset = 0
 
-def display_dependencies(dependencies):
-    for key, value in dependencies.items():
-        if value:
-            print(f"{key} depends on: {', '.join(value)}")
-        else:
-            print(f"{key} has no dependencies")
+    for start, end in matches:
+        depth = 1  # Depth of nested brackets, starting with the opening bracket found
+        i = end - offset  # Start searching for the closing bracket from the end of the match
 
-def parse_definitions_and_calls(file_path):
-    definition_pattern = re.compile(r"^\s*(function|method|lemma)\s+(\w+)")
-    call_pattern = re.compile(r"\b(\w+)\(")
-    definitions = {}
-    calls = set()
+        # Iterate through the text to find the matching closing bracket
+        while depth > 0 and i < len(modified_text):
+            if modified_text[i] == '{':
+                depth += 1
+            elif modified_text[i] == '}':
+                depth -= 1
+            i += 1
+        
+        # Once the matching closing bracket is found, replace the entire body with "/* TODO */"
+        if depth == 0:
+            body_start = end - offset  # Adjust for previous replacements
+            body_end = i 
+            modified_text = modified_text[:body_start] + "/* TODO */ }" + modified_text[body_end:]
+            offset += body_end - body_start - len("/* TODO */ }")
 
-    with open(file_path, 'r') as file:
-        content = file.read()
-        for match in definition_pattern.finditer(content):
-            definitions[match.group(2)] = match.span()
-            calls.update(call_pattern.findall(content[match.end():]))
+    return modified_text
 
-    return definitions, calls
+def mod_check(text):
+    pattern = r"/\*\s*TODO\s*\*/"
 
-def remove_root_bodies(file_path, definitions, calls):
-    root_elements = {name for name in definitions if name not in calls}
-    if not root_elements:
-        return False  # No changes made
+    # Using the re.search() method to search for the pattern in the text
+    return re.search(pattern, text)
 
-    with open(file_path, 'r') as file:
-        content = file.read()
+def get_output_path(original_path):
 
-    # Sort root elements by their starting position in reverse
-    for name in sorted(root_elements, key=lambda x: definitions[x][0], reverse=True):
-        start, end = definitions[name]
-        # Find the next function or end of file to determine the end of the body
-        body_end_match = re.search(r"^\s*(function|method|lemma)", content[end:], re.MULTILINE)
-        if body_end_match:
-            body_end = end + body_end_match.start()
-        else:
-            body_end = len(content)
-        content = content[:start] + content[body_end:]
+    # Split the original path into parts
+    path_parts = original_path.split('/')
 
-    with open(file_path, 'w') as file:
-        file.write(content)
+    # Change the directory name in the path
+    # Assuming 'ground_truth_body' is always present and needs to be replaced with 'no_body'
+    new_path_parts = [part if part != 'ground_truth_body' else 'no_body' for part in path_parts]
 
-    return True
-
-def clean_file(file_path):
-    definitions, calls = parse_definitions_and_calls(file_path)
-    if remove_root_bodies(file_path, definitions, calls):
-        print(f"Modified {file_path}")
+    # Join the path back together
+    new_path = '/'.join(new_path_parts)
+    return new_path
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build and display a dependency graph for functions, methods, and lemmas in a Dafny file.")
     parser.add_argument("file_path", help="The path to the Dafny (.dfy) file")
     args = parser.parse_args()
+    with open(args.file_path, 'r') as file:
+        dafny_program_text = file.read()
 
-    dependencies = parse_dafny_file(args.file_path)
-    display_dependencies(dependencies)
-    clean_file(args.file_path)
+    # Process the program text
+    modified_program_text = remove_method_bodies(dafny_program_text)
+    print(modified_program_text)
+    
+    # Confirm some part of the program has been removed
+    if not mod_check(modified_program_text):
+        print("WARNING: nothing changed")
+        try:
+            os.remove(args.file_path)
+        except:
+            print("Could not remove the file that was unmodified")
+    else:
+        # TODO: write to outfile path instead
+        out_path = get_output_path(args.file_path)
+        with open(out_path, 'w', encoding='utf-8') as file:
+            file.write(modified_program_text)

@@ -2,13 +2,7 @@
 // RUN: %diff "%s.expect" "%t"
 
 method Main()
-{
-  test0(10);
-	test5(11);
-	test6(12);
-	test1();
-	test2();
-}
+{/* TODO */ }
 
 predicate valid(x:int)
 {
@@ -23,40 +17,17 @@ function ref1(y:int) : int
 
 lemma assumption1()
   ensures forall a, b :: valid(a) && valid(b) && ref1(a) == ref1(b) ==> a == b;
-{
-}
+{/* TODO */ }
 
 method test0(a: int)
-{
-  if ref1.requires(a) {
-    // the precondition should suffice to let us call the method
-    ghost var b := ref1(a);
-  }
-}
+{/* TODO */ }
 method test5(a: int)
-{
-  if valid(a) {
-    // valid(a) is the precondition of ref1
-    assert ref1.requires(a);
-  }
-}
+{/* TODO */ }
 method test6(a: int)
-{
-  if ref1.requires(a) {
-    // the precondition of ref1 is valid(a)
-    assert valid(a);
-  }
-}
+{/* TODO */ }
 
 method test1()
-{
-  if * {
-    assert forall a, b :: valid(a) && valid(b) && ref1(a) == ref1(b) ==> a == b;
-  } else {
-    assert forall a, b :: ref1.requires(a) && ref1.requires(b) && ref1(a) == ref1(b)
-                          ==> a == b;
-  }
-}
+{/* TODO */ }
 
 function {:opaque} ref2(y:int) : int        // Now with an opaque attribute
   requires valid(y);
@@ -66,18 +37,8 @@ function {:opaque} ref2(y:int) : int        // Now with an opaque attribute
 
 lemma assumption2()
   ensures forall a, b :: valid(a) && valid(b) && ref2(a) == ref2(b) ==> a == b;
-{
-  reveal ref2();
-}
+{/* TODO */ }
 
 method test2()
-{
-  assumption2();
-  if * {
-    assert forall a, b :: valid(a) && valid(b) && ref2(a) == ref2(b) ==> a == b;
-  } else {
-    assert forall a, b :: ref2.requires(a) && ref2.requires(b) && ref2(a) == ref2(b)
-                          ==> a == b;
-  }
-}
+{/* TODO */ }
 

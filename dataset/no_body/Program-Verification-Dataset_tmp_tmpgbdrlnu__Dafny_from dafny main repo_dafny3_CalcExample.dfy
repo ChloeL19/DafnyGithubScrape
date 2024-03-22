@@ -20,19 +20,7 @@ lemma DiagonalIdentity(x: int)
 method CalculationalStyleProof(a: int, b: int, c: int, x: int)
   requires c <= x == f(a, b)
   ensures f(a, f(b, c)) <= x
-{
-  calc {
-    f(a, f(b, c));
-  ==  { Associativity(a, b, c); }
-    f(f(a, b), c);
-  ==  { assert f(a, b) == x; }
-    f(x, c);
-  <=  { assert c <= x; Monotonicity(c, x); }
-    f(x, x);
-  ==  { DiagonalIdentity(x); }
-    x;
-  }
-}
+{/* TODO */ }
 
 // Here's the same lemma, but with a proof written in a different style.
 // (An explanation of the constructs in this lemma is found below.)
@@ -41,36 +29,7 @@ method DifferentStyleProof(a: int, b: int, c: int, x: int)
   requires A: c <= x
   requires B: x == f(a, b)
   ensures f(a, f(b, c)) <= x
-{
-  assert 0: f(a, f(b, c)) == f(f(a, b), c) by {
-    Associativity(a, b, c);
-  }
-
-  assert 1: f(f(a, b), c) == f(x, c) by {
-    reveal B;
-  }
-
-  assert 2: f(x, c) <= f(x, x) by {
-    assert c <= x by { reveal A; }
-    Monotonicity(c, x);
-  }
-
-  assert 3: f(x, x) == x by {
-    DiagonalIdentity(x);
-  }
-
-  assert 4: f(a, f(b, c)) == f(x, c) by {
-    reveal 0, 1;
-  }
-
-  assert 5: f(x, c) <= x by {
-    reveal 2, 3;
-  }
-
-  assert f(a, f(b, c)) <= x by {
-    reveal 4, 5;
-  }
-}
+{/* TODO */ }
 
 // To understand the lemma above, here's what you need to know (and then some):
 //
@@ -78,7 +37,7 @@ method DifferentStyleProof(a: int, b: int, c: int, x: int)
 //   the boolean condition "P" and then to assume "P" from here on (that
 //   is, in the control flow that continues from here).
 //
-// * An assert with a proof is written "assert P by { S }" where "S" is
+// * An assert with a proof is written "assert P by {/* TODO */ }" where "S" is
 //   a list of statements (typically other assertions and lemma calls).
 //   This statement instructs the verifier to do "S" and then prove "P".
 //   Once this is done, the verifier assumes "P" from here on, but it
@@ -96,7 +55,7 @@ method DifferentStyleProof(a: int, b: int, c: int, x: int)
 //
 //   or:
 //
-//     assert L: P by { S }
+//     assert L: P by {/* TODO */ }
 //
 //   This instructs the verifier to prove the assertion as described in the
 //   previous two bullets, but then to forget about "P". In other words, the
@@ -138,7 +97,7 @@ method DifferentStyleProof(a: int, b: int, c: int, x: int)
 //   as they were when the assert was stated. For example, suppose "P" is an
 //   expression that mentions a local variable "x". Then, the second assertion in
 //
-//     assert L: P by { ... }
+//     assert L: P by {/* TODO */ }
 //     x := x + 1;
 //     ...make changes to the heap...
 //     reveal L;

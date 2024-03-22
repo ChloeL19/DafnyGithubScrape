@@ -7,12 +7,8 @@
 // Simple sanity test of nested modules
 module Parent {
   module Child {
-    method Test() {
-      print "hi from a nested module\n";
-    }
+    method Test() {/* TODO */ }
   }
 }
 
-method Main() {
-  Parent.Child.Test();
-}
+method Main() {/* TODO */ }

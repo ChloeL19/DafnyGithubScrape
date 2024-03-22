@@ -37,22 +37,10 @@ function pow2_slow(n: int): int
 lemma Lemma(n: int)
   requires 0 <= n && IsEven(n);
   ensures pow2_slow(n) == Square(pow2_slow(n/2));
-{
-  if n != 0 {
-    Lemma(n-2);
-  }
-}
+{/* TODO */ }
 
 lemma Theorem(n: int)
   requires 0 <= n;
   ensures pow2(n) == pow2_slow(n);
-{
-  if n == 0 {
-  } else if (IsEven(n)) {
-    Lemma(n);
-    Theorem(n/2);
-  } else {
-    Theorem(n-1);
-  }
-}
+{/* TODO */ }
 

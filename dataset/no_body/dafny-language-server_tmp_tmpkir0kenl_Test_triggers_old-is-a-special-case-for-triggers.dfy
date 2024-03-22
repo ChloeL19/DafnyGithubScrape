@@ -28,6 +28,5 @@ method M(sc: set<C>)
   // WISH: A Dafny rewriter could cleanup expressions so that adding the
   //       expression forall c :: c == old(c) in a quantifier would cause a warning,
   //       instead of a trigger generation error as it does now.
-{
-}
+{/* TODO */ }
 

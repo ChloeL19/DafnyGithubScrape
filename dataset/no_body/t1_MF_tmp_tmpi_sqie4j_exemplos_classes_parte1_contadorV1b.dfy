@@ -19,37 +19,17 @@ class Contador
     method Incrementa()
       modifies this
       ensures valor == old(valor) + 1
-    {
-        valor := valor + 1;
-    }
+    {/* TODO */ }
 
     method Decrementa()
       modifies this
       ensures valor == old(valor) - 1
-    {
-        valor := valor -1 ;
-    }
+    {/* TODO */ }
 
     method GetValor() returns (v:int)
       ensures v == valor
-    {
-        return valor;
-    }
+    {/* TODO */ }
 }
 
 method Main()
-{
-    var c := new Contador(); //cria um novo objeto no heap via construtor anônimo
-    var c2 := new Contador.Init(10); //cria um novo objeto no heap via construtor nomeado
-    var v := c.GetValor();
-    assert v == 0;
-    var v2 := c2.GetValor();
-    assert v2 == 10;
-    c.Incrementa();
-    v := c.GetValor();
-    assert v == 1;
-    c.Decrementa();
-    v := c.GetValor();
-    assert v == 0;
-
-}
+{/* TODO */ }

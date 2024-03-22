@@ -16,35 +16,11 @@ abstract module AbstractInterface {
     constructor Init()
       ensures Contents == {}
     method Store(t: Thing)
-      ensures Contents == old(Contents) + {t}
-    method Retrieve(matchCriterion: Thing -> bool) returns (thing: Thing)
-      requires exists t :: t in Contents && matchCriterion(t)
-      ensures Contents == old(Contents)
-      ensures thing in Contents && matchCriterion(thing)
-  }
+      ensures Contents == old(Contents) + {/* TODO */ }
+    method Retrieve(matchCriterion: Thing -> bool) returns (thing: Thing/* TODO */ }
 }
 
-abstract module A refines AbstractInterface {
-  class StoreAndRetrieve<Thing(==)> ... {
-    constructor Init...
-    {
-      Contents := {};
-      Repr := {this};
-      new;
-      assume Valid'();  // to be checked in module B
-    }
-    method Store...
-    {
-      Contents := Contents + {t};
-      assume Valid'();  // to be checked in module B
-    }
-    method Retrieve...
-    {
-      var k :| assume k in Contents && matchCriterion(k);
-      thing := k;
-    }
-  }
-}
+abstract module A refines AbstractInterface {/* TODO */ }
 
 abstract module B refines A {
   class StoreAndRetrieve<Thing(==)> ... {
@@ -60,57 +36,27 @@ abstract module B refines A {
       assert ...;
     }
     method Store...
-    {
-      arr := arr + [t];
-      ...;
-      assert ...;
-    }
+    {/* TODO */ }
     method Retrieve...
-    {
-      var i := 0;
-      while (i < |arr|)
-        invariant i < |arr|
-        invariant forall j :: 0 <= j < i ==> !matchCriterion(arr[j])
-      {
-        if matchCriterion(arr[i]) {
-          break;
-        }
-        i := i + 1;
-      }
-      var k := arr[i];
-      ...;
-      var a: seq<Thing> :| assume Contents == set x | x in a;
-      arr := a;
-    }
+    {/* TODO */ }
   }
 }
 
 module abC refines B { // TODO module C causes Go to fail
   class StoreAndRetrieve<Thing(==)> ... {
     method Retrieve...
-    {
-      ...;
-      var a := [thing] + arr[..i] + arr[i+1..];  // LRU behavior
-    }
+    {/* TODO */ }
   }
 }
 
 abstract module AbstractClient {
   import S : AbstractInterface
 
-  method Test() {
-    var s := new S.StoreAndRetrieve<real>.Init();
-    s.Store(20.3);
-    var fn := r => true;
-    var r := s.Retrieve(fn);
-    print r, "\n";  // 20.3
-  }
+  method Test() {/* TODO */ }
 }
 
 module Client refines AbstractClient {
   import S = abC
-  method Main() {
-    Test();
-  }
+  method Main() {/* TODO */ }
 }
 

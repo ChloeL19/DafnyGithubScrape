@@ -40,20 +40,15 @@ function mean_absolute_deviation(numbers: seq<real>):real
 lemma sum_nonnegative(numbers: seq<real>)
     requires forall i :: 0 <= i < |numbers| ==> numbers[i] >= 0.0
     ensures sum(numbers) >= 0.0
-{
-}
+{/* TODO */ }
 
 lemma mean_nonnegative(numbers: seq<real>)
     requires numbers != []
     requires forall i :: 0 <= i < |numbers| ==> numbers[i] >= 0.0
     ensures mean(numbers) >= 0.0
-{
-    sum_nonnegative(numbers);
-}
+{/* TODO */ }
 
 lemma mean_absolute_deviation_nonnegative(numbers: seq<real>)
     requires numbers != []
     ensures mean_absolute_deviation(numbers) >= 0.0
-{
-   mean_nonnegative(mapf<real,real>(x => abs(x - mean(numbers)), numbers));
-}
+{/* TODO */ }

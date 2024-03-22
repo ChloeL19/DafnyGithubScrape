@@ -26,22 +26,10 @@ lemma {:axiom} lemma_ReverseConcatenateSeqs<T>(ss:seq<seq<T>>)
     ensures  ConcatenateSeqs(ss) == ConcatenateSeqs(all_but_last(ss)) + last(ss);
 
 lemma Test(word_seqs:seq<seq<uint32>>, words:seq<uint32>)
-{
-    var word_seqs' := word_seqs + [words];
-
-    calc {
-        ConcatenateSeqs(word_seqs');
-            { lemma_ReverseConcatenateSeqs(word_seqs'); }
-        ConcatenateSeqs(all_but_last(word_seqs')) + last(word_seqs');
-    }
-}
+{/* TODO */ }
 
 lemma AltTest(word_seqs:seq<seq<uint32>>, words:seq<uint32>)
-{
-    var word_seqs' := word_seqs + [words];
-    assert last(word_seqs') == words;
-    assert ConcatenateSeqs(word_seqs) + last(word_seqs') == ConcatenateSeqs(word_seqs) + words;
-}
+{/* TODO */ }
 
 function f<T>(s:seq<T>):seq<T>
 
@@ -51,18 +39,9 @@ lemma {:axiom} lemma_fg<T>(s:seq<seq<T>>)
     ensures  g(s) == g(f(s));
 
 lemma Test2(s:seq<seq<uint32>>)
-{
-    calc {
-        g(s);
-            { lemma_fg(s); }
-        g(f(s));
-    }
-}
+{/* TODO */ }
 
 lemma AltTest2(s:seq<seq<uint32>>)
-{
-    lemma_fg(s);
-    assert g(s) == g(f(s));
-}
+{/* TODO */ }
 
 

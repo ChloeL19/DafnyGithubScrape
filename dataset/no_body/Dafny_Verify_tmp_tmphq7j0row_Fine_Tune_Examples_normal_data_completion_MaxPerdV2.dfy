@@ -22,19 +22,5 @@ reads a
 method max(a: array<int>, n: int) returns (max: int)
   requires 0 < n <= a.Length;
   ensures is_max(max, a, n);
-{
-  var i: int := 1;
-
-  max := a[0];
-
-  while i < n
-		invariant i <= n;
-		invariant is_max (max, a, i);
-  {
-    if a[i] > max {
-      max := a[i];
-    }
-    i := i + 1;
-  }
-}
+{/* TODO */ }
 

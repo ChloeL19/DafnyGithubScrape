@@ -12,11 +12,7 @@ module Sequence {
 
     lemma lemma_LengthGe0<A>(s: T<A>)
         ensures 0 <= Length(s)
-    {
-        match s 
-            case Nil => 
-            case Cons(_, s) => lemma_LengthGe0(s);
-    }
+    {/* TODO */ }
 }
 
 

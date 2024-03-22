@@ -8,20 +8,7 @@ function Fib(n:nat):nat
 
 method ComputeFib(n:nat) returns (x:nat)
 ensures x == Fib(n)
-{
-    var i := 0;
-    x := 0;
-    var y := 1;
-    while i < n
-    decreases n-i
-    invariant 0 <= i <= n
-    invariant x == Fib(i)
-    invariant y == Fib(i+1)
-    {
-        x, y := y, x + y; //multiplas atribuições
-        i := i + 1;
-    }
-}
+{/* TODO */ }
 
 // Fibonnaci
 // n | Fib

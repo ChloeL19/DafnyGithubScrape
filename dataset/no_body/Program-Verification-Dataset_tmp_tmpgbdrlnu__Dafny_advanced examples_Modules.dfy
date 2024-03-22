@@ -8,22 +8,14 @@ abstract module Interface {
         ensures P(F())
 }
 
-module Implementation refines Interface {
-    predicate P(x: T) {
-        false
-    }
-
-}
+module Implementation refines Interface {/* TODO */ }
 
 abstract module User {
     import I : Interface
 
     lemma Main()
         ensures I.P(I.F());
-    {
-        I.FP();
-        assert I.P(I.F());
-    }
+    {/* TODO */ }
 }
 
 module Main refines User {
@@ -31,9 +23,6 @@ module Main refines User {
 
     lemma Main()
         ensures I.P(I.F())
-    {
-        I.FP();
-        assert false;
-    }
+    {/* TODO */ }
 }
 

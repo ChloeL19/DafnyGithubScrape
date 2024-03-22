@@ -17,17 +17,11 @@ function g(c: C): C
 function h(c: C, i: int): C
 
 // With explicit arguments
-method M0(i: int, j: int, sc: set<C>) {
-  assert forall c | c in sc :: true || h(c, i) == h(h(c, j), j);
-}
+method M0(i: int, j: int, sc: set<C>) {/* TODO */ }
 
 // With implicit arguments (f and g respectively, to Apply)
-method M1(f: int -> int, g: int -> int) {
-  assert forall x :: true || f(x) == g(f(x));
-}
+method M1(f: int -> int, g: int -> int) {/* TODO */ }
 
 // With implicit arguments (the heap, to old)
-method M2(sc: set<C>) {
-  assert forall c | c in sc :: true || f(c) == old(f(f(c)));
-}
+method M2(sc: set<C>) {/* TODO */ }
 

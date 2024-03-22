@@ -14,8 +14,7 @@ ghost predicate IsSorted(seqint:seq<int>) {
 
 lemma BinarySearch(haystack:seq<int>, needle:int) returns (index:nat)
     requires IsSorted(haystack)
-/*{*/
-/*}*/
+/*{/* TODO */ }*/
 {
 /*{*/
     return 0;  // Replace me with an implementation.

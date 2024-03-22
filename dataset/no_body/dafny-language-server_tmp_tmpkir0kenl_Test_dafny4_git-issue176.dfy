@@ -13,7 +13,4 @@ predicate Thing2(ctx: Context) {
    forall i :: i in ctx'.foo ==> i == 0
 }
 
-method Main() {
-   assert Thing1();
-   assert Thing2(Context(map[2 := 3]));
-}
+method Main() {/* TODO */ }

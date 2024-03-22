@@ -11,13 +11,7 @@ module DafnyVersion {
     p.y
   }
 
-  lemma UsePair() {
-    assert Pair(1, 2) != Pair(2, 1);
-    var p := Pair(1, 2);
-    assert pair_x(p) + pair_y(p) == 3;
-
-    assert forall p1, p2 :: pair_x(p1) == pair_x(p2) && pair_y(p1) == pair_y(p2) ==> p1 == p2;
-  }
+  lemma UsePair() {/* TODO */ }
 }
 
 // Dafny encodes pairs to SMT by emitting the SMT equivalent of the following.
@@ -40,31 +34,12 @@ module Encoding {
   // pairs so that proofs go through.
   lemma {:axiom} x_defn()
     ensures forall x, y :: pair_x(pair(x, y)) == x
-  lemma {:axiom} y_defn()
+  lemma {/* TODO */ } y_defn()
     ensures forall x, y :: pair_y(pair(x, y)) == y
   lemma {:axiom} bijection()
     ensures forall p:Pair :: pair(pair_x(p), pair_y(p)) == p
 
-  lemma UseEncoding() {
-
-    x_defn();
-    y_defn();
-    bijection();
-
-    assert pair(1, 2) != pair(2, 1) by {
-      x_defn();
-    }
-
-    assert pair_y(pair(1, 2)) == 2 by {
-      y_defn();
-    }
-
-    assert forall p1, p2 |
-        pair_x(p1) == pair_x(p2) && pair_y(p1) == pair_y(p2)
-        :: p1 == p2 by {
-      bijection();
-    }
-  }
+  lemma UseEncoding() {/* TODO */ }
 
   // Exercises to think about:
   // How exactly are the axioms being used in each proof above?

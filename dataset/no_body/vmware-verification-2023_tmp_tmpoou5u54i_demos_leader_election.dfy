@@ -137,55 +137,16 @@ ghost predicate Inv(c: Constants, v: Variables)
 lemma InitImpliesInv(c: Constants, v: Variables)
   requires Init(c, v)
   ensures Inv(c, v)
-{
-}
+{/* TODO */ }
 
 lemma NextPreservesInv(c: Constants, v: Variables, v': Variables)
   requires Inv(c, v)
   requires Next(c, v, v')
   ensures Inv(c, v')
-{
-  var step :| NextStep(c, v, v', step);
-  var srcidx := step.srcidx;
-  var dstidx := NextIdx(c, srcidx);
-  var message := max(v.highest_heard[srcidx], c.ids[srcidx]);
-  var dst_new_max := max(v.highest_heard[dstidx], message);
-
-  forall start, end
-    | IsChord(c, v', start, end)
-    ensures OnChordHeardDominatesId(c, v', start, end)
-  {
-    forall node | Between(start, node, end) && c.ValidIdx(node)
-      ensures v'.highest_heard[node] > c.ids[node]
-    {
-      if dstidx == end {
-        // maybe this chord just sprung into existence
-        if v'.highest_heard[end] == v.highest_heard[end] {
-          // no change --
-          assert v' == v; // trigger
-        } else if v'.highest_heard[end] == c.ids[srcidx] {
-          assert false; // proof by contridiction
-        } else if v'.highest_heard[end] == v.highest_heard[srcidx] {
-          assert IsChord(c, v, start, srcidx);  // trigger
-        }
-      } else {
-        // this chord was already here
-        assert IsChord(c, v, start, end); // trigger
-      }
-    }
-  }
-  assert OnChordHeardDominatesIdInv(c, v');
-
-  forall i, j | IsLeader(c, v', i) && IsLeader(c, v', j) ensures i == j {
-    assert IsChord(c, v', i, i);  // trigger
-    assert IsChord(c, v', j, j);  // trigger
-  }
-  assert Safety(c, v');
-}
+{/* TODO */ }
 
 lemma InvImpliesSafety(c: Constants, v: Variables)
   requires Inv(c, v)
   ensures Safety(c, v)
-{
-}
+{/* TODO */ }
 

@@ -28,9 +28,7 @@ requires (n[i] == I) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := T;
-}
+{/* TODO */ }
 
 method n_Tryinv__1_1(n:array<state>,    
 N0:nat,i:nat,
@@ -55,9 +53,7 @@ requires (n[i] == I) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := T;
-}
+{/* TODO */ }
 
 method n_Tryinv__1_2(n:array<state>,    
 N0:nat,i:nat,
@@ -82,9 +78,7 @@ requires (n[i] == I) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := T;
-}
+{/* TODO */ }
 
 method n_Tryinv__1_3(n:array<state>,    
 N0:nat,i:nat,
@@ -109,9 +103,7 @@ requires (n[i] == I) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := T;
-}
+{/* TODO */ }
 
 method n_Tryinv__1_4(n:array<state>,    
 N0:nat,i:nat,
@@ -136,9 +128,7 @@ requires (n[i] == I) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := T;
-}
+{/* TODO */ }
 
 
 method n_Critinv__1_0(n:array<state>,     x:array<boolean>, 
@@ -169,10 +159,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := C;
-  x[0] := false;
-}
+{/* TODO */ }
 
 method n_Critinv__1_1(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -202,10 +189,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := C;
-  x[0] := false;
-}
+{/* TODO */ }
 
 method n_Critinv__1_2(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -235,10 +219,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := C;
-  x[0] := false;
-}
+{/* TODO */ }
 
 method n_Critinv__1_3(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -268,10 +249,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := C;
-  x[0] := false;
-}
+{/* TODO */ }
 
 method n_Critinv__1_4(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -301,10 +279,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := C;
-  x[0] := false;
-}
+{/* TODO */ }
 
 
 method n_Exitinv__1_0(n:array<state>,    
@@ -330,9 +305,7 @@ requires (n[i] == C) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := E;
-}
+{/* TODO */ }
 
 method n_Exitinv__1_1(n:array<state>,    
 N0:nat,i:nat,
@@ -357,9 +330,7 @@ requires (n[i] == C) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := E;
-}
+{/* TODO */ }
 
 method n_Exitinv__1_2(n:array<state>,    
 N0:nat,i:nat,
@@ -384,9 +355,7 @@ requires (n[i] == C) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := E;
-}
+{/* TODO */ }
 
 method n_Exitinv__1_3(n:array<state>,    
 N0:nat,i:nat,
@@ -411,9 +380,7 @@ requires (n[i] == C) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := E;
-}
+{/* TODO */ }
 
 method n_Exitinv__1_4(n:array<state>,    
 N0:nat,i:nat,
@@ -438,9 +405,7 @@ requires (n[i] == C) //guard condition
 ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 
-{
-  n[i] := E;
-}
+{/* TODO */ }
 
 
 method n_Idleinv__1_0(n:array<state>,     x:array<boolean>, 
@@ -471,10 +436,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := I;
-  x[0] := true;
-}
+{/* TODO */ }
 
 method n_Idleinv__1_1(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -504,10 +466,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := I;
-  x[0] := true;
-}
+{/* TODO */ }
 
 method n_Idleinv__1_2(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -537,10 +496,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := I;
-  x[0] := true;
-}
+{/* TODO */ }
 
 method n_Idleinv__1_3(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -570,10 +526,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := I;
-  x[0] := true;
-}
+{/* TODO */ }
 
 method n_Idleinv__1_4(n:array<state>,     x:array<boolean>, 
 N0:nat,i:nat,
@@ -603,10 +556,7 @@ ensures   (!((n[p__Inv4] == C) && (n[p__Inv3] == C)))
 modifies n
 modifies x
 
-{
-  n[i] := I;
-  x[0] := true;
-}
+{/* TODO */ }
 
 
 

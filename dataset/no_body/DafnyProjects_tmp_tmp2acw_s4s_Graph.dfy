@@ -21,7 +21,7 @@ class {:autocontracts} Graph<T(==)> {
    // Adds a new vertex v to this graph.
    method addVertex(v: T)
      requires v !in V
-     ensures E == old(E) && V == old(V) + {v}
+     ensures E == old(E) && V == old(V) + {/* TODO */ }
      {
         V := V + {v};
      }
@@ -29,7 +29,7 @@ class {:autocontracts} Graph<T(==)> {
    // Adds a new edge (u, v) to this graph.
    method addEdge(u: T, v: T)
      requires u in V && v in V && (u, v) !in E && u != v
-     ensures V == old(V) && E == old(E) + {(u, v)} 
+     ensures V == old(V) && E == old(E) + {/* TODO */ } 
      {
         E := E + {(u, v)};
      }
@@ -44,7 +44,7 @@ class {:autocontracts} Graph<T(==)> {
    // Removes a vertex v and all the edges incident on v from the graph.
    method removeVertex(v: T)
      requires v in V
-     ensures V == old(V) - {v}
+     ensures V == old(V) - {/* TODO */ }
      ensures E == set e | e in old(E) && e.0 != v && e.1 != v 
      {
         V := V - {v};
@@ -57,7 +57,7 @@ class {:autocontracts} Graph<T(==)> {
     // In all other edges, vertices belonging to C are replaced by v.
     method collapseVertices(C: set<T>, v: T)
       requires v in C && C <= V 
-      ensures V == old(V) - C + {v}
+      ensures V == old(V) - C + {/* TODO */ }
       ensures E == set e | e in old(E) && (e.0 !in C || e.1 !in C) ::
                           (if e.0 in C then v else e.0, if e.1 in C then v else e.1)
   {
@@ -67,25 +67,5 @@ class {:autocontracts} Graph<T(==)> {
   }    
 }
 
-method testGraph() {
-    var G := new Graph<int>();
-    assert G.E == {} && G.V == {};
-
-    G.addVertex(1);
-    G.addVertex(2);
-    G.addVertex(3);
-    G.addVertex(4);
-    assert G.V == {1, 2, 3, 4};
-
-    G.addEdge(1, 2);
-    G.addEdge(1, 3);
-    G.addEdge(2, 3);
-    G.addEdge(4, 1);
-    assert G.E == {(1, 2), (1, 3), (2, 3), (4, 1)};
-
-    assert G.getAdj(1) == {2, 3};
-
-    G.collapseVertices({1, 2, 3}, 3);
-    assert G.V == {3, 4} && G.E == {(4, 3)};
-}
+method testGraph() {/* TODO */ }
 

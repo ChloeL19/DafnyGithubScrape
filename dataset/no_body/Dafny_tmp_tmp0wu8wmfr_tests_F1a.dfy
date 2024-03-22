@@ -1,17 +1,9 @@
 method F() returns ( r: int)
     ensures r <= 0
-{
-    r := 0;
-}
+{/* TODO */ }
 
 method Main() 
-{
-    var x := F();
-    assert x <= 0;
-    x := x-1;
-    assert x <= -1;
-    print x;
-}
+{/* TODO */ }
 
 
 method Mid( p: int, q: int) returns ( m: int )
@@ -22,7 +14,4 @@ method Mid( p: int, q: int) returns ( m: int )
     ensures m-p <= q-m;
     ensures 0 <= (q-m)-(m-p) <= 1;
 
-{
-    m := (p+q)/2;
-    assert m == p+(q-p)/2;
-}
+{/* TODO */ }

@@ -6,16 +6,4 @@ function Sum(xs: seq<int>): int {
 
 method SumArray(xs: array<int>) returns (s: int)
     ensures s == Sum(xs[..])
-{
-    s := 0;
-    var i := 0;
-    while i < xs.Length
-        invariant 0 <= i <= xs.Length
-        invariant s == Sum(xs[..i])
-    {
-        s := s + xs[i];
-        assert xs[..i+1] == xs[..i] + [xs[i]];
-        i := i + 1;
-    }
-    assert xs[..] == xs[..i];
-}
+{/* TODO */ }

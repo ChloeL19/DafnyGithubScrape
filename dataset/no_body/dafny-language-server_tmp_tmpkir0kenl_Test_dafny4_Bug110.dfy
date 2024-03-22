@@ -9,7 +9,7 @@ module Io {
         ensures AdvanceTime(1);
   }
 
-  function MaxPacketSize() : int { 65507 }
+  function MaxPacketSize() : int {/* TODO */ }
 
   class UdpClient
   {
@@ -21,10 +21,7 @@ module Io {
   }
 }
 
-abstract module Host {
-    import opened Io // Doesn't work.
-    //import Io          // Works
-}
+abstract module Host {/* TODO */ }
 
 abstract module Main {
     import H : Host

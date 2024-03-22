@@ -31,27 +31,4 @@ ensures (tank.height>10 && tank.pipe.v1==OFF && tank.pipe.v3==ON && tank.pipe.v2
 || (tank.height <8 && tank.pipe.v1== OFF && tank.pipe.v2== ON && tank.pipe.v3==old(tank.pipe.v3))
 || ((tank.pipe.in_flowv3 >5 || tank.pipe.in_flowv1 >5 ) && tank.pipe.v2==OFF && tank.pipe.v3==old(tank.pipe.v3) && tank.pipe.v1==old(tank.pipe.v1))
 modifies tank.pipe;
- {
-    if(tank.height >10)
-     {
-         tank.pipe.v1:= OFF;
-         tank.pipe.v3:= ON;
-        assert((tank.height>10 && tank.pipe.v1==OFF && tank.pipe.v3==ON && tank.pipe.v2==old(tank.pipe.v2)));
-     }
-    else if(tank.height <8)
-     {
-         
-         tank.pipe.v1:= OFF;
-         tank.pipe.v2:= ON;
-         assert((tank.height <8 && tank.pipe.v1== OFF && tank.pipe.v2== ON && tank.pipe.v3==old(tank.pipe.v3)));
-     }
-     
-     assume(((tank.pipe.in_flowv3 >5 || tank.pipe.in_flowv1 >5 ) && tank.pipe.v2==OFF && tank.pipe.v3==old(tank.pipe.v3) && tank.pipe.v1==old(tank.pipe.v1)));
-     /*else if(tank.pipe.in_flowv3 >5 || tank.pipe.in_flowv1> 5)
-     {
-
-         tank.pipe.v2:= OFF;
-         assume(((tank.pipe.in_flowv3 >5 || tank.pipe.in_flowv1 >5 ) && tank.pipe.v2==OFF && tank.pipe.v3==old(tank.pipe.v3) && tank.pipe.v1==old(tank.pipe.v1)));
-     } */
-     
- } 
+ {/* TODO */ } 

@@ -1,18 +1,7 @@
 // RUN: %dafny /compile:3 "%s" > "%t"
 // RUN: %diff "%s.expect" "%t"
 
-method Main() {
-  var a := new Issue.Foo<int>();
-  Issue.CallUseFoo(a);
-
-  var b := new Variation.Foo<int>();
-  Variation.CallUseFoo(b);
-
-  var c := new AnotherVariation.Foo<int>();
-  AnotherVariation.CallUseFoo(c);
-
-  print "\n";
-}
+method Main() {/* TODO */ }
 
 module Issue
 {
@@ -23,16 +12,11 @@ module Issue
 
   method UseFoo<T>(t: Foo<T>)
     modifies t.Repr()
-  {
-    print 0;
-  }
+  {/* TODO */ }
 
   method CallUseFoo<T>(t: Foo<T>)
     modifies t.Repr()
-  {
-    // the following line once produced malformed Boogie
-    UseFoo(t);
-  }
+  {/* TODO */ }
 }
 
 // the following variation was working all along
@@ -53,17 +37,12 @@ module Variation {
 
     method Do()
       modifies foo.Repr()
-    {
-      print 1;
-    }
+    {/* TODO */ }
   }
 
   method CallUseFoo<T>(t: Foo<T>)
     modifies t.Repr()
-  {
-    var fh := new UseFooHelper(t);
-    fh.Do();
-  }
+  {/* TODO */ }
 }
 
 // the following variation was also working all along
@@ -75,15 +54,11 @@ module AnotherVariation
 
     method UseFoo()
       modifies Repr()
-    {
-      print 2;
-    }
+    {/* TODO */ }
   }
 
   method CallUseFoo<T>(t: Foo<T>)
     modifies t.Repr()
-  {
-    t.UseFoo();
-  }
+  {/* TODO */ }
 }
 

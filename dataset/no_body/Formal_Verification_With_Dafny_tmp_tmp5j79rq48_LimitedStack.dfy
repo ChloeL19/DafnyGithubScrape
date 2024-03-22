@@ -30,23 +30,13 @@ class LimitedStack{
       ensures Valid() && Empty() && c == capacity
       ensures fresh(arr); // ensures arr is a newly created object.
       // Additional post-condition to be given here!
-      {
-        capacity := c;
-        arr := new int[c];
-        top := -1;
-      }
+      {/* TODO */ }
 
 
       
       method isEmpty() returns (res : bool)
       ensures res == Empty()
-      {
-        if(top == -1)
-        { return true; }
-        else {
-              return false;
-        }
-      }
+      {/* TODO */ }
 
 
 
@@ -54,9 +44,7 @@ class LimitedStack{
       method Peek() returns (elem : int) 
       requires Valid() && !Empty()
       ensures elem == arr[top]
-      {
-            return arr[top]; 
-      }
+      {/* TODO */ }
 
 
 
@@ -67,10 +55,7 @@ class LimitedStack{
       requires !Full() 
       ensures Valid() && top == old(top) + 1 && arr[top] == elem
       ensures !old(Empty()) ==> forall i : int :: 0 <= i <= old(top)  ==> arr[i] == old(arr[i]);
-      {
-            top := top + 1;
-            arr[top] := elem;
-      }
+      {/* TODO */ }
 
       // Pops the top element off the stack.
 
@@ -79,11 +64,7 @@ class LimitedStack{
       requires Valid() && !Empty()  
       ensures Valid()  && top == old(top) - 1 
       ensures elem == arr[old(top)] 
-      {
-            elem := arr[top];
-            top := top - 1;
-            return elem;
-      }
+      {/* TODO */ }
 
  
       method Shift()
@@ -92,19 +73,7 @@ class LimitedStack{
       ensures forall i : int :: 0 <= i < capacity - 1 ==> arr[i] == old(arr[i + 1]);
       ensures top == old(top) - 1;
       modifies this.arr, this`top;
-      {
-        var i : int := 0;
-        while (i < capacity - 1 )
-        invariant 0 <= i < capacity;
-        invariant top == old(top);
-        invariant forall j : int :: 0 <= j < i ==> arr[j] == old(arr[j + 1]);
-        invariant forall j : int :: i <= j < capacity ==> arr[j] == old(arr[j]);
-        {
-          arr[i] := arr[i + 1];
-          i := i + 1;
-        }
-        top := top - 1;
-      }
+      {/* TODO */ }
 
  
       //Push onto full stack, oldest element is discarded.
@@ -116,61 +85,14 @@ class LimitedStack{
       ensures old(!Full()) ==> top == old(top) + 1 && old(Full()) ==> top == old(top)
       ensures ((old(Full()) ==> arr[capacity - 1] == elem)  && (old(!Full()) ==> (top == old(top) + 1 && arr[top] == elem) ))
       ensures old(Full()) ==> forall i : int :: 0 <= i < capacity - 1 ==> arr[i] == old(arr[i + 1]);
-      {
-            if(top == capacity - 1){
-                  Shift();
-                  top := top + 1;
-                  arr[top] := elem;
-            }
-            else{
-                  top := top + 1;
-                  arr[top] := elem;
-            }
-      }
+      {/* TODO */ }
  
 
  
 
 // When you are finished,  all the below assertions should be provable. 
 // Feel free to add extra ones as well.
-      method Main(){
-           var s := new LimitedStack;
-           s.Init(3);
-
-           assert s.Empty() && !s.Full(); 
-
-           s.Push(27);
-           assert !s.Empty();
-
-           var e := s.Pop();
-           assert e == 27;
-
-           assert s.top == -1; 
-           assert s.Empty() && !s.Full(); 
-           
-           s.Push(5);
-
-           assert s.top == 0;
-           assert s.capacity == 3;
-           s.Push(32);
-           s.Push(9);
-           assert s.Full();
-
-           assert s.arr[0] == 5;
-
-           var e2 := s.Pop();
-           
-           assert e2 == 9 && !s.Full(); 
-           assert s.arr[0] == 5;
-
-           s.Push(e2);
-           s.Push2(99);
-
-           var e3 := s.Peek();
-           assert e3 == 99;
-           assert s.arr[0] == 32;
-                     
-       }
+      method Main(){/* TODO */ }
 
 }
 

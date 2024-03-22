@@ -22,17 +22,4 @@ lemma subsetIsTransitive(A: set, B: set, C: set)
     // ensures - ״מבטיח לי״- צריך להוכיח
     ensures IsSubset(A, C)
 // Start of ensure - תחילת ההוכחה
-{
-    // forall - לכל X
-    // "x in A" - כך שx שייך ל A,
-    // ensures x in C - מבטיח שX שייך לC
-    forall x | x in A ensures x in C {
-        // assert - טענה + label "3"
-        assert 3: x in A;
-        // can't just tell x<B, we prove it by "by"
-        // "reveal" - לחסוף. To reveal why we used this assert.
-        // reveal by: "3" - x in A. "Pre1" - IsSubset(A, B)
-        assert 4: x in B by { reveal 3, Pre1; }
-        assert x in C by { reveal 4, Pre2; }
-    }
-}
+{/* TODO */ }

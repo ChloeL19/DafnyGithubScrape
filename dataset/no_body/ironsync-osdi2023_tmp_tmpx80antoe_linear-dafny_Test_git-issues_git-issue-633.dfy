@@ -6,7 +6,5 @@
 // RUN: sed -e 'sx\\x/x' < "%t" > "%t"2
 // RUN: %diff "%s.expect" "%t"2
 
-method m() {
-  print "OK\n";
-}
+method m() {/* TODO */ }
 

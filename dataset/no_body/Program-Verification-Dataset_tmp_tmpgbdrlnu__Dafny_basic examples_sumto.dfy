@@ -2,9 +2,7 @@
    compute sum of first n natural numbers
 */
 method SumUpTo (n: nat) returns (r: nat)
-{
-  assume(false);
-}
+{/* TODO */ }
 
 
 
@@ -57,15 +55,7 @@ function total (a: seq<nat>) : nat
 
 method Total (a: seq<nat>) returns (r:nat)
   ensures r == total (a[0..|a|]);
-{
-  var i := 0;
-  r := 0;
-  while i < |a|
-  {
-    r := r + a[i];
-    i := i + 1;
-  }
-}
+{/* TODO */ }
 
 */
 

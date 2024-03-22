@@ -9,5 +9,5 @@ function Foo(f: () -> (), n: nat): nat
 
 lemma lemma_Foo()
     ensures forall g: () -> () :: Foo(g, 0) == 0  // regression: this had crashed Dafny
-{}
+{/* TODO */ }
 

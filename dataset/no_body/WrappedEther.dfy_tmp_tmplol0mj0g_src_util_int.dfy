@@ -140,15 +140,7 @@ module Int {
 
     // Simple lemma about POW.
     lemma lemma_pow2(k:nat)
-    ensures Pow(2,k) > 0 {
-        if k == 0 {
-            assert Pow(2,k) == 1;
-        } else if k == 1 {
-            assert Pow(2,k) == 2;
-            } else {
-            lemma_pow2(k/2);
-        }
-    }
+    ensures Pow(2,k) > 0 {/* TODO */ }
 
     // =========================================================
     // Non-Euclidean Division / Remainder
@@ -447,13 +439,7 @@ module U256 {
         ensures v as nat < TWO_256
 
     function Shl(lhs: u256, rhs: u256) : u256
-    {
-        var lbv := lhs as bv256;
-        // NOTE: unclear whether shifting is optimal choice here.
-        var res := if rhs < 256 then (lbv << rhs) else 0;
-        //
-        res as u256
-    }
+    {/* TODO */ }
 
     function Shr(lhs: u256, rhs: u256) : u256 {
         var lbv := lhs as bv256;
@@ -590,9 +576,7 @@ module I256 {
     lemma ShiftYieldsNonZero(x: u256)
         requires 0 < x < 256
         ensures U256.Shl(1, x) > 0
-    {
-        //  Thanks Dafny.
-    }
+    {/* TODO */ }
 
     // Shift Arithmetic Right.  This implementation follows the Yellow Paper quite
     // accurately.

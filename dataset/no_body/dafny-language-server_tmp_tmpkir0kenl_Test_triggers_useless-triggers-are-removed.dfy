@@ -21,6 +21,5 @@ method M()
 
   // This works for multi-triggers, too:
   requires forall x, y :: f(x) + g(f(y)) + g(y) + g(f(x)) == 0
-{
-}
+{/* TODO */ }
 

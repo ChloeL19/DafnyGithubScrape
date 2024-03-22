@@ -31,16 +31,7 @@ class List<T> {
     modifies Repr
     ensures Valid() && fresh(Repr - old(Repr))
     ensures Contents == old(Contents) + [t]
-  {
-    if (n == a.Length) {
-      var b := new T[2 * a.Length + 1](i requires 0 <= i reads this, a =>
-                                       if i < a.Length then a[i] else t);
-      assert b[..n] == a[..n] == Contents;
-      a, Repr := b, Repr + {b};
-      assert b[..n] == Contents;
-    }
-    a[n], n, Contents := t, n + 1, Contents + [t];
-  }
+  {/* TODO */ }
 }
 
 class Cell { var data: int }
@@ -71,46 +62,11 @@ iterator M<T(0)>(l: List<T>, c: Cell) yields (x: T)
 
 method Client<T(==,0)>(l: List, stop: T) returns (s: seq<T>)
   requires l.Valid()
-{
-  var c := new Cell;
-  var iter := new M(l, c);
-  s := [];
-  while true
-    invariant iter.Valid() && fresh(iter._new)
-    invariant iter.xs <= l.Contents
-    decreases |l.Contents| - |iter.xs|
-  {
-    var more := iter.MoveNext();
-    if (!more) { break; }
-    s := s + [iter.x];
-    if (iter.x == stop) { return; }  // if we ever see 'stop', then just end
-  }
-}
+{/* TODO */ }
 
 method PrintSequence<T>(s: seq<T>)
-{
-  var i := 0;
-  while i < |s|
-  {
-    print s[i], " ";
-    i := i + 1;
-  }
-  print "\n";
-}
+{/* TODO */ }
 
 method Main()
-{
-  var myList := new List.Init();
-  var i := 0;
-  while i < 100
-    invariant myList.Valid() && fresh(myList.Repr)
-  {
-    myList.Add(i);
-    i := i + 2;
-  }
-  var s := Client(myList, 89);
-  PrintSequence(s);
-  s := Client(myList, 14);
-  PrintSequence(s);
-}
+{/* TODO */ }
 

@@ -2,10 +2,7 @@
 
 
 method test()
-{
-    assume false;
-    assert true;
-}
+{/* TODO */ }
 
 
 

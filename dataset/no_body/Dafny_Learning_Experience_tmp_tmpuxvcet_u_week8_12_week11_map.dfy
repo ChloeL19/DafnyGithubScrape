@@ -66,27 +66,7 @@ class Node<Data> {
         ensures Valid() && fresh(Repr-old(Repr))
         ensures  M == old(M)[key:=value]
         decreases Repr
-    {
-        if key == this.key{
-            this.value := value;
-        
-        }else if  key < this.key{
-            if left == null {
-                left:= new Node(key,value);
-            }else {
-                left.Add(key,value);
-            }
-            Repr:=Repr + left.Repr;
-        }else{
-            if right == null {
-                right := new Node(key,value);
-            }else {
-                right.Add(key,value);
-            }
-            Repr:= Repr+ right.Repr;
-        }
-        M:= M[key:=value];
-    }
+    {/* TODO */ }
 }
 
 class Map<Data> {
@@ -129,14 +109,5 @@ class Map<Data> {
         modifies Repr
         ensures Valid() && fresh(Repr-old(Repr))
         ensures M == old(M)[key:=value]
-    {
-        if root == null{
-            root:= new Node(key,value);
-
-        }else{
-            root.Add(key,value);
-        }
-        M:= root.M;
-        Repr:= Repr+ root.Repr;
-    }
+    {/* TODO */ }
  }

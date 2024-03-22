@@ -10,26 +10,11 @@ lemma   exp3_Lemma(n:int)
     decreases n
     requires n >= 1
 	ensures (exp(3,n)-1)%2 == 0
-{}
+{/* TODO */ }
 
 lemma  mult8_Lemma(n:int)
     decreases n
 	requires n >= 1
 	ensures (exp(3,2*n) - 1)%8 == 0
-{
-    if(n==1){
-
-    }
-    else{
-        calc =={
-            (exp(3,2*n) -1) % 8;
-            (exp(3, 2*(n-1)) *8 + exp(3,2*(n-1)) - 1) % 8;
-            {
-                mult8_Lemma(n-1);
-                assert exp(3,2*(n-1)) * 8 %8==0;
-            }
-            0;
-        }
-    }
-}
+{/* TODO */ }
 

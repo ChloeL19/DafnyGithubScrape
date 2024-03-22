@@ -7,10 +7,7 @@ abstract module Interface {
 
 abstract module Mod {
     import A : Interface
-    method m() {
-        assert 6 <= A.addSome(5);
-        print "Test\n";
-    }
+    method m() {/* TODO */ }
 }
 
 module Implementation refines Interface {
@@ -25,7 +22,5 @@ module Mod2 refines Mod {
   import A = Implementation
 }
 
-method Main() {
-    Mod2.m();
-}
+method Main() {/* TODO */ }
 

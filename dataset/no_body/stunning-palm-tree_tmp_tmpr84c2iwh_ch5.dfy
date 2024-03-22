@@ -4,49 +4,15 @@ function More(x: int): int {
 
 lemma {:induction false} Increasing(x: int)
   ensures x < More(x)
-{
-  if x <= 0 {}
-  else {
-    // x < More(x) <=> x < More(x - 2) + 3
-    //             <=> x - 3 < More(x - 2)
-    // Increasing(x - 2) ==> x - 2 < More(x - 2)
-    //                   ==> x - 3 < x - 2 < More(x - 2)
-    Increasing(x - 2);
-  }
-}
+{/* TODO */ }
 
-method ExampleLemmaUse(a: int) {
-  var b := More(a);
-  Increasing(a);
-  var c := More(b);
-  Increasing(b);
-  assert 2 <= c - a;
-}
+method ExampleLemmaUse(a: int) {/* TODO */ }
 
 // Ex 5.0
-method ExampleLemmaUse50(a: int) {
-  Increasing(a);
-  var b := More(a);
-  var c := More(b);
-  if a < 1000 {
-    Increasing(b);
-    assert 2 <= c - a;
-  }
-  assert a < 200 ==> 2 <= c - a;
-}
+method ExampleLemmaUse50(a: int) {/* TODO */ }
 
 // Ex 5.1
-method ExampleLemmaUse51(a: int) {
-  Increasing(a);
-  var b := More(a);
-  Increasing(b);
-  b := More(b);
-  if a < 1000 {
-    // Increasing(More(a));
-    assert 2 <= b - a;
-  }
-  assert a < 200 ==> 2 <= b - a;
-}
+method ExampleLemmaUse51(a: int) {/* TODO */ }
 
 // Ex 5.6
 function Ack(m: nat, n: nat): nat {
@@ -61,40 +27,7 @@ function Ack(m: nat, n: nat): nat {
 lemma {:induction false} Ack1n(m: nat, n: nat)
   requires m == 1
   ensures Ack(m, n) == n + 2
-{
-  if n == 0 {
-    calc {
-      Ack(m, n);
-    ==
-      Ack(m - 1, 1);
-    ==
-      Ack(0, 1);
-    ==
-      1 + 1;
-    ==
-      2;
-    ==
-      n + 2;
-    }
-  }
-  else {
-    calc {
-      Ack(m, n);
-    ==  // defn
-      Ack(m - 1, Ack(m, n - 1));
-    ==  // subs m := 1
-      Ack(0, Ack(1, n - 1));
-    == { Ack1n(1, n - 1); }
-      Ack(0, (n - 1) + 2);
-    ==  // arith
-      Ack(0, n + 1);
-    ==  // arith
-      (n + 1) + 1;
-    ==  // arith
-      n + 2;
-    }
-  }
-}
+{/* TODO */ }
 
 // Ex 5.5
 function Reduce(m: nat, x: int): int {
@@ -103,45 +36,12 @@ function Reduce(m: nat, x: int): int {
 
 lemma {:induction false} ReduceUpperBound(m: nat, x: int)
   ensures Reduce(m, x) <= x
-{
-  if m == 0 {  // trivial
-    assert Reduce(0, x) == x;
-  }
-  else {
-    calc {
-      Reduce(m, x);
-    ==  // defn
-      Reduce(m / 2, x + 1) - m;
-    <= { ReduceUpperBound(m/2, x+1); }
-      Reduce(m / 2, x + 1) - m + x + 1 - Reduce(m / 2, x + 1);
-    ==  // arith
-      x - m + 1;
-    <= { assert m >= 1; }
-      x;
-    }
-  }
-}
+{/* TODO */ }
 
 // 5.5.1
 lemma {:induction false} ReduceLowerBound(m: nat, x: int)
   ensures x - 2 * m <= Reduce(m, x)
-{
-  if m == 0 {  // trivial
-    assert x - 2 * 0 <= x == Reduce(0, x);
-  }
-  else {
-    calc {
-      Reduce(m, x);
-    ==  // defn
-      Reduce(m / 2, x + 1) - m;
-    >= { ReduceLowerBound(m/2, x+1);
-         assert x + 1 - m <= Reduce(m / 2, x + 1); }
-      x + 1 - 2 * m;
-    >  // arith
-      x - 2 * m;
-    }
-  }
-}
+{/* TODO */ }
 
 
 // ------------------------------------------------------------------------------
@@ -201,128 +101,45 @@ function SubstituteList(es: List<Expr>, n: string, c: nat): List<Expr>
 
 lemma {:induction false} EvalSubstituteCorrect(e: Expr, n: string, c: nat, env: map<string, nat>)
   ensures Eval(Substitute(e, n, c), env) == Eval(e, env[n := c])
-{
-  match e
-  case Const(_) => {}
-  case Var(s) => {
-    calc {
-      Eval(Substitute(e, n, c), env);
-      Eval(if s == n then Const(c) else e, env);
-      if s == n then Eval(Const(c), env) else Eval(e, env);
-      if s == n then c else Eval(e, env);
-      if s == n then c else Eval(e, env[n := c]);
-      if s == n then Eval(e, env[n := c]) else Eval(e, env[n := c]);
-      Eval(e, env[n := c]);
-    }
-  }
-  case Node(op, args) => {
-    EvalSubstituteListCorrect(op, args, n, c, env);
-  }
-}
+{/* TODO */ }
 
 lemma {:induction false} EvalSubstituteListCorrect(op: Op, args: List<Expr>, n: string, c: nat, env: map<string, nat>)
   ensures EvalList(op, SubstituteList(args, n, c), env) == EvalList(op, args, env[n := c])
   decreases args, op, n, c, env
-{
-  match args
-  case Nil => {}
-  case Cons(head, tail) => {
-    // Ex 5.15
-    calc {
-      EvalList(op, SubstituteList(args, n, c), env);
-    ==  // defn SubstituteList
-      EvalList(op, Cons(Substitute(head, n, c), SubstituteList(tail, n, c)), env);
-    == // unfold defn EvalList
-      EvalList(op, Cons(Substitute(head, n, c), SubstituteList(tail, n, c)), env);
-    ==
-      (match op
-       case Add => Eval(Substitute(head, n, c), env) + EvalList(op, SubstituteList(tail, n, c), env)
-       case Mul => Eval(Substitute(head, n, c), env) * EvalList(op, SubstituteList(tail, n, c), env));
-    == { EvalSubstituteCorrect(head, n, c, env); }
-      (match op
-       case Add => Eval(head, env[n := c]) + EvalList(op, SubstituteList(tail, n, c), env)
-       case Mul => Eval(head, env[n := c]) * EvalList(op, SubstituteList(tail, n, c), env));
-    == { EvalSubstituteListCorrect(op, tail, n, c, env); }
-      (match op
-       case Add => Eval(head, env[n := c]) + EvalList(op, tail, env[n := c])
-       case Mul => Eval(head, env[n := c]) * EvalList(op, tail, env[n := c]));
-    == // fold defn Eval/EvalList
-      EvalList(op, args, env[n := c]);
-    }
-  }
-}
+{/* TODO */ }
 
 // Ex 5.16
 lemma EvalEnv(e: Expr, n: string, env: map<string, nat>)
   requires n in env.Keys
   ensures Eval(e, env) == Eval(Substitute(e, n, env[n]), env)
-{
-  match e
-  case Const(_) => {}
-  case Var(s) => {}
-  case Node(op, args) => {
-    match args
-    case Nil => {}
-    case Cons(head, tail) => { EvalEnv(head, n, env); EvalEnvList(op, tail, n, env); }
-  }
-}
+{/* TODO */ }
 
 lemma EvalEnvList(op: Op, es: List<Expr>, n: string, env: map<string, nat>)
   decreases es, op, n, env
   requires n in env.Keys
   ensures EvalList(op, es, env) == EvalList(op, SubstituteList(es, n, env[n]), env)
-{
-  match es
-  case Nil => {}
-  case Cons(head, tail) => { EvalEnv(head, n, env); EvalEnvList(op, tail, n, env); }
-}
+{/* TODO */ }
 
 // Ex 5.17
 lemma EvalEnvDefault(e: Expr, n: string, env: map<string, nat>)
   requires n !in env.Keys
   ensures Eval(e, env) == Eval(Substitute(e, n, 0), env)
-{
-  match e
-  case Const(_) => {}
-  case Var(s) => {}
-  case Node(op, args) => {
-    calc {
-      Eval(Substitute(e, n, 0), env);
-      EvalList(op, SubstituteList(args, n, 0), env);
-    == { EvalEnvDefaultList(op, args, n, env); }
-      EvalList(op, args, env);
-      Eval(e, env);
-    }
-  }
-}
+{/* TODO */ }
 
 lemma EvalEnvDefaultList(op: Op, args: List<Expr>, n: string, env: map<string, nat>)
   decreases args, op, n, env
   requires n !in env.Keys
   ensures EvalList(op, args, env) == EvalList(op, SubstituteList(args, n, 0), env)
-{
-  match args
-  case Nil => {}
-  case Cons(head, tail) => { EvalEnvDefault(head, n, env); EvalEnvDefaultList(op, tail, n, env); }
-}
+{/* TODO */ }
 
 // Ex 5.18
 lemma SubstituteIdempotent(e: Expr, n: string, c: nat)
   ensures Substitute(Substitute(e, n, c), n, c) == Substitute(e, n, c)
-{
-  match e
-  case Const(_) => {}
-  case Var(_) => {}
-  case Node(op, args) => { SubstituteListIdempotent(args, n, c); }
-}
+{/* TODO */ }
 
 lemma SubstituteListIdempotent(args: List<Expr>, n: string, c: nat)
   ensures SubstituteList(SubstituteList(args, n, c), n, c) == SubstituteList(args, n, c)
-{
-  match args
-  case Nil => {}
-  case Cons(head, tail) => { SubstituteIdempotent(head, n, c); SubstituteListIdempotent(tail, n, c); }
-}
+{/* TODO */ }
 
 // 5.8.1
 // Optimization is correct
@@ -340,21 +157,7 @@ function Optimize(e: Expr): Expr
 
 lemma OptimizeCorrect(e: Expr, env: map<string, nat>)
   ensures Eval(Optimize(e), env) == Eval(e, env)
-{
-  if e.Node? {
-    OptimizeAndFilterCorrect(e.args, e.op, env); 
-    ShortenCorrect(OptimizeAndFilter(e.args, Unit(e.op)), e.op, env); 
-    // calc {
-    //   Eval(Optimize(e), env);
-    // == // defn Optimize
-    //   Eval(Shorten(e.op, OptimizeAndFilter(e.args, Unit(e.op))), env);
-    // == { ShortenCorrect(OptimizeAndFilter(e.args, Unit(e.op)), e.op, env); }
-    //   Eval(Node(e.op, OptimizeAndFilter(e.args, Unit(e.op))), env);
-    // == { OptimizeAndFilterCorrect(e.args, e.op, env); }
-    //   Eval(e, env);
-    // }
-  }
-}
+{/* TODO */ }
 
 function OptimizeAndFilter(args: List<Expr>, u: nat): List<Expr>
   // intrinsic
@@ -363,77 +166,15 @@ function OptimizeAndFilter(args: List<Expr>, u: nat): List<Expr>
   match args
   case Nil => Nil
   case Cons(head, tail) =>
-    var hd, tl := Optimize(head), OptimizeAndFilter(tail, u);
-    if hd == Const(u) then tl else Cons(hd, tl)
-}
+    var hd, tl := Optimize(head), OptimizeAndF/* TODO */ }
 
 lemma OptimizeAndFilterCorrect(args: List<Expr>, op: Op, env: map<string, nat>)
   ensures Eval(Node(op, OptimizeAndFilter(args, Unit(op))), env) == Eval(Node(op, args), env)
-{
-  match args
-  case Nil => {}
-  case Cons(head, tail) => {
-    OptimizeCorrect(head, env);
-    OptimizeAndFilterCorrect(tail, op, env);
-    // var hd, tl := Optimize(head), OptimizeAndFilter(tail, Unit(op));
-    // var u := Unit(op);
-    // if hd == Const(u) {
-    //   calc {
-    //     Eval(Node(op, OptimizeAndFilter(args, u)), env);
-    //   ==
-    //     EvalList(op, OptimizeAndFilter(args, u), env);
-    //   == { assert OptimizeAndFilter(args, u) == tl; }
-    //     EvalList(op, tl, env);
-    //   ==
-    //     Eval(Node(op, tl), env);
-    //   == { EvalListUnitHead(hd, tl, op, env); }
-    //     Eval(Node(op, Cons(hd, tl)), env);
-    //   == { OptimizeCorrect(head, env); OptimizeAndFilterCorrect(tail, op, env); }
-    //     Eval(Node(op, args), env);
-    //   }
-    // } else {
-    //   calc {
-    //     Eval(Node(op, OptimizeAndFilter(args, u)), env);
-    //   ==
-    //     EvalList(op, OptimizeAndFilter(args, u), env);
-    //   == { assert OptimizeAndFilter(args, u) == Cons(hd, tl); }
-    //     EvalList(op, Cons(hd, tl), env);
-    //   ==
-    //     Eval(Node(op, Cons(hd, tl)), env);
-    //   == { OptimizeCorrect(head, env); OptimizeAndFilterCorrect(tail, op, env); }
-    //     Eval(Node(op, args), env);
-    //   }
-    // }
-  }
-}
+{/* TODO */ }
 
 lemma EvalListUnitHead(head: Expr, tail: List<Expr>, op: Op, env: map<string, nat>)
   ensures Eval(head, env) == Unit(op) ==> EvalList(op, Cons(head, tail), env) == EvalList(op, tail, env)
-{
-  // Note: verifier can prove the whole lemma with empty body!
-  var ehead, etail := Eval(head, env), EvalList(op, tail, env);
-  if ehead == Unit(op) {
-    match op
-    case Add => {
-        calc {
-          EvalList(op, Cons(head, tail), env);
-        ==  // defn EvalList
-          ehead + etail;
-        == // { assert ehead == Unit(Add); assert Unit(Add) == 0; }
-          etail;
-        }
-    }
-    case Mul => {
-        calc {
-          EvalList(op, Cons(head, tail), env);
-        ==  // defn EvalList
-          ehead * etail;
-        == // { assert ehead == 1; }
-          etail;
-        }
-    }
-  }
-}
+{/* TODO */ }
 
 function Shorten(op: Op, args: List<Expr>): Expr {
   match args
@@ -446,17 +187,4 @@ function Shorten(op: Op, args: List<Expr>): Expr {
 
 lemma ShortenCorrect(args: List<Expr>, op: Op, env: map<string, nat>)
   ensures Eval(Shorten(op, args), env) == Eval(Node(op, args), env)
-{
-  match args
-  case Nil => {}
-  case Cons(head, Nil) => {
-    calc {
-      Eval(Node(op, args), env);
-      EvalList(op, Cons(head, Nil), env);
-      Eval(head, env);
-      /* Eval(Shorten(op, Cons(head, Nil)), env); */
-      /* Eval(Shorten(op, args), env); */
-    }
-  }
-  case _ => {}
-}
+{/* TODO */ }

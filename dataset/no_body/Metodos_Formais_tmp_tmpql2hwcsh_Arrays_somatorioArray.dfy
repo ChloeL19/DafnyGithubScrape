@@ -27,11 +27,4 @@ function soma(a:array<nat>, i:nat):nat
 
 method somatorio(a:array<nat>) returns (s:nat)
     ensures s == soma(a, a.Length)
-{
-        s := 0;
-        for i := 0 to a.Length
-            invariant s == soma(a,i)
-        {
-            s := s + a[i];
-        }
-}
+{/* TODO */ }

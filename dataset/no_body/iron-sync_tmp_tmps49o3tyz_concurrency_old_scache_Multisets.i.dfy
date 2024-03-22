@@ -31,7 +31,7 @@ module MultisetUtil {
   lemma get_2_true_elems<A>(fn: A -> bool, s: multiset<A>)
   returns (v: A, w: A)
   requires Count(fn, s) >= 2
-  ensures multiset{v, w} <= s
+  ensures multiset{/* TODO */ } <= s
   ensures fn(v)
   ensures fn(w)
 
@@ -39,13 +39,13 @@ module MultisetUtil {
   ensures Sum(fn, s) + Sum(fn, t) == Sum(fn, s + t)
 
   lemma SumMultiset1<A>(fn: A -> int, v: A)
-  ensures Sum(fn, multiset{v}) == fn(v)
+  ensures Sum(fn, multiset{/* TODO */ }) == fn(v)
 
   lemma CountAdditive<A>(fn: A -> bool, s: multiset<A>, t: multiset<A>)
   ensures Count(fn, s) + Count(fn, t) == Count(fn, s + t)
 
   lemma CountMultiset1<A>(fn: A -> bool, v: A)
-  ensures fn(v) ==> Count(fn, multiset{v}) == 1
+  ensures fn(v) ==> Count(fn, multiset{/* TODO */ }) == 1
   ensures !fn(v) ==> Count(fn, multiset{v}) == 0
 
   lemma CountSubset<A>(fn: A -> bool, fn2: A -> bool, t: multiset<A>)

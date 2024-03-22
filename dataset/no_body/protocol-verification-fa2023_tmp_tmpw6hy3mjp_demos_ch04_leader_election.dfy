@@ -7,20 +7,7 @@ ghost predicate Between(start: nat, i: nat, end: nat)
 }
 
 lemma BetweenTests()
-{
-  assert Between(3, 4, 5);
-  assert !Between(3, 2, 4);
-
-  // when start >= end, behavior is a bit tricker
-  // before end
-  assert Between(5, 2, 3);
-  // after start
-  assert Between(5, 6, 3);
-  // not in this range
-  assert !Between(5, 4, 3);
-
-  assert forall i, k | Between(i, k, i) :: i != k;
-}
+{/* TODO */ }
 // END
 
 // ids gives each node's (unique) identifier (address)
@@ -119,7 +106,7 @@ lemma NextStepDeterministicGivenStep(v: Variables, step: Step, v'1: Variables, v
   requires NextStep(v, v'1, step)
   requires NextStep(v, v'2, step)
   ensures v'1 == v'2
-{}
+{/* TODO */ }
 
 ghost predicate Next(v: Variables, v': Variables)
 {
@@ -161,7 +148,7 @@ ghost predicate ChordHeardDominated(v: Variables, start: nat, end: nat)
 // to improve performance, since it prevents the automation from doing too much
 // work; in this proof it's only so we can make clear in the proof when this
 // invariant is being used.
-ghost predicate {:opaque} OnChordHeardDominatesId(v: Variables)
+ghost predicate {/* TODO */ } OnChordHeardDominatesId(v: Variables)
   requires v.WF()
 {
   forall start: nat, end: nat | v.IsChord(start, end) ::
@@ -173,9 +160,7 @@ lemma UseChordDominated(v: Variables, start: nat, end: nat)
   requires OnChordHeardDominatesId(v)
   requires v.IsChord(start, end )
   ensures ChordHeardDominated(v, start, end)
-{
-  reveal OnChordHeardDominatesId();
-}
+{/* TODO */ }
 // END
 
 
@@ -193,85 +178,16 @@ ghost predicate Inv(v: Variables)
 lemma InitImpliesInv(v: Variables)
   requires Init(v)
   ensures Inv(v)
-{
-  // SOLUTION
-  forall start: nat, end: nat | v.IsChord(start, end)
-    ensures false {
-  }
-  assert OnChordHeardDominatesId(v) by {
-    reveal OnChordHeardDominatesId();
-  }
-  // END
-}
+{/* TODO */ }
 
 lemma NextPreservesInv(v: Variables, v': Variables)
   requires Inv(v)
   requires Next(v, v')
   ensures Inv(v')
-{
-  var step :| NextStep(v, v', step);
-  // SOLUTION
-  var src := step.src;
-  var dst := NextIdx(v, src);
-  var message := max(v.highest_heard[src], v.ids[src]);
-  var dst_new_max := max(v.highest_heard[dst], message);
-  assert v'.UniqueIds();
-
-  forall start: nat, end: nat | v'.IsChord(start, end)
-    ensures ChordHeardDominated(v', start, end)
-  {
-    if dst == end {
-      // the destination ignored the message anyway (because it already knew of a high enough node)
-      if dst_new_max == v.highest_heard[dst] {
-        assert v' == v;
-        UseChordDominated(v, start, end);
-        assert ChordHeardDominated(v', start, end);
-      } else if v'.highest_heard[dst] == v.ids[src] {
-        // the new chord is empty, irrespective of the old state
-        assert start == src;
-        assert forall k | v.ValidIdx(k) :: !Between(start, k, end);
-        assert ChordHeardDominated(v', start, end);
-      } else if v'.highest_heard[end] == v.highest_heard[src] {
-        // extended a chord
-        assert v.IsChord(start, src);  // trigger
-        UseChordDominated(v, start, src);
-        assert ChordHeardDominated(v', start, end);
-      }
-      assert ChordHeardDominated(v', start, end);
-    } else {
-      assert v.IsChord(start, end);
-      UseChordDominated(v, start, end);
-      assert ChordHeardDominated(v', start, end);
-    }
-  }
-  assert OnChordHeardDominatesId(v') by {
-    reveal OnChordHeardDominatesId();
-  }
-  // END
-}
+{/* TODO */ }
 
 lemma InvImpliesSafety(v: Variables)
   requires Inv(v)
   ensures Safety(v)
-{
-  // the solution gives a long proof here to try to explain what's going on, but
-  // only a little proof is strictly needed for Dafny
-  // SOLUTION
-  forall i: nat, j: nat | IsLeader(v, i) && IsLeader(v, j)
-    ensures i == j
-  {
-    assert forall k | v.ValidIdx(k) && Between(i, k, i) :: i != k;
-    assert v.highest_heard[j] == v.ids[j]; // it's a leader
-    // do this proof by contradiction
-    if i != j {
-      assert v.IsChord(i, i); // observe
-      assert Between(i, j, i);
-      UseChordDominated(v, i, i);
-      // here we have the contradiction already, because i and j can't dominate
-      // each others ids
-      assert false;
-    }
-  }
-  // END
-}
+{/* TODO */ }
 

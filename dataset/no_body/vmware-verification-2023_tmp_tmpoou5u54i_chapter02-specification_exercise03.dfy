@@ -26,8 +26,7 @@ predicate SearchSpec(s: seq<int>, x: int, res: Option<nat>) {
 lemma BinarySearch_ok(s: seq<int>, x: int)
   requires sorted(s)
   ensures SearchSpec(s, x, BinarySearch(s, x))
-{
-}
+{/* TODO */ }
 
 /*{*/
 // We will talk about this specification and proof in class

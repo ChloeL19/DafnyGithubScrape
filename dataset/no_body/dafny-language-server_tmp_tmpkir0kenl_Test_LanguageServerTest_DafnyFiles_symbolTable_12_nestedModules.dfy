@@ -6,39 +6,22 @@ module M1 {
             class Class{
                 constructor(){}
                 var field : int;
-                method meth() {}
+                method meth() {/* TODO */ }
             }
-            method gmeth() {}
+            method gmeth() {/* TODO */ }
         }
     }
 }
 
 module TestModul1 {
     import M1
-    method test() {
-        var x := new M1.M2.M3.Class();
-        x.meth();
-        print x.field;
-        //M1.M2.M3.gmeth(); seems not to be supported by Dafny
-    }
+    method test() {/* TODO */ }
 }
 
 module TestModul2 {
     import Mod1 = M1
     import Mod2 = Mod1.M2
     import Mod3 = Mod2.M3
-    method test() {
-        var x := new Mod2.M3.Class();
-        var z := new Mod3.Class();
-        
-        x.meth();
-        print x.field;
-
-        z.meth();
-        print z.field;
-
-        Mod3.gmeth();
-        //Mod2.M3.gmeth(); //not allowed
-    }
+    method test() {/* TODO */ }
 }
 

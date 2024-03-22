@@ -10,6 +10,4 @@
 // RUN: %dafny /arith:10 "%s" >> "%t"
 // RUN: %diff "%s.expect" "%t"
 
-method Main() {
-
-}
+method Main() {/* TODO */ }

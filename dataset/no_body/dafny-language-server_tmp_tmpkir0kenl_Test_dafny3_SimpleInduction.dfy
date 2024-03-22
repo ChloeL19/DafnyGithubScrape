@@ -11,18 +11,12 @@
 
 function Fib(n: nat): nat
   decreases n;
-{ if n < 2 then n else Fib(n-2) + Fib(n-1) }
+{/* TODO */ }
 
 lemma FibLemma(n: nat)
   ensures Fib(n) % 2 == 0 <==> n % 3 == 0;
   decreases n;
-{
-  if (n < 2) {
-  } else {
-    FibLemma(n-2);
-    FibLemma(n-1);
-  }
-}
+{/* TODO */ }
 
 /*
   The 'forall' statement has the effect of applying its body simultaneously
@@ -32,19 +26,11 @@ lemma FibLemma(n: nat)
 
 lemma FibLemma_Alternative(n: nat)
   ensures Fib(n) % 2 == 0 <==> n % 3 == 0;
-{
-  forall k | 0 <= k < n {
-    FibLemma_Alternative(k);
-  }
-}
+{/* TODO */ }
 
 lemma FibLemma_All()
   ensures forall n :: 0 <= n ==> (Fib(n) % 2 == 0 <==> n % 3 == 0);
-{
-  forall n | 0 <= n {
-    FibLemma(n);
-  }
-}
+{/* TODO */ }
 
 /*
   A standard inductive definition of a generic List type and a function Append
@@ -60,30 +46,19 @@ datatype List<T> = Nil | Cons(head: T, tail: List<T>)
 
 function Append<T>(xs: List<T>, ys: List<T>): List<T>
   decreases xs;
-{
-  match xs
-  case Nil => ys
-  case Cons(x, rest) => Cons(x, Append(rest, ys))
-}
+{/* TODO */ }
 
 // The {:induction false} attribute disables automatic induction tactic,
 // so we can make the proof explicit.
 lemma {:induction false} AppendIsAssociative(xs: List, ys: List, zs: List)
   ensures Append(Append(xs, ys), zs) == Append(xs, Append(ys, zs));
   decreases xs;
-{
-  match (xs) {
-    case Nil =>
-    case Cons(x, rest) =>
-      AppendIsAssociative(rest, ys, zs);
-  }
-}
+{/* TODO */ }
 
 // Here the proof is fully automatic - the body of the method is empty,
 // yet still verifies.
 lemma AppendIsAssociative_Auto(xs: List, ys: List, zs: List)
   ensures Append(Append(xs, ys), zs) == Append(xs, Append(ys, zs));
-{
-}
+{/* TODO */ }
 
 

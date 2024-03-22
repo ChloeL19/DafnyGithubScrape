@@ -56,7 +56,5 @@ predicate P47(x: bool)
 predicate P48(x: bool)
 predicate P49(x: bool)
 
-method M() {
-  assert forall x :: true || P0(x) || P1(x) || P2(x) || P3(x) || P4(x) || P5(x) || P6(x) || P7(x) || P8(x) || P9(x) || P10(x) || P11(x) || P12(x) || P13(x) || P14(x) || P15(x) || P16(x) || P17(x) || P18(x) || P19(x) || P20(x) || P21(x) || P22(x) || P23(x) || P24(x) || P25(x) || P26(x) || P27(x) || P28(x) || P29(x) || P30(x) || P31(x) || P32(x) || P33(x) || P34(x) || P35(x) || P36(x) || P37(x) || P38(x) || P39(x) || P40(x) || P41(x) || P42(x) || P43(x) || P44(x) || P45(x) || P46(x) || P47(x) || P48(x) || P49(x);
-}
+method M() {/* TODO */ }
 

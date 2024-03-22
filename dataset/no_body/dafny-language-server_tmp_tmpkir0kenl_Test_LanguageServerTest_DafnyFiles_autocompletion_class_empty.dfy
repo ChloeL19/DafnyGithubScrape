@@ -4,10 +4,6 @@ class C {
    }
   }
 
-method Main() {
-   var a := 3;
-   var ref := new C();
-   // ref.
-}
+method Main() {/* TODO */ }
 
 

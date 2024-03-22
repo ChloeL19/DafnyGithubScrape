@@ -26,17 +26,13 @@ class Room
         ensures this.isAlarmTurnedOn == true;
         ensures this.hasAlarmFired == old(this.hasAlarmFired);
         ensures this.isThereABreach == old(this.isThereABreach);
-    {
-        isAlarmTurnedOn := true;
-    }
+    {/* TODO */ }
 
     method Enter(authorized : bool)
         modifies this
         ensures isAlarmTurnedOn == old(isAlarmTurnedOn)
         ensures isThereABreach == !authorized;
-    {
-        isThereABreach := !authorized;
-    }
+    {/* TODO */ }
 
     method FireAlarm()
         requires this.isAlarmTurnedOn == true;
@@ -45,15 +41,7 @@ class Room
         ensures this.hasAlarmFired == true;
         ensures this.isAlarmTurnedOn == old(this.isAlarmTurnedOn)
         ensures this.isThereABreach == old(this.isThereABreach)
-    {
-        hasAlarmFired := true;
-    }
+    {/* TODO */ }
 
-    method Main() {
-        var room := new Room();
-
-        room.TurnAlarmOn();
-        room.Enter(false);
-        room.FireAlarm();
-    }
+    method Main() {/* TODO */ }
 }

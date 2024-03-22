@@ -1,19 +1,7 @@
 //Problem01
 method square0(n:nat) returns (sqn : nat)
 ensures sqn == n*n
-{
-    sqn := 0;
-    var i:= 0;
-    var x;
-    while i < n
-    invariant i <= n && sqn == i*i 
-    {
-        x := 2*i+1;
-        sqn := sqn+x;
-        i := i+1;
-    }
-    
-}
+{/* TODO */ }
 
 /*
 3 Verification conditions
@@ -36,19 +24,7 @@ Simplified VC for square0
 
 method square1(n:nat) returns (sqn : nat)
 ensures sqn == n*n
-{
-    sqn := 0;
-    var i:= 0;
-
-    while i < n
-    invariant i <= n && sqn == i*i 
-    {
-        var x := 2*i+1;
-        sqn := sqn+x;
-        i := i+1;
-    }
-    
-}
+{/* TODO */ }
 
 //Problem02
 //As you can see below, Dafny claims that after executing the following method
@@ -59,10 +35,7 @@ ensures x < z*z < y
 
 method strange()
 ensures 1==2
-{
-    var x := 4;
-    var c:nat := q(x,2*x); 
-}
+{/* TODO */ }
 /*(a). Do you have an explanation for this behaviour?
     Answer: 
     the method strange() doesn't have any input or output. This method initializes
@@ -73,7 +46,7 @@ ensures 1==2
     We can change ensures in strange() to false and it's still verified
 */
 
-/*(b) {true}var x:nat := 4; var c := q(x,2*x); {1 = 2 }
+/*(b) {/* TODO */ }var x:nat := 4; var c := q(x,2*x); {1 = 2 }
     precond in strange(): difference between 'y' and 'x' muss be greater than 2,
     square from 'z' will be a value  between 'x' and 'y'
 
@@ -93,11 +66,7 @@ ensures 1==2
 //Problem 3
 //Use what you know about the weakest preconditions/strongest postconditions to ex-
 //plain why the following code verifies:
-method test0(){
-    var x:int := *;
-    assume x*x < 100;
-    assert x<= 9;
-}
+method test0(){/* TODO */ }
 
 /*
 WP: is a condition that, if satisfied before the execution of a program, guarantees the 

@@ -42,17 +42,13 @@ class Node<T> {
     requires Valid()
     ensures r.Valid() && fresh(r.Repr - old(Repr))
     ensures r.List == [d] + List
-  {
-    r := new Node.InitAsPredecessor(d, this);
-  }
+  {/* TODO */ }
 
   method SkipHead() returns (r: Node?<T>)
     requires Valid()
     ensures r == null ==> |List| == 1
     ensures r != null ==> r.Valid() && r.List == List[1..] && r.Repr <= Repr
-  {
-    r := next;
-  }
+  {/* TODO */ }
 
   method ReverseInPlace() returns (reverse: Node<T>)
     requires Valid()
@@ -60,36 +56,6 @@ class Node<T> {
     ensures reverse.Valid() && reverse.Repr <= old(Repr)
     ensures |reverse.List| == |old(List)|
     ensures forall i :: 0 <= i < |reverse.List| ==> reverse.List[i] == old(List)[|old(List)|-1-i]
-  {
-    var current := next;
-    reverse := this;
-    reverse.next := null;
-    reverse.Repr := {reverse};
-    reverse.List := [data];
-
-    while current != null
-      invariant reverse.Valid() && reverse.Repr <= old(Repr)
-      invariant current == null ==> |old(List)| == |reverse.List|
-      invariant current != null ==>
-        current.Valid() &&
-        current in old(Repr) && current.Repr <= old(Repr) &&
-        current.Repr !! reverse.Repr
-      invariant current != null ==>
-        |old(List)| == |reverse.List| + |current.List| &&
-        current.List == old(List)[|reverse.List|..]
-      invariant forall i :: 0 <= i < |reverse.List| ==> reverse.List[i] == old(List)[|reverse.List|-1-i]
-      decreases if current != null then |current.List| else -1
-    {
-      var nx := current.next;
-
-      // ..., reverse, current, nx, ...
-      current.next := reverse;
-      current.Repr := {current} + reverse.Repr;
-      current.List := [current.data] + reverse.List;
-
-      reverse := current;
-      current := nx;
-    }
-  }
+  {/* TODO */ }
 }
 

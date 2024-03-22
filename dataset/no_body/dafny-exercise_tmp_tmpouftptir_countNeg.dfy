@@ -8,24 +8,8 @@ requires 0 <= idx <= a.Length
 
 method CountNeg(a: array<int>) returns (cnt: nat) 
 ensures cnt == verifyNeg(a, a.Length)
-{
-	var i := 0;
-	cnt := 0;
-	while i < a.Length
-	invariant 0 <= i <= a.Length
-	invariant cnt == verifyNeg(a, i)
-	{
-		if a[i] < 0 {
-			cnt := cnt + 1;
-		}
-		i := i + 1;
-	}
-}
+{/* TODO */ }
 
 method Main()
-{
-	var arr: array<int> := new int[][0,-1,-2,4];
-	var res := CountNeg(arr);
-	assert res == verifyNeg(arr, arr.Length);
-}
+{/* TODO */ }
 

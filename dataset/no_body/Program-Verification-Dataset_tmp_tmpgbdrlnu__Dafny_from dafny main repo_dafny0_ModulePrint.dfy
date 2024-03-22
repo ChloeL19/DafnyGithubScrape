@@ -15,23 +15,7 @@ abstract module S {
   }
 }
 
-module T refines S {
-  class C ... {
-    ghost var h: int  // change from non-ghost to ghost
-    ghost var j: int
-    var k: int
-    constructor () { }
-    method m()
-      ensures h == h
-      ensures j == j
-    {
-      assert k == k;
-    }
-  }
-}
+module T refines S {/* TODO */ }
 
-method Main() {
-  var c := new T.C();
-  c.m();
-}
+method Main() {/* TODO */ }
 

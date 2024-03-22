@@ -7,8 +7,5 @@
 
 datatype Option<T> = None | Some(get: T)
 
-method Main() {
-  var x := Some("where over the rainbow");
-  expect x.None?, x;
-}
+method Main() {/* TODO */ }
 

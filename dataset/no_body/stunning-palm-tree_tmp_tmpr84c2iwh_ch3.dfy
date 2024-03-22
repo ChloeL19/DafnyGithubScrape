@@ -54,23 +54,12 @@ function L(x: int, b: bool): int
 
 // Ex 3.13
 method Mystery (a: nat) returns (m: nat)
-method Outer(a: nat) {
-  if a != 0 {
-    var b := Mystery(a - 1);
-    Inner(a, b);
-  }
-}
+method Outer(a: nat) {/* TODO */ }
 
 method Inner(a: nat, b: nat)
   decreases a, b
   requires 1 <= a
-{
-  if b == 0 {
-    Outer(a-1);
-  } else {
-    Inner(a, b - 1);
-  }
-}
+{/* TODO */ }
 
 // Ex 3.15
 // Hofstadter Female and Male Sequences

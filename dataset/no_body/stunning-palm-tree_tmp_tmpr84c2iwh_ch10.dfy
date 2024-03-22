@@ -116,33 +116,16 @@ module PQueue {
     lemma {:induction false} BinaryHeapStoresMin(pq: PQueue, y: int)
       requires IsBinaryHeap(pq) && y in Elements(pq)
       ensures pq.x <= y
-    {
-        if pq.Node? {
-            assert y in Elements(pq) ==> (y == pq.x
-                || y in Elements(pq.left) 
-                || y in Elements(pq.right));
-            if y == pq.x {
-                assert pq.x <= y;
-            } else if y in Elements(pq.left) {
-                assert pq.x <= pq.left.x;
-                BinaryHeapStoresMin(pq.left, y);
-                assert pq.x <= y;
-            } else if y in Elements(pq.right) {
-                assert pq.x <= pq.right.x;
-                BinaryHeapStoresMin(pq.right, y);
-                assert pq.x <= y;
-            }
-        }
-    }
+    {/* TODO */ }
 
     lemma EmptyCorrect()
-      ensures Valid(Empty()) && Elements(Empty()) == multiset{}
+      ensures Valid(Empty()) && Elements(Empty()) == multiset{/* TODO */ }
     { // unfold Empty()
     }
     
     lemma IsEmptyCorrect(pq: PQueue)
       requires Valid(pq)
-      ensures IsEmpty(pq) <==> Elements(pq) == multiset{}
+      ensures IsEmpty(pq) <==> Elements(pq) == multiset{/* TODO */ }
     {
         if Elements(pq) == multiset{} {
             assert pq.Leaf?;
@@ -152,21 +135,21 @@ module PQueue {
     lemma InsertCorrect(pq: PQueue, y: int)
       requires Valid(pq)
       ensures var pq' := Insert(pq, y);
-        Valid(pq') && Elements(Insert(pq, y)) == Elements(pq) + multiset{y}
+        Valid(pq') && Elements(Insert(pq, y)) == Elements(pq) + multiset{/* TODO */ }
     {}
 
     lemma RemoveMinCorrect(pq: PQueue)
       requires Valid(pq)
       requires !IsEmpty(pq)
       ensures var (y, pq') := RemoveMin(pq);
-              Elements(pq) == Elements(pq') + multiset{y} &&
+              Elements(pq) == Elements(pq') + multiset{/* TODO */ } &&
               IsMin(y, Elements(pq)) &&
               Valid(pq')
     {
         DeleteMinCorrect(pq);
     }
     
-    lemma {:induction false} {:rlimit 1000} {:vcs_split_on_every_assert} DeleteMinCorrect(pq: PQueue)
+    lemma {:induction false} {/* TODO */ } {:vcs_split_on_every_assert} DeleteMinCorrect(pq: PQueue)
       requires Valid(pq) && !IsEmpty(pq)
       ensures var pq' := DeleteMin(pq);
         Valid(pq') &&
@@ -224,7 +207,7 @@ module PQueue {
         }
     }
 
-    lemma {:induction false} {:rlimit 1000} {:vcs_split_on_every_assert} ReplaceRootCorrect(pq: PQueue, r: int)
+    lemma {:induction false} {/* TODO */ } {:vcs_split_on_every_assert} ReplaceRootCorrect(pq: PQueue, r: int)
       requires Valid(pq) && !IsEmpty(pq)
       ensures var pq' := ReplaceRoot(pq, r);
         Valid(pq') &&
@@ -291,30 +274,5 @@ module PQueue {
 module PQueueClient {
     import PQ = PQueue
 
-    method Client() {
-        var pq := PQ.Empty();
-        PQ.EmptyCorrect();
-        assert PQ.Elements(pq) == multiset{};
-        assert PQ.Valid(pq);
-        PQ.InsertCorrect(pq, 1);
-        var pq1 := PQ.Insert(pq, 1);
-        assert 1 in PQ.Elements(pq1);
-
-        PQ.InsertCorrect(pq1, 2);
-        var pq2 := PQ.Insert(pq1, 2);
-        assert 2 in PQ.Elements(pq2);
-
-        PQ.IsEmptyCorrect(pq2);
-        PQ.RemoveMinCorrect(pq2);
-        var (m, pq3) := PQ.RemoveMin(pq2);        
-
-        PQ.IsEmptyCorrect(pq3);
-        PQ.RemoveMinCorrect(pq3);
-        var (n, pq4) := PQ.RemoveMin(pq3);        
-
-        PQ.IsEmptyCorrect(pq4);
-        assert PQ.IsEmpty(pq4);
-
-        assert m <= n;
-    }
+    method Client() {/* TODO */ }
 }

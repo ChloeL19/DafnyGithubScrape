@@ -4,13 +4,4 @@ function Power(n: nat): nat {
 
 method ComputePower(n: nat) returns (p: nat)
     ensures p == Power(n)
-{
-    p := 1;
-    var i := 0;
-    while i != n
-        invariant 0 <= i <= n && p == Power(i)
-    {
-        i := i + 1;
-        p := p * 2;
-    }
-}
+{/* TODO */ }

@@ -4,12 +4,7 @@
 datatype List = Nil | Cons(int, List)
 
 method R(xs: List)
-{
-  match xs
-  case Nil() =>    // currently produces a parsing error, but shouldn't
-  case Cons(x, Nil()) =>  // currently allowed
-  case Cons(x, Cons(y, tail)) =>
-}
+{/* TODO */ }
 
 function F(xs: List) : int
 {

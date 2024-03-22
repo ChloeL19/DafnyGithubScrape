@@ -6,7 +6,5 @@
 // therefore we compare the output of "baredafny", which contains messages regarding
 // whether an executable has been produced.
 
-method Main() {
-    print "hello\n";
-}
+method Main() {/* TODO */ }
 

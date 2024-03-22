@@ -28,35 +28,7 @@ ghost predicate valid_interval(s: string, iv: interval) {
 method lengthOfLongestSubstring(s: string) returns (n: int, ghost best_iv: interval)
   ensures valid_interval(s, best_iv) && length(best_iv) == n    /** `best_iv` is valid */
   ensures forall iv | valid_interval(s, iv) :: length(iv) <= n  /** `best_iv` is longest */
-{
-  var lo, hi := 0, 0;             // initialize the interval [lo, hi)
-  var char_set: set<char> := {};  // `char_set` stores all chars within the interval
-  n, best_iv := 0, (0, 0);        // keep track of the max length and corresponding interval
-
-  while hi < |s|
-    decreases |s| - hi, |s| - lo
-    // Below are "mundane" invariants, maintaining the relationships between variables:
-    invariant 0 <= lo <= hi <= |s|
-    invariant valid_interval(s, (lo, hi))
-    invariant char_set == set i | lo <= i < hi :: s[i]
-    invariant valid_interval(s, best_iv) && length(best_iv) == n
-    // The invariant below reflects the insights behind the "sliding window":
-    invariant forall iv: interval | iv.1 <= hi && valid_interval(s, iv) :: length(iv) <= n  /* (A) */
-    invariant forall iv: interval | iv.1 > hi && iv.0 < lo :: !valid_interval(s, iv)        /* (B) */
-  {
-    if s[hi] !in char_set {  // sliding `hi` to lengthen the interval:
-      char_set := char_set + {s[hi]};
-      hi := hi + 1;
-      if hi - lo > n {  // update the max length: 
-        n := hi - lo;
-        best_iv := (lo, hi);
-      }
-    } else {  // sliding `lo` to shorten the interval: 
-      char_set := char_set - {s[lo]};
-      lo := lo + 1;
-    }
-  }
-}
+{/* TODO */ }
 
 
 /* Discussions
@@ -99,37 +71,7 @@ method lengthOfLongestSubstring(s: string) returns (n: int, ghost best_iv: inter
 method lengthOfLongestSubstring'(s: string) returns (n: int, ghost best_iv: interval)
   ensures valid_interval(s, best_iv) && length(best_iv) == n
   ensures forall iv | valid_interval(s, iv) :: length(iv) <= n
-{
-  var lo, hi := 0, 0;
-  var char_to_index: map<char, int> := map[];  // records the "most recent" index of a given char
-  n, best_iv := 0, (0, 0);        
-
-  // Once |s| - lo <= n, there will be no more chance, so early-terminate:
-  while |s| - lo > n                    /* (C) */
-  // while hi < |s| && |s| - lo > n     /* (D) */
-    decreases |s| - hi
-    invariant 0 <= lo <= hi <= |s|
-    invariant valid_interval(s, (lo, hi))
-    invariant forall i | 0 <= i < hi :: s[i] in char_to_index
-    invariant forall c | c in char_to_index ::
-      var i := char_to_index[c];  // the "Dafny way" to denote `char_to_index[c]` as `i` for brevity
-      0 <= i < hi && s[i] == c
-      && (forall i' | i < i' < hi :: s[i'] != c)  // note: this line captures that `i` is the "most recent"
-    invariant valid_interval(s, best_iv) && length(best_iv) == n
-    invariant forall iv: interval | iv.1 <= hi && valid_interval(s, iv) :: length(iv) <= n
-    invariant forall iv: interval | iv.1 > hi && iv.0 < lo :: !valid_interval(s, iv)
-  {
-    if s[hi] in char_to_index && char_to_index[s[hi]] >= lo {  // has repetition!
-      lo := char_to_index[s[hi]] + 1;
-    }
-    char_to_index := char_to_index[s[hi] := hi];
-    hi := hi + 1;
-    if hi - lo > n {
-      n := hi - lo;
-      best_iv := (lo, hi);
-    }
-  }
-}
+{/* TODO */ }
 
 // Bonus Question:
 //   "Why can we safely use (C) instead of (D) as the loop condition? Won't `hi` go out-of-bound?"

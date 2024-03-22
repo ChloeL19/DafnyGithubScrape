@@ -24,7 +24,5 @@
  * and adding "g++" to lit.local.cfg in this folder.
  */
 
-method Main() {
-  print "hello, Dafny\n";
-}
+method Main() {/* TODO */ }
 

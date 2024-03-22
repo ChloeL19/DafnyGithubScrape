@@ -36,23 +36,7 @@ modifies Repr
 ensures contents == old(contents) + [x]
 ensures N == old(N)
 ensures Valid() && fresh(Repr - old(Repr))
-{
- contents := old(contents) + [x];
-
- data[wr] := x;
- assert (wr == data.Length -1 ==> contents == if rd <= 0 then data[rd..0] else data[rd..] + data[..0])
- && (wr!= data.Length -1 ==> contents == if rd <= wr+1 then data[rd..wr+1] else data[rd..] + data[..wr+1]);
- if wr == data.Length -1 {
-    assert contents == if rd <= 0 then data[rd..0] else data[rd..] + data[..0];
- wr := 0;
- assert contents == if rd <= wr then data[rd..wr] else data[rd..] + data[..wr];
- } else {
-    assert contents == if rd <= wr+1 then data[rd..wr+1] else data[rd..] + data[..wr+1];
- wr := wr + 1;
- assert contents == if rd <= wr then data[rd..wr] else data[rd..] + data[..wr];
- }
- assert contents == if rd <= wr then data[rd..wr] else data[rd..] + data[..wr];
-}
+{/* TODO */ }
 
 method Remove() returns (x:T)
 requires Valid()
@@ -61,13 +45,5 @@ modifies Repr
 ensures contents == old(contents[1..]) && old(contents[0]) == x
 ensures N == old(N)
 ensures Valid() && fresh(Repr - old(Repr))
-{
- contents := contents[1..];
- x := data[rd];
- if rd == data.Length - 1 {
- rd := 0;
- } else {
- rd := rd + 1;
- }
-}
+{/* TODO */ }
 }

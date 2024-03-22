@@ -8,13 +8,7 @@ module maxExample{
 
     lemma max(a:int,b:int) returns (c:int)
         ensures maxSpec(a,b,c)
-    {
-        if(a > b){
-            c := a + 100;
-        }else{
-            c := b + 100;
-        }
-    }
+    {/* TODO */ }
 
     // a mutation
     predicate maxSpecMut1(a:int,b:int,c:int)
@@ -26,13 +20,7 @@ module maxExample{
     // a passing mutation
     lemma maxMut1(a:int,b:int) returns (c:int)
         ensures maxSpecMut1(a,b,c)
-    {
-        if(a > b){
-            c := a + 100;
-        }else{
-            c := b + 100;
-        }
-    }
+    {/* TODO */ }
 
     
 

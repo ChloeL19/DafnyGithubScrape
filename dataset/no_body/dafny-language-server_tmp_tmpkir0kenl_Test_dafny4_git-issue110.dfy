@@ -11,18 +11,12 @@ module MyModule {
 
 // -----------------
 
-module Library {
-  export provides MyType, MyFunction
-
-  type MyType<A>
-  function MyFunction<B>(q: MyType<B>, b: B): MyType<B>
-}
+module Library {/* TODO */ }
 
 module Client {
   import Library
     // the same bug caused some types not to be filled in, which caused malformed
     // Boogie to be produced
-  method Test() {
-  }
+  method Test() {/* TODO */ }
 }
 

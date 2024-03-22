@@ -22,66 +22,64 @@ module RealArith {
 
   lemma TriangleInequality(a: real, b: real, c: real)
     ensures Dist(a, c) <= Dist(a, b) + Dist(b, c)
-  {}
+  {/* TODO */ }
 
   lemma AbsMul(x: real, y: real)
     ensures Abs(x * y) == Abs(x) * Abs(y)
-  {}
+  {/* TODO */ }
 
   lemma MulMonotonicStrict(factor: real, x: real, y: real)
     requires x < y
     requires factor > 0.0
     ensures x * factor < y * factor
     ensures factor * x < factor * y
-  {}
+  {/* TODO */ }
 
   lemma MulMonotonic(factor: real, x: real, y: real)
     requires x <= y
     requires factor >= 0.0
     ensures x * factor <= y * factor
     ensures factor * x <= factor * y
-  {}
+  {/* TODO */ }
 
   lemma DivMulEqualsMulDiv(a: real, b: real, c: real)
     requires b != 0.0
     ensures a / b * c == a * c / b
-  {}
+  {/* TODO */ }
 
   lemma DivMulEqualsDivDiv(a: real, b: real, c: real)
     requires b != 0.0
     requires c != 0.0
     ensures a / (b * c) == a / b / c
-  {}
+  {/* TODO */ }
 
   lemma DivMulEqualsDivDiv2(a: real, b: real, c: real)
     requires b != 0.0
     requires c != 0.0
     ensures a / (b / c) == a * c / b
-  {}
+  {/* TODO */ }
 
   lemma AbsDiv(a: real, b: real)
     requires b != 0.0
     ensures Abs(a / b) == Abs(a) / Abs(b)
-  {
-    if a >= 0.0 {}
-  }
+  {/* TODO */ }
 
   lemma MultiplicationCancelMonotonic(factor:real, x: real, y: real)
     requires factor > 0.0
     ensures x * factor <= y * factor ==> x <= y
-  {}
+  {/* TODO */ }
 
   lemma DivisionIsMonotonic(a: real, b: real, c: real)
     requires c > 0.0
     requires a <= b
     ensures a / c <= b / c
-  {}
+  {/* TODO */ }
 
   lemma DivisionIsMonotonicStrict(a: real, b: real, c: real)
     requires c > 0.0
     requires a < b
     ensures a / c < b / c
-  {}
+  {/* TODO */ }
 
   lemma DivisionIsAntiMonotonic(a: real, b: real, c: real)
     requires a >= 0.0
@@ -89,13 +87,13 @@ module RealArith {
     requires c > 0.0
     requires c <= b
     ensures a / b <= a / c
-  {}
+  {/* TODO */ }
 
   lemma DivisionIsAntiMonotonicStrict(a: real, b: real, c: real)
     requires a > 0.0
     requires b > 0.0
     requires c > 0.0
     ensures (c < b) <==> (a / b < a / c)
-  {}
+  {/* TODO */ }
 }
 

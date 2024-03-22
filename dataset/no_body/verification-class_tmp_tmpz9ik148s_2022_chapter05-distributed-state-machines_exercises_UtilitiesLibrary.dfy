@@ -23,19 +23,17 @@ module UtilitiesLibrary {
   // to be a bit trigger-happy, so we've pulled them into independent lemmas
   // you can invoke only when needed.
   // Suggestion: hide calls to this lemma in a an
-  //   assert P by { SetsAreSubsetsOfUnion(...) }
+  //   assert P by {/* TODO */ }
   // construct so you can get your conclusion without "polluting" the rest of the
   // lemma proof context with this enthusiastic forall.
   lemma SetsAreSubsetsOfUnion<T>(theSets: seq<set<T>>)
     ensures forall idx | 0<=idx<|theSets| :: theSets[idx] <= UnionSeqOfSets(theSets)
-  {
-  }
+  {/* TODO */ }
 
   lemma EachUnionMemberBelongsToASet<T>(theSets: seq<set<T>>)
     ensures forall member | member in UnionSeqOfSets(theSets) ::
           exists idx :: 0<=idx<|theSets| && member in theSets[idx]
-  {
-  }
+  {/* TODO */ }
 
   // Convenience function for learning a particular index (invoking Hilbert's
   // Choose on the exists in EachUnionMemberBelongsToASet).
@@ -43,11 +41,7 @@ module UtilitiesLibrary {
     requires member in UnionSeqOfSets(theSets)
     ensures 0<=idx<|theSets|
     ensures member in theSets[idx]
-  {
-    EachUnionMemberBelongsToASet(theSets);
-    var chosenIdx :| 0<=chosenIdx<|theSets| && member in theSets[chosenIdx];
-    idx := chosenIdx;
-  }
+  {/* TODO */ }
 
   datatype Option<T> = Some(value:T) | None
 
@@ -85,9 +79,7 @@ module UtilitiesLibrary {
   }
 
   lemma Rotation()
-  {
-    assert TurnRight(North) == East;
-  }
+  {/* TODO */ }
 
   function TurnLeft(direction:Direction) : Direction
   {

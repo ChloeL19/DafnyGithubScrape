@@ -29,12 +29,7 @@ datatype Variables = Variables(
   // variable rather than being decided at each node individually
   decision: set<Choice>
 )
-{
-  ghost predicate WF()
-  {
-    && (forall n:Node :: n in votes)
-  }
-}
+{/* TODO */ }
 
 datatype Step =
   | CastVoteStep(n: Node, c: Choice)
@@ -74,8 +69,7 @@ lemma NextStepDeterministicGivenStep(v: Variables, step: Step, v'1: Variables, v
   requires NextStep(v, v'1, step)
   requires NextStep(v, v'2, step)
   ensures v'1 == v'2
-{
-}
+{/* TODO */ }
 
 ghost predicate Next(v: Variables, v': Variables)
 {
@@ -110,53 +104,17 @@ ghost predicate Inv(v: Variables) {
 lemma InitImpliesInv(v: Variables)
   requires Init(v)
   ensures Inv(v)
-{}
+{/* TODO */ }
 
 lemma InvInductive(v: Variables, v': Variables)
   requires Inv(v)
   requires Next(v, v')
   ensures Inv(v')
-{
-  var step :| NextStep(v, v', step);
-  // SOLUTION
-  match step {
-    case CastVoteStep(n, c) => {
-      forall c | c in v'.decision
-        ensures exists q:Quorum :: ChoiceQuorum(v', q, c)
-      {
-        var q :| ChoiceQuorum(v, q, c);
-        assert ChoiceQuorum(v', q, c);
-      }
-      return;
-    }
-    case DecideStep(c, q) => {
-      forall c | c in v'.decision
-        ensures exists q:Quorum :: ChoiceQuorum(v', q, c)
-      {
-        var q0 :| ChoiceQuorum(v, q0, c);
-        assert ChoiceQuorum(v', q0, c);
-      }
-      forall c1, c2 | c1 in v'.decision && c2 in v'.decision
-        ensures c1 == c2
-      {
-        var q1 :| ChoiceQuorum(v, q1, c1);
-        var q2 :| ChoiceQuorum(v, q2, c2);
-        var n := QuorumIntersect(q1, q2);
-      }
-      assert Safety(v');
-      return;
-    }
-  }
-  // END
-}
+{/* TODO */ }
 
 lemma SafetyHolds(v: Variables, v': Variables)
   ensures Init(v) ==> Inv(v)
   ensures Inv(v) && Next(v, v') ==> Inv(v')
   ensures Inv(v) ==> Safety(v)
-{
-  if Inv(v) && Next(v, v') {
-    InvInductive(v, v');
-  }
-}
+{/* TODO */ }
 

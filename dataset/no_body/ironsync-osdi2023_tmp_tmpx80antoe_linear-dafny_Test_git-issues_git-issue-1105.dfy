@@ -12,8 +12,5 @@ datatype Op =
   | NoOp
   | PushOp(ghost id: int)
 
-method Main() {
-  var o := PushOp(20);
-  print o, "\n";
-}
+method Main() {/* TODO */ }
 

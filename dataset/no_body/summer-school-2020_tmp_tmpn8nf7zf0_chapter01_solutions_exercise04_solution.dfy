@@ -18,14 +18,10 @@ function Double(a:int) : int
 }
 
 lemma TheseTwoPredicatesAreEquivalent(x:int, y:int)
-{
-  assert AtLeastTwiceAsBigFunction(x, y) == AtLeastTwiceAsBigPredicate(x, y);
-}
+{/* TODO */ }
 
 // Add a precondition to make this lemma verify.
 lemma FourTimesIsPrettyBig(x:int)
   requires x>=0
-{
-  assert AtLeastTwiceAsBigPredicate(Double(Double(x)), x);
-}
+{/* TODO */ }
 

@@ -56,11 +56,7 @@ class ATM {
         ensures this.isCardInserted == true
         ensures this.cardPasscode == cardPasscode
         ensures this.accountAmount == accountAmount
-    {
-        this.isCardInserted := true;
-        this.cardPasscode := cardPasscode;
-        this.accountAmount := accountAmount;
-    }
+    {/* TODO */ }
 
     method WithdrawCard()
         requires this.isCardInserted == true
@@ -70,9 +66,7 @@ class ATM {
         ensures this.maxStoredAmount == old(this.maxStoredAmount)
         ensures this.minWithdrawAmount == old(this.minWithdrawAmount)
         ensures this.maxWithdrawAmount == old(this.maxWithdrawAmount)
-    {
-        this.isCardInserted := false;
-    } 
+    {/* TODO */ } 
 
     method EnterPasscode(enteredPasscode : nat)
         requires this.isCardInserted == true
@@ -85,9 +79,7 @@ class ATM {
         ensures this.minWithdrawAmount == old(this.minWithdrawAmount)
         ensures this.maxWithdrawAmount == old(this.maxWithdrawAmount)
         ensures this.enteredPasscode == enteredPasscode
-    {
-        this.enteredPasscode := enteredPasscode;
-    }
+    {/* TODO */ }
 
     method Withdraw(withdrawAmount : nat)
         requires this.isCardInserted == true
@@ -102,10 +94,7 @@ class ATM {
         ensures this.minWithdrawAmount == old(this.minWithdrawAmount)
         ensures this.maxWithdrawAmount == old(this.maxWithdrawAmount)
         ensures this.isCardInserted == old(this.isCardInserted)
-    {
-        this.storedAmount := this.storedAmount - withdrawAmount;
-        this.accountAmount := this.accountAmount - withdrawAmount;
-    }
+    {/* TODO */ }
 
     method AddStoredFunds(addedAmount : nat)
         requires IsAddedStoredAmountValid(addedAmount)
@@ -118,34 +107,8 @@ class ATM {
         ensures this.minWithdrawAmount == old(this.minWithdrawAmount)
         ensures this.maxWithdrawAmount == old(this.maxWithdrawAmount)
         ensures this.isCardInserted == old(this.isCardInserted)
-    {
-        storedAmount := storedAmount + addedAmount;
-    }
+    {/* TODO */ }
 
-    method Main() {
-        var minWithdrawAmount := 10;
-        var maxWithdrawAmount := 100;
-        var initialSumInATM := 200;
-        var maxSumInATM := 400;
-
-        var atm := new ATM(minWithdrawAmount, maxWithdrawAmount, initialSumInATM, maxSumInATM);
-
-        var cardPasscode := 5392;
-        var bankAccountAmount := 500;
-
-        atm.InsertCard(cardPasscode, bankAccountAmount);
-        atm.EnterPasscode(cardPasscode);
-
-        atm.Withdraw(100);
-        atm.Withdraw(100);
-        
-        atm.AddStoredFunds(400);
-
-        atm.Withdraw(100); 
-        atm.Withdraw(100);
-        atm.Withdraw(100);
-        
-        atm.WithdrawCard();
-    }
+    method Main() {/* TODO */ }
 }
 

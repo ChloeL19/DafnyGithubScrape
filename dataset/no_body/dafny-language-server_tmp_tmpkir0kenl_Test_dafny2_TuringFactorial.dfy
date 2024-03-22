@@ -9,22 +9,5 @@ function Factorial(n: nat): nat
 method ComputeFactorial(n: int) returns (u: int)
   requires 1 <= n;
   ensures u == Factorial(n);
-{
-  var r := 1;
-  u := 1;
-  while (r < n)
-    invariant r <= n;
-    invariant u == Factorial(r);
-  {
-    var v, s := u, 1;
-    while (s < r + 1)
-      invariant s <= r + 1;
-      invariant v == Factorial(r) && u == s * Factorial(r);
-    {
-      u := u + v;
-      s := s + 1;
-    }
-    r := r + 1;
-  }
-}
+{/* TODO */ }
 

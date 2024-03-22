@@ -15,8 +15,6 @@ module M4
   import opened M2  // this causes no name conflict
   import opened M3  // this causes no name conflict
   method Main()
-  {
-    var x := D();
-  }
+  {/* TODO */ }
 }
 

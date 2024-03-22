@@ -36,8 +36,4 @@ lemma SumMNIsEven(m: Nat, n: Nat)
 requires Odd(m)
 requires Odd(n)
 ensures Even(add(m,n))
-{
-    match m
-        case Succ(Zero) => assert Even(add(Succ(Zero),n));
-        case Succ(Succ(m')) => SumMNIsEven(m',n);
-}
+{/* TODO */ }

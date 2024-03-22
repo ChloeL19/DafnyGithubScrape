@@ -1,21 +1,9 @@
 datatype Tree = Empty | Node(int,Tree,Tree)
 
-method Main() {
-	var tree := BuildBST([-2,8,3,9,2,-7,0]);
-	PrintTreeNumbersInorder(tree);
-}
+method Main() {/* TODO */ }
 
 method PrintTreeNumbersInorder(t: Tree)
-{
-	match t {
-		case Empty =>
-		case Node(n, l, r) =>
-			PrintTreeNumbersInorder(l);
-			print n;
-			print "\n";
-			PrintTreeNumbersInorder(r);
-	}
-}
+{/* TODO */ }
 
 function NumbersInTree(t: Tree): set<int>
 {
@@ -53,15 +41,7 @@ predicate NoDuplicates(q: seq<int>) { forall i,j :: 0 <= i < j < |q| ==> q[i] !=
 method BuildBST(q: seq<int>) returns (t: Tree)
 	requires NoDuplicates(q)
 	ensures BST(t) && NumbersInTree(t) == NumbersInSequence(q)
-{
-	t := Empty;
-	for i:=0 to |q|
-		invariant BST(t);
-		invariant NumbersInTree(t) == NumbersInSequence(q[..i])
-	{
-		t := InsertBST(t,q[i]);
-	}
-}
+{/* TODO */ }
 
 /*
 	Goal: Implement correctly, efficiently, clearly, documenting the proof obligations
@@ -69,7 +49,7 @@ method BuildBST(q: seq<int>) returns (t: Tree)
 */
 method InsertBST(t0: Tree, x: int) returns (t: Tree)
 	requires BST(t0) && x !in NumbersInTree(t0)
-	ensures BST(t) && NumbersInTree(t) == NumbersInTree(t0)+{x}
+	ensures BST(t) && NumbersInTree(t) == NumbersInTree(t0)+{/* TODO */ }
 {
 	match t0 
 	{
@@ -183,30 +163,22 @@ method InsertBST(t0: Tree, x: int) returns (t: Tree)
 lemma	LemmaBinarySearchSubtree(n: int, left: Tree, right: Tree)
 	requires BST(Node(n, left, right))
 	ensures BST(left) && BST(right)
-{
-	assert Ascending(Inorder(Node(n, left, right)));
-	var qleft, qright := Inorder(left), Inorder(right);
-	var q := qleft+[n]+qright;
-	assert q == Inorder(Node(n, left, right));
-	assert Ascending(qleft+[n]+qright);
-	assert Ascending(qleft) by { LemmaAscendingSubsequence(q, qleft, 0); }
-	assert Ascending(qright) by { LemmaAscendingSubsequence(q, qright, |qleft|+1); }
-}
+{/* TODO */ }
 
 lemma LemmaAscendingSubsequence(q1: seq<int>, q2: seq<int>, i: nat)
 	requires i <= |q1|-|q2| && q2 == q1[i..i+|q2|]
 	requires Ascending(q1)
 	ensures Ascending(q2)
-{}
+{/* TODO */ }
 
 lemma {:verify true} lemma_all_small(q:seq<int>,i:int)
 	requires forall k:: k in NumbersInSequence(q) ==> k < i
 	requires forall k:: 0 <= k < |q| ==> q[k] in NumbersInSequence(q)
 	ensures forall j::0<=j < |q| ==> q[j] < i
-{}
+{/* TODO */ }
 
 lemma {:verify true} lemma_all_big(q:seq<int>,i:int)
 	requires forall k:: k in NumbersInSequence(q) ==> k > i
 	requires forall k:: 0 <= k < |q| ==> q[k] in NumbersInSequence(q)
 	ensures forall j::0<=j < |q| ==> q[j] > i
-{}
+{/* TODO */ }

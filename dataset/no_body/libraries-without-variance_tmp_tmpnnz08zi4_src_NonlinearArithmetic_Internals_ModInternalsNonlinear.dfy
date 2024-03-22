@@ -17,19 +17,17 @@ module ModInternalsNonlinear {
   lemma LemmaModOfZeroIsZero(m:int)
     requires 0 < m
     ensures 0 % m == 0
-  { 
-  }
+  {/* TODO */ }
 
   /* describes fundementals of the modulus operator */
   lemma LemmaFundamentalDivMod(x:int, d:int)
     requires d != 0
     ensures x == d * (x / d) + (x % d)
-  {
-  }
+  {/* TODO */ }
 
   /* the remained of 0 divided by any integer is always 0 */
   lemma Lemma0ModAnything()
-    ensures forall m: int {:trigger 0 % m} :: m > 0 ==> 0 % m == 0
+    ensures forall m: int {/* TODO */ } :: m > 0 ==> 0 % m == 0
   {
   }
 
@@ -38,15 +36,13 @@ module ModInternalsNonlinear {
     requires x < m
     requires 0 < m
     ensures x % m == x
-  {
-  }
+  {/* TODO */ }
 
   /* the range of the modulus of any integer will be [0, m) where m is the divisor */
   lemma LemmaModRange(x:int, m:int)
     requires m > 0
     ensures 0 <= x % m < m
-  {
-  }
+  {/* TODO */ }
 
 }
 

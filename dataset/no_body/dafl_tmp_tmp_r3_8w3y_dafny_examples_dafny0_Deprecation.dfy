@@ -4,10 +4,7 @@
 // This file contains tests for messags about various deprecated features.
 // As those features go away completely, so can the corresponding tests.
 
-method Main() {
-  // Test that we get all the way to compilation, despite the deprecation warnings below
-  print "yet here we are\n";
-}
+method Main() {/* TODO */ }
 
 // ----------
 
@@ -27,7 +24,7 @@ copredicate CoPredicate()  // deprecation warning: "copredicate" has been rename
 { true }
 
 inductive lemma InductiveLemma()  // deprecation warning: "inductive lemma" has been renamed to "least lemma"
-{ }
+{/* TODO */ }
 
 colemma CoLemma()  // deprecation warning: "colemma" has been renamed to "greatest lemma"
 { }
